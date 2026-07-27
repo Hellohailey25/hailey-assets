@@ -226,9 +226,9 @@
   var PAGES=[{"predmet": "", "color": "", "model": "", "slug": "/catalog", "label": "Весь каталог"}, {"predmet": "Джинсы", "color": "", "model": "", "slug": "/catalog/dzhinsy", "label": "Все джинсы"}, {"predmet": "Джинсы", "color": "Голубой", "model": "", "slug": "/catalog/golubye-dzhinsy", "label": "Голубые"}, {"predmet": "Джинсы", "color": "", "model": "Прямые", "slug": "/catalog/pryamye-dzhinsy", "label": "Прямые"}];
   function pageFor(pr,co,mo){for(var i=0;i<PAGES.length;i++){var p=PAGES[i];
     if((p.predmet||'')===(pr||'')&&(p.color||'')===(co||'')&&(p.model||'')===(mo||''))return p.slug;}return null;}
-  // Переход на ЧПУ-страницу комбинации, если она есть И это не текущая страница (иначе фильтр на месте).
-  // Так фильтры работают и на «углубление» (выбор), и на «возврат» (сброс к «Все …» → уровень выше).
-  function navTo(pr,co,mo){var s=pageFor(pr,co,mo);if(s&&s.replace(/\/+$/,'')!==location.pathname.replace(/\/+$/,'')){location.href=s;return true;}return false;}
+  // Фильтры НЕ редиректят на ЧПУ (скорость: мгновенная клиентская фильтрация, без перезагрузки).
+  // Вес поисковику идёт через <a> «Смотрите также» на чистые ЧПУ, а не через JS-фильтр — редирект не давал SEO-плюса.
+  // pageFor остаётся для кликабельного уровня категории в хлебных крошках.
 
   var root=document.getElementById('hc');
   var rub=function(n){return n.toLocaleString('ru-RU')+' руб';};
@@ -290,10 +290,10 @@
     // Фильтр «Категория» показываем ВСЕГДА (в т.ч. на странице категории — выбран текущий),
     // чтобы клиент видел, где он, и мог переключиться / вернуться к «Все категории» (→ общий каталог).
     fillSel(document.getElementById('fPredmet'),predmets(),state.predmet,'Все категории',
-      function(v){if(navTo(v,'',''))return;state.predmet=v;state.color='';state.model='';writeURL(true);render();});
-    // Умные фильтры: под комбинацию есть ЧПУ-страница → уходим на неё; сброс к «Любой …» → уровень выше; иначе фильтр на месте.
-    fillSel(document.getElementById('fColor'),optsFor('color'),state.color,'Любой цвет',function(v){if(navTo(state.predmet,v,state.model))return;state.color=v;writeURL(true);render();});
-    fillSel(document.getElementById('fModel'),optsFor('model'),state.model,'Любая модель',function(v){if(navTo(state.predmet,state.color,v))return;state.model=v;writeURL(true);render();});
+      function(v){state.predmet=v;state.color='';state.model='';writeURL(true);render();});
+    // Фильтры мгновенные, БЕЗ редиректа: меняют выдачу/URL-параметры на месте (быстро). Вес — через «Смотрите также».
+    fillSel(document.getElementById('fColor'),optsFor('color'),state.color,'Любой цвет',function(v){state.color=v;writeURL(true);render();});
+    fillSel(document.getElementById('fModel'),optsFor('model'),state.model,'Любая модель',function(v){state.model=v;writeURL(true);render();});
   }
   // Блок «Смотрите также» — настоящие <a> ссылки на соседние ЧПУ-страницы (по ним Google передаёт вес).
   function renderSubcats(){
