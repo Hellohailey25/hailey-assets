@@ -28,9 +28,9 @@
   .hc .crumb b{color:var(--ink-64);font-weight:400}
   .hc .shead{margin-bottom:22px}
   .hc .eyebrow{font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-44);font-weight:600}
-  .hc .shead h2{font-size:clamp(24px,3.2vw,38px);font-weight:300;letter-spacing:-.01em;margin-top:12px}
-  .hc .shead h2 b{font-weight:600}
-  .hc .shead h2 .h1count{font-size:14px;font-weight:400;letter-spacing:0;color:var(--ink-44);margin-left:12px;white-space:nowrap}
+  .hc .shead h1,.hc .shead h2{font-size:clamp(24px,3.2vw,38px);font-weight:300;letter-spacing:-.01em;margin-top:12px}
+  .hc .shead h1 b,.hc .shead h2 b{font-weight:600}
+  .hc .shead h1 .h1count,.hc .shead h2 .h1count{font-size:14px;font-weight:400;letter-spacing:0;color:var(--ink-44);margin-left:12px;white-space:nowrap}
   .hc .shead .sdesc{font-size:14px;color:var(--ink-64);margin-top:12px;line-height:1.65}
   .hc .shead .found{color:var(--ink-44)}
   .hc .hitslink{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-64);transition:color .15s}
