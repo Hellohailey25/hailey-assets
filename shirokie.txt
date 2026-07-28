@@ -1,0 +1,508 @@
+<!-- ============================================================
+     HAILEY · Фасетный каталог (T123) — СГЕНЕРИРОВАНО build_catalog.py, вручную не править
+     • карточки из данных + фасетные фильтры (Цвет, Модель)
+     • CONFIG наверху скрипта задаёт стартовый фильтр + H1 + описание (свой на каждый ЧПУ)
+     • корзина + оформление → скрытая нативная Tilda-форма (как «Хиты сезона»)
+     ВАЖНО: на странице Tilda должен стоять блок «Форма» с полем Phone (движок отправки).
+     ============================================================ -->
+<style>
+  .hc *{margin:0;padding:0;box-sizing:border-box}
+  .hc{--paper:#F2F0EB;--paper2:#E9E6DF;--card:#FBFAF7;
+    --ink:#191712;--ink-64:rgba(25,23,18,.64);--ink-44:rgba(25,23,18,.44);
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.08);
+    --accent:#2B3648;--accent-2:#55647E;--good:#2f6b46;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);
+    -webkit-font-smoothing:antialiased;line-height:1.55;letter-spacing:.005em;
+    padding:14px 0 clamp(28px,5vw,64px);position:relative}
+  @media(prefers-color-scheme:dark){.hc{--paper:#14130F;--paper2:#1c1b16;--card:#1b1a15;
+    --ink:#EDEAE1;--ink-64:rgba(237,234,225,.66);--ink-44:rgba(237,234,225,.46);
+    --line:rgba(237,234,225,.14);--line-soft:rgba(237,234,225,.08);
+    --accent:#9CB0D0;--accent-2:#7688a6;--good:#7cc79a}}
+  .hc a{color:inherit;text-decoration:none}
+  .hc button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  .hc .wrap{width:min(1200px,90vw);margin:0 auto}
+  .hc .mono{font-variant-numeric:tabular-nums}
+  .hc .crumb{font-size:12px;color:var(--ink-44);letter-spacing:.03em;margin-bottom:18px}
+  .hc .crumb a:hover{color:var(--ink)}
+  .hc .crumb b{color:var(--ink-64);font-weight:400}
+  .hc .shead{margin-bottom:22px}
+  .hc .eyebrow{font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-44);font-weight:600}
+  .hc .shead h2{font-size:clamp(24px,3.2vw,38px);font-weight:300;letter-spacing:-.01em;margin-top:12px}
+  .hc .shead h2 b{font-weight:600}
+  .hc .shead h2 .h1count{font-size:14px;font-weight:400;letter-spacing:0;color:var(--ink-44);margin-left:12px;white-space:nowrap}
+  .hc .shead .sdesc{font-size:14px;color:var(--ink-64);margin-top:12px;line-height:1.65}
+  .hc .shead .found{color:var(--ink-44)}
+  .hc .hitslink{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-64);transition:color .15s}
+  .hc .hitslink:hover{color:var(--ink)}
+  .hc .subcats{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:20px 0 2px}
+  .hc .subcats .sclabel{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-44);font-weight:600;margin-right:4px}
+  .hc .subcats .scl{padding:7px 15px;border:1px solid var(--line);border-radius:22px;font-size:13px;color:var(--ink-64);transition:.15s}
+  .hc .subcats .scl:hover{border-color:var(--accent);color:var(--ink)}
+  /* --- фильтры --- */
+  .hc .filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px 30px;padding:18px 0 20px;margin-bottom:8px;
+    border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .hc .fgroup{display:flex;flex-direction:column;gap:10px}
+  .hc .flabel{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-44);font-weight:600}
+  .hc .fsel{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);
+    font-family:inherit;font-size:14px;letter-spacing:.01em;cursor:pointer}
+  .hc .fsel:focus{outline:none;border-color:var(--accent)}
+  /* --- сетка --- */
+  .hc .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,34px);margin-top:26px}
+  @media(max-width:820px){.hc .grid{grid-template-columns:1fr 1fr;gap:18px}}
+  @media(max-width:520px){.hc .grid{grid-template-columns:1fr}}
+  .hc .empty{padding:60px 0;text-align:center;color:var(--ink-44);font-size:15px}
+  .hc .card{display:flex;flex-direction:column}
+  .hc .ph{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:4px}
+  .hc .photo{position:absolute;inset:0;transition:transform .8s cubic-bezier(.2,.7,.2,1);background:var(--paper2)}
+  .hc .card:hover .photo{transform:scale(1.04)}
+  .hc .photo img{width:100%;height:100%;object-fit:cover}
+  .hc .phscrim{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .26s;
+    background:linear-gradient(to top,rgba(15,17,22,.72) 0%,rgba(15,17,22,.28) 34%,transparent 60%)}
+  .hc .ph:hover .phscrim,.hc .ph:focus-within .phscrim{opacity:1}
+  .hc .badges{position:absolute;top:12px;left:12px;z-index:4;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+  .hc .bdg{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fff;padding:5px 10px;border-radius:3px;backdrop-filter:blur(4px)}
+  .hc .bdg.hit{background:rgba(43,54,72,.92)}
+  .hc .bdg.new{background:rgba(47,107,70,.92)}
+  .hc .bdg.sale{background:rgba(180,68,47,.94)}
+  .hc .bdg.def{background:rgba(20,23,30,.75)}
+  .hc .fav{position:absolute;top:12px;right:12px;z-index:4;width:34px;height:34px;display:flex;align-items:center;
+    justify-content:center;font-size:17px;color:#fff;opacity:.72;transition:.2s;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+  .hc .fav:hover{opacity:1;transform:scale(1.12)}
+  .hc .fav.on{opacity:1;color:#ff8f7a}
+  .hc .hover{position:absolute;left:12px;right:12px;bottom:12px;z-index:5;display:flex;flex-direction:column;gap:8px;
+    opacity:0;transform:translateY(10px);transition:.26s cubic-bezier(.2,.8,.2,1)}
+  .hc .ph:hover .hover,.hc .ph:focus-within .hover{opacity:1;transform:none}
+  .hc .hb{width:100%;padding:12px;border-radius:4px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+    font-weight:700;display:flex;align-items:center;justify-content:center;transition:.16s}
+  .hc .hb.more{background:color-mix(in srgb,var(--card) 92%,transparent);color:var(--ink);backdrop-filter:blur(6px)}
+  .hc .hb.more:hover{background:var(--card)}
+  .hc .hb.quick{background:var(--accent);color:#fff;border:1px solid rgba(255,255,255,.22)}
+  .hc .hb.quick:hover{background:var(--ink);border-color:transparent}
+  @media(hover:none){.hc .hover{opacity:1;transform:none;position:static;margin-top:10px}
+    .hc .hb.more{border:1px solid var(--line)}}
+  .hc .info{padding:15px 2px 0}
+  .hc .pname{font-size:15.5px;font-weight:500;letter-spacing:.005em;transition:.15s}
+  .hc a.pname:hover{color:var(--accent-2)}
+  .hc .meta{font-size:11.5px;color:var(--ink-44);margin-top:7px;letter-spacing:.03em;display:flex;align-items:center;gap:8px}
+  .hc .meta .st{color:#d3a24a;letter-spacing:1px}
+  .hc .buyrow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+  .hc .prices{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .hc .price{font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .hc .old{font-size:13px;color:var(--ink-44);text-decoration:line-through}
+  .hc .off{font-size:11px;font-weight:700;color:#fff;background:var(--accent);padding:3px 7px;border-radius:3px;letter-spacing:.03em}
+  .hc .add{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;padding:11px 15px;border-radius:4px;
+    border:1px solid var(--ink);color:var(--ink);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    font-weight:700;transition:.16s;white-space:nowrap}
+  .hc .add svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7}
+  .hc .add:hover{background:var(--ink);color:var(--paper)}
+  .hc .add.added{background:var(--good);border-color:var(--good);color:#fff}
+  .hc .split{font-size:11.5px;color:var(--ink-44);margin-top:9px;letter-spacing:.02em}
+  @media(max-width:400px){.hc .add span{display:none}.hc .add{padding:11px 13px}}
+  /* --- корзина (drawer) — как в «Хиты сезона» --- */
+  .hc .cartbtn{position:fixed;right:20px;bottom:20px;z-index:55;display:flex;align-items:center;gap:9px;
+    background:var(--ink);color:var(--paper);padding:14px 18px;border-radius:40px;font-size:12px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;box-shadow:0 12px 34px rgba(0,0,0,.28);
+    transform:translateY(140%);transition:.3s cubic-bezier(.2,.8,.2,1)}
+  .hc .cartbtn.on{transform:none}
+  .hc .cartbtn .cc{min-width:20px;height:20px;padding:0 6px;border-radius:11px;background:var(--paper);color:var(--ink);
+    font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .hc .scrim{position:fixed;inset:0;background:rgba(15,17,22,.5);opacity:0;pointer-events:none;transition:.25s;z-index:60}
+  .hc .scrim.on{opacity:1;pointer-events:auto}
+  .hc .drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,94vw);background:var(--paper);z-index:70;
+    transform:translateX(100%);transition:transform .3s cubic-bezier(.3,.8,.3,1);display:flex;flex-direction:column;
+    box-shadow:-20px 0 50px rgba(0,0,0,.2)}
+  .hc .drawer.on{transform:none}
+  .hc .drawer .dh{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}
+  .hc .drawer .dh b{font-size:15px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .hc .drawer .x{font-size:22px;color:var(--ink-64);width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+  .hc .drawer .body{flex:1;overflow-y:auto;padding:8px 22px}
+  .hc .drawer .empty{text-align:center;color:var(--ink-44);padding:60px 0;font-size:14px}
+  .hc .citem{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line-soft)}
+  .hc .citem .cimg{width:60px;height:76px;border-radius:4px;flex:0 0 auto;background:var(--paper2);position:relative;overflow:hidden}
+  .hc .citem .ci{flex:1;min-width:0}
+  .hc .citem .cn{font-size:14px;font-weight:600;line-height:1.3}
+  .hc .citem .cp{font-weight:700;margin-top:6px;font-size:14px}
+  .hc .qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:4px;width:fit-content;margin-top:8px}
+  .hc .qty button{width:30px;height:30px;font-size:16px;color:var(--ink-64)}
+  .hc .qty span{width:34px;text-align:center;font-size:14px;font-weight:600}
+  .hc .citem .rm{align-self:flex-start;color:var(--ink-44);font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+    border-bottom:1px solid var(--line);height:fit-content}
+  .hc .citem .rm:hover{color:var(--ink)}
+  .hc .drawer .foot{border-top:1px solid var(--line);padding:18px 22px 22px;display:none}
+  .hc .drawer .sum{display:flex;justify-content:space-between;font-size:15px;margin-bottom:6px}
+  .hc .drawer .sum.total{font-size:19px;font-weight:700;margin:10px 0 16px}
+  .hc .btn{width:100%;padding:16px;border-radius:4px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+    font-weight:700;transition:.18s;display:flex;align-items:center;justify-content:center;gap:9px;background:var(--ink);color:var(--paper)}
+  .hc .btn:hover{background:var(--accent)}
+  .hc .drawer .note{font-size:12px;color:var(--ink-44);margin-top:12px;text-align:center;line-height:1.5}
+  .hc .modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
+  .hc .modal.on{display:flex}
+  .hc .mbg{position:absolute;inset:0;background:rgba(15,17,22,.55)}
+  .hc .sheet{position:relative;background:var(--paper);width:min(440px,96vw);max-height:92vh;overflow-y:auto;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+  .hc .sheet .sh{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line)}
+  .hc .sheet .sh b{font-size:15px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .hc .sheet .x{font-size:22px;color:var(--ink-64);width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+  .hc .sbody{padding:22px 24px}
+  .hc .miniprod{display:flex;gap:12px;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line-soft);font-size:13px;color:var(--ink-64)}
+  .hc .field{margin-bottom:14px}
+  .hc .field label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-44);margin-bottom:7px}
+  .hc .field input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font-family:inherit;font-size:15px}
+  .hc .field input:focus{outline:none;border-color:var(--accent)}
+  .hc .note{font-size:12px;color:var(--ink-44);line-height:1.5}
+  .hc .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,160%);background:var(--ink);color:var(--paper);
+    padding:13px 20px;border-radius:5px;font-size:14px;font-weight:600;z-index:90;
+    transition:transform .3s cubic-bezier(.2,.8,.2,1);box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:90vw}
+  .hc .toast.on{transform:translate(-50%,0)}
+  /* --- окно выбора размера --- */
+  .hc .sheet.wide{width:min(840px,96vw)}
+  .hc .szpick{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:26px;padding:22px 24px}
+  @media(max-width:640px){.hc .szpick{grid-template-columns:1fr;gap:22px}}
+  .hc .szprod{font-size:13.5px;color:var(--ink-64);margin-bottom:16px}
+  .hc .szlabel{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-44);font-weight:600;margin-bottom:12px}
+  .hc .szgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .hc .szbtn{aspect-ratio:1/.82;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);
+    font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:.14s;font-variant-numeric:tabular-nums}
+  .hc .szbtn:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .hc .szbtn.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+  .hc .szhint{margin-top:14px;font-size:12.5px;color:var(--ink-64);line-height:1.6}
+  .hc .szhint b{color:var(--ink)}
+  .hc .szadd{margin-top:18px}
+  .hc .szadd:disabled{opacity:.4;cursor:not-allowed}
+  .hc .sztblwrap{overflow-x:auto}
+  .hc .sztbl{width:100%;border-collapse:collapse;font-size:13px}
+  .hc .sztbl th{text-align:left;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-44);
+    font-weight:600;padding:9px 8px;background:var(--paper2);white-space:nowrap}
+  .hc .sztbl td{padding:9px 8px;border-bottom:1px solid var(--line-soft);font-variant-numeric:tabular-nums;color:var(--ink-64)}
+  .hc .sztbl td:first-child{font-weight:700;color:var(--ink)}
+  .hc .sztbl tr.hl td{background:color-mix(in srgb,var(--accent) 13%,transparent);color:var(--ink)}
+  .hc .szmeasure{margin-top:12px;font-size:11.5px;color:var(--ink-44);line-height:1.6}
+  .hc .szmeasure b{color:var(--ink-64)}
+</style>
+
+<div class="hc" id="hc">
+  <div class="wrap">
+    <nav class="crumb" id="crumb"></nav>
+    <div class="shead">
+      <h2 id="h1"><span id="h1t"></span><span class="h1count mono" id="h1count"></span></h2>
+      <div class="sdesc"><span id="sdesc"></span> <span class="found" id="found"></span></div>
+    </div>
+    <div class="filters">
+      <div class="fgroup" id="gBadge"><span class="flabel">Подборка</span><select class="fsel" id="fBadge"></select></div>
+      <div class="fgroup" id="gPredmet"><span class="flabel">Категория</span><select class="fsel" id="fPredmet"></select></div>
+      <div class="fgroup"><span class="flabel">Цвет</span><select class="fsel" id="fColor"></select></div>
+      <div class="fgroup"><span class="flabel">Модель</span><select class="fsel" id="fModel"></select></div>
+    </div>
+    <nav class="subcats" id="subcats" style="display:none"></nav>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none">В этой комбинации пока нет товаров. Сбросьте фильтр.</div>
+  </div>
+
+  <button class="cartbtn" id="cartBtn">Корзина <span class="cc" id="cc">0</span></button>
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer" id="drawer" aria-label="Корзина">
+    <div class="dh"><b>Корзина</b><button class="x" id="closeCart">✕</button></div>
+    <div class="body" id="cartBody"></div>
+    <div class="foot" id="cartFoot">
+      <div class="sum"><span>Товары</span><span class="mono" id="sumGoods">0 руб</span></div>
+      <div class="sum"><span>Доставка</span><span>по РФ, от 2 дней</span></div>
+      <div class="sum total"><span>Итого</span><span class="mono" id="sumTotal">0 руб</span></div>
+      <button class="btn" id="toCheckout">Оформить заказ</button>
+      <div class="note">Менеджер перезвонит · примерка перед оплатой · возврат 14 дней</div>
+    </div>
+  </aside>
+  <div class="modal" id="modal"><div class="mbg" id="modalBg"></div><div class="sheet" id="sheet"></div></div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+(function(){
+  var PRODUCTS=[{"id": "504407015", "name": "Джинсы широкие прямые серые", "url": "https://www.wildberries.ru/catalog/504407015/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/big/1.webp", "rating": "4,8", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": "Серый", "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": ""}, {"id": "504607217", "name": "Прямые джинсы широкие синие", "url": "https://www.wildberries.ru/catalog/504607217/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504607/504607217/images/big/1.webp", "rating": "4,8", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": "Синий", "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": ""}, {"id": "504638231", "name": "Прямые джинсы широкие голубые", "url": "https://www.wildberries.ru/catalog/504638231/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504638/504638231/images/big/1.webp", "rating": "4,8", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": "Голубой", "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": "/pryamye-dzhinsy-shirokie-504638231"}, {"id": "504631232", "name": "Широкие рваные джинсы с дырками", "url": "https://www.wildberries.ru/catalog/504631232/detail.aspx", "price": 6990, "old": 11000, "img": "https://basket-27.wbbasket.ru/vol5046/part504631/504631232/images/big/1.webp", "rating": "4,9", "rev": 318, "predmet": "Джинсы", "model": ["Рваные"], "color": "Голубой", "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66], "page": ""}, {"id": "754505251", "name": "Джинсы багги широкие бойфренды", "url": "https://www.wildberries.ru/catalog/754505251/detail.aspx", "price": 5490, "old": 10000, "img": "https://basket-35.wbbasket.ru/vol7545/part754505/754505251/images/big/1.webp", "rating": "4,9", "rev": 318, "predmet": "Джинсы", "model": ["Багги", "Широкие", "Буткат", "Бойфренды", "Оверсайз", "Свободные"], "color": "Голубой", "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70], "page": ""}, {"id": "1017667229", "name": "Прямые джинсы широкие черные", "url": "https://www.lamoda.ru/p/mp002xw1mwo0/clothes-hellohailey-dzhinsy/", "price": 5490, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MWO0_35306458_1_v2_2x.jpg", "rating": "4,8", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": "Черный", "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": ""}, {"id": "761081181", "name": "Бомбер замшевый ветровка на осень", "url": "https://www.wildberries.ru/catalog/761081181/detail.aspx", "price": 5500, "old": 12000, "img": "https://basket-35.wbbasket.ru/vol7610/part761081/761081181/images/big/1.webp", "rating": "5", "rev": 1497, "predmet": "Бомбер", "model": ["Укороченный"], "color": "Коричневый", "tags": [], "badges": [], "sizes": [44, 46, 48, 50], "page": ""}, {"id": "504646155", "name": "Джинсы классические прямые", "url": "https://www.wildberries.ru/catalog/504646155/detail.aspx", "price": 4000, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504646/504646155/images/big/1.webp", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые"], "color": "Синий", "tags": [], "badges": ["РАСПРОДАЖА"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": ""}, {"id": "545150789", "name": "Джинсы светлые широкие клеш", "url": "https://www.wildberries.ru/catalog/545150789/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-28.wbbasket.ru/vol5451/part545150/545150789/images/big/1.webp", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Клеш"], "color": "Голубой", "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": ""}, {"id": "754477427", "name": "Джинсы прямые широкие багги", "url": "https://www.wildberries.ru/catalog/754477427/detail.aspx", "price": 7000, "old": 12000, "img": "https://basket-35.wbbasket.ru/vol7544/part754477/754477427/images/big/1.webp", "rating": "5", "rev": 318, "predmet": "Джинсы", "model": ["Багги", "Широкие", "Буткат", "Бойфренды", "Оверсайз", "Свободные"], "color": "Голубой", "tags": [], "badges": [], "sizes": [52, 54, 56, 58, 60, 62, 64, 66], "page": ""}, {"id": "504645014", "name": "Джинсы прямые широкие трубы", "url": "https://www.wildberries.ru/catalog/504645014/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504645/504645014/images/big/1.webp", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые"], "color": "Синий", "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": ""}, {"id": "504634485", "name": "Джинсы широкие палаццо с подворотами", "url": "https://www.wildberries.ru/catalog/504634485/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504634/504634485/images/big/1.webp", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Широкие"], "color": "Синий", "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": ""}, {"id": "1017376402", "name": "Джинсы широкие трубы варенки", "url": "https://www.wildberries.ru/catalog/1017376402/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-41.wbbasket.ru/vol10173/part1017376/1017376402/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Прямые"], "color": "Серый", "tags": [], "badges": [], "sizes": [52, 54, 56, 58, 60, 62, 64, 66], "page": ""}, {"id": "545148107", "name": "Джинсы темные широкие", "url": "https://www.wildberries.ru/catalog/545148107/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-28.wbbasket.ru/vol5451/part545148/545148107/images/big/1.webp", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые"], "color": "Синий", "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58], "page": ""}, {"id": "504618555", "name": "Джинсы темные широкие прямые трубы", "url": "https://www.wildberries.ru/catalog/504618555/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504618/504618555/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Прямые"], "color": "Синий", "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": ""}, {"id": "504624622", "name": "Джинсы светлые широкие для высоких", "url": "https://www.wildberries.ru/catalog/504624622/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504624/504624622/images/big/1.webp", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые"], "color": "Голубой", "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66], "page": ""}, {"id": "504644422", "name": "Джинсы прямые y2k широкие", "url": "https://www.wildberries.ru/catalog/504644422/detail.aspx", "price": 7000, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504644/504644422/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Широкие"], "color": "Голубой", "tags": [], "badges": ["НОВИНКА"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": ""}, {"id": "504645629", "name": "Джинсы рваные y2k с пятнами", "url": "https://www.wildberries.ru/catalog/504645629/detail.aspx", "price": 7000, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504645/504645629/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Рваные"], "color": "Голубой", "tags": [], "badges": ["НОВИНКА"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": ""}];
+
+  // === CONFIG страницы — СВОЙ на каждый ЧПУ. Пустое поле фильтра = «любой». ===
+  var CONFIG={"predmet": "Джинсы", "baseSlug": "catalog", "h1": "", "color": "", "model": "Широкие", "desc": "Широкие женские джинсы больших размеров — свободный крой, который скрывает бёдра и живот и садится по любой фигуре. Плотный деним держит форму, штанина идёт прямо и широко от бедра (крой wide leg, оверсайз, свободные, трубы). Размеры от 42 до 74, высокая посадка. Модные багги и объёмные модели на каждый день. Примерка перед оплатой, доставка по России, возврат 14 дней.", "range": "42–74"};
+
+  // === КАРТА ЧПУ-СТРАНИЦ (перелинковка + умные фильтры). Общая на все блоки. ===
+  var PAGES=[{"predmet": "", "color": "", "model": "", "slug": "/catalog", "label": "Весь каталог"}, {"predmet": "Джинсы", "color": "", "model": "", "slug": "/catalog/dzhinsy", "label": "Все джинсы"}, {"predmet": "Джинсы", "color": "Голубой", "model": "", "slug": "/catalog/golubye-dzhinsy", "label": "Голубые"}, {"predmet": "Джинсы", "color": "", "model": "Прямые", "slug": "/catalog/pryamye-dzhinsy", "label": "Прямые"}, {"predmet": "Джинсы", "color": "", "model": "Широкие", "slug": "/catalog/shirokie-dzhinsy", "label": "Широкие"}, {"predmet": "Джинсы", "color": "Голубой", "model": "Широкие", "slug": "/catalog/golubye-shirokie-dzhinsy", "label": "Голубые широкие"}, {"predmet": "Джинсы", "color": "", "model": "Рваные", "slug": "/catalog/rvanye-dzhinsy", "label": "Рваные"}, {"predmet": "Джинсы", "color": "", "model": "Багги", "slug": "/catalog/baggi-dzhinsy", "label": "Багги"}];
+  function pageFor(pr,co,mo){for(var i=0;i<PAGES.length;i++){var p=PAGES[i];
+    if((p.predmet||'')===(pr||'')&&(p.color||'')===(co||'')&&(p.model||'')===(mo||''))return p.slug;}return null;}
+  // Фильтры НЕ редиректят на ЧПУ (скорость: мгновенная клиентская фильтрация, без перезагрузки).
+  // Вес поисковику идёт через <a> «Смотрите также» на чистые ЧПУ, а не через JS-фильтр — редирект не давал SEO-плюса.
+  // pageFor остаётся для кликабельного уровня категории в хлебных крошках.
+
+  var root=document.getElementById('hc');
+  var rub=function(n){return n.toLocaleString('ru-RU')+' руб';};
+  // «17 товаров» — русское склонение рядом с H1 (как на крупных магазинах)
+  function plural(n){var a=Math.abs(n)%100,b=n%10,w;if(a>10&&a<20)w='товаров';else if(b===1)w='товар';else if(b>=2&&b<=4)w='товара';else w='товаров';return n+' '+w;}
+  // склонения для H1 (прилагательные)
+  var ADJ={"Синий":"Синие","Голубой":"Голубые","Серый":"Серые","Чёрный":"Чёрные","Черный":"Чёрные",
+    "Прямые":"прямые","Рваные":"рваные","Багги":"багги","Клеш":"клёш","Клёш":"клёш","Широкие":"широкие","Укороченный":"укороченные"};
+  var PLURAL={"Джинсы":"джинсы","Бомбер":"бомберы"};
+  function low(s){return (s||'').charAt(0).toLowerCase()+(s||'').slice(1);}
+  function bcls(b){b=(b||'').toLowerCase();
+    if(b.indexOf('хит')>-1)return 'hit';
+    if(b.indexOf('нов')>-1)return 'new';
+    if(b.indexOf('распрод')>-1||b.indexOf('sale')>-1||b.indexOf('скид')>-1)return 'sale';
+    return 'def';}
+
+  // --- состояние в URL: фильтры пишутся в ?cat=&color=&model=&set= (шаринг + кнопка «назад») ---
+  function readURL(){
+    var q=new URLSearchParams(location.search);
+    return {predmet:q.get('cat')||CONFIG.predmet||"",color:q.get('color')||CONFIG.color||"",
+      model:q.get('model')||CONFIG.model||"",badge:q.get('set')||CONFIG.badge||""};
+  }
+  function writeURL(push){
+    var q=new URLSearchParams();
+    if(state.predmet)q.set('cat',state.predmet);
+    if(state.color)q.set('color',state.color);
+    if(state.model)q.set('model',state.model);
+    if(state.badge)q.set('set',state.badge);
+    var s=q.toString(), url=location.pathname+(s?('?'+s):'');
+    try{if(push)history.pushState(state,'',url);else history.replaceState(state,'',url);}catch(e){}
+  }
+  var state=readURL();
+  var predmetFixed=!!CONFIG.predmet; // страница категории → предмет зафиксирован, чипов «Категория» нет
+
+  // model — массив (мультикрой); товар матчится, если выбранный крой ЕСТЬ в его списке
+  function has(val,sel){return Array.isArray(val)?val.indexOf(sel)>-1:val===sel;}
+  function inState(p){return (!state.predmet||p.predmet===state.predmet)&&(!state.color||has(p.color,state.color))&&(!state.model||has(p.model,state.model))&&(!state.badge||(p.badges&&p.badges.indexOf(state.badge)>-1));}
+  // варианты фасета по товарам текущей категории (без учёта самого поля).
+  // Поле-массив (Модель) разворачиваем в отдельные опции + дедуп — иначе в списке «Прямые, Широкие, …» одной строкой.
+  function optsFor(field){var pool=PRODUCTS.filter(function(p){return !state.predmet||p.predmet===state.predmet;});
+    var s=[];pool.forEach(function(p){var v=p[field];if(Array.isArray(v)){v.forEach(function(x){if(x&&s.indexOf(x)<0)s.push(x);});}else if(v&&s.indexOf(v)<0)s.push(v);});return s;}
+  function predmets(){var s=[];PRODUCTS.forEach(function(p){if(p.predmet&&s.indexOf(p.predmet)<0)s.push(p.predmet);});return s;}
+  // подборки (бейджи) — общие по всему каталогу, коллекции пересекают категории
+  function badgeOpts(){var s=[];PRODUCTS.forEach(function(p){(p.badges||[]).forEach(function(b){if(s.indexOf(b)<0)s.push(b);});});return s;}
+
+  function fillSel(el,options,current,allLabel,onChange){
+    el.innerHTML='';
+    [['',allLabel]].concat(options.map(function(v){return [v,v];})).forEach(function(p){
+      var o=document.createElement('option');o.value=p[0];o.textContent=p[1];el.appendChild(o);
+    });
+    el.value=current||'';
+    el.onchange=function(){onChange(el.value);};
+  }
+  function renderFilters(){
+    // «Подборка» показываем только если в каталоге есть бейджи
+    var gb=document.getElementById('gBadge'), bo=badgeOpts();
+    if(bo.length){gb.style.display='';fillSel(document.getElementById('fBadge'),bo,state.badge,'Все товары',function(v){state.badge=v;writeURL(true);render();});}
+    else{gb.style.display='none';}
+    // Фильтр «Категория» показываем ВСЕГДА (в т.ч. на странице категории — выбран текущий),
+    // чтобы клиент видел, где он, и мог переключиться / вернуться к «Все категории» (→ общий каталог).
+    fillSel(document.getElementById('fPredmet'),predmets(),state.predmet,'Все категории',
+      function(v){state.predmet=v;state.color='';state.model='';writeURL(true);render();});
+    // Фильтры мгновенные, БЕЗ редиректа: меняют выдачу/URL-параметры на месте (быстро). Вес — через «Смотрите также».
+    fillSel(document.getElementById('fColor'),optsFor('color'),state.color,'Любой цвет',function(v){state.color=v;writeURL(true);render();});
+    fillSel(document.getElementById('fModel'),optsFor('model'),state.model,'Любая модель',function(v){state.model=v;writeURL(true);render();});
+  }
+  // Блок «Смотрите также» — настоящие <a> ссылки на соседние ЧПУ-страницы (по ним Google передаёт вес).
+  function renderSubcats(){
+    var el=document.getElementById('subcats');if(!el)return;
+    var here=location.pathname.replace(/\/+$/,'');
+    var sibs=PAGES.filter(function(p){
+      if(p.slug.replace(/\/+$/,'')===here)return false;
+      if(CONFIG.predmet)return p.predmet===CONFIG.predmet;      // на странице категории — все её ЧПУ-страницы
+      return !!p.predmet;                                       // на общем каталоге — ссылки на ВСЕ дочерние страницы (вес идёт вниз)
+    });
+    if(!sibs.length){el.style.display='none';return;}
+    el.style.display='';
+    el.innerHTML='<span class="sclabel">Смотрите также</span>'+sibs.map(function(p){return '<a class="scl" href="'+p.slug+'">'+p.label+'</a>';}).join('');
+  }
+
+  function titleFor(){
+    if(!state.predmet) return CONFIG.h1||'Каталог HAILEY';
+    var noun=PLURAL[state.predmet]||low(state.predmet);
+    var pre=[]; if(state.color)pre.push(ADJ[state.color]||state.color);
+    if(state.model)pre.push(low(ADJ[state.model]||state.model));
+    // «женские» — сквозной сигнал бренда в H1; для ЧИСТОЙ категории (без цвета/кроя) добавляем
+    // диапазон 42–74 (инклюзивно, не отпугивает 42–44). «Больших размеров» — только в title/тексте.
+    var t=(pre.join(' ')+' женские '+noun).trim();
+    t=t.charAt(0).toUpperCase()+t.slice(1);
+    if(pre.length===0 && CONFIG.range) t+=' '+CONFIG.range;
+    return t;
+  }
+
+  function card(p){
+    var off=p.old>p.price?Math.round((1-p.price/p.old)*100):0;
+    // ссылка карточки: если задана внутренняя страница сайта (p.page) — ведём на неё в той же вкладке;
+    // иначе на WB в новой вкладке. «Подробнее» и название используют одну и ту же ссылку.
+    var link=p.page||p.url, tgt=p.page?'':' target="_blank" rel="noopener"';
+    var el=document.createElement('div');
+    el.className='card';
+    el.dataset.id=p.id; el.dataset.name=p.name; el.dataset.price=p.price; el.dataset.img=p.img;
+    el.dataset.sizes=JSON.stringify(p.sizes||[]);
+    var priceHtml='<span class="price mono">'+rub(p.price)+'</span>'
+      +(p.old>p.price?'<span class="old mono">'+rub(p.old)+'</span><span class="off">−'+off+'%</span>':'');
+    var stars=p.rating?'<span class="st">★★★★★</span> '+p.rating+(p.rev?' · '+p.rev+' отз.':''):'';
+    var split=Math.round(p.price/4);
+    el.innerHTML=
+      '<div class="ph">'
+      +'<div class="photo"><img src="'+p.img+'" alt="'+p.name+'"></div>'
+      +'<div class="phscrim"></div>'
+      +((p.badges&&p.badges.length)?'<div class="badges">'+p.badges.map(function(b){return '<span class="bdg '+bcls(b)+'">'+b+'</span>';}).join('')+'</div>':'')
+      +'<button class="fav" aria-label="В избранное">♡</button>'
+      +'<div class="hover">'
+      +(link?'<a class="hb more" href="'+link+'"'+tgt+'>Подробнее</a>':'')
+      +'<button class="hb quick" data-quick>Купить в 1 клик</button></div></div>'
+      +'<div class="info">'
+      +(link?'<a class="pname" href="'+link+'"'+tgt+'>'+p.name+'</a>':'<div class="pname">'+p.name+'</div>')
+      +'<div class="meta">'+stars+'</div>'
+      +'<div class="buyrow"><div class="prices">'+priceHtml+'</div>'
+      +'<button class="add" data-add><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.5a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21.5 7H6"/></svg><span>В корзину</span></button></div>'
+      +'<div class="split">или '+rub(split)+' × 4 · Сплит</div></div>';
+    return el;
+  }
+
+  function render(){
+    renderFilters();
+    document.getElementById('h1t').textContent=titleFor();
+    document.getElementById('sdesc').textContent=CONFIG.desc||'';
+    // Хлебные крошки: полная вложенность с «Главная». «Каталог» — ссылка только когда мы ГЛУБЖЕ него
+    // (страница категории/под-категории); на самом каталоге это текущая страница → простой <b>, без само-ссылки.
+    var base='/'+(CONFIG.baseSlug||'catalog');
+    var cr='<a href="/">Главная</a> · ';
+    if(state.predmet){
+      cr+='<a href="'+base+'">Каталог</a>';
+      // Иерархия: на под-странице (цвет/крой) вставляем кликабельный уровень категории (Джинсы → её ЧПУ).
+      var _cp=pageFor(state.predmet,'','');
+      if((state.color||state.model)&&_cp)cr+=' · <a href="'+_cp+'">'+state.predmet+'</a>';
+      cr+=' · <b>'+titleFor()+'</b>';
+    }else{
+      cr+='<b>Каталог</b>';
+    }
+    document.getElementById('crumb').innerHTML=cr;
+    var list=PRODUCTS.filter(inState);
+    document.getElementById('h1count').textContent=plural(list.length);
+    document.getElementById('found').textContent='';
+    var g=document.getElementById('grid'); g.innerHTML='';
+    document.getElementById('empty').style.display=list.length?'none':'block';
+    list.forEach(function(p){g.appendChild(card(p));});
+    bindCards();
+  }
+
+  // ===== корзина (сквозная, общая с карточкой — localStorage) =====
+  var CART_KEY='hailey_cart_v1';
+  function cartLoad(){try{var a=JSON.parse(localStorage.getItem(CART_KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
+  function cartSave(){try{localStorage.setItem(CART_KEY,JSON.stringify(cart));}catch(e){}}
+  var cart=cartLoad();
+  var toast=document.getElementById('toast'),tt;
+  function showToast(m){toast.textContent=m;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on');},2400);}
+  var cc=document.getElementById('cc'),cartBtn=document.getElementById('cartBtn');
+  function badge(){var q=cart.reduce(function(a,i){return a+i.qty;},0);cc.textContent=q;cartBtn.classList.toggle('on',q>0);}
+  function prodOf(el){return{id:el.dataset.id,name:el.dataset.name,price:+el.dataset.price,img:el.dataset.img};}
+  function addToCart(p,size){size=size||'';var f=cart.find(function(i){return i.id===p.id&&(i.size||'')===size;});if(f)f.qty++;else cart.push({id:p.id,name:p.name,price:p.price,img:p.img,size:size,qty:1});cartSave();badge();renderCart();}
+  function goods(){return cart.reduce(function(a,i){return a+i.price*i.qty;},0);}
+
+  function sizesOf(el){try{return JSON.parse(el.dataset.sizes||'[]');}catch(e){return[];}}
+  function bindCards(){
+    root.querySelectorAll('[data-add]').forEach(function(b){
+      b.onclick=function(){var c=b.closest('.card');openSizePicker(prodOf(c),sizesOf(c),'add');};
+    });
+    root.querySelectorAll('.fav').forEach(function(f){f.onclick=function(){f.classList.toggle('on');f.textContent=f.classList.contains('on')?'♥':'♡';};});
+    root.querySelectorAll('[data-quick]').forEach(function(b){
+      b.onclick=function(){var c=b.closest('.card');openSizePicker(prodOf(c),sizesOf(c),'quick');};
+    });
+  }
+
+  var scrim=document.getElementById('scrim'),drawer=document.getElementById('drawer');
+  function openCart(){renderCart();scrim.classList.add('on');drawer.classList.add('on');}
+  function closeCart(){scrim.classList.remove('on');drawer.classList.remove('on');}
+  cartBtn.addEventListener('click',openCart);
+  document.getElementById('closeCart').addEventListener('click',closeCart);
+  scrim.addEventListener('click',closeCart);
+  function renderCart(){
+    var body=document.getElementById('cartBody'),foot=document.getElementById('cartFoot');
+    if(!cart.length){body.innerHTML='<div class="empty">Корзина пока пуста.<br>Добавьте понравившийся товар.</div>';foot.style.display='none';return;}
+    foot.style.display='block';
+    body.innerHTML=cart.map(function(i,idx){
+      return '<div class="citem"><div class="cimg" style="background-image:url('+i.img+');background-size:cover;background-position:center"></div><div class="ci"><div class="cn">'+i.name+(i.size?' · размер '+i.size:'')+'</div>'
+       +'<div class="qty"><button data-a="dec" data-i="'+idx+'">−</button><span>'+i.qty+'</span><button data-a="inc" data-i="'+idx+'">+</button></div>'
+       +'<div class="cp mono">'+rub(i.price*i.qty)+'</div></div><button class="rm" data-a="rm" data-i="'+idx+'">Удалить</button></div>';
+    }).join('');
+    document.getElementById('sumGoods').textContent=rub(goods());
+    document.getElementById('sumTotal').textContent=rub(goods());
+  }
+  document.getElementById('cartBody').addEventListener('click',function(e){
+    var b=e.target.closest('[data-a]');if(!b)return;var i=+b.dataset.i,a=b.dataset.a;
+    if(a==='inc')cart[i].qty++;else if(a==='dec'){cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);}else if(a==='rm')cart.splice(i,1);
+    cartSave();badge();renderCart();
+  });
+  window.addEventListener('storage',function(e){if(e.key===CART_KEY){cart=cartLoad();badge();if(drawer.classList.contains('on'))renderCart();}});
+  badge();
+
+  var modal=document.getElementById('modal'),sheet=document.getElementById('sheet');
+  document.getElementById('modalBg').addEventListener('click',closeModal);
+  function openModal(html){sheet.innerHTML=html;modal.classList.add('on');}
+  function closeModal(){modal.classList.remove('on');sheet.classList.remove('wide');}
+
+  // ===== окно выбора размера (клик «В корзину» / «Купить в 1 клик» на карточке) =====
+  var SIZETABLE=[[42,'66–69','92–95','76 см'],[44,'70–73','96–99','76 см'],[46,'74–77','100–103','76 см'],[48,'78–81','104–107','77 см'],[50,'82–85','108–111','77 см'],[52,'86–89','112–115','77 см'],[54,'90–94','116–120','78 см'],[56,'95–99','121–125','78 см'],[58,'100–104','126–130','78 см'],[60,'105–109','131–135','78 см']];
+  var szProd=null,szMode='add',szSel=null;
+  function sizePickerHTML(p,sizes,mode){
+    var btns=(sizes||[]).map(function(s){return '<button class="szbtn" data-sz="'+s+'">'+s+'</button>';}).join('');
+    var rows=SIZETABLE.map(function(r){return '<tr data-row="'+r[0]+'"><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>';}).join('');
+    return '<div class="sh"><b>Выберите размер</b><button class="x" data-close>✕</button></div>'
+     +'<div class="szpick"><div class="szcol">'
+     +'<div class="szprod">'+p.name+' · <b class="mono" style="color:var(--ink)">'+rub(p.price)+'</b></div>'
+     +'<div class="szlabel">Размер</div><div class="szgrid">'+btns+'</div>'
+     +'<div class="szhint">Между размерами — <b>берите больший</b>. Талия и бёдра в разных размерах — ориентируйтесь на бёдра.</div>'
+     +'<button class="btn szadd" id="szAdd" disabled>'+(mode==='quick'?'Оформить заказ':'В корзину')+'</button>'
+     +'</div><div class="szcol"><div class="szlabel">Таблица размеров</div>'
+     +'<div class="sztblwrap"><table class="sztbl"><thead><tr><th>Размер</th><th>Талия</th><th>Бёдра</th><th>Длина шва</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
+     +'<div class="szmeasure"><b>Как снять мерки:</b> талия — по самому узкому месту, бёдра — по самым выступающим точкам, сантиметром параллельно полу.</div>'
+     +'</div></div>';
+  }
+  function openSizePicker(p,sizes,mode){szProd=p;szMode=mode;szSel=null;sheet.classList.add('wide');openModal(sizePickerHTML(p,sizes,mode));}
+  function nativeForm(){var fs=document.querySelectorAll('.js-form-proccess');for(var i=0;i<fs.length;i++){if(fs[i].querySelector('[name="Phone"]'))return fs[i];}return fs[0]||null;}
+  function orderText(){var lines=cart.map(function(i){return '• '+i.name+' × '+i.qty+' = '+rub(i.price*i.qty);});lines.push('———');lines.push('ИТОГО: '+rub(goods()));lines.push('(размер уточнит менеджер при звонке)');return 'Заказ HAILEY (каталог '+(CONFIG.predmet||'')+')\n'+lines.join('\n');}
+  function checkoutHTML(){
+    var mini=cart.map(function(i){return i.name+' ×'+i.qty;}).join(' · ');
+    return '<div class="sh"><b>Оформление заказа</b><button class="x" data-close>✕</button></div><div class="sbody">'
+     +'<div class="miniprod">'+mini+' — <b class="mono" style="color:var(--ink)">'+rub(goods())+'</b></div>'
+     +'<div class="field"><label>Имя</label><input id="f_name" placeholder="Как к вам обращаться" autocomplete="name"></div>'
+     +'<div class="field"><label>Телефон</label><input id="f_phone" type="tel" inputmode="tel" placeholder="+7 900 000-00-00" autocomplete="tel"></div>'
+     +'<div id="f_err" style="display:none;color:#b4442f;font-size:13px;margin:-4px 0 12px"></div>'
+     +'<button class="btn" id="doOrder">Оформить заказ · '+rub(goods())+'</button>'
+     +'<div class="note" style="margin-top:12px">Менеджер перезвонит, подтвердит размер и наличие, оформит доставку.<br>Оплата при получении или картой онлайн · возврат 14 дней.</div></div>';
+  }
+  function openCheckout(){if(!cart.length){showToast('Корзина пуста');return;}openModal(checkoutHTML());setTimeout(function(){var n=document.getElementById('f_name');if(n)n.focus();},60);}
+  function submitOrder(){
+    var name=(document.getElementById('f_name').value||'').trim();
+    var phone=(document.getElementById('f_phone').value||'').trim();
+    var err=document.getElementById('f_err');
+    function fail(msg,id){err.textContent=msg;err.style.display='block';var el=document.getElementById(id);if(el){el.style.borderColor='#b4442f';el.focus();}return false;}
+    if(name.length<2)return fail('Впишите, пожалуйста, имя','f_name');
+    if(phone.replace(/\D/g,'').length<6)return fail('Впишите корректный телефон','f_phone');
+    var f=nativeForm();if(!f){showToast('Форма недоступна — обновите страницу');return;}
+    function set(nm,val){var el=f.querySelector('[name="'+nm+'"]');if(el){el.value=val;el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));el.dispatchEvent(new Event('blur',{bubbles:true}));}}
+    var orderField=f.querySelector('[name="zakaz"]')?'zakaz':'form-spec-comments';
+    set(orderField,orderText());set('Name',name);set('Phone',phone);
+    var em=f.querySelector('[name="Email"]');if(em&&!em.value)set('Email','order+'+phone.replace(/\D/g,'')+'@hailey.site');
+    var btn=f.querySelector('.t-submit, .t-form__submit button, button[type=submit]');
+    closeModal();
+    if(btn)btn.click();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+    cart=[];cartSave();badge();renderCart();
+  }
+  document.getElementById('toCheckout').addEventListener('click',function(){if(!cart.length)return;closeCart();openCheckout();});
+  sheet.addEventListener('click',function(e){
+    if(e.target.closest('[data-close]'))return closeModal();
+    if(e.target.id==='doOrder')return submitOrder();
+    var szb=e.target.closest('.szbtn');
+    if(szb){[].forEach.call(sheet.querySelectorAll('.szbtn'),function(x){x.classList.remove('sel');});szb.classList.add('sel');szSel=szb.dataset.sz;
+      [].forEach.call(sheet.querySelectorAll('.sztbl tbody tr'),function(tr){tr.classList.toggle('hl',tr.dataset.row===szSel);});
+      var a=document.getElementById('szAdd');if(a)a.disabled=false;return;}
+    if(e.target.id==='szAdd'){if(!szSel||!szProd)return;addToCart(szProd,szSel);closeModal();
+      if(szMode==='quick')openCheckout();else showToast('«'+szProd.name+'» · размер '+szSel+' — в корзине');return;}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeCart();}});
+
+  window.addEventListener('popstate',function(){state=readURL();render();}); // кнопка «назад/вперёд»
+  render();badge();renderSubcats();
+  // Режим «Хиты сезона» (на главной): каталог, отфильтрованный по бейджу, без UI-фильтров/крошек.
+  if(CONFIG.hideFilters){var _fl=document.querySelector('.hc .filters');if(_fl)_fl.style.display='none';}
+  if(CONFIG.hideCrumb){var _cr=document.getElementById('crumb');if(_cr)_cr.style.display='none';}
+  if(CONFIG.hideFound){var _fn=document.getElementById('found');if(_fn)_fn.style.display='none';
+    var _hc=document.getElementById('h1count');if(_hc)_hc.style.display='none';}
+  if(CONFIG.hitsLink){var _sh=document.querySelector('.hc .shead');if(_sh){var _a=document.createElement('a');_a.href=CONFIG.hitsLink;_a.className='hitslink';_a.textContent='Все хиты →';_sh.appendChild(_a);}}
+})();
+</script>
