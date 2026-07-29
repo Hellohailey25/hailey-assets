@@ -270,7 +270,16 @@
 
   // model — массив (мультикрой); товар матчится, если выбранный крой ЕСТЬ в его списке
   function has(val,sel){return Array.isArray(val)?val.indexOf(sel)>-1:val===sel;}
-  function matchQ(p,q){if(!q)return true;var hay=(p.name+' '+p.color+' '+(Array.isArray(p.model)?p.model.join(' '):(p.model||''))+' '+(p.tags||[]).join(' ')+' '+p.predmet).toLowerCase();return q.toLowerCase().split(/\s+/).every(function(w){return !w||hay.indexOf(w)>-1;});}
+  // Поиск с учётом словоформ: «голубые»=«голубой», «чёрные»=«черные». Лёгкий стеммер (срез рус. окончаний) + ё→е.
+  function _n(s){return (s||'').toLowerCase().replace(/ё/g,'е');}
+  var _ENDS=['ыми','ими','ого','его','ому','ему','ами','ями','ах','ях','ый','ий','ой','ая','яя','ое','ее','ые','ие','ых','их','ом','ем','ов','ев','ам','ям','ей','ю','я','ы','и','е','о','а','й','ь','у'];
+  function _stem(w){w=_n(w);for(var i=0;i<_ENDS.length;i++){var s=_ENDS[i];if(w.length-s.length>=3&&w.slice(-s.length)===s)return w.slice(0,-s.length);}return w;}
+  var _SYN={'деним':['джинс'],'джинс':['деним']};  // синонимы разных корней (стеммер их не сведёт)
+  function _toks(s){return _n(s).split(/[^a-zа-я0-9]+/).filter(Boolean);}
+  function matchQ(p,q){if(!q)return true;
+    var H=_toks(p.name+' '+p.color+' '+(Array.isArray(p.model)?p.model.join(' '):(p.model||''))+' '+(p.tags||[]).join(' ')+' '+p.predmet).map(_stem);
+    return _toks(q).map(_stem).every(function(qs){if(!qs)return true;var cand=[qs].concat(_SYN[qs]||[]);
+      return cand.some(function(cs){return H.some(function(hs){return hs.indexOf(cs)===0||cs.indexOf(hs)===0;});});});}
   function inState(p){return (!state.predmet||p.predmet===state.predmet)&&(!state.color||has(p.color,state.color))&&(!state.model||has(p.model,state.model))&&(!state.badge||(p.badges&&p.badges.indexOf(state.badge)>-1))&&matchQ(p,state.q);}
   // варианты фасета по товарам текущей категории (без учёта самого поля).
   // Поле-массив (Модель) разворачиваем в отдельные опции + дедуп — иначе в списке «Прямые, Широкие, …» одной строкой.
