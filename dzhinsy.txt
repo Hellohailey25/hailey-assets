@@ -51,9 +51,10 @@
   .hc input.finp::placeholder{color:var(--ink-44)}
   .hc input.finp::-webkit-search-cancel-button{-webkit-appearance:none;height:14px;width:14px;background:var(--ink-44);cursor:pointer;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18 6L6 18M6 6l12 12' stroke='black' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat}
   /* --- сетка --- */
-  .hc .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,34px);margin-top:26px}
-  @media(max-width:820px){.hc .grid{grid-template-columns:1fr 1fr;gap:18px}}
-  @media(max-width:520px){.hc .grid{grid-template-columns:1fr}}
+  .hc .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.8vw,26px);margin-top:26px}
+  @media(max-width:1000px){.hc .grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:760px){.hc .grid{grid-template-columns:1fr 1fr;gap:16px}}
+  @media(max-width:460px){.hc .grid{grid-template-columns:1fr}}
   .hc .empty{padding:60px 0;text-align:center;color:var(--ink-44);font-size:15px}
   .hc .card{display:flex;flex-direction:column}
   .hc .ph{position:relative;aspect-ratio:2/3;overflow:hidden;border-radius:4px}
