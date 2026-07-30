@@ -40,7 +40,7 @@
   .hc .subcats .scl{padding:7px 15px;border:1px solid var(--line);border-radius:22px;font-size:13px;color:var(--ink-64);transition:.15s}
   .hc .subcats .scl:hover{border-color:var(--accent);color:var(--ink)}
   /* --- фильтры --- */
-  .hc .filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px 30px;padding:18px 0 20px;margin-bottom:8px;
+  .hc .filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px 18px;padding:18px 0 20px;margin-bottom:8px;
     border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
   .hc .fgroup{display:flex;flex-direction:column;gap:10px}
   .hc .flabel{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-44);font-weight:600}
