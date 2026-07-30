@@ -126,7 +126,7 @@
     function _toks(s){return _n(s).split(/[^a-zа-я0-9]+/).filter(Boolean);}
     function matchQ(hay,q){var H=_toks(hay).map(_stem);
       return _toks(q).map(_stem).every(function(qs){if(!qs)return true;var cand=[qs].concat(_SYN[qs]||[]);
-        return cand.some(function(cs){return H.some(function(hs){return hs.indexOf(cs)===0||cs.indexOf(hs)===0;});});});}
+        return cand.some(function(cs){var num=/^\d/.test(cs);return H.some(function(hs){return num?hs.indexOf(cs)===0:(hs.indexOf(cs)===0||cs.indexOf(hs)===0);});});});}
     function rub(n){return (n||0).toLocaleString('ru-RU')+' руб';}
     function loadIdx(){if(idxLoad)return idxLoad;idxLoad=fetch(RAW,{cache:'no-store'}).then(function(r){return r.json();})
       .then(function(a){IDX=Array.isArray(a)?a:[];return IDX;}).catch(function(){IDX=[];return IDX;});return idxLoad;}
