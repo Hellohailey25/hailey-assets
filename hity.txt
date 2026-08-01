@@ -216,7 +216,7 @@
   <div class="wrap">
     <nav class="crumb" id="crumb"></nav>
     <div class="shead">
-      <h2 id="h1"><span id="h1t"></span></h2><span class="h1count mono" id="h1count"></span>
+      <h2 id="h1"><span id="h1t">Хиты сезона</span></h2><span class="h1count mono" id="h1count"></span>
       <div class="sdesc"><span id="sdesc"></span> <span class="found" id="found"></span></div>
     </div>
     <div class="filters">
