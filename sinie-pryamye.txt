@@ -535,7 +535,7 @@
      +'<div class="szpick"><div class="szcol">'
      +'<div class="szprod">'+p.name+' · <b class="mono" style="color:var(--ink)">'+rub(p.price)+'</b></div>'
      +'<div class="szlabel">Размер</div><div class="szgrid">'+btns+'</div>'
-     +'<div class="szhint">Между размерами — <b>берите больший</b>. Талия и бёдра в разных размерах — ориентируйтесь на бёдра.</div>'
+     +'<div class="szhint">Между размерами — <b>берите больший</b>. Талия и бёдра в разных размерах — ориентируйтесь на бёдра. <a href="/kak-vybrat-razmer" style="color:var(--accent);text-decoration:underline">Не уверены? Калькулятор размера →</a></div>'
      +'<button class="btn szadd" id="szAdd" disabled>'+(mode==='quick'?'Оформить заказ':'В корзину')+'</button>'
      +'</div><div class="szcol"><div class="szlabel">Таблица размеров</div>'
      +'<div class="sztblwrap"><table class="sztbl"><thead><tr><th>Размер</th><th>Талия</th><th>Бёдра</th><th>Длина шва</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
