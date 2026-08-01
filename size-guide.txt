@@ -1,0 +1,248 @@
+<!-- =========================================================
+     HAILEY · Гид «Как выбрать размер» (T123) — вручную не править,
+     источник: hailey-size-guide-код.html. Одна сетка SIZETABLE кормит
+     калькулятор И таблицу. FAQ-схема инжектится в <head>. Тема сквозная.
+     ========================================================= -->
+<style>
+  .hsg *{margin:0;padding:0;box-sizing:border-box}
+  .hsg{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px);position:relative}
+  @media(prefers-color-scheme:dark){.hsg{--paper:#14130F;--paper2:#1c1b16;--card:#1b1a15;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}}
+  [data-theme="light"] .hsg{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
+  [data-theme="dark"] .hsg{--paper:#14130F;--paper2:#1c1b16;--card:#1b1a15;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}
+  .hsg .wrap{max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hsg a{color:inherit;text-decoration:none}
+  .hsg .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
+  .hsg .crumb a:hover{color:var(--ink)}
+  .hsg .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .hsg h1{font-size:clamp(28px,5vw,44px);line-height:1.08;font-weight:700;letter-spacing:-.01em;max-width:16ch}
+  .hsg .lead{font-size:clamp(15px,2.2vw,18px);color:var(--ink-2);margin-top:16px;max-width:56ch;line-height:1.6}
+  .hsg section{margin-top:clamp(44px,7vw,80px)}
+  .hsg h2{font-size:clamp(21px,3.2vw,30px);font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+  .hsg h2 .n{color:var(--ink-3);font-weight:400;margin-right:12px}
+  .hsg .sub{font-size:15px;color:var(--ink-2);margin-bottom:24px;max-width:60ch;line-height:1.6}
+  /* калькулятор */
+  .hsg .calc{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,30px)}
+  .hsg .calc .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .hsg .calc label{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:7px}
+  .hsg .calc input{width:100%;padding:15px 16px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font-family:inherit;font-size:17px;outline:none;transition:border-color .15s}
+  .hsg .calc input:focus{border-color:var(--accent)}
+  .hsg .cres{margin-top:18px;padding:22px;border-radius:12px;background:var(--paper);border:1px solid var(--line-soft);text-align:center;min-height:96px;display:flex;flex-direction:column;justify-content:center}
+  .hsg .cres .lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+  .hsg .cres .big{font-size:52px;font-weight:700;line-height:1;margin:6px 0}
+  .hsg .cres .mm{font-size:13.5px;color:var(--ink-2)}
+  .hsg .cres .note{font-size:13px;color:var(--good);margin-top:10px}
+  .hsg .cres .warn{font-size:13px;color:#b4442f;margin-top:10px}
+  .hsg .cres .placeholder{font-size:14px;color:var(--ink-3)}
+  .hsg .cgo{margin-top:14px;display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:8px;background:var(--ink);color:var(--paper);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:background .18s}
+  .hsg .cgo:hover{background:var(--accent)}
+  /* мерки */
+  .hsg .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:660px){.hsg .steps{grid-template-columns:1fr}.hsg .calc .row{grid-template-columns:1fr}}
+  .hsg .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .hsg .step svg{width:38px;height:38px;stroke:var(--accent);fill:none;stroke-width:1.6;margin-bottom:14px}
+  .hsg .step b{display:block;font-size:15px;margin-bottom:6px}
+  .hsg .step p{font-size:13.5px;color:var(--ink-2);line-height:1.55}
+  /* таблица */
+  .hsg .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  .hsg table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:460px}
+  .hsg thead th{text-align:left;padding:15px 18px;background:var(--paper2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+  .hsg tbody td{padding:14px 18px;border-top:1px solid var(--line-soft);font-variant-numeric:tabular-nums;color:var(--ink-2)}
+  .hsg tbody td:first-child{color:var(--ink);font-weight:700}
+  .hsg tbody tr.hl td{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+  /* правило */
+  .hsg .rule{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hsg .rule{grid-template-columns:1fr}.hsg .cuts{grid-template-columns:1fr}}
+  .hsg .rcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .hsg .rcard b{display:block;font-size:15px;margin-bottom:8px}
+  .hsg .rcard p{font-size:14px;color:var(--ink-2);line-height:1.6}
+  .hsg .rcard .hi{color:var(--accent);font-weight:700}
+  /* крой */
+  .hsg .cuts{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .hsg .cut{border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .hsg .cut b{font-size:14.5px}
+  .hsg .cut p{font-size:13.5px;color:var(--ink-2);margin-top:5px;line-height:1.55}
+  /* реальные фигуры */
+  .hsg .real{background:var(--accent);color:#F2F0EB;border-radius:16px;padding:clamp(24px,4vw,40px)}
+  .hsg .real h2{color:#fff}
+  .hsg .real p{color:rgba(255,255,255,.85);font-size:15.5px;line-height:1.65;max-width:60ch;margin-top:10px}
+  .hsg .real a.rgo{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border:1px solid rgba(255,255,255,.4);border-radius:8px;color:#fff;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .hsg .real a.rgo:hover{background:rgba(255,255,255,.12)}
+  /* faq */
+  .hsg .faq{border-top:1px solid var(--line)}
+  .hsg .qa{border-bottom:1px solid var(--line)}
+  .hsg .qa button{width:100%;text-align:left;background:none;border:none;color:inherit;font-family:inherit;cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 2px;font-size:16px;font-weight:600}
+  .hsg .qa .ic{flex:0 0 auto;width:22px;height:22px;position:relative;transition:transform .2s}
+  .hsg .qa .ic:before,.hsg .qa .ic:after{content:"";position:absolute;background:var(--ink-2);border-radius:2px}
+  .hsg .qa .ic:before{top:10px;left:2px;right:2px;height:2px}
+  .hsg .qa .ic:after{left:10px;top:2px;bottom:2px;width:2px;transition:opacity .2s}
+  .hsg .qa.open .ic:after{opacity:0}
+  .hsg .qa .ans{max-height:0;overflow:hidden;transition:max-height .28s ease}
+  .hsg .qa .ans p{padding:0 2px 22px;font-size:14.5px;color:var(--ink-2);line-height:1.65;max-width:64ch}
+  /* гарантия */
+  .hsg .guar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:660px){.hsg .guar{grid-template-columns:1fr 1fr}}
+  .hsg .g{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+  .hsg .g svg{width:28px;height:28px;stroke:var(--good);fill:none;stroke-width:1.6;margin-bottom:10px}
+  .hsg .g b{display:block;font-size:13.5px}
+  .hsg .g span{font-size:12px;color:var(--ink-3)}
+  /* cta */
+  .hsg .cta{margin-top:clamp(44px,7vw,80px);text-align:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(28px,5vw,48px)}
+  .hsg .cta h2{margin-bottom:10px}
+  .hsg .cta p{font-size:15px;color:var(--ink-2);margin-bottom:22px}
+  .hsg .cta .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hsg .cta .b{padding:15px 30px;border-radius:8px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:.18s}
+  .hsg .cta .b.dark{background:var(--ink);color:var(--paper)}
+  .hsg .cta .b.dark:hover{background:var(--accent)}
+  .hsg .cta .b.tg{background:#25925a;color:#fff}
+  .hsg .cta .b.tg:hover{background:#1f7d4c}
+</style>
+
+<div class="hsg" id="hsg">
+  <div class="wrap">
+    <nav class="crumb"><a href="/">Главная</a> · <a href="/catalog">Каталог</a> · <b>Как выбрать размер</b></nav>
+
+    <div class="eyebrow">Гид по размерам HAILEY</div>
+    <h1>Как выбрать размер джинсов</h1>
+    <p class="lead">Онлайн легко ошибиться с размером — особенно на джинсах. Здесь всё, чтобы попасть с первого раза: калькулятор по вашим меркам, таблица 42–74, как правильно замерить и как сидит каждый крой. А если всё же не подойдёт — бесплатный обмен размера.</p>
+
+    <section>
+      <div class="eyebrow">Шаг 1 · за 5 секунд</div>
+      <h2>Калькулятор размера</h2>
+      <p class="sub">Впишите обхват талии и бёдер в сантиметрах — покажем ваш размер и как он сядет.</p>
+      <div class="calc">
+        <div class="row">
+          <div><label>Обхват талии, см</label><input id="hgw" type="number" inputmode="numeric" placeholder="напр. 82"></div>
+          <div><label>Обхват бёдер, см</label><input id="hgh" type="number" inputmode="numeric" placeholder="напр. 110"></div>
+        </div>
+        <div class="cres" id="hgres"><div class="placeholder">Впишите мерки — размер появится здесь</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Шаг 2</div>
+      <h2>Как снять мерки</h2>
+      <p class="sub">Понадобится мягкий портновский сантиметр. Замеряйте на бельё, стоя ровно.</p>
+      <div class="steps">
+        <div class="step"><svg viewBox="0 0 48 48"><path d="M8 24h32M12 24l-3 4 3 4M36 24l3 4-3 4"/><ellipse cx="24" cy="24" rx="14" ry="7"/></svg><b>Талия</b><p>По самому узкому месту (обычно чуть выше пупка). Живот не втягивайте.</p></div>
+        <div class="step"><svg viewBox="0 0 48 48"><path d="M16 12c0 8-6 12-6 20a14 6 0 0 0 28 0c0-8-6-12-6-20"/><path d="M9 32h30"/></svg><b>Бёдра</b><p>По самым выступающим точкам ягодиц, ноги вместе.</p></div>
+        <div class="step"><svg viewBox="0 0 48 48"><path d="M6 20h36v8H6zM12 20v8M20 20v8M28 20v8M36 20v8"/></svg><b>Ровно</b><p>Сантиметр параллельно полу, без натяжения — палец должен свободно проходить.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Шаг 3</div>
+      <h2>Таблица размеров</h2>
+      <p class="sub">Российские размеры 42–74. Найдите строку, где ваши талия и бёдра попадают в диапазон.</p>
+      <div class="tblwrap"><table><thead><tr><th>Размер</th><th>Талия, см</th><th>Бёдра, см</th><th>Длина шва</th></tr></thead><tbody id="hgtbody"></tbody></table></div>
+    </section>
+
+    <section>
+      <h2>Правило посадки</h2>
+      <div class="rule">
+        <div class="rcard"><b>Между размерами?</b><p>Берите <span class="hi">больший</span>. Джинсы должны сидеть комфортно, а не впритык — особенно свободные кройки. Меньший «на вырост» почти всегда разочаровывает.</p></div>
+        <div class="rcard"><b>Талия и бёдра в разных размерах?</b><p>Ориентируйтесь на <span class="hi">бёдра</span> — по ним джинсы должны сесть. В талии подгонит ремень или высокая посадка. Большая разница — напишите нам, подскажем модель.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Как сидит по крою</h2>
+      <p class="sub">Один и тот же размер по-разному ощущается в разных моделях.</p>
+      <div class="cuts">
+        <div class="cut"><b>Прямые</b><p>Сидят ровно по бедру и ноге, классика на каждый день. Берите строго по бёдрам.</p></div>
+        <div class="cut"><b>Широкие / клёш</b><p>Свободная штанина с объёмом внизу. По талии — по фигуре; длина рассчитана на рост ~165–175.</p></div>
+        <div class="cut"><b>Багги / оверсайз</b><p>Намеренно свободные. Любите плотнее — берите свой размер; хотите совсем свободно — можно на размер меньше.</p></div>
+        <div class="cut"><b>Трубы</b><p>Прямая широкая штанина от бедра, универсальная посадка. По бёдрам.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="real">
+        <h2>Мы показываем на реальных фигурах</h2>
+        <p>Все фото в карточках — на настоящих девушках разного телосложения, а не на одной модели 42-го размера. В каждой карточке модель указывает свой рост и размер на фото — так вы видите реальную посадку на теле, похожем на ваше. Это честнее любой таблицы.</p>
+        <a class="rgo" href="/catalog">Смотреть каталог →</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Частые вопросы</h2>
+      <div class="faq" id="hgfaq">
+        <div class="qa"><button>Что делать, если талия и бёдра в разных размерах?<span class="ic"></span></button><div class="ans"><p>Ориентируйтесь на бёдра — именно по ним джинсы должны сесть, талию подгонит ремень или высокая посадка. Если разница больше двух размеров — напишите нам в Telegram, подберём модель под вашу фигуру.</p></div></div>
+        <div class="qa"><button>Джинсы садятся после стирки?<span class="ic"></span></button><div class="ans"><p>Нет. Плотный деним HAILEY предварительно обработан. Стирайте при 30° и не сушите в машине — размер держится.</p></div></div>
+        <div class="qa"><button>Тянется ли ткань?<span class="ic"></span></button><div class="ans"><p>В моделях с эластаном (состав указан в каждой карточке) деним слегка тянется и садится по фигуре. Плотный деним без эластана держит форму — по нему берите точно по меркам.</p></div></div>
+        <div class="qa"><button>Между размерами — какой брать?<span class="ic"></span></button><div class="ans"><p>Больший. В свободных кроях (широкие, багги, трубы) с лёгким запасом сидит красивее, чем впритык.</p></div></div>
+        <div class="qa"><button>Не подошёл размер — что делать?<span class="ic"></span></button><div class="ans"><p>Бесплатный обмен на нужный размер, возврат в течение 14 дней, а примерка — до оплаты. Рисков нет.</p></div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Наши гарантии</h2>
+      <div class="guar">
+        <div class="g"><svg viewBox="0 0 24 24"><path d="M4 6h16M6 6l1 14h10l1-14"/></svg><b>Примерка</b><span>перед оплатой</span></div>
+        <div class="g"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 3-6M4 4v4h4"/></svg><b>Возврат</b><span>14 дней</span></div>
+        <div class="g"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M9 12l2 2 4-4"/></svg><b>Обмен размера</b><span>бесплатно</span></div>
+        <div class="g"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg><b>Оплата</b><span>при получении</span></div>
+      </div>
+    </section>
+
+    <div class="cta">
+      <h2>Нашли свой размер?</h2>
+      <p>Осталось выбрать любимую модель. Не уверены — спросите нас, поможем подобрать.</p>
+      <div class="btns"><a class="b dark" href="/catalog">В каталог</a><a class="b tg" href="https://t.me/hailey_mgr" target="_blank" rel="noopener">Спросить в Telegram</a></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var TG='hailey_mgr';
+  var SIZETABLE=[[42,'66–69','92–95','76 см'],[44,'70–73','96–99','76 см'],[46,'74–77','100–103','76 см'],[48,'78–81','104–107','77 см'],[50,'82–85','108–111','77 см'],[52,'86–89','112–115','77 см'],[54,'90–94','116–120','78 см'],[56,'95–99','121–125','78 см'],[58,'100–104','126–130','78 см'],[60,'105–109','131–135','78 см'],[62,'110–115','136–140','79 см'],[64,'116–121','141–146','79 см'],[66,'122–128','147–152','79 см'],[68,'129–135','153–158','79 см'],[70,'136–142','159–164','80 см'],[72,'143–149','165–170','80 см'],[74,'150–156','171–176','80 см']];
+  function rng(s){var p=s.replace(/[^0-9–-]/g,'').split(/[–-]/);return [+p[0],+p[1]];}
+  var tb=document.getElementById('hgtbody');
+  tb.innerHTML=SIZETABLE.map(function(r){return '<tr data-sz="'+r[0]+'"><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>';}).join('');
+
+  function byHips(H){for(var i=0;i<SIZETABLE.length;i++){if(H<=rng(SIZETABLE[i][2])[1])return SIZETABLE[i];}return null;}
+  function byWaist(W){for(var i=0;i<SIZETABLE.length;i++){if(W<=rng(SIZETABLE[i][1])[1])return SIZETABLE[i];}return null;}
+  var w=document.getElementById('hgw'),h=document.getElementById('hgh'),res=document.getElementById('hgres');
+  function hl(sz){[].forEach.call(tb.querySelectorAll('tr'),function(tr){tr.classList.toggle('hl',+tr.dataset.sz===sz);});}
+  function calc(){
+    var W=parseFloat(w.value),H=parseFloat(h.value);
+    if(!W&&!H){res.innerHTML='<div class="placeholder">Впишите мерки — размер появится здесь</div>';hl(-1);return;}
+    var rH=H?byHips(H):null,rW=W?byWaist(W):null,row=rH||rW;
+    if(rH&&rW&&rW[0]>rH[0])row=rW;
+    if(!row){res.innerHTML='<div class="lbl">Ваш размер</div><div class="warn" style="margin-top:8px">Ваши мерки больше сетки 42–74 — напишите в Telegram, поможем с посадкой.</div><a class="cgo" href="https://t.me/'+TG+'" target="_blank" rel="noopener">Спросить в Telegram</a>';hl(-1);return;}
+    var mismatch=rH&&rW&&rH[0]!==rW[0];
+    res.innerHTML='<div class="lbl">Ваш размер</div><div class="big">'+row[0]+'</div><div class="mm">талия '+row[1]+' · бёдра '+row[2]+' см · длина шва '+row[3]+'</div>'
+      +(mismatch?'<div class="note">Талия и бёдра в разных размерах — взяли по бёдрам (больший), так сядет удобнее.</div>':'')
+      +'<a class="cgo" href="/catalog">Смотреть джинсы размера '+row[0]+'</a>';
+    hl(row[0]);
+  }
+  w.addEventListener('input',calc);h.addEventListener('input',calc);
+
+  // FAQ-аккордеон
+  [].forEach.call(document.querySelectorAll('#hgfaq .qa'),function(qa){
+    var btn=qa.querySelector('button'),ans=qa.querySelector('.ans');
+    btn.addEventListener('click',function(){
+      var open=qa.classList.toggle('open');
+      ans.style.maxHeight=open?ans.scrollHeight+'px':'0';
+    });
+  });
+
+  // SEO: FAQPage + BreadcrumbList в <head> (в сыром HTML нет — Google рендерит JS)
+  try{
+    var faqs=[].map.call(document.querySelectorAll('#hgfaq .qa'),function(qa){return {q:qa.querySelector('button').childNodes[0].textContent.trim(),a:qa.querySelector('.ans p').textContent.trim()};});
+    var ld={"@context":"https://schema.org","@graph":[
+      {"@type":"FAQPage","mainEntity":faqs.map(function(f){return {"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}};})},
+      {"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Главная","item":location.origin+"/"},
+        {"@type":"ListItem","position":2,"name":"Каталог","item":location.origin+"/catalog"},
+        {"@type":"ListItem","position":3,"name":"Как выбрать размер","item":location.href.split('?')[0]}]}]};
+    var s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(ld);document.head.appendChild(s);
+  }catch(e){}
+})();
+</script>
