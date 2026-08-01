@@ -84,7 +84,7 @@
   <div class="bar"><div class="wrap hd">
     <a class="logo" href="/"><i>Hello</i>HAILEY</a>
     <nav>
-      <a href="/catalog?set=%D0%A5%D0%98%D0%A2">Хиты</a><a href="/catalog">Каталог</a><a href="/catalog?set=%D0%9D%D0%9E%D0%92%D0%98%D0%9D%D0%9A%D0%90">Новинки</a><a href="/catalog?set=%D0%A0%D0%90%D0%A1%D0%9F%D0%A0%D0%9E%D0%94%D0%90%D0%96%D0%90">Акции</a><a href="/page156060236.html">Подобрать размер</a><a href="/page156060236.html#delivery">Доставка</a><a href="#contacts">Контакты</a><a href="#brand">О бренде</a>
+      <a href="/catalog?set=%D0%A5%D0%98%D0%A2">Хиты</a><a href="/catalog">Каталог</a><a href="/catalog?set=%D0%9D%D0%9E%D0%92%D0%98%D0%9D%D0%9A%D0%90">Новинки</a><a href="/catalog?set=%D0%A0%D0%90%D0%A1%D0%9F%D0%A0%D0%9E%D0%94%D0%90%D0%96%D0%90">Акции</a><a href="/kak-vybrat-razmer">Подобрать размер</a><a href="/page156060236.html#delivery">Доставка</a><a href="#contacts">Контакты</a><a href="#brand">О бренде</a>
     </nav>
     <div class="htools">
       <button class="theme" id="hhTheme" aria-label="Тема">◐</button>
