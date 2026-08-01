@@ -216,7 +216,7 @@
   <div class="wrap">
     <nav class="crumb" id="crumb"></nav>
     <div class="shead">
-      <h1 id="h1"><span id="h1t"></span></h1><span class="h1count mono" id="h1count"></span>
+      <h1 id="h1"><span id="h1t">Женские джинсы 42–74</span></h1><span class="h1count mono" id="h1count"></span>
       <div class="sdesc"><span id="sdesc"></span> <span class="found" id="found"></span></div>
     </div>
     <div class="filters">
