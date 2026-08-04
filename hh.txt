@@ -105,6 +105,16 @@
   if(t)t.addEventListener('click',function(){var cur=document.documentElement.getAttribute('data-theme')||'light';var i=order.indexOf(cur);if(i<0)i=0;var n=order[(i+1)%order.length];document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('hailey-theme',n);}catch(e){}});
   var c=document.getElementById('hhCart');
   if(c)c.addEventListener('click',function(e){e.preventDefault();var o=document.getElementById('openCart'),b=document.getElementById('cartBtn');if(o){o.click();}else if(b){b.click();}else{location.href='/catalog?cart=1';}});
+  // «Оформить заказ» в любой корзине (каталог/PDP) -> отдельная страница /checkout.
+  // Перехват в ФАЗЕ ЗАХВАТА: срабатывает раньше родного обработчика блока, поэтому модалка не открывается.
+  document.addEventListener('click',function(e){
+    var t=e.target&&e.target.closest?e.target.closest('#toCheckout'):null;
+    if(!t)return;
+    var n=0;try{n=(JSON.parse(localStorage.getItem('hailey_cart_v1'))||[]).length;}catch(err){}
+    if(!n)return;
+    e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+    location.href='/checkout';
+  },true);
   // страница без drawer (гид, доставка, контакты) -> уводим в каталог и там сразу открываем корзину
   try{if(/[?&]cart=1/.test(location.search)){var _t=0,_iv=setInterval(function(){var x=document.getElementById('openCart')||document.getElementById('cartBtn');if(x){x.click();clearInterval(_iv);}else if(++_t>40){clearInterval(_iv);}},250);}}catch(e){}
   var cc=document.getElementById('hhcc');
