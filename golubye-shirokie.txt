@@ -42,13 +42,26 @@
   /* --- фильтры: одна кнопка + выезжающая панель (как бургер-меню) --- */
   .hc .fbar{display:flex;align-items:center;gap:12px;padding:14px 0 4px;margin-bottom:4px;
     border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
-  .hc .fbtn{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border:1px solid var(--ink);border-radius:30px;
-    color:var(--ink);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:.16s}
-  .hc .fbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
-  .hc .fbtn:hover{background:var(--ink);color:var(--paper)}
+  /* Кнопка и сортировка — в тон полю поиска (тонкая рамка, приглушённый текст), а не чёрной плашкой:
+     управление не должно спорить с товаром. Активные фильтры подсвечивает только счётчик. */
+  .hc .fbtn{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border:1px solid var(--line);border-radius:30px;
+    background:var(--card);color:var(--ink-64);font-size:12px;letter-spacing:.06em;transition:.16s}
+  .hc .fbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round}
+  .hc .fbtn:hover{border-color:var(--accent);color:var(--ink)}
+  .hc .fbtn.on{border-color:var(--accent);color:var(--ink)}
   .hc .fcount{min-width:19px;height:19px;padding:0 6px;border-radius:10px;background:var(--accent);color:#fff;
     font-size:11px;display:flex;align-items:center;justify-content:center}
-  .hc .fbtn:hover .fcount{background:var(--paper);color:var(--ink)}
+  .hc .fsort{appearance:none;-webkit-appearance:none;padding:11px 36px 11px 16px;border:1px solid var(--line);border-radius:30px;
+    background:var(--card);color:var(--ink-64);font-family:inherit;font-size:12px;letter-spacing:.06em;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A9099' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 13px center;background-size:14px;transition:.16s}
+  .hc .fsort:hover{border-color:var(--accent);color:var(--ink)}
+  .hc .fsort:focus{outline:none;border-color:var(--accent)}
+  @media(max-width:560px){
+    .hc .fbar{gap:8px}
+    .hc .fbtn,.hc .fsort{padding:10px 14px;font-size:11.5px}
+    .hc .fsort{padding-right:32px;max-width:52vw;text-overflow:ellipsis}
+  }
   .hc .fovl{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:999996;opacity:0;pointer-events:none;transition:opacity .26s}
   .hc .fovl.on{opacity:1;pointer-events:auto}
   .hc .fpanel{position:fixed;top:0;bottom:0;left:0;width:min(88vw,360px);background:var(--paper);z-index:999997;
@@ -302,6 +315,14 @@
     </div>
     <div class="fbar">
       <button class="fbtn" id="fOpen"><svg viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M10 18h4"/></svg>Фильтры<span class="fcount" id="fCount" style="display:none"></span></button>
+      <select class="fsort" id="fSort" aria-label="Сортировка">
+        <option value="">Рекомендуем</option>
+        <option value="cheap">Сначала дешёвые</option>
+        <option value="exp">Сначала дорогие</option>
+        <option value="disc">Больше скидка</option>
+        <option value="new">Новинки</option>
+        <option value="rate">Выше рейтинг</option>
+      </select>
     </div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" style="display:none">В этой комбинации пока нет товаров. Сбросьте фильтр.</div>
@@ -382,7 +403,8 @@
   function readURL(){
     var q=new URLSearchParams(location.search);
     return {predmet:arrOf(q.get('cat')||CONFIG.predmet||""),color:arrOf(q.get('color')||CONFIG.color||""),
-      model:arrOf(q.get('model')||CONFIG.model||""),badge:arrOf(q.get('set')||CONFIG.badge||""),q:q.get('q')||""};
+      model:arrOf(q.get('model')||CONFIG.model||""),badge:arrOf(q.get('set')||CONFIG.badge||""),q:q.get('q')||"",
+      sort:q.get('sort')||""};
   }
   function writeURL(push){
     var q=new URLSearchParams();
@@ -391,6 +413,7 @@
     if(state.model.length)q.set('model',state.model.join(','));
     if(state.badge.length)q.set('set',state.badge.join(','));
     if(state.q)q.set('q',state.q);
+    if(state.sort)q.set('sort',state.sort);
     var s=q.toString(), url=location.pathname+(s?('?'+s):'');
     try{if(push)history.pushState(state,'',url);else history.replaceState(state,'',url);}catch(e){}
   }
@@ -459,8 +482,24 @@
       return !!p.predmet;
     });
   }
+  // Сортировка. «Рекомендуем» — порядок строк таблицы (его задаёт Игорь), поэтому это дефолт,
+  // а не «по популярности»: рейтинг у товаров почти одинаковый и такой сорт ничего не меняет.
+  function discOf(p){return (p.old>p.price)?(1-p.price/p.old):0;}
+  function sortList(a){
+    var l=a.slice();
+    if(state.sort==='cheap')l.sort(function(x,y){return x.price-y.price;});
+    else if(state.sort==='exp')l.sort(function(x,y){return y.price-x.price;});
+    else if(state.sort==='disc')l.sort(function(x,y){return discOf(y)-discOf(x);});
+    else if(state.sort==='rate')l.sort(function(x,y){return (parseFloat(String(y.rating).replace(',','.'))||0)-(parseFloat(String(x.rating).replace(',','.'))||0);});
+    else if(state.sort==='new')l.sort(function(x,y){
+      var nx=(x.badges||[]).some(function(b){return /нов/i.test(b);})?1:0;
+      var ny=(y.badges||[]).some(function(b){return /нов/i.test(b);})?1:0;
+      return ny-nx;});
+    return l;
+  }
   function renderFilters(){
     var box=document.getElementById('facets');if(!box)return;
+    var sortEl=document.getElementById('fSort');if(sortEl&&sortEl.value!==state.sort)sortEl.value=state.sort;
     box.innerHTML=
        accGroup('badge','Подборка',badgeOpts())
       +accGroup('predmet','Категория',predmets())
@@ -473,6 +512,7 @@
     var n=state.predmet.length+state.color.length+state.model.length+state.badge.length;
     var fc=document.getElementById('fCount');
     if(fc){fc.textContent=n||'';fc.style.display=n?'':'none';}
+    var fb=document.getElementById('fOpen');if(fb)fb.classList.toggle('on',n>0);
     var fr=document.getElementById('fReset');if(fr)fr.style.display=n||state.q?'':'none';
   }
   // Блок «Смотрите также» — настоящие <a> ссылки на соседние ЧПУ-страницы (по ним Google передаёт вес).
@@ -567,7 +607,7 @@
       cr+='<b>Каталог</b>';
     }
     document.getElementById('crumb').innerHTML=cr;
-    var list=PRODUCTS.filter(inState);
+    var list=sortList(PRODUCTS.filter(inState));
     document.getElementById('h1count').textContent=plural(list.length);
     document.getElementById('found').textContent='';
     var g=document.getElementById('grid'); g.innerHTML='';
@@ -783,6 +823,8 @@
       document.body.style.overflow=on?'hidden':'';
     }
     document.getElementById('fOpen').addEventListener('click',function(){open(true);});
+    var srt=document.getElementById('fSort');
+    if(srt)srt.addEventListener('change',function(){state.sort=srt.value;writeURL(true);render();});
     document.getElementById('fClose').addEventListener('click',function(){open(false);});
     document.getElementById('fApply').addEventListener('click',function(){open(false);});
     ovl.addEventListener('click',function(){open(false);});
