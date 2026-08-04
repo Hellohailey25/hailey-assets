@@ -1,0 +1,300 @@
+<!-- =========================================================
+     HAILEY · Страница оформления заказа /checkout (T123) — вручную не править,
+     источник: hailey-checkout-код.html.
+     Один экран, 2 обязательных поля. Корзина из localStorage hailey_cart_v1.
+     ВАЖНО: на странице Tilda должен стоять блок «Форма» с полем Phone (движок отправки).
+     ========================================================= -->
+<style>
+  .hco *{margin:0;padding:0;box-sizing:border-box}
+  .hco{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;--bad:#b4442f;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;padding:14px 0 clamp(30px,5vw,60px);position:relative}
+  @media(prefers-color-scheme:dark){.hco{--paper:#14130F;--paper2:#1c1b16;--card:#1b1a15;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}}
+  .hco .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hco a{color:inherit;text-decoration:none}
+  .hco .back{font-size:12px;letter-spacing:.04em;color:var(--ink-3);display:inline-flex;align-items:center;gap:6px;padding:4px 0}
+  .hco .back:hover{color:var(--ink)}
+  .hco h1{font-size:clamp(24px,4vw,36px);font-weight:700;letter-spacing:-.01em;margin-top:8px}
+  .hco .hint{font-size:13.5px;color:var(--ink-2);margin-top:6px}
+  .hco .cols{display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(18px,2.5vw,32px);margin-top:26px;align-items:start}
+  @media(max-width:860px){.hco .cols{grid-template-columns:1fr}}
+  /* форма */
+  .hco .sec{margin-bottom:26px}
+  .hco .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .hco .lbl i{width:19px;height:19px;border-radius:50%;background:var(--accent);color:#fff;font-style:normal;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .hco .f{margin-bottom:12px}
+  .hco .f>span{display:block;font-size:12px;color:var(--ink-2);margin-bottom:6px}
+  .hco input,.hco textarea{width:100%;padding:14px 15px;border:1px solid var(--line);border-radius:10px;background:var(--card);
+    color:var(--ink);font-family:inherit;font-size:16px;outline:none;transition:border-color .15s}
+  .hco input:focus,.hco textarea:focus{border-color:var(--accent)}
+  .hco input.err{border-color:var(--bad)}
+  .hco .ferr{font-size:12px;color:var(--bad);margin-top:5px;display:none}
+  .hco .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){.hco .two{grid-template-columns:1fr}}
+  /* карточки выбора */
+  .hco .opts{display:grid;gap:9px}
+  .hco .opts.p2{grid-template-columns:1fr 1fr}
+  @media(max-width:520px){.hco .opts.p2{grid-template-columns:1fr}}
+  .hco .opt{border:1px solid var(--line);border-radius:11px;padding:13px 15px;cursor:pointer;background:var(--card);
+    display:flex;justify-content:space-between;align-items:center;gap:10px;transition:border-color .15s,box-shadow .15s}
+  .hco .opt:hover{border-color:var(--accent)}
+  .hco .opt.on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+  .hco .opt b{font-size:14px;display:block}
+  .hco .opt small{font-size:12px;color:var(--ink-2);display:block;margin-top:2px}
+  .hco .opt .px{font-size:13px;font-weight:700;white-space:nowrap}
+  .hco .opt .px.free{color:var(--good)}
+  .hco .more{font-size:13px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:13px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+  .hco .more:hover{color:var(--ink)}
+  .hco #cmtBox{display:none;margin-top:11px}
+  /* сводка */
+  .hco .sum{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,22px);position:sticky;top:88px}
+  @media(max-width:860px){.hco .sum{position:static}}
+  .hco .it{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line-soft)}
+  .hco .it .im{width:52px;height:66px;border-radius:5px;flex:0 0 auto;background-size:cover;background-position:center;background-color:var(--paper2)}
+  .hco .it .nm{font-size:13px;line-height:1.35}
+  .hco .it .nm span{color:var(--ink-2)}
+  .hco .it .pr{font-size:13.5px;font-weight:700;margin-top:4px}
+  .hco .qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:6px;margin-top:7px}
+  .hco .qty button{width:26px;height:26px;background:none;border:none;color:var(--ink-2);font-size:15px;cursor:pointer;font-family:inherit}
+  .hco .qty span{width:28px;text-align:center;font-size:13px;font-weight:600}
+  .hco .rm{background:none;border:none;color:var(--ink-3);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:inherit;align-self:flex-start}
+  .hco .rm:hover{color:var(--bad)}
+  .hco .ship{margin:14px 0 4px}
+  .hco .ship .sl{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2);margin-bottom:7px}
+  .hco .ship .sl b{color:var(--ink)}
+  .hco .ship .sl svg{width:16px;height:16px;flex:0 0 auto;stroke:var(--accent);fill:none}
+  .hco .ship .bar{height:6px;border-radius:20px;background:var(--line-soft);overflow:hidden}
+  .hco .ship .bar i{display:block;height:100%;background:var(--accent);border-radius:20px;transition:width .35s}
+  .hco .ship.done .sl{color:var(--good)}.hco .ship.done .sl svg{stroke:var(--good)}.hco .ship.done .bar i{background:var(--good)}
+  .hco .tot{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+  .hco .tr{display:flex;justify-content:space-between;font-size:13.5px;padding:4px 0}
+  .hco .tr.save span{color:var(--good)}
+  .hco .tr.big{font-size:19px;font-weight:700;padding:10px 0 0;margin-top:8px;border-top:1px solid var(--line-soft)}
+  .hco .btn{width:100%;padding:17px;border:none;border-radius:8px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+    font-weight:700;cursor:pointer;font-family:inherit;transition:.18s;display:flex;align-items:center;justify-content:center;gap:9px}
+  .hco .btn.pay{background:var(--ink);color:var(--paper);margin-top:16px}
+  .hco .btn.pay:hover{background:var(--accent)}
+  .hco .btn.pay:disabled{opacity:.55;cursor:default}
+  .hco .btn.tg{background:#25925a;color:#fff;margin-top:9px;text-transform:none;letter-spacing:.03em;font-weight:600;font-size:13px}
+  .hco .btn.tg:hover{background:#1f7d4c}
+  .hco .btn.tg svg{width:17px;height:17px;fill:currentColor}
+  .hco .trust{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--ink-3);margin-top:14px}
+  .hco .trust span{display:flex;align-items:center;gap:4px}
+  .hco .trust svg{width:13px;height:13px;stroke:var(--ink-3);fill:none;stroke-width:1.7}
+  .hco .oferta{font-size:11.5px;color:var(--ink-3);text-align:center;margin-top:10px;line-height:1.5}
+  /* липкая кнопка на мобиле */
+  .hco .mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);border-top:1px solid var(--line);
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:none;box-shadow:0 -8px 24px rgba(0,0,0,.09)}
+  @media(max-width:860px){.hco .mbar{display:block}.hco{padding-bottom:96px}}
+  .hco .mbar .btn{margin:0}
+  /* пусто / успех */
+  .hco .empty{text-align:center;padding:70px 0}
+  .hco .empty p{color:var(--ink-2);margin:10px 0 22px}
+  .hco .ok{max-width:560px;margin:0 auto;text-align:center;padding:50px 0}
+  .hco .ok .ic{width:66px;height:66px;margin:0 auto 20px;border-radius:50%;background:var(--good);display:flex;align-items:center;justify-content:center}
+  .hco .ok .ic svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:2.4}
+  .hco .ok h2{font-size:clamp(24px,4vw,32px);font-weight:700}
+  .hco .ok .num{display:inline-block;margin-top:12px;padding:7px 16px;border-radius:20px;background:var(--card);border:1px solid var(--line);font-size:14px;font-weight:700}
+  .hco .ok p{color:var(--ink-2);margin-top:16px;font-size:15px;line-height:1.65}
+  .hco .ok .btns{display:flex;gap:11px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+  .hco .ok .b{padding:14px 26px;border-radius:8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .hco .ok .b.dark{background:var(--ink);color:var(--paper)}
+  .hco .ok .b.tg{background:#25925a;color:#fff}
+</style>
+
+<div class="hco" id="hco">
+  <div class="wrap">
+    <div id="hcoMain">
+      <a class="back" href="/catalog">← Вернуться в каталог</a>
+      <h1>Оформление заказа</h1>
+      <div class="hint">Два поля — и всё. Менеджер перезвонит за 15 минут, подтвердит размер, срок и стоимость доставки.</div>
+
+      <div class="cols">
+        <div>
+          <div class="sec">
+            <div class="lbl"><i>1</i>Контакты</div>
+            <div class="two">
+              <div class="f"><span>Имя *</span><input id="f_name" placeholder="Как к вам обращаться" autocomplete="given-name"></div>
+              <div class="f"><span>Телефон *</span><input id="f_phone" type="tel" inputmode="tel" placeholder="+7 900 000-00-00" autocomplete="tel"></div>
+            </div>
+            <div class="ferr" id="err1"></div>
+          </div>
+
+          <div class="sec">
+            <div class="lbl"><i>2</i>Доставка</div>
+            <div class="opts" id="dlv">
+              <div class="opt on" data-v="Пункт выдачи"><div><b>Пункт выдачи</b><small>По России, от 2 дней · примерка перед оплатой</small></div><span class="px" id="pxPvz">—</span></div>
+              <div class="opt" data-v="Курьер до двери"><div><b>Курьер до двери</b><small>По России, от 2 дней · примерка перед оплатой</small></div><span class="px" id="pxCur">—</span></div>
+            </div>
+            <div class="two" style="margin-top:12px">
+              <div class="f"><span>Город</span><input id="f_city" placeholder="Москва" autocomplete="address-level2"></div>
+              <div class="f"><span>Адрес или пункт выдачи</span><input id="f_addr" placeholder="Необязательно — подскажет менеджер" autocomplete="street-address"></div>
+            </div>
+          </div>
+
+          <div class="sec">
+            <div class="lbl"><i>3</i>Оплата</div>
+            <div class="opts p2" id="pay">
+              <div class="opt on" data-v="При получении"><div><b>При получении</b><small>после примерки</small></div></div>
+              <div class="opt" data-v="Картой онлайн"><div><b>Картой онлайн</b><small>Visa · MC · МИР</small></div></div>
+              <div class="opt" data-v="СБП"><div><b>СБП</b><small>по QR-коду</small></div></div>
+              <div class="opt" data-v="Яндекс Сплит"><div><b>Яндекс Сплит</b><small id="splitTxt">4 платежа без переплат</small></div></div>
+            </div>
+            <div class="more" id="cmtToggle" style="margin-top:16px">＋ Комментарий к заказу</div>
+            <div id="cmtBox"><textarea id="f_cmt" rows="3" placeholder="Пожелания по заказу, удобное время звонка"></textarea></div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="sum">
+            <div class="lbl" style="margin-bottom:6px">Ваш заказ</div>
+            <div id="items"></div>
+            <div class="ship" id="ship"></div>
+            <div class="tot">
+              <div class="tr"><span style="color:var(--ink-2)">Товары</span><span id="tGoods">0 руб</span></div>
+              <div class="tr save" id="rSave" style="display:none"><span>Ваша выгода</span><span id="tSave">0 руб</span></div>
+              <div class="tr"><span style="color:var(--ink-2)">Доставка</span><span id="tShip">уточнит менеджер</span></div>
+              <div class="tr big"><span>Итого</span><span id="tTotal">0 руб</span></div>
+            </div>
+            <button class="btn pay" id="doOrder">Заказать</button>
+            <button class="btn tg" id="toTg"><svg viewBox="0 0 24 24"><path d="M9.8 15.6 9.6 19c.4 0 .5-.2.7-.4l1.7-1.6 3.5 2.6c.6.4 1.1.2 1.3-.6l2.4-11.1c.2-1-.4-1.4-1-1.1L4.9 11.6c-1 .4-1 .9-.2 1.2l3.6 1.1 8.3-5.2c.4-.3.8-.1.5.2z"/></svg>Оформить в Telegram</button>
+            <div class="trust">
+              <span><svg viewBox="0 0 24 24"><path d="M4 6h16M6 6l1 14h10l1-14"/></svg>примерка</span>
+              <span><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 3-6M4 4v4h4"/></svg>возврат 14 дней</span>
+              <span><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>данные защищены</span>
+            </div>
+            <div class="oferta">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div id="hcoEmpty" class="empty" style="display:none">
+      <h1>Корзина пуста</h1>
+      <p>Добавьте понравившиеся джинсы — и возвращайтесь.</p>
+      <a class="btn pay" style="max-width:280px;margin:0 auto;display:inline-flex;padding:16px 34px" href="/catalog">В каталог</a>
+    </div>
+
+    <div id="hcoOk" class="ok" style="display:none">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h2>Заказ принят</h2>
+      <div class="num" id="okNum">HL-000000</div>
+      <p>Менеджер перезвонит за 15 минут, подтвердит размер, наличие, срок и стоимость доставки.<br>Примерка перед оплатой — платите только за то, что подошло.</p>
+      <div class="btns"><a class="b dark" href="/catalog">Вернуться в каталог</a><a class="b tg" id="okTg" href="https://t.me/hailey_mgr" target="_blank" rel="noopener">Написать в Telegram</a></div>
+    </div>
+  </div>
+
+  <div class="mbar" id="mbar"><button class="btn pay" id="doOrderM">Заказать</button></div>
+</div>
+
+<script>
+(function(){
+  var KEY='hailey_cart_v1', SHIP_FREE=10000, TG='hailey_mgr';
+  function $(i){return document.getElementById(i);}
+  function rub(n){return n.toLocaleString('ru-RU')+' руб';}
+  function load(){try{var a=JSON.parse(localStorage.getItem(KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(cart));}catch(e){}}
+  var cart=load();
+  var goods=function(){return cart.reduce(function(a,i){return a+i.price*i.qty;},0);};
+  var savings=function(){return cart.reduce(function(a,i){return a+((i.old>i.price)?(i.old-i.price)*i.qty:0);},0);};
+  var dlv='Пункт выдачи', pay='При получении';
+
+  var truck='<svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.5"/><circle cx="17.5" cy="18" r="1.5"/></svg>';
+  var chk='<svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
+
+  function render(){
+    if(!cart.length){$('hcoMain').style.display='none';$('mbar').style.display='none';$('hcoEmpty').style.display='block';return;}
+    $('items').innerHTML=cart.map(function(i,x){
+      return '<div class="it"><div class="im" style="background-image:url('+(i.img||'')+')"></div>'
+      +'<div style="flex:1;min-width:0"><div class="nm">'+i.name+(i.size?' · <span>размер '+i.size+'</span>':'')+'</div>'
+      +'<div class="qty"><button data-a="dec" data-i="'+x+'">−</button><span>'+i.qty+'</span><button data-a="inc" data-i="'+x+'">+</button></div>'
+      +'<div class="pr">'+rub(i.price*i.qty)+'</div></div>'
+      +'<button class="rm" data-a="rm" data-i="'+x+'">Удалить</button></div>';
+    }).join('');
+    var g=goods(), sv=savings(), free=g>=SHIP_FREE;
+    var sh=$('ship');
+    if(free){sh.className='ship done';sh.innerHTML='<div class="sl">'+chk+'<span><b>Бесплатная доставка</b> — ваш заказ проходит</span></div><div class="bar"><i style="width:100%"></i></div>';}
+    else{sh.className='ship';var p=Math.max(4,Math.min(100,Math.round(g/SHIP_FREE*100)));
+      sh.innerHTML='<div class="sl">'+truck+'<span>До <b>бесплатной доставки</b> — '+rub(SHIP_FREE-g)+'</span></div><div class="bar"><i style="width:'+p+'%"></i></div>';}
+    $('pxPvz').textContent=free?'бесплатно':'по тарифу';$('pxPvz').className='px'+(free?' free':'');
+    $('pxCur').textContent=free?'бесплатно':'по тарифу';$('pxCur').className='px'+(free?' free':'');
+    $('tGoods').textContent=rub(g);
+    $('rSave').style.display=sv>0?'flex':'none';$('tSave').textContent='−'+rub(sv);
+    $('tShip').textContent=free?'бесплатно':'уточнит менеджер';
+    $('tTotal').textContent=rub(g);
+    $('splitTxt').textContent=Math.round(g/4).toLocaleString('ru-RU')+' руб × 4 без переплат';
+    var t='Заказать · '+rub(g);
+    $('doOrder').textContent=t;$('doOrderM').textContent=t;
+  }
+  $('items').addEventListener('click',function(e){
+    var b=e.target.closest('[data-a]');if(!b)return;var i=+b.dataset.i,a=b.dataset.a;
+    if(a==='inc')cart[i].qty++;else if(a==='dec'){cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);}else cart.splice(i,1);
+    save();render();
+  });
+  function pick(box,set){document.getElementById(box).addEventListener('click',function(e){
+    var o=e.target.closest('.opt');if(!o)return;
+    [].forEach.call(this.querySelectorAll('.opt'),function(x){x.classList.remove('on');});
+    o.classList.add('on');set(o.dataset.v);});}
+  pick('dlv',function(v){dlv=v;});pick('pay',function(v){pay=v;});
+  $('cmtToggle').addEventListener('click',function(){var b=$('cmtBox');var open=b.style.display==='block';b.style.display=open?'none':'block';this.textContent=(open?'＋':'−')+' Комментарий к заказу';});
+
+  // телефон: +7 и цифры
+  var ph=$('f_phone');
+  ph.addEventListener('input',function(){
+    var d=this.value.replace(/\D/g,'');
+    if(d[0]==='8')d='7'+d.slice(1);
+    if(d[0]!=='7')d='7'+d;
+    d=d.slice(0,11);
+    var s='+7';
+    if(d.length>1)s+=' '+d.slice(1,4);
+    if(d.length>4)s+=' '+d.slice(4,7);
+    if(d.length>7)s+='-'+d.slice(7,9);
+    if(d.length>9)s+='-'+d.slice(9,11);
+    this.value=s;
+  });
+
+  function orderText(){
+    var L=cart.map(function(i){return '• '+i.name+(i.size?' (размер '+i.size+')':'')+' × '+i.qty+' = '+rub(i.price*i.qty);});
+    L.push('———');
+    L.push('ИТОГО: '+rub(goods()));
+    L.push('Доставка: '+dlv+(($('f_city').value||'').trim()?', '+$('f_city').value.trim():'')+(($('f_addr').value||'').trim()?', '+$('f_addr').value.trim():''));
+    L.push('Оплата: '+pay);
+    var c=($('f_cmt').value||'').trim();if(c)L.push('Комментарий: '+c);
+    return 'Заказ HAILEY (сайт)\n'+L.join('\n');
+  }
+  function nativeForm(){var fs=document.querySelectorAll('.js-form-proccess');for(var i=0;i<fs.length;i++){if(fs[i].querySelector('[name="Phone"]'))return fs[i];}return fs[0]||null;}
+  function fail(msg,id){var e=$('err1');e.textContent=msg;e.style.display='block';var el=$(id);if(el){el.classList.add('err');el.focus();}return false;}
+
+  function submit(){
+    var name=($('f_name').value||'').trim(), phone=($('f_phone').value||'').trim();
+    $('err1').style.display='none';$('f_name').classList.remove('err');$('f_phone').classList.remove('err');
+    if(name.length<2)return fail('Впишите, пожалуйста, имя','f_name');
+    if(phone.replace(/\D/g,'').length<11)return fail('Впишите телефон полностью','f_phone');
+    var f=nativeForm();
+    if(f){
+      function set(n,v){var el=f.querySelector('[name="'+n+'"]');if(el){el.value=v;['input','change','blur'].forEach(function(ev){el.dispatchEvent(new Event(ev,{bubbles:true}));});}}
+      set(f.querySelector('[name="zakaz"]')?'zakaz':'form-spec-comments',orderText());
+      set('Name',name);set('Phone',phone);
+      var em=f.querySelector('[name="Email"]');if(em&&!em.value)set('Email','order+'+phone.replace(/\D/g,'')+'@hailey.site');
+      var b=f.querySelector('.t-submit, .t-form__submit button, button[type=submit]');
+      if(b)b.click();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+    }
+    var num='HL-'+String(new Date().getTime()).slice(-6);
+    $('okNum').textContent=num;
+    cart=[];save();
+    $('hcoMain').style.display='none';$('mbar').style.display='none';$('hcoOk').style.display='block';
+    try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);}
+  }
+  $('doOrder').addEventListener('click',submit);
+  $('doOrderM').addEventListener('click',submit);
+  $('toTg').addEventListener('click',function(){
+    if(!cart.length)return;
+    try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(orderText());}catch(e){}
+    window.open('https://t.me/'+TG,'_blank','noopener');
+  });
+  window.addEventListener('storage',function(e){if(e.key===KEY){cart=load();render();}});
+  render();
+})();
+</script>
