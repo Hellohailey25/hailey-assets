@@ -194,6 +194,8 @@
   function rub(n){return n.toLocaleString('ru-RU')+' руб';}
   function load(){try{var a=JSON.parse(localStorage.getItem(KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(cart));}catch(e){}}
+  // нативная Tilda-форма = движок отправки: держим в DOM, но прячем (наши поля выше)
+  try{var st=document.createElement('style');st.textContent='.t-records .t-form_inputs-total_4,.t-records [class*="t678"],.t-records .js-form-proccess{position:absolute!important;left:-9999px!important;top:0!important;width:1px!important;height:1px!important;overflow:hidden!important}';document.head.appendChild(st);}catch(e){}
   var cart=load();
   var goods=function(){return cart.reduce(function(a,i){return a+i.price*i.qty;},0);};
   var savings=function(){return cart.reduce(function(a,i){return a+((i.old>i.price)?(i.old-i.price)*i.qty:0);},0);};
@@ -275,6 +277,7 @@
       set(f.querySelector('[name="zakaz"]')?'zakaz':'form-spec-comments',orderText());
       set('Name',name);set('Phone',phone);
       var em=f.querySelector('[name="Email"]');if(em&&!em.value)set('Email','order+'+phone.replace(/\D/g,'')+'@hailey.site');
+      var cm=($('f_cmt').value||'').trim();if(cm)set('Comments',cm);
       var b=f.querySelector('.t-submit, .t-form__submit button, button[type=submit]');
       if(b)b.click();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
     }
