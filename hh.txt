@@ -57,6 +57,21 @@
   .hh .cartlink .cc{min-width:20px;height:20px;padding:0 6px;border-radius:11px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;transform:scale(0);transition:.2s}
   .hh .cartlink .cc.on{transform:scale(1)}
   @media(max-width:820px){.hh nav{display:none}}
+  /* Телефон: логотип + поиск + корзина не влезают в 375px и выдавливают корзину за экран.
+     Ужимаем логотип, поиск делаем резиновым, у корзины оставляем иконку со счётчиком. */
+  @media(max-width:560px){
+    .hh .hd{height:60px;gap:10px}
+    .hh .logo{font-size:16px;letter-spacing:.16em;padding-left:.16em}
+    .hh .logo i{font-size:14px;margin-right:.26em}
+    .hh .htools{gap:10px;flex:1;min-width:0;justify-content:flex-end}
+    .hh .s{flex:1;min-width:0}
+    /* у поля поиска ширина в inline-стиле и её же меняют onfocus/onblur — бьём по id с !important */
+    .hh form.s #hhQ{width:100%!important;max-width:100%!important;min-width:0!important}
+    .hh .theme{width:30px;height:30px;font-size:13px}
+    .hh .cartlink .ct{display:none}
+    .hh .cartlink{gap:5px}
+    .hh .top{font-size:9.5px}
+  }
   .t706__carticon{display:none!important}
   /* прячем вшитые шапки страниц — их заменяет эта сквозная (корзина/тема остаются для связки) */
   .hp>.top,.hp>header{display:none!important}
@@ -92,7 +107,7 @@
     <div class="htools">
       <button class="theme" id="hhTheme" aria-label="Тема">◐</button>
       <form class="s" style="display:flex;align-items:center;margin:0" role="search" autocomplete="off" onsubmit="return hhGo(event)"><input name="q" id="hhQ" type="search" placeholder="Поиск" aria-label="Поиск по каталогу" autocomplete="off" style="width:110px;max-width:34vw;padding:7px 13px;border:1px solid var(--line,rgba(25,23,18,.18));border-radius:20px;background:transparent;color:inherit;font-family:inherit;font-size:13px;letter-spacing:.02em;outline:none;transition:width .2s,border-color .2s" onfocus="this.style.width='150px';this.style.borderColor='var(--accent,#2B3648)'" onblur="this.style.width='110px';this.style.borderColor='var(--line,rgba(25,23,18,.18))'"><div class="hh-sug" id="hhSug" role="listbox"></div></form>
-      <button class="cartlink" id="hhCart"><svg class="cart-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Корзина <span class="cc" id="hhcc">0</span></button>
+      <button class="cartlink" id="hhCart"><svg class="cart-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="ct">Корзина</span> <span class="cc" id="hhcc">0</span></button>
     </div>
   </div></div>
 </div>
