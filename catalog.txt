@@ -39,28 +39,94 @@
   .hc .subcats .sclabel{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-44);font-weight:600;margin-right:4px}
   .hc .subcats .scl{padding:7px 15px;border:1px solid var(--line);border-radius:22px;font-size:13px;color:var(--ink-64);transition:.15s}
   .hc .subcats .scl:hover{border-color:var(--accent);color:var(--ink)}
-  /* --- фильтры --- */
-  .hc .filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px 18px;padding:18px 0 20px;margin-bottom:8px;
+  /* --- фильтры: одна кнопка + выезжающая панель (как бургер-меню) --- */
+  .hc .fbar{display:flex;align-items:center;gap:12px;padding:14px 0 4px;margin-bottom:4px;
     border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
-  .hc .fgroup{display:flex;flex-direction:column;gap:10px}
-  .hc .flabel{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-44);font-weight:600}
-  .hc .fsel{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);
-    font-family:inherit;font-size:14px;letter-spacing:.01em;cursor:pointer}
-  .hc .fsel:focus{outline:none;border-color:var(--accent)}
-  .hc input.finp{cursor:text;-webkit-appearance:none;appearance:none}
+  .hc .fbtn{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border:1px solid var(--ink);border-radius:30px;
+    color:var(--ink);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:.16s}
+  .hc .fbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+  .hc .fbtn:hover{background:var(--ink);color:var(--paper)}
+  .hc .fcount{min-width:19px;height:19px;padding:0 6px;border-radius:10px;background:var(--accent);color:#fff;
+    font-size:11px;display:flex;align-items:center;justify-content:center}
+  .hc .fbtn:hover .fcount{background:var(--paper);color:var(--ink)}
+  .hc .fovl{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:999996;opacity:0;pointer-events:none;transition:opacity .26s}
+  .hc .fovl.on{opacity:1;pointer-events:auto}
+  .hc .fpanel{position:fixed;top:0;bottom:0;left:0;width:min(88vw,360px);background:var(--paper);z-index:999997;
+    transform:translateX(-101%);transition:transform .28s ease;display:flex;flex-direction:column;box-shadow:0 0 40px rgba(0,0,0,.2)}
+  .hc .fpanel.on{transform:none}
+  .hc .fph{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid var(--line-soft)}
+  .hc .fph b{font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+  .hc .fph .x{width:32px;height:32px;font-size:18px;color:var(--ink-44)}
+  .hc .fpq{padding:14px 20px 6px}
+  .hc .fpbody{flex:1;overflow-y:auto;padding:6px 20px 20px}
+  .hc .facc{border-bottom:1px solid var(--line-soft)}
+  .hc .facch{width:100%;display:flex;align-items:center;gap:8px;padding:15px 0;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;font-weight:700;color:var(--ink);text-align:left}
+  .hc .facch .fsel-n{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--accent);color:#fff;
+    font-size:10.5px;display:flex;align-items:center;justify-content:center;letter-spacing:0}
+  .hc .fchev{width:16px;height:16px;margin-left:auto;stroke:var(--ink-44);fill:none;stroke-width:2;transition:transform .2s}
+  .hc .facc.open .fchev{transform:rotate(180deg)}
+  .hc .faccb{display:none;padding-bottom:10px}
+  .hc .facc.open .faccb{display:block}
+  .hc .fopt{display:flex;align-items:center;gap:10px;padding:9px 0;cursor:pointer;font-size:14px;color:var(--ink-64)}
+  .hc .fopt input{position:absolute;opacity:0;width:0;height:0}
+  .hc .fbox{width:19px;height:19px;flex:0 0 auto;border:1.5px solid var(--line);border-radius:5px;transition:.15s;position:relative}
+  .hc .fopt.on .fbox{background:var(--accent);border-color:var(--accent)}
+  .hc .fopt.on .fbox:after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;
+    border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .hc .fopt.on{color:var(--ink)}
+  .hc .fopt .fnum{margin-left:auto;font-size:11.5px;color:var(--ink-44)}
+  .hc .fopt.zero{opacity:.42}
+  .hc .fsubs{display:flex;flex-wrap:wrap;gap:8px;padding:4px 0 10px}
+  .hc .fpfoot{display:flex;gap:10px;padding:14px 20px;border-top:1px solid var(--line-soft)}
+  .hc .freset{flex:0 0 auto;padding:13px 16px;border:1px solid var(--line);border-radius:6px;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-64)}
+  .hc .fapply{flex:1;padding:13px;border-radius:6px;background:var(--ink);color:var(--paper);font-size:11.5px;
+    letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .hc .finp{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);
+    font-family:inherit;font-size:14px;cursor:text;-webkit-appearance:none;appearance:none}
+  .hc .finp:focus{outline:none;border-color:var(--accent)}
   .hc input.finp::placeholder{color:var(--ink-44)}
+  /* описание категории: на десктопе под H1, на телефоне уезжает ПОД товары (иначе закрывает витрину) */
+  .hc .sdesc.btm{display:none;margin-top:30px;padding-top:20px;border-top:1px solid var(--line-soft);
+    font-size:14px;color:var(--ink-64);line-height:1.65}
+  @media(max-width:760px){
+    .hc .shead .sdesc{display:none}
+    .hc .sdesc.btm{display:block}
+    .hc .shead{margin-bottom:6px}
+  }
   .hc input.finp::-webkit-search-cancel-button{-webkit-appearance:none;height:14px;width:14px;background:var(--ink-44);cursor:pointer;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18 6L6 18M6 6l12 12' stroke='black' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat}
   /* --- сетка --- */
   .hc .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.8vw,26px);margin-top:26px}
   @media(max-width:1000px){.hc .grid{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:760px){.hc .grid{grid-template-columns:1fr 1fr;gap:16px}}
-  @media(max-width:460px){.hc .grid{grid-template-columns:1fr}}
+  /* на телефоне ДВЕ колонки (как на маркетплейсах) — одна колонка листалась бесконечно */
+  @media(max-width:760px){.hc .grid{grid-template-columns:1fr 1fr;gap:16px 12px}}
+  @media(max-width:460px){.hc .grid{gap:14px 10px}}
   .hc .empty{padding:60px 0;text-align:center;color:var(--ink-44);font-size:15px}
   .hc .card{display:flex;flex-direction:column}
-  .hc .ph{position:relative;aspect-ratio:2/3;overflow:hidden;border-radius:4px}
-  .hc .photo{position:absolute;inset:0;transition:transform .8s cubic-bezier(.2,.7,.2,1);background:var(--paper2)}
-  .hc .card:hover .photo{transform:scale(1.04)}
-  .hc .photo img{width:100%;height:100%;object-fit:cover}
+  .hc .ph{position:relative;aspect-ratio:2/3;overflow:hidden;border-radius:4px;background:var(--paper2)}
+  /* Лента кадров: нативный свайп на телефоне (scroll-snap), стрелки на десктопе.
+     Каждый кадр — ссылка на карточку товара, поэтому тап по фото открывает товар, а свайп остаётся свайпом. */
+  .hc .track{position:absolute;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
+    scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth}
+  .hc .track::-webkit-scrollbar{display:none}
+  .hc .slide{flex:0 0 100%;width:100%;height:100%;scroll-snap-align:center;position:relative;display:block}
+  .hc .slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .hc .card:hover .slide img{transform:scale(1.04)}
+  .hc .dots{position:absolute;left:0;right:0;bottom:9px;z-index:6;display:flex;justify-content:center;gap:5px;pointer-events:none}
+  .hc .dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(0,0,0,.35);transition:.2s}
+  .hc .dots i.on{background:#fff;transform:scale(1.25)}
+  /* значок «листается вбок» — правый нижний угол, гаснет после первого свайпа */
+  .hc .swipehint{position:absolute;right:8px;bottom:8px;z-index:6;display:flex;align-items:center;gap:3px;padding:4px 7px;
+    border-radius:20px;background:rgba(20,23,30,.5);backdrop-filter:blur(4px);color:#fff;pointer-events:none;transition:opacity .3s}
+  .hc .swipehint svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .hc .ph.seen .swipehint{opacity:0}
+  .hc .arw{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:30px;height:30px;border-radius:50%;
+    background:rgba(255,255,255,.9);color:#23262C;display:none;align-items:center;justify-content:center;font-size:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.16);transition:.16s}
+  .hc .arw.l{left:8px}.hc .arw.r{right:8px}
+  .hc .arw:hover{background:#fff;transform:translateY(-50%) scale(1.08)}
+  @media(hover:hover){.hc .ph:hover .arw{display:flex}}
   .hc .phscrim{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .26s;
     background:linear-gradient(to top,rgba(15,17,22,.72) 0%,rgba(15,17,22,.28) 34%,transparent 60%)}
   .hc .ph:hover .phscrim,.hc .ph:focus-within .phscrim{opacity:1}
@@ -70,21 +136,24 @@
   .hc .bdg.new{background:rgba(47,107,70,.92)}
   .hc .bdg.sale{background:rgba(180,68,47,.94)}
   .hc .bdg.def{background:rgba(20,23,30,.75)}
-  .hc .fav{position:absolute;top:12px;right:12px;z-index:4;width:34px;height:34px;display:flex;align-items:center;
-    justify-content:center;font-size:17px;color:#fff;opacity:.72;transition:.2s;text-shadow:0 1px 6px rgba(0,0,0,.4)}
-  .hc .fav:hover{opacity:1;transform:scale(1.12)}
-  .hc .fav.on{opacity:1;color:#ff8f7a}
+  /* Избранное — ОДИН вид везде (листинг/карточка/телефон/десктоп): белый кружок, контурное сердце,
+     в активном состоянии заливается акцентом. Держать в паре с .hh .fav в блоке шапки. */
+  .hc .fav{position:absolute;top:10px;right:10px;z-index:7;width:32px;height:32px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.86);backdrop-filter:blur(4px);
+    box-shadow:0 1px 5px rgba(0,0,0,.14);transition:transform .18s,background .18s}
+  .hc .fav svg{width:17px;height:17px;fill:none;stroke:#23262C;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:.18s}
+  .hc .fav:hover{transform:scale(1.1);background:#fff}
+  .hc .fav.on svg{fill:#e2574c;stroke:#e2574c}
   .hc .hover{position:absolute;left:12px;right:12px;bottom:12px;z-index:5;display:flex;flex-direction:column;gap:8px;
     opacity:0;transform:translateY(10px);transition:.26s cubic-bezier(.2,.8,.2,1)}
   .hc .ph:hover .hover,.hc .ph:focus-within .hover{opacity:1;transform:none}
   .hc .hb{width:100%;padding:12px;border-radius:4px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
     font-weight:700;display:flex;align-items:center;justify-content:center;transition:.16s}
-  .hc .hb.more{background:color-mix(in srgb,var(--card) 92%,transparent);color:var(--ink);backdrop-filter:blur(6px)}
-  .hc .hb.more:hover{background:var(--card)}
   .hc .hb.quick{background:var(--accent);color:#fff;border:1px solid rgba(255,255,255,.22)}
   .hc .hb.quick:hover{background:var(--ink);border-color:transparent}
-  @media(hover:none){.hc .hover{opacity:1;transform:none;position:static;margin-top:10px}
-    .hc .hb.more{border:1px solid var(--line)}}
+  /* На тач-устройствах ховера нет: кнопка уезжает под фото. «Подробнее» больше нет — товар открывается тапом по фото. */
+  @media(hover:none){.hc .hover{opacity:1;transform:none;position:static;margin-top:10px}}
+  @media(max-width:760px){.hc .hb{padding:10px;font-size:10.5px;letter-spacing:.06em}}
   .hc .info{padding:15px 2px 0}
   .hc .pname{font-size:15.5px;font-weight:500;letter-spacing:.005em;transition:.15s}
   .hc a.pname:hover{color:var(--accent-2)}
@@ -103,6 +172,18 @@
   .hc .add.added{background:var(--good);border-color:var(--good);color:#fff}
   .hc .split{font-size:11.5px;color:var(--ink-44);margin-top:9px;letter-spacing:.02em}
   @media(max-width:400px){.hc .add span{display:none}.hc .add{padding:11px 13px}}
+  /* Две колонки на телефоне — карточке нужен компактный набор: имя в 2 строки, цена и «в корзину» столбиком */
+  @media(max-width:760px){
+    .hc .info{padding:11px 1px 0}
+    .hc .pname{font-size:13.5px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .hc .meta{font-size:10.5px;margin-top:5px;gap:5px}
+    .hc .buyrow{margin-top:8px;gap:8px}
+    .hc .price{font-size:16px}
+    .hc .old{font-size:11.5px}
+    .hc .off{font-size:10px;padding:2px 5px}
+    .hc .add span{display:none}
+    .hc .add{padding:9px 11px}
+  }
   /* --- корзина (drawer) — как в «Хиты сезона» --- */
   .hc .cartbtn{position:fixed;right:20px;bottom:20px;z-index:55;display:flex;align-items:center;gap:9px;
     background:var(--ink);color:var(--paper);padding:14px 18px;border-radius:40px;font-size:12px;font-weight:700;
@@ -219,17 +300,23 @@
       <h1 id="h1"><span id="h1t">Каталог</span></h1><span class="h1count mono" id="h1count"></span>
       <div class="sdesc"><span id="sdesc"></span> <span class="found" id="found"></span></div>
     </div>
-    <div class="filters">
-      <div class="fgroup"><span class="flabel">Поиск</span><input class="fsel finp" id="fQ" type="search" placeholder="джинсы, багги, синие…" autocomplete="off"></div>
-      <div class="fgroup" id="gBadge"><span class="flabel">Подборка</span><select class="fsel" id="fBadge"></select></div>
-      <div class="fgroup" id="gPredmet"><span class="flabel">Категория</span><select class="fsel" id="fPredmet"></select></div>
-      <div class="fgroup"><span class="flabel">Цвет</span><select class="fsel" id="fColor"></select></div>
-      <div class="fgroup"><span class="flabel">Модель</span><select class="fsel" id="fModel"></select></div>
+    <div class="fbar">
+      <button class="fbtn" id="fOpen"><svg viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M10 18h4"/></svg>Фильтры<span class="fcount" id="fCount" style="display:none"></span></button>
     </div>
-    <nav class="subcats" id="subcats" style="display:none"></nav>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" style="display:none">В этой комбинации пока нет товаров. Сбросьте фильтр.</div>
+    <!-- SEO-текст и соседние категории — ПОД товарами: сверху они перетягивали внимание с витрины -->
+    <nav class="subcats" id="subcats" style="display:none"></nav>
+    <div class="sdesc btm" id="sdescB"></div>
   </div>
+
+  <div class="fovl" id="fOvl"></div>
+  <aside class="fpanel" id="fPanel" aria-label="Фильтры">
+    <div class="fph"><b>Фильтры</b><button class="x" id="fClose" aria-label="Закрыть">✕</button></div>
+    <div class="fpq"><input class="finp" id="fQ" type="search" placeholder="Поиск: джинсы, багги, синие…" autocomplete="off"></div>
+    <div class="fpbody" id="facets"></div>
+    <div class="fpfoot"><button class="freset" id="fReset">Сбросить</button><button class="fapply" id="fApply">Показать</button></div>
+  </aside>
 
   <button class="cartbtn" id="cartBtn">Корзина <span class="cc" id="cc">0</span></button>
   <div class="scrim" id="scrim"></div>
@@ -259,7 +346,7 @@
 
 <script>
 (function(){
-  var PRODUCTS=[{"id": "504407015", "name": "Джинсы широкие прямые серые", "url": "https://www.wildberries.ru/catalog/504407015/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/big/1.webp", "rating": "4,8", "rev": 1056, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Серый"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": "/dzhinsy-shirokie-pryamye-serye-504407015", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Потёртости, Варка, Бахрома", "sezon": "Лето", "length": "Длинные, Для высоких (170+)"}, {"id": "504607217", "name": "Прямые джинсы широкие синие", "url": "https://www.wildberries.ru/catalog/504607217/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504607/504607217/images/big/1.webp", "rating": "4,8", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Синий", "Темно-синий", "Индиго"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": "/pryamye-dzhinsy-shirokie-sinie-504607217", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Потёртости, Варка, Бахрома", "sezon": "Лето", "length": "Длинные, Для высоких (170+)"}, {"id": "504638231", "name": "Прямые джинсы широкие голубые", "url": "https://www.wildberries.ru/catalog/504638231/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEH_37292732_1_v1_2x.jpg", "rating": "4,8", "rev": 2763, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": "/pryamye-dzhinsy-shirokie-504638231", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Потёртости, Варка, Бахрома", "sezon": "Лето", "length": "Длинные, Для высоких (170+)"}, {"id": "504631232", "name": "Широкие рваные джинсы с дырками", "url": "https://www.wildberries.ru/catalog/504631232/detail.aspx", "price": 6990, "old": 11000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXF0_37277641_1_v1_2x.jpg", "rating": "4,9", "rev": 543, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз", "Рваные"], "color": ["Голубой", "Светло-голубой", "Светло-серый"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66], "page": "/shirokie-rvanye-dzhinsy-dyrkami-504631232", "material": "99% хлопок, 1% полиэстер", "posadka": "Высокая", "details": "Рваные, Потёртости, Бахрома, Варка, Принт, Грязная стирка (dirty)", "sezon": "Лето", "length": "Длинные, Для высоких (170+)"}, {"id": "754505251", "name": "Джинсы багги широкие бойфренды", "url": "https://www.wildberries.ru/catalog/754505251/detail.aspx", "price": 5490, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1KHTY_37215027_1_v1_2x.jpg", "rating": "4,9", "rev": 318, "predmet": "Джинсы", "model": ["Багги", "Широкие", "Буткат", "Бойфренды", "Оверсайз", "Свободные"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70], "page": "/dzhinsy-baggi-shirokie-boyfrendy-754505251", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)"}, {"id": "1017667229", "name": "Прямые джинсы широкие черные", "url": "https://www.lamoda.ru/p/mp002xw1mwo0/clothes-hellohailey-dzhinsy/", "price": 5490, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MWO0_35306458_1_v2_2x.jpg", "rating": "4,8", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Черный", "Темно-серый"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": "/dzhinsy-shirokie-chernye-1017667229", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Потёртости, Варка, Бахрома", "sezon": "Лето", "length": "Длинные, Для высоких (170+)"}, {"id": "761081181", "name": "Бомбер замшевый ветровка на осень", "url": "https://www.wildberries.ru/catalog/761081181/detail.aspx", "price": 5500, "old": 12000, "img": "https://basket-35.wbbasket.ru/vol7610/part761081/761081181/images/big/1.webp", "rating": "5", "rev": 1497, "predmet": "Бомбер", "model": ["Укороченный"], "color": ["Коричневый"], "tags": [], "badges": [], "sizes": [44, 46, 48, 50], "page": "", "material": "", "posadka": "", "details": "", "sezon": "Демисезон", "length": ""}, {"id": "504646155", "name": "Джинсы классические прямые", "url": "https://www.wildberries.ru/catalog/504646155/detail.aspx", "price": 4000, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXAM_37186890_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые", "Классические", "Трубы", "Зауженные"], "color": ["Синий", "Голубой"], "tags": [], "badges": ["РАСПРОДАЖА"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-klassicheskie-pryamye-504646155", "material": "100% хлопок", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)"}, {"id": "545150789", "name": "Джинсы светлые широкие клеш", "url": "https://www.wildberries.ru/catalog/545150789/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTO_37152890_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Клеш", "Широкие", "Свободные", "Трубы", "Оверсайз", "Прямые"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-svetlye-shirokie-klesh-545150789", "material": "50% хлопок, 30% лиоцелл, 20% полиэстер", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)"}, {"id": "754477427", "name": "Джинсы прямые широкие багги", "url": "https://www.wildberries.ru/catalog/754477427/detail.aspx", "price": 7000, "old": 12000, "img": "https://basket-35.wbbasket.ru/vol7544/part754477/754477427/images/big/1.webp", "rating": "5", "rev": 318, "predmet": "Джинсы", "model": ["Багги", "Широкие", "Буткат", "Бойфренды", "Оверсайз", "Свободные"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": [], "sizes": [52, 54, 56, 58, 60, 62, 64, 66], "page": "/dzhinsy-pryamye-shirokie-baggi-754477427", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)"}, {"id": "504645014", "name": "Джинсы прямые широкие трубы", "url": "https://www.wildberries.ru/catalog/504645014/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEI_37152882_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Синий", "Темно-синий", "Индиго"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-pryamye-shirokie-truby-504645014", "material": "100% хлопок", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)"}, {"id": "504634485", "name": "Джинсы широкие палаццо с подворотами", "url": "https://www.wildberries.ru/catalog/504634485/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MFSU_37152894_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Синий", "Темно-синий"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-shirokie-palacco-podvorotami-504634485", "material": "88% хлопок, 7% вискоза, 5% полиэстер", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)"}, {"id": "1017376402", "name": "Джинсы широкие трубы варенки", "url": "https://www.wildberries.ru/catalog/1017376402/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-41.wbbasket.ru/vol10173/part1017376/1017376402/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Серый", "Светло-серый"], "tags": [], "badges": [], "sizes": [52, 54, 56, 58, 60, 62, 64, 66], "page": "/dzhinsy-shirokie-truby-varenki-1017376402", "material": "хлопок, вискоза, полиэстер", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Лето", "length": "Длинные, Для высоких (170+)"}, {"id": "545148107", "name": "Джинсы темные широкие", "url": "https://www.wildberries.ru/catalog/545148107/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTN_37287443_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз", "Рваные"], "color": ["Синий", "Темно-синий", "Индиго"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58], "page": "/dzhinsy-temnye-shirokie-545148107", "material": "91% хлопок, 9% полиэстер", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)"}, {"id": "504618555", "name": "Джинсы темные широкие прямые трубы", "url": "https://www.wildberries.ru/catalog/504618555/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504618/504618555/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз", "Багги"], "color": ["Синий", "Темно-синий", "Индиго"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-temnye-shirokie-pryamye-504618555", "material": "91% хлопок, 9% полиэстер", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)"}, {"id": "504624622", "name": "Джинсы светлые широкие для высоких", "url": "https://www.wildberries.ru/catalog/504624622/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTM_37152886_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Клеш", "Широкие", "Свободные", "Трубы", "Оверсайз", "Прямые"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66], "page": "/dzhinsy-svetlye-shirokie-vysokih-504624622", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Лето", "length": "Длинные, Для высоких (170+)"}, {"id": "504644422", "name": "Джинсы прямые y2k широкие", "url": "https://www.wildberries.ru/catalog/504644422/detail.aspx", "price": 7000, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504644/504644422/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Буткат", "Бойфренды", "Прямые", "Трубы", "Классические"], "color": ["Голубой", "Охра", "Коричневый", "Грязно-голубой"], "tags": [], "badges": ["НОВИНКА"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-pryamye-y2k-shirokie-504644422", "material": "100% хлопок", "posadka": "Высокая", "details": "Грязная стирка (dirty), Винтаж, Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)"}, {"id": "504645629", "name": "Джинсы рваные y2k с пятнами", "url": "https://www.wildberries.ru/catalog/504645629/detail.aspx", "price": 7000, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504645/504645629/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Рваные", "Буткат", "Бойфренды", "Прямые", "Трубы"], "color": ["Голубой"], "tags": [], "badges": ["НОВИНКА"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-rvanye-y2k-pyatnami-504645629", "material": "100% хлопок", "posadka": "Высокая", "details": "Грязная стирка (dirty), Винтаж, Варка", "sezon": "Лето", "length": "Длинные, Для высоких (170+)"}];
+  var PRODUCTS=[{"id": "504407015", "name": "Джинсы широкие прямые серые", "url": "https://www.wildberries.ru/catalog/504407015/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/big/1.webp", "rating": "4,8", "rev": 1056, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Серый"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": "/dzhinsy-shirokie-pryamye-serye-504407015", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Потёртости, Варка, Бахрома", "sezon": "Лето", "length": "Длинные, Для высоких (170+)", "imgs": ["https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/big/1.webp", "https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/big/2.webp", "https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/big/3.webp", "https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/big/4.webp"]}, {"id": "504607217", "name": "Прямые джинсы широкие синие", "url": "https://www.wildberries.ru/catalog/504607217/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504607/504607217/images/big/1.webp", "rating": "4,8", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Синий", "Темно-синий", "Индиго"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": "/pryamye-dzhinsy-shirokie-sinie-504607217", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Потёртости, Варка, Бахрома", "sezon": "Лето", "length": "Длинные, Для высоких (170+)", "imgs": ["https://basket-27.wbbasket.ru/vol5046/part504607/504607217/images/big/1.webp", "https://basket-27.wbbasket.ru/vol5046/part504607/504607217/images/big/2.webp", "https://basket-27.wbbasket.ru/vol5046/part504607/504607217/images/big/3.webp", "https://basket-27.wbbasket.ru/vol5046/part504607/504607217/images/big/4.webp"]}, {"id": "504638231", "name": "Прямые джинсы широкие голубые", "url": "https://www.wildberries.ru/catalog/504638231/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEH_37292732_1_v1_2x.jpg", "rating": "4,8", "rev": 2763, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": "/pryamye-dzhinsy-shirokie-504638231", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Потёртости, Варка, Бахрома", "sezon": "Лето", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEH_37292732_1_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEH_37292733_2_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEH_37292734_3_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEH_37292735_4_v1_2x.jpg"]}, {"id": "504631232", "name": "Широкие рваные джинсы с дырками", "url": "https://www.wildberries.ru/catalog/504631232/detail.aspx", "price": 6990, "old": 11000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXF0_37277641_1_v1_2x.jpg", "rating": "4,9", "rev": 543, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз", "Рваные"], "color": ["Голубой", "Светло-голубой", "Светло-серый"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66], "page": "/shirokie-rvanye-dzhinsy-dyrkami-504631232", "material": "99% хлопок, 1% полиэстер", "posadka": "Высокая", "details": "Рваные, Потёртости, Бахрома, Варка, Принт, Грязная стирка (dirty)", "sezon": "Лето", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXF0_37277641_1_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXF0_37277642_2_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXF0_37277643_3_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXF0_37277644_4_v1_2x.jpg"]}, {"id": "754505251", "name": "Джинсы багги широкие бойфренды", "url": "https://www.wildberries.ru/catalog/754505251/detail.aspx", "price": 5490, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1KHTY_37215027_1_v1_2x.jpg", "rating": "4,9", "rev": 318, "predmet": "Джинсы", "model": ["Багги", "Широкие", "Буткат", "Бойфренды", "Оверсайз", "Свободные"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70], "page": "/dzhinsy-baggi-shirokie-boyfrendy-754505251", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW1KHTY_37215027_1_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1KHTY_37215028_2_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1KHTY_37215030_3_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1KHTY_37215032_4_v1_2x.jpg"]}, {"id": "1017667229", "name": "Прямые джинсы широкие черные", "url": "https://www.lamoda.ru/p/mp002xw1mwo0/clothes-hellohailey-dzhinsy/", "price": 5490, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MWO0_35306458_1_v2_2x.jpg", "rating": "4,8", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Черный", "Темно-серый"], "tags": [], "badges": ["ХИТ"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74], "page": "/dzhinsy-shirokie-chernye-1017667229", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Потёртости, Варка, Бахрома", "sezon": "Лето", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW1MWO0_35306458_1_v2_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MWO0_35306459_2_v2_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MWO0_35306460_3_v2_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MWO0_35306461_4_v2_2x.jpg"]}, {"id": "761081181", "name": "Бомбер замшевый ветровка на осень", "url": "https://www.wildberries.ru/catalog/761081181/detail.aspx", "price": 5500, "old": 12000, "img": "https://basket-35.wbbasket.ru/vol7610/part761081/761081181/images/big/1.webp", "rating": "5", "rev": 1497, "predmet": "Бомбер", "model": ["Укороченный"], "color": ["Коричневый"], "tags": [], "badges": [], "sizes": [44, 46, 48, 50], "page": "", "material": "", "posadka": "", "details": "", "sezon": "Демисезон", "length": "", "imgs": ["https://basket-35.wbbasket.ru/vol7610/part761081/761081181/images/big/1.webp", "https://basket-35.wbbasket.ru/vol7610/part761081/761081181/images/big/2.webp", "https://basket-35.wbbasket.ru/vol7610/part761081/761081181/images/big/3.webp", "https://basket-35.wbbasket.ru/vol7610/part761081/761081181/images/big/4.webp"]}, {"id": "504646155", "name": "Джинсы классические прямые", "url": "https://www.wildberries.ru/catalog/504646155/detail.aspx", "price": 4000, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXAM_37186890_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые", "Классические", "Трубы", "Зауженные"], "color": ["Синий", "Голубой"], "tags": [], "badges": ["РАСПРОДАЖА"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-klassicheskie-pryamye-504646155", "material": "100% хлопок", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXAM_37186890_1_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXAM_37186891_2_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXAM_37186892_3_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXAM_37186893_4_v1_2x.jpg"]}, {"id": "545150789", "name": "Джинсы светлые широкие клеш", "url": "https://www.wildberries.ru/catalog/545150789/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTO_37152890_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Клеш", "Широкие", "Свободные", "Трубы", "Оверсайз", "Прямые"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-svetlye-shirokie-klesh-545150789", "material": "50% хлопок, 30% лиоцелл, 20% полиэстер", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTO_37152890_1_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTO_37152891_2_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTO_37152892_3_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTO_37152893_4_v1_2x.jpg"]}, {"id": "754477427", "name": "Джинсы прямые широкие багги", "url": "https://www.wildberries.ru/catalog/754477427/detail.aspx", "price": 7000, "old": 12000, "img": "https://basket-35.wbbasket.ru/vol7544/part754477/754477427/images/big/1.webp", "rating": "5", "rev": 318, "predmet": "Джинсы", "model": ["Багги", "Широкие", "Буткат", "Бойфренды", "Оверсайз", "Свободные"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": [], "sizes": [52, 54, 56, 58, 60, 62, 64, 66], "page": "/dzhinsy-pryamye-shirokie-baggi-754477427", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)", "imgs": ["https://basket-35.wbbasket.ru/vol7544/part754477/754477427/images/big/1.webp", "https://basket-35.wbbasket.ru/vol7544/part754477/754477427/images/big/2.webp", "https://basket-35.wbbasket.ru/vol7544/part754477/754477427/images/big/3.webp", "https://basket-35.wbbasket.ru/vol7544/part754477/754477427/images/big/4.webp"]}, {"id": "504645014", "name": "Джинсы прямые широкие трубы", "url": "https://www.wildberries.ru/catalog/504645014/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEI_37152882_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Синий", "Темно-синий", "Индиго"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-pryamye-shirokie-truby-504645014", "material": "100% хлопок", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEI_37152882_1_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEI_37152883_2_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEI_37152884_3_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW0XXEI_37152885_4_v1_2x.jpg"]}, {"id": "504634485", "name": "Джинсы широкие палаццо с подворотами", "url": "https://www.wildberries.ru/catalog/504634485/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MFSU_37152894_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Синий", "Темно-синий"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-shirokie-palacco-podvorotami-504634485", "material": "88% хлопок, 7% вискоза, 5% полиэстер", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW1MFSU_37152894_1_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MFSU_37152895_2_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MFSU_37152896_3_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1MFSU_37152897_4_v1_2x.jpg"]}, {"id": "1017376402", "name": "Джинсы широкие трубы варенки", "url": "https://www.wildberries.ru/catalog/1017376402/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-41.wbbasket.ru/vol10173/part1017376/1017376402/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз"], "color": ["Серый", "Светло-серый"], "tags": [], "badges": [], "sizes": [52, 54, 56, 58, 60, 62, 64, 66], "page": "/dzhinsy-shirokie-truby-varenki-1017376402", "material": "хлопок, вискоза, полиэстер", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Лето", "length": "Длинные, Для высоких (170+)", "imgs": ["https://basket-41.wbbasket.ru/vol10173/part1017376/1017376402/images/big/1.webp", "https://basket-41.wbbasket.ru/vol10173/part1017376/1017376402/images/big/2.webp", "https://basket-41.wbbasket.ru/vol10173/part1017376/1017376402/images/big/3.webp", "https://basket-41.wbbasket.ru/vol10173/part1017376/1017376402/images/big/4.webp"]}, {"id": "545148107", "name": "Джинсы темные широкие", "url": "https://www.wildberries.ru/catalog/545148107/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTN_37287443_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз", "Рваные"], "color": ["Синий", "Темно-синий", "Индиго"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58], "page": "/dzhinsy-temnye-shirokie-545148107", "material": "91% хлопок, 9% полиэстер", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTN_37287443_1_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTN_37287444_2_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTN_37287445_3_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTN_37287446_4_v1_2x.jpg"]}, {"id": "504618555", "name": "Джинсы темные широкие прямые трубы", "url": "https://www.wildberries.ru/catalog/504618555/detail.aspx", "price": 4990, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504618/504618555/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Прямые", "Широкие", "Свободные", "Трубы", "Оверсайз", "Багги"], "color": ["Синий", "Темно-синий", "Индиго"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-temnye-shirokie-pryamye-504618555", "material": "91% хлопок, 9% полиэстер", "posadka": "Высокая", "details": "Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)", "imgs": ["https://basket-27.wbbasket.ru/vol5046/part504618/504618555/images/big/1.webp", "https://basket-27.wbbasket.ru/vol5046/part504618/504618555/images/big/2.webp", "https://basket-27.wbbasket.ru/vol5046/part504618/504618555/images/big/3.webp", "https://basket-27.wbbasket.ru/vol5046/part504618/504618555/images/big/4.webp"]}, {"id": "504624622", "name": "Джинсы светлые широкие для высоких", "url": "https://www.wildberries.ru/catalog/504624622/detail.aspx", "price": 4990, "old": 10000, "img": "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTM_37152886_1_v1_2x.jpg", "rating": "5", "rev": 256, "predmet": "Джинсы", "model": ["Клеш", "Широкие", "Свободные", "Трубы", "Оверсайз", "Прямые"], "color": ["Голубой", "Светло-голубой"], "tags": [], "badges": [], "sizes": [42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66], "page": "/dzhinsy-svetlye-shirokie-vysokih-504624622", "material": "85% хлопок, 15% полиэстер", "posadka": "Высокая", "details": "Варка, Потертости", "sezon": "Лето", "length": "Длинные, Для высоких (170+)", "imgs": ["https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTM_37152886_1_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTM_37152887_2_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTM_37152888_3_v1_2x.jpg", "https://a.lmcdn.ru/img600x866/M/P/MP002XW1DHTM_37152889_4_v1_2x.jpg"]}, {"id": "504644422", "name": "Джинсы прямые y2k широкие", "url": "https://www.wildberries.ru/catalog/504644422/detail.aspx", "price": 7000, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504644/504644422/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Буткат", "Бойфренды", "Прямые", "Трубы", "Классические"], "color": ["Голубой", "Охра", "Коричневый", "Грязно-голубой"], "tags": [], "badges": ["НОВИНКА"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-pryamye-y2k-shirokie-504644422", "material": "100% хлопок", "posadka": "Высокая", "details": "Грязная стирка (dirty), Винтаж, Варка", "sezon": "Демисезон", "length": "Длинные, Для высоких (170+)", "imgs": ["https://basket-27.wbbasket.ru/vol5046/part504644/504644422/images/big/1.webp", "https://basket-27.wbbasket.ru/vol5046/part504644/504644422/images/big/2.webp", "https://basket-27.wbbasket.ru/vol5046/part504644/504644422/images/big/3.webp", "https://basket-27.wbbasket.ru/vol5046/part504644/504644422/images/big/4.webp"]}, {"id": "504645629", "name": "Джинсы рваные y2k с пятнами", "url": "https://www.wildberries.ru/catalog/504645629/detail.aspx", "price": 7000, "old": 10000, "img": "https://basket-27.wbbasket.ru/vol5046/part504645/504645629/images/big/1.webp", "rating": "5", "rev": 951, "predmet": "Джинсы", "model": ["Рваные", "Буткат", "Бойфренды", "Прямые", "Трубы"], "color": ["Голубой"], "tags": [], "badges": ["НОВИНКА"], "sizes": [42, 44, 46, 48, 50, 52, 54, 56], "page": "/dzhinsy-rvanye-y2k-pyatnami-504645629", "material": "100% хлопок", "posadka": "Высокая", "details": "Грязная стирка (dirty), Винтаж, Варка", "sezon": "Лето", "length": "Длинные, Для высоких (170+)", "imgs": ["https://basket-27.wbbasket.ru/vol5046/part504645/504645629/images/big/1.webp", "https://basket-27.wbbasket.ru/vol5046/part504645/504645629/images/big/2.webp", "https://basket-27.wbbasket.ru/vol5046/part504645/504645629/images/big/3.webp", "https://basket-27.wbbasket.ru/vol5046/part504645/504645629/images/big/4.webp"]}];
 
   // === CONFIG страницы — СВОЙ на каждый ЧПУ. Пустое поле фильтра = «любой». ===
   var CONFIG={"predmet": "", "baseSlug": "catalog", "h1": "Каталог", "color": "", "model": "", "desc": "Весь ассортимент HAILEY — женские джинсы, бомберы и трикотаж больших размеров, от 42 до 74. Мы шьём одежду под настоящую фигуру: плотные ткани, которые держат форму и не вытягиваются, честные посадки без обмана размерной сеткой и модели, в которых удобно каждый день. Соберите образ целиком — примерка перед оплатой, доставка по всей России, возврат 14 дней."};
@@ -289,17 +376,20 @@
     return 'def';}
 
   // --- состояние в URL: фильтры пишутся в ?cat=&color=&model=&set= (шаринг + кнопка «назад») ---
+  // Фасеты МНОЖЕСТВЕННЫЕ (можно отметить «Синие» + «Голубые»): в состоянии и в URL это списки через запятую.
+  function arrOf(v){return String(v||'').split(',').map(function(s){return s.trim();}).filter(Boolean);}
+  function sameSet(a,b){b=arrOf(b);return a.length===b.length&&a.every(function(x){return b.indexOf(x)>-1;});}
   function readURL(){
     var q=new URLSearchParams(location.search);
-    return {predmet:q.get('cat')||CONFIG.predmet||"",color:q.get('color')||CONFIG.color||"",
-      model:q.get('model')||CONFIG.model||"",badge:q.get('set')||CONFIG.badge||"",q:q.get('q')||""};
+    return {predmet:arrOf(q.get('cat')||CONFIG.predmet||""),color:arrOf(q.get('color')||CONFIG.color||""),
+      model:arrOf(q.get('model')||CONFIG.model||""),badge:arrOf(q.get('set')||CONFIG.badge||""),q:q.get('q')||""};
   }
   function writeURL(push){
     var q=new URLSearchParams();
-    if(state.predmet)q.set('cat',state.predmet);
-    if(state.color)q.set('color',state.color);
-    if(state.model)q.set('model',state.model);
-    if(state.badge)q.set('set',state.badge);
+    if(state.predmet.length)q.set('cat',state.predmet.join(','));
+    if(state.color.length)q.set('color',state.color.join(','));
+    if(state.model.length)q.set('model',state.model.join(','));
+    if(state.badge.length)q.set('set',state.badge.join(','));
     if(state.q)q.set('q',state.q);
     var s=q.toString(), url=location.pathname+(s?('?'+s):'');
     try{if(push)history.pushState(state,'',url);else history.replaceState(state,'',url);}catch(e){}
@@ -319,45 +409,76 @@
     var H=_toks(p.name+' '+(Array.isArray(p.color)?p.color.join(' '):(p.color||''))+' '+(Array.isArray(p.model)?p.model.join(' '):(p.model||''))+' '+(p.tags||[]).join(' ')+' '+p.predmet+' '+(p.id||'')+' '+(p.material||'')+' '+(p.posadka||'')+' '+(p.details||'')+' '+(p.sezon||'')+' '+(p.length||'')).map(_stem);
     return _toks(q).map(_stem).every(function(qs){if(!qs)return true;var cand=[qs].concat(_SYN[qs]||[]);
       return cand.some(function(cs){var num=/^\d/.test(cs);return H.some(function(hs){return num?hs.indexOf(cs)===0:(hs.indexOf(cs)===0||(hs.length>=3&&cs.indexOf(hs)===0));});});});}
-  function inState(p){return (!state.predmet||p.predmet===state.predmet)&&(!state.color||has(p.color,state.color))&&(!state.model||has(p.model,state.model))&&(!state.badge||(p.badges&&p.badges.indexOf(state.badge)>-1))&&matchQ(p,state.q);}
+  // внутри фасета значения складываются по ИЛИ (синие ИЛИ голубые), между фасетами — по И (как на маркетплейсах)
+  function inState(p){
+    return (!state.predmet.length||state.predmet.indexOf(p.predmet)>-1)
+      &&(!state.color.length||state.color.some(function(c){return has(p.color,c);}))
+      &&(!state.model.length||state.model.some(function(m){return has(p.model,m);}))
+      &&(!state.badge.length||state.badge.some(function(b){return (p.badges||[]).indexOf(b)>-1;}))
+      &&matchQ(p,state.q);}
   // варианты фасета по товарам текущей категории (без учёта самого поля).
   // Поле-массив (Модель) разворачиваем в отдельные опции + дедуп — иначе в списке «Прямые, Широкие, …» одной строкой.
-  function optsFor(field){var pool=PRODUCTS.filter(function(p){return !state.predmet||p.predmet===state.predmet;});
+  function optsFor(field){var pool=PRODUCTS.filter(function(p){return !state.predmet.length||state.predmet.indexOf(p.predmet)>-1;});
     var s=[];pool.forEach(function(p){var v=p[field];if(Array.isArray(v)){v.forEach(function(x){if(x&&s.indexOf(x)<0)s.push(x);});}else if(v&&s.indexOf(v)<0)s.push(v);});return s;}
   function predmets(){var s=[];PRODUCTS.forEach(function(p){if(p.predmet&&s.indexOf(p.predmet)<0)s.push(p.predmet);});return s;}
   // подборки (бейджи) — общие по всему каталогу, коллекции пересекают категории
   function badgeOpts(){var s=[];PRODUCTS.forEach(function(p){(p.badges||[]).forEach(function(b){if(s.indexOf(b)<0)s.push(b);});});return s;}
 
-  function fillSel(el,options,current,allLabel,onChange){
-    el.innerHTML='';
-    [['',allLabel]].concat(options.map(function(v){return [v,v];})).forEach(function(p){
-      var o=document.createElement('option');o.value=p[0];o.textContent=p[1];el.appendChild(o);
+  // ===== панель фильтров (выезжает как бургер-меню; поиск + фасеты галочками + «Смотрите также») =====
+  var openAcc={color:1,model:1};   // какие группы раскрыты (переживает перерисовку)
+  function countIn(field,val){     // сколько товаров даст галочка при текущих ОСТАЛЬНЫХ фильтрах
+    return PRODUCTS.filter(function(p){
+      var s={predmet:state.predmet,color:state.color,model:state.model,badge:state.badge,q:state.q};
+      s[field]=[val];
+      return (!s.predmet.length||s.predmet.indexOf(p.predmet)>-1)
+        &&(!s.color.length||s.color.some(function(c){return has(p.color,c);}))
+        &&(!s.model.length||s.model.some(function(m){return has(p.model,m);}))
+        &&(!s.badge.length||s.badge.some(function(b){return (p.badges||[]).indexOf(b)>-1;}))
+        &&matchQ(p,s.q);
+    }).length;
+  }
+  function accGroup(field,label,opts){
+    if(!opts.length)return '';
+    var sel=state[field],open=openAcc[field]?' open':'';
+    var rows=opts.map(function(v){
+      var on=sel.indexOf(v)>-1,n=countIn(field,v);
+      return '<label class="fopt'+(on?' on':'')+(n?'':' zero')+'"><input type="checkbox" data-f="'+field+'" value="'+v+'"'+(on?' checked':'')+'>'
+        +'<span class="fbox"></span><span class="ftxt">'+v+'</span><span class="fnum">'+n+'</span></label>';
+    }).join('');
+    return '<div class="facc'+open+'" data-acc="'+field+'">'
+      +'<button class="facch" data-toggle="'+field+'">'+label
+      +(sel.length?'<span class="fsel-n">'+sel.length+'</span>':'')
+      +'<svg class="fchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>'
+      +'<div class="faccb">'+rows+'</div></div>';
+  }
+  function subcatLinks(){
+    var here=location.pathname.replace(/\/+$/,'');
+    return PAGES.filter(function(p){
+      if(p.slug.replace(/\/+$/,'')===here)return false;
+      if(CONFIG.predmet)return p.predmet===CONFIG.predmet;
+      return !!p.predmet;
     });
-    el.value=current||'';
-    el.onchange=function(){onChange(el.value);};
   }
   function renderFilters(){
-    // «Подборка» показываем только если в каталоге есть бейджи
-    var gb=document.getElementById('gBadge'), bo=badgeOpts();
-    if(bo.length){gb.style.display='';fillSel(document.getElementById('fBadge'),bo,state.badge,'Все товары',function(v){state.badge=v;writeURL(true);render();});}
-    else{gb.style.display='none';}
-    // Фильтр «Категория» показываем ВСЕГДА (в т.ч. на странице категории — выбран текущий),
-    // чтобы клиент видел, где он, и мог переключиться / вернуться к «Все категории» (→ общий каталог).
-    fillSel(document.getElementById('fPredmet'),predmets(),state.predmet,'Все категории',
-      function(v){state.predmet=v;state.color='';state.model='';writeURL(true);render();});
-    // Фильтры мгновенные, БЕЗ редиректа: меняют выдачу/URL-параметры на месте (быстро). Вес — через «Смотрите также».
-    fillSel(document.getElementById('fColor'),optsFor('color'),state.color,'Любой цвет',function(v){state.color=v;writeURL(true);render();});
-    fillSel(document.getElementById('fModel'),optsFor('model'),state.model,'Любая модель',function(v){state.model=v;writeURL(true);render();});
+    var box=document.getElementById('facets');if(!box)return;
+    box.innerHTML=
+       accGroup('badge','Подборка',badgeOpts())
+      +accGroup('predmet','Категория',predmets())
+      +accGroup('color','Цвет',optsFor('color'))
+      +accGroup('model','Модель',optsFor('model'))
+      +(function(){var s=subcatLinks();if(!s.length)return '';
+         return '<div class="facc'+(openAcc.sub?' open':'')+'" data-acc="sub">'
+           +'<button class="facch" data-toggle="sub">Смотрите также<svg class="fchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>'
+           +'<div class="faccb"><div class="fsubs">'+s.map(function(p){return '<a class="scl" href="'+p.slug+'">'+p.label+'</a>';}).join('')+'</div></div></div>';})();
+    var n=state.predmet.length+state.color.length+state.model.length+state.badge.length;
+    var fc=document.getElementById('fCount');
+    if(fc){fc.textContent=n||'';fc.style.display=n?'':'none';}
+    var fr=document.getElementById('fReset');if(fr)fr.style.display=n||state.q?'':'none';
   }
   // Блок «Смотрите также» — настоящие <a> ссылки на соседние ЧПУ-страницы (по ним Google передаёт вес).
   function renderSubcats(){
     var el=document.getElementById('subcats');if(!el)return;
-    var here=location.pathname.replace(/\/+$/,'');
-    var sibs=PAGES.filter(function(p){
-      if(p.slug.replace(/\/+$/,'')===here)return false;
-      if(CONFIG.predmet)return p.predmet===CONFIG.predmet;      // на странице категории — все её ЧПУ-страницы
-      return !!p.predmet;                                       // на общем каталоге — ссылки на ВСЕ дочерние страницы (вес идёт вниз)
-    });
+    var sibs=subcatLinks();   // тот же список, что в аккордеоне «Смотрите также» внутри панели фильтров
     if(!sibs.length){el.style.display='none';return;}
     el.style.display='';
     el.innerHTML='<span class="sclabel">Смотрите также</span>'+sibs.map(function(p){return '<a class="scl" href="'+p.slug+'">'+p.label+'</a>';}).join('');
@@ -366,12 +487,16 @@
   function titleFor(){
     // кастомный H1 из вкладки (напр. «Модные джинсы 2026») — только пока фильтры на дефолте страницы;
     // как только пользователь доуточнил фильтр, H1 снова собирается динамически (цвет/крой).
-    var atDefault=state.predmet===(CONFIG.predmet||"")&&state.color===(CONFIG.color||"")&&state.model===(CONFIG.model||"")&&!state.badge&&!state.q;
+    var atDefault=sameSet(state.predmet,CONFIG.predmet||"")&&sameSet(state.color,CONFIG.color||"")
+      &&sameSet(state.model,CONFIG.model||"")&&!state.badge.length&&!state.q;
     if(CONFIG.h1&&atDefault)return CONFIG.h1;
-    if(!state.predmet) return CONFIG.h1||'Каталог HAILEY';
-    var noun=PLURAL[state.predmet]||low(state.predmet);
-    var pre=[]; if(state.color)pre.push(ADJ[state.color]||state.color);
-    if(state.model)pre.push(low(ADJ[state.model]||state.model));
+    // осмысленный заголовок собирается только из ОДИНОЧНОГО выбора: «синие+голубые+рваные» в связную фразу не сложить
+    var one=function(a){return a.length===1?a[0]:'';};
+    var _pr=one(state.predmet),_co=one(state.color),_mo=one(state.model);
+    if(!_pr||state.color.length>1||state.model.length>1) return CONFIG.h1||'Каталог HAILEY';
+    var noun=PLURAL[_pr]||low(_pr);
+    var pre=[]; if(_co)pre.push(ADJ[_co]||_co);
+    if(_mo)pre.push(low(ADJ[_mo]||_mo));
     // «женские» — сквозной сигнал бренда в H1; для ЧИСТОЙ категории (без цвета/кроя) добавляем
     // диапазон 42–74 (инклюзивно, не отпугивает 42–44). «Больших размеров» — только в title/тексте.
     var t=(pre.join(' ')+' женские '+noun).trim();
@@ -388,19 +513,29 @@
     var el=document.createElement('div');
     el.className='card';
     el.dataset.id=p.id; el.dataset.name=p.name; el.dataset.price=p.price; el.dataset.img=p.img;
-    el.dataset.old=p.old||0;
+    el.dataset.old=p.old||0; el.dataset.page=link||'';
     el.dataset.sizes=JSON.stringify(p.sizes||[]);
     var priceHtml='<span class="price mono">'+rub(p.price)+'</span>'
       +(p.old>p.price?'<span class="old mono">'+rub(p.old)+'</span><span class="off">−'+off+'%</span>':'');
     var stars=p.rating?'<span class="st">★★★★★</span> '+p.rating+(p.rev?' · '+p.rev+' отз.':''):'';
+    // Кадры листаются свайпом; каждый — ссылка на товар, поэтому тап по фото = открыть карточку
+    // (отдельная кнопка «Подробнее» убрана). Свайп кликом не считается — это нативный скролл ленты.
+    var imgs=(p.imgs&&p.imgs.length)?p.imgs:[p.img];
+    var slides=imgs.map(function(u,i){
+      var inner='<img src="'+u+'" alt="'+p.name+(i?' — фото '+(i+1):'')+'"'+(i?' loading="lazy"':'')+'>';
+      return link?('<a class="slide" href="'+link+'"'+tgt+'>'+inner+'</a>'):('<span class="slide">'+inner+'</span>');
+    }).join('');
+    var multi=imgs.length>1;
     el.innerHTML=
       '<div class="ph">'
-      +'<div class="photo"><img src="'+p.img+'" alt="'+p.name+'"></div>'
+      +'<div class="track">'+slides+'</div>'
+      +(multi?'<div class="dots">'+imgs.map(function(_,i){return i?'<i></i>':'<i class="on"></i>';}).join('')+'</div>':'')
+      +(multi?'<div class="swipehint"><svg viewBox="0 0 24 24"><path d="M9 6l-4 6 4 6M15 6l4 6-4 6"/></svg></div>':'')
+      +(multi?'<button class="arw l" data-arw="-1" aria-label="Предыдущее фото">‹</button><button class="arw r" data-arw="1" aria-label="Следующее фото">›</button>':'')
       +'<div class="phscrim"></div>'
       +((p.badges&&p.badges.length)?'<div class="badges">'+p.badges.map(function(b){return '<span class="bdg '+bcls(b)+'">'+b+'</span>';}).join('')+'</div>':'')
-      +'<button class="fav" aria-label="В избранное">♡</button>'
+      +'<button class="fav" aria-label="В избранное"><svg viewBox="0 0 24 24"><path d="M12 20.7l-1.4-1.3C5.4 14.6 2 11.5 2 7.8 2 5 4.2 3 6.9 3c1.6 0 3.1.7 4.1 1.9C12 3.7 13.5 3 15.1 3 17.8 3 20 5 20 7.8c0 3.7-3.4 6.8-8.6 11.6L12 20.7z"/></svg></button>'
       +'<div class="hover">'
-      +(link?'<a class="hb more" href="'+link+'"'+tgt+'>Подробнее</a>':'')
       +'<button class="hb quick" data-quick>Купить в 1 клик</button></div></div>'
       +'<div class="info">'
       +(link?'<a class="pname" href="'+link+'"'+tgt+'>'+p.name+'</a>':'<div class="pname">'+p.name+'</div>')
@@ -415,16 +550,19 @@
     renderFilters();
     document.getElementById('h1t').textContent=titleFor();
     document.getElementById('sdesc').textContent=CONFIG.desc||'';
+    var _sb=document.getElementById('sdescB');if(_sb)_sb.textContent=CONFIG.desc||'';
     // Хлебные крошки: полная вложенность с «Главная». «Каталог» — ссылка только когда мы ГЛУБЖЕ него
     // (страница категории/под-категории); на самом каталоге это текущая страница → простой <b>, без само-ссылки.
     var base='/'+(CONFIG.baseSlug||'catalog');
     var cr='<a href="/">Главная</a> · ';
-    if(state.predmet){
+    if(state.predmet.length===1){
       cr+='<a href="'+base+'">Каталог</a>';
       // Иерархия: на под-странице (цвет/крой) вставляем кликабельный уровень категории (Джинсы → её ЧПУ).
-      var _cp=pageFor(state.predmet,'','');
-      if((state.color||state.model)&&_cp)cr+=' · <a href="'+_cp+'">'+state.predmet+'</a>';
+      var _cp=pageFor(state.predmet[0],'','');
+      if((state.color.length||state.model.length)&&_cp)cr+=' · <a href="'+_cp+'">'+state.predmet[0]+'</a>';
       cr+=' · <b>'+titleFor()+'</b>';
+    }else if(state.predmet.length>1){
+      cr+='<a href="'+base+'">Каталог</a> · <b>'+titleFor()+'</b>';
     }else{
       cr+='<b>Каталог</b>';
     }
@@ -453,13 +591,54 @@
   function goods(){return cart.reduce(function(a,i){return a+i.price*i.qty;},0);}
 
   function sizesOf(el){try{return JSON.parse(el.dataset.sizes||'[]');}catch(e){return[];}}
+
+  // ===== избранное (сквозное, как корзина: тот же origin → общий localStorage со страницей /izbrannoe и шапкой) =====
+  var FAV_KEY='hailey_fav_v1';
+  function favLoad(){try{var a=JSON.parse(localStorage.getItem(FAV_KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
+  function favSave(a){try{localStorage.setItem(FAV_KEY,JSON.stringify(a));}catch(e){}}
+  function favHas(id){return favLoad().some(function(i){return i.id===id;});}
+  function favToggle(c){
+    var a=favLoad(),id=c.dataset.id,i=-1;
+    a.forEach(function(x,n){if(x.id===id)i=n;});
+    if(i>-1)a.splice(i,1);
+    else a.push({id:id,name:c.dataset.name,price:+c.dataset.price,old:+c.dataset.old||0,img:c.dataset.img,page:c.dataset.page||''});
+    favSave(a);
+    return i<0;   // true = добавили
+  }
+
   function bindCards(){
     root.querySelectorAll('[data-add]').forEach(function(b){
       b.onclick=function(){var c=b.closest('.card');openSizePicker(prodOf(c),sizesOf(c),'add');};
     });
-    root.querySelectorAll('.fav').forEach(function(f){f.onclick=function(){f.classList.toggle('on');f.textContent=f.classList.contains('on')?'♥':'♡';};});
+    root.querySelectorAll('.fav').forEach(function(f){
+      var c=f.closest('.card');
+      f.classList.toggle('on',favHas(c.dataset.id));
+      f.onclick=function(e){
+        e.preventDefault();e.stopPropagation();
+        var added=favToggle(c);
+        f.classList.toggle('on',added);
+        showToast(added?'Добавлено в избранное':'Убрано из избранного');
+      };
+    });
     root.querySelectorAll('[data-quick]').forEach(function(b){
       b.onclick=function(){var c=b.closest('.card');openSizePicker(prodOf(c),sizesOf(c),'quick');};
+    });
+    // лента кадров: стрелки, подсветка точек, гашение подсказки; несуществующий кадр WB убираем вместе с точкой
+    root.querySelectorAll('.ph').forEach(function(ph){
+      var tr=ph.querySelector('.track');if(!tr)return;
+      var dots=ph.querySelectorAll('.dots i');
+      tr.querySelectorAll('.slide img').forEach(function(im,i){
+        im.onerror=function(){var s=im.closest('.slide');if(s&&tr.children.length>1){s.remove();if(dots[i])dots[i].remove();}};
+      });
+      ph.querySelectorAll('[data-arw]').forEach(function(a){
+        a.onclick=function(e){e.preventDefault();e.stopPropagation();
+          tr.scrollBy({left:(+a.dataset.arw)*tr.clientWidth,behavior:'smooth'});};
+      });
+      tr.addEventListener('scroll',function(){
+        ph.classList.add('seen');
+        var i=Math.round(tr.scrollLeft/Math.max(1,tr.clientWidth));
+        ph.querySelectorAll('.dots i').forEach(function(d,n){d.classList.toggle('on',n===i);});
+      },{passive:true});
     });
   }
 
@@ -594,6 +773,38 @@
   window.addEventListener('popstate',function(){state=readURL();var _q=document.getElementById('fQ');if(_q)_q.value=state.q||'';render();}); // кнопка «назад/вперёд»
   // Поиск: поле в ряду фильтров фильтрует товары по названию/цвету/крою/тэгам (все слова запроса); ?q= в URL (шаринг + приход из шапки).
   (function(){var fQ=document.getElementById('fQ');if(!fQ)return;fQ.value=state.q||'';var t;fQ.addEventListener('input',function(){state.q=fQ.value.trim();clearTimeout(t);t=setTimeout(function(){writeURL(false);render();},120);});})();
+
+  // ===== панель фильтров: открытие/закрытие + галочки (фильтрация мгновенная, «Показать» просто закрывает) =====
+  (function(){
+    var pan=document.getElementById('fPanel'),ovl=document.getElementById('fOvl'),body=document.getElementById('facets');
+    if(!pan)return;
+    function open(on){
+      pan.classList.toggle('on',on);ovl.classList.toggle('on',on);
+      document.body.style.overflow=on?'hidden':'';
+    }
+    document.getElementById('fOpen').addEventListener('click',function(){open(true);});
+    document.getElementById('fClose').addEventListener('click',function(){open(false);});
+    document.getElementById('fApply').addEventListener('click',function(){open(false);});
+    ovl.addEventListener('click',function(){open(false);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')open(false);});
+    document.getElementById('fReset').addEventListener('click',function(){
+      state.predmet=[];state.color=[];state.model=[];state.badge=[];state.q='';
+      var q=document.getElementById('fQ');if(q)q.value='';
+      writeURL(true);render();
+    });
+    body.addEventListener('click',function(e){
+      var t=e.target.closest('[data-toggle]');
+      if(t){var k=t.dataset.toggle;openAcc[k]=!openAcc[k];t.parentNode.classList.toggle('open',!!openAcc[k]);return;}
+    });
+    body.addEventListener('change',function(e){
+      var ch=e.target.closest('input[data-f]');if(!ch)return;
+      var f=ch.dataset.f,v=ch.value,i=state[f].indexOf(v);
+      if(ch.checked){if(i<0)state[f].push(v);}else if(i>-1)state[f].splice(i,1);
+      // сменили категорию — цвет/крой прежней категории могут не существовать в новой
+      if(f==='predmet'){state.color=[];state.model=[];}
+      writeURL(true);render();
+    });
+  })();
   render();badge();renderSubcats();
   // SEO: микроразметка страницы категории — ItemList товаров (цена/фото/рейтинг) + BreadcrumbList → rich snippets.
   try{(function(){
