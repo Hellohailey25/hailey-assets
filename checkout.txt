@@ -109,7 +109,7 @@
     <div id="hcoMain">
       <a class="back" href="/catalog">← Вернуться в каталог</a>
       <h1>Оформление заказа</h1>
-      <div class="hint">Два поля — и всё. Менеджер перезвонит за 15 минут, подтвердит размер, срок и стоимость доставки.</div>
+      <div class="hint">Два поля — и всё. Менеджер перезвонит за 15 минут, подтвердит размер, срок и стоимость доставки, пришлёт ссылку на оплату.</div>
 
       <div class="cols">
         <div>
@@ -125,8 +125,8 @@
           <div class="sec">
             <div class="lbl"><i>2</i>Доставка</div>
             <div class="opts" id="dlv">
-              <div class="opt on" data-v="Пункт выдачи"><div><b>Пункт выдачи</b><small>По России, от 2 дней · примерка перед оплатой</small></div><span class="px" id="pxPvz">—</span></div>
-              <div class="opt" data-v="Курьер до двери"><div><b>Курьер до двери</b><small>По России, от 2 дней · примерка перед оплатой</small></div><span class="px" id="pxCur">—</span></div>
+              <div class="opt on" data-v="Пункт выдачи"><div><b>Пункт выдачи</b><small>По России, от 2 дней</small></div><span class="px" id="pxPvz">—</span></div>
+              <div class="opt" data-v="Курьер до двери"><div><b>Курьер до двери</b><small>По России, от 2 дней</small></div><span class="px" id="pxCur">—</span></div>
             </div>
             <div class="two" style="margin-top:12px">
               <div class="f"><span>Город</span><input id="f_city" placeholder="Москва" autocomplete="address-level2"></div>
@@ -137,10 +137,8 @@
           <div class="sec">
             <div class="lbl"><i>3</i>Оплата</div>
             <div class="opts p2" id="pay">
-              <div class="opt on" data-v="При получении"><div><b>При получении</b><small>после примерки</small></div></div>
-              <div class="opt" data-v="Картой онлайн"><div><b>Картой онлайн</b><small>Visa · MC · МИР</small></div></div>
+              <div class="opt on" data-v="Картой онлайн"><div><b>Картой онлайн</b><small>Visa · MC · МИР</small></div></div>
               <div class="opt" data-v="СБП"><div><b>СБП</b><small>по QR-коду</small></div></div>
-              <div class="opt" data-v="Яндекс Сплит"><div><b>Яндекс Сплит</b><small id="splitTxt">4 платежа без переплат</small></div></div>
             </div>
             <div class="more" id="cmtToggle" style="margin-top:16px">＋ Комментарий к заказу</div>
             <div id="cmtBox"><textarea id="f_cmt" rows="3" placeholder="Пожелания по заказу, удобное время звонка"></textarea></div>
@@ -161,7 +159,7 @@
             <button class="btn pay" id="doOrder">Заказать</button>
             <button class="btn tg" id="toTg"><svg viewBox="0 0 24 24"><path d="M9.8 15.6 9.6 19c.4 0 .5-.2.7-.4l1.7-1.6 3.5 2.6c.6.4 1.1.2 1.3-.6l2.4-11.1c.2-1-.4-1.4-1-1.1L4.9 11.6c-1 .4-1 .9-.2 1.2l3.6 1.1 8.3-5.2c.4-.3.8-.1.5.2z"/></svg>Оформить в Telegram</button>
             <div class="trust">
-              <span><svg viewBox="0 0 24 24"><path d="M4 6h16M6 6l1 14h10l1-14"/></svg>примерка</span>
+              <span><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M9 12l2 2 4-4"/></svg>обмен размера</span>
               <span><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 3-6M4 4v4h4"/></svg>возврат 14 дней</span>
               <span><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>данные защищены</span>
             </div>
@@ -181,7 +179,7 @@
       <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
       <h2>Заказ принят</h2>
       <div class="num" id="okNum">HL-000000</div>
-      <p>Менеджер перезвонит за 15 минут, подтвердит размер, наличие, срок и стоимость доставки.<br>Примерка перед оплатой — платите только за то, что подошло.</p>
+      <p>Менеджер перезвонит за 15 минут, подтвердит размер, наличие, срок и стоимость доставки, и пришлёт ссылку на оплату.</p>
       <div class="btns"><a class="b dark" href="/catalog">Вернуться в каталог</a><a class="b tg" id="okTg" href="https://t.me/hailey_mgr" target="_blank" rel="noopener">Написать в Telegram</a></div>
     </div>
   </div>
@@ -199,7 +197,7 @@
   var cart=load();
   var goods=function(){return cart.reduce(function(a,i){return a+i.price*i.qty;},0);};
   var savings=function(){return cart.reduce(function(a,i){return a+((i.old>i.price)?(i.old-i.price)*i.qty:0);},0);};
-  var dlv='Пункт выдачи', pay='При получении';
+  var dlv='Пункт выдачи', pay='Картой онлайн';
 
   var truck='<svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.5"/><circle cx="17.5" cy="18" r="1.5"/></svg>';
   var chk='<svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
@@ -224,7 +222,6 @@
     $('rSave').style.display=sv>0?'flex':'none';$('tSave').textContent='−'+rub(sv);
     $('tShip').textContent=free?'бесплатно':'уточнит менеджер';
     $('tTotal').textContent=rub(g);
-    $('splitTxt').textContent=Math.round(g/4).toLocaleString('ru-RU')+' руб × 4 без переплат';
     var t='Заказать · '+rub(g);
     $('doOrder').textContent=t;$('doOrderM').textContent=t;
   }
