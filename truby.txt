@@ -573,7 +573,8 @@
     if(btn)btn.click();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
     cart=[];cartSave();badge();renderCart();
   }
-  document.getElementById('toCheckout').addEventListener('click',function(){if(!cart.length)return;closeCart();openCheckout();});
+  // Оформление переехало на отдельную страницу /checkout (конверсионный чек-аут: доставка+оплата+апселл)
+  document.getElementById('toCheckout').addEventListener('click',function(){if(!cart.length)return;location.href='/checkout';});
   document.getElementById('toTg').addEventListener('click',function(){if(!cart.length){showToast('Корзина пуста');return;}
     var txt=orderText();
     try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt);}catch(e){}
