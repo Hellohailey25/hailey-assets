@@ -29,6 +29,9 @@
     <div><h4>О бренде</h4>
       <p class="fabout">Hello HAILEY — джинсы и базовая одежда для фигуры plus-size, размеры 42–74. Мы кроим деним под настоящую фигуру и показываем посадку на реальных моделях 42 и 54 — никаких сюрпризов с размером.</p></div>
     <div id="contacts"><h4>Контакты</h4>
+      <a href="tel:+79935910371">+7 993 591-03-71</a>
+      <a href="mailto:ooo.kayru@gmail.com">ooo.kayru@gmail.com</a>
+      <a href="https://t.me/hailey_mgr" target="_blank" rel="noopener">Telegram @hailey_mgr</a>
       <a href="https://www.instagram.com/hailey.looks/" target="_blank" rel="noopener">Instagram @hailey.looks</a>
       <a href="https://www.wildberries.ru/brands/312311690-hello-hailey" target="_blank" rel="noopener">Магазин на Wildberries</a>
       <p>Оставьте заявку — менеджер перезвонит. Пн–Вс, 10:00–20:00.</p></div>
