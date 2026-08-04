@@ -82,7 +82,7 @@
 </style>
 <div class="hh">
   <div class="top"><div class="wrap">
-    <span>Размеры 42–74</span><span class="sep"></span><span>Доставка по РФ от 2 дней</span><span class="sep"></span><span>Возврат 14 дней</span><span class="sep"></span><span>Оплата при получении</span>
+    <span>Размеры 42–74</span><span class="sep"></span><span>Доставка по РФ от 2 дней</span><span class="sep"></span><span>Возврат 14 дней</span><span class="sep"></span><span>Оплата картой или СБП</span>
   </div></div>
   <div class="bar"><div class="wrap hd">
     <a class="logo" href="/"><i>Hello</i>HAILEY</a>
