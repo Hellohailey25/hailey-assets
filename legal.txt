@@ -80,6 +80,8 @@
     ogrn:'1250800001528',
     addr:'358000, Республика Калмыкия, г. Элиста, ул. В.И. Ленина, д. 369',
     email:'ooo.kayru@gmail.com',
+    phone:'+7 993 591-03-71',
+    phoneRaw:'+79935910371',
     tg:'https://t.me/hailey_mgr',
     site:'hello-hailey.ru',
     hours:'ежедневно, 10:00–20:00 (МСК)',
@@ -98,6 +100,7 @@
     ['ИНН',ORG.inn],
     ['ОГРН',ORG.ogrn],
     ['Юридический адрес',ORG.addr],
+    ['Телефон','<a class="lk" href="tel:'+ORG.phoneRaw+'">'+ORG.phone+'</a>'],
     ['Электронная почта','<a class="lk" href="mailto:'+ORG.email+'">'+ORG.email+'</a>'],
     ['Telegram','<a class="lk" href="'+ORG.tg+'" target="_blank" rel="nofollow noopener">@hailey_mgr</a>'],
     ['Сайт','<a class="lk" href="https://'+ORG.site+'">'+ORG.site+'</a>'],
@@ -272,7 +275,8 @@
     body:
       '<div class="card"><h3>Продавец</h3>'+rq(REQ_ROWS)+'</div>'+
       '<h2>Как с нами связаться</h2>'+
-      '<p>Быстрее всего — в Telegram <a class="lk" href="'+ORG.tg+'" target="_blank" rel="nofollow noopener">@hailey_mgr</a>: отвечаем '+ORG.hours+'.</p>'+
+      '<p>Телефон: <a class="lk" href="tel:'+ORG.phoneRaw+'">'+ORG.phone+'</a> — '+ORG.hours+'. '+
+      'Быстрее всего — в Telegram <a class="lk" href="'+ORG.tg+'" target="_blank" rel="nofollow noopener">@hailey_mgr</a>.</p>'+
       '<p>Письменные обращения, претензии и запросы по персональным данным — на <a class="lk" href="mailto:'+ORG.email+'">'+ORG.email+'</a>. Срок ответа на претензию — 10 рабочих дней, на запрос по персональным данным — 30 дней.</p>'+
       '<h2>Документы</h2>'+
       '<ul><li><a class="lk" href="/oferta">Публичная оферта</a> — условия покупки;</li>'+
@@ -312,7 +316,7 @@
     s.textContent=JSON.stringify({
       "@context":"https://schema.org","@type":"Organization",
       "name":"HAILEY","legalName":ORG.short,"taxID":ORG.inn,
-      "url":"https://"+ORG.site,"email":ORG.email,
+      "url":"https://"+ORG.site,"email":ORG.email,"telephone":ORG.phoneRaw,
       "address":{"@type":"PostalAddress","addressCountry":"RU","streetAddress":ORG.addr}
     });
     document.head.appendChild(s);
