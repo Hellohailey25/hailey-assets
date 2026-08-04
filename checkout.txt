@@ -179,9 +179,9 @@
 
     <div id="hcoOk" class="ok" style="display:none">
       <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
-      <h2>Заказ принят</h2>
+      <h2 id="okTitle">Заказ принят</h2>
       <div class="num" id="okNum">HL-000000</div>
-      <p>Менеджер перезвонит за 15 минут, подтвердит размер, наличие, срок и стоимость доставки, и пришлёт ссылку на оплату.</p>
+      <p id="okMsg">Менеджер перезвонит за 15 минут, подтвердит размер, наличие, срок и стоимость доставки, и пришлёт ссылку на оплату.</p>
       <div class="btns"><a class="b dark" href="/catalog">Вернуться в каталог</a><a class="b tg" id="okTg" href="https://t.me/hailey_mgr" target="_blank" rel="noopener">Написать в Telegram</a></div>
     </div>
   </div>
@@ -192,6 +192,7 @@
 <script>
 (function(){
   var KEY='hailey_cart_v1', SHIP_FREE=10000, TG='hailey_mgr';
+  var PAY='https://hailey-looks.ru/pay';   // платёжный эндпоинт на VPS (Т-Банк: карта + СБП)
   function $(i){return document.getElementById(i);}
   function rub(n){return n.toLocaleString('ru-RU')+' руб';}
   function load(){try{var a=JSON.parse(localStorage.getItem(KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
@@ -284,8 +285,31 @@
       if(b)b.click();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
     }
     var num='HL-'+String(new Date().getTime()).slice(-6);
-    $('okNum').textContent=num;
+    var snapshot=cart.slice();
     cart=[];save();
+    // Заказ уже ушёл в «Заявки». Дальше пробуем поднять оплату; не вышло — обычный экран «Заказ принят».
+    [$('doOrder'),$('doOrderM')].forEach(function(b){if(b){b.disabled=true;b.textContent='Переходим к оплате…';}});
+    var done=false;
+    function finish(){if(done)return;done=true;showOk(num);}
+    var t=setTimeout(finish,12000);
+    try{
+      fetch(PAY+'/create',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({order_id:num,name:name,phone:phone,
+          method:(pay==='СБП'?'sbp':'card'),
+          items:snapshot.map(function(i){return{id:i.id,qty:i.qty,size:i.size||''};})})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(done)return;
+        if(d&&d.redirect){done=true;clearTimeout(t);location.href=d.redirect;}
+        else{clearTimeout(t);finish();}
+      })
+      .catch(function(){clearTimeout(t);finish();});
+    }catch(e){clearTimeout(t);finish();}
+  }
+  function showOk(num,title,msg){
+    $('okNum').textContent=num||'';
+    if(title)$('okTitle').textContent=title;
+    if(msg)$('okMsg').textContent=msg;
     $('hcoMain').style.display='none';$('mbar').style.display='none';$('hcoOk').style.display='block';
     try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);}
   }
@@ -298,5 +322,16 @@
   });
   window.addEventListener('storage',function(e){if(e.key===KEY){cart=load();render();}});
   render();
+
+  // возврат с платёжной страницы банка — только после render(), иначе он перерисует экран
+  (function(){
+    var m=location.search.match(/[?&]paid=([^&]+)/);
+    if(m){cart=[];save();$('hcoEmpty').style.display='none';
+      showOk(decodeURIComponent(m[1]),'Оплачено — спасибо!',
+        'Заказ оплачен, чек придёт на почту или телефон. Мы уже собираем его к отправке.');return;}
+    if(/[?&]failed=1/.test(location.search)){$('hcoEmpty').style.display='none';
+      showOk('','Оплата не прошла',
+        'Деньги не списаны. Соберите заказ заново или напишите нам в Telegram — поможем оплатить.');}
+  })();
 })();
 </script>
