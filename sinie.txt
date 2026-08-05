@@ -273,8 +273,8 @@
   .hc .note{font-size:12px;color:var(--ink-44);line-height:1.5}
   .hc .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,160%);background:var(--ink);color:var(--paper);
     padding:13px 20px;border-radius:5px;font-size:14px;font-weight:600;z-index:1000000;
-    transition:transform .3s cubic-bezier(.2,.8,.2,1);box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:90vw}
-  .hc .toast.on{transform:translate(-50%,0)}
+    transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .2s linear;box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:90vw;opacity:0;pointer-events:none}
+  .hc .toast.on{transform:translate(-50%,0);opacity:1}
   /* --- окно выбора размера --- */
   .hc .sheet.wide{width:min(840px,96vw)}
   .hc .szpick{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:26px;padding:22px 24px}
