@@ -43,9 +43,10 @@
   .hxD .trust{margin-top:14px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 
   /* ---------- телефон и планшет: текст сверху, фото забирают остаток, кнопки внизу ----------
-     Держим эту раскладку до 1399px: в двухколоночной левая колонка уже кнопок,
+     Держим эту раскладку до 1023px: в двухколоночной левая колонка уже кнопок,
      и вторая кнопка наезжала на фото. */
-  @media(max-width:1399px){
+  @media(max-width:1023px){
+    .hxD .txt{display:contents}   /* текст и кнопки остаются прямыми детьми: порядок текст → фото → кнопки */
     .hxD{height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px));min-height:0}
     .hxD .top{order:1;flex:0 0 auto;padding:clamp(12px,2.4vh,24px) 20px clamp(10px,1.8vh,18px);text-align:center}
     .hxD .strips{order:2;flex:1 1 auto;min-height:0}
@@ -57,48 +58,52 @@
     .hxD .cap{padding:10px 8px;letter-spacing:.12em}
   }
   /* телефон в альбомной: экран низкий, фото схлопывается в полоску — убираем кадры */
-  @media(max-width:1399px) and (max-height:520px){
+  @media(max-width:1023px) and (max-height:520px){
     .hxD{height:auto;min-height:0}
     .hxD .strips{display:none}
     .hxD .bottom{border-top:0}
   }
 
   /* ---------- десктоп: текст слева, три полосы справа ---------- */
-  @media(min-width:1400px){
-    .hxD{display:grid;grid-template-columns:47% 53%;grid-template-rows:1fr 1fr;
+  @media(min-width:1024px){
+    /* Полосы и колонка текста получают ОДНУ высоту (42vw, но не выше экрана) и стоят по центру:
+       первая строка совпадает с верхом фото, плашка гарантий — с низом. 42vw держит полосы
+       примерно в пропорции утверждённого макета на любой ширине. */
+    .hxD{display:grid;grid-template-columns:47% 53%;align-items:center;
       height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px))}
-    /* текст упирается в низ первой строки, кнопки — в верх второй: блок собирается
-       по центру колонки и не разъезжается при длинном заголовке */
-    .hxD .top{grid-column:1;grid-row:1;align-self:end;padding:0 clamp(32px,5vw,84px)}
-    .hxD .bottom{grid-column:1;grid-row:2;align-self:start;padding:0 clamp(32px,5vw,84px);margin-top:30px}
-    /* полосы держат пропорцию утверждённого макета (281,33 × 640) и стоят по центру:
-       иначе на высоком экране кадр сжимался бы в щель и резал модели руки */
-    .hxD .strips{grid-column:2;grid-row:1/3;height:100%;align-items:center;background:none}
-    .hxD .st{aspect-ratio:281.33/640;max-height:100%;background:var(--paper-2)}
-    .hxD h1{font-size:clamp(44px,min(5vw,13vh),96px)}
-    .hxD .eyebrow{font-size:12px;letter-spacing:.32em;margin-bottom:18px}
-    .hxD .sub{font-size:clamp(15px,1.15vw,18px);margin-top:22px}
-    .hxD .cta{gap:12px;flex-wrap:wrap}   /* страховка: не помещаются в строку — переносятся, а не вылезают */
-    .hxD .btn{flex:0 0 auto;padding:17px 30px;font-size:13px}
+    .hxD .txt{display:flex;flex-direction:column;justify-content:space-between;
+      height:min(100%,42vw);padding:0 clamp(24px,4vw,84px);min-width:0}
+    .hxD .strips{height:min(100%,42vw);background:none}
+    .hxD .st{background:var(--paper-2)}
+    .hxD h1{font-size:clamp(34px,3.8vw,96px)}
+    .hxD .eyebrow{font-size:clamp(10px,.85vw,12px);letter-spacing:.32em;margin-bottom:clamp(10px,1.4vw,18px)}
+    .hxD .sub{font-size:clamp(13px,1.1vw,18px);margin-top:clamp(12px,1.6vw,22px)}
+    /* кнопки тянутся вместе с экраном — иначе на 1000–1300 они шире колонки и лезут на фото */
+    .hxD .cta{gap:clamp(8px,.9vw,12px);flex-wrap:wrap;margin-top:0}
+    .hxD .btn{flex:0 1 auto;min-width:0;font-size:clamp(10px,.9vw,13px);
+      padding:clamp(11px,1.2vw,17px) clamp(14px,2.1vw,30px)}
+    .hxD .trust{font-size:clamp(9px,.75vw,11px);margin-top:clamp(10px,1.4vw,16px)}
   }
 </style>
 <div class="hxD">
+  <div class="txt">
   <div class="top">
     <div class="eyebrow">Деним · стиль любого размера</div>
     <h1>Стиль<br><span class="t">любого размера</span></h1>
     <p class="sub">Женские джинсы с честной посадкой — от <b>42 до 74</b>. Багги, широкие, прямые.</p>
   </div>
+    <div class="bottom">
+      <div class="cta">
+        <a class="btn dark" href="#shop">Смотреть коллекцию</a>
+        <a class="btn ghost" href="/kak-vybrat-razmer">Подобрать размер</a>
+      </div>
+      <div class="trust">Примерка дома · Возврат 14 дней · Оплата картой или СБП</div>
+    </div>
+  </div>
   <div class="strips">
     <div class="st s1"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-varenye-shirokie.jpg" alt="Варёные широкие женские джинсы больших размеров HAILEY"><span class="cap">Варёные</span></div>
     <div class="st s2"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-svetlye-baggi.jpg" alt="Светлые джинсы багги больших размеров HAILEY"><span class="cap">Светлые багги</span></div>
     <div class="st s3"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-kamuflyazh.jpg" alt="Камуфляжные широкие брюки HAILEY"><span class="cap">Камуфляж</span></div>
-  </div>
-  <div class="bottom">
-    <div class="cta">
-      <a class="btn dark" href="#shop">Смотреть коллекцию</a>
-      <a class="btn ghost" href="/kak-vybrat-razmer">Подобрать размер</a>
-    </div>
-    <div class="trust">Примерка дома · Возврат 14 дней · Оплата картой или СБП</div>
   </div>
 </div>
 
