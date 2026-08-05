@@ -30,7 +30,11 @@
   .hxD .strips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--paper-2)}
   /* каждая полоса — самостоятельный баннер-ссылка */
   .hxD .st{position:relative;overflow:hidden;display:block;cursor:pointer;isolation:isolate}
+  /* Размер задаётся ВЫСОТОЙ — от неё считается выравнивание по фигуре.
+     min-width+cover — страховка на невысоком окне: там кадр становится уже ячейки
+     и по бокам вылезал серый фон полосы. Теперь фото всегда закрывает ячейку. */
   .hxD .st img{position:absolute;left:50%;width:auto;display:block;
+    min-width:100%;object-fit:cover;object-position:50% 30%;
     transition:transform .45s cubic-bezier(.22,.61,.36,1);will-change:transform}
   .hxD .st::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:0;
     transition:opacity .35s;pointer-events:none}
