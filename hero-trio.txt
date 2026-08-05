@@ -67,12 +67,15 @@
   /* ---------- десктоп: текст слева, три полосы справа ---------- */
   @media(min-width:1024px){
     /* Полосы и колонка текста получают ОДНУ высоту (42vw, но не выше экрана) и стоят по центру:
-       первая строка совпадает с верхом фото, плашка гарантий — с низом. 42vw держит полосы
-       примерно в пропорции утверждённого макета на любой ширине. */
+       текст стоит по центру этой высоты. 42vw держит полосы примерно в пропорции
+       утверждённого макета на любой ширине. */
     .hxD{display:grid;grid-template-columns:47% 53%;align-items:center;
       height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px))}
-    .hxD .txt{display:flex;flex-direction:column;justify-content:space-between;
+    /* текст стоит цельным блоком по центру колонки — кнопки сразу под подзаголовком,
+       без растянутой пустоты (высота колонки та же, что у полос) */
+    .hxD .txt{display:flex;flex-direction:column;justify-content:center;
       height:min(100%,42vw);padding:0 clamp(24px,4vw,84px);min-width:0}
+    .hxD .bottom{margin-top:clamp(20px,3vh,36px)}
     .hxD .strips{height:min(100%,42vw);background:none}
     .hxD .st{background:var(--paper-2)}
     .hxD h1{font-size:clamp(34px,3.8vw,96px)}
