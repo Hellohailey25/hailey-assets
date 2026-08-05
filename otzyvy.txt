@@ -16,7 +16,7 @@
   [data-theme="light"] .hrv{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
   [data-theme="dark"] .hrv{--paper:#14130F;--paper2:#1c1b16;--card:#1b1a15;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}
   [data-theme="white"] .hrv{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06)}
-  .hrv .wrap{max-width:1440px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hrv .wrap{max-width:1680px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
   .hrv a{color:inherit;text-decoration:none}
   .hrv .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 20px}
   .hrv h1{font-size:clamp(26px,4.6vw,42px);line-height:1.1;font-weight:700;letter-spacing:-.01em}
