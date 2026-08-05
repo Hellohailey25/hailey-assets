@@ -162,19 +162,26 @@
   }
   jump(1,false);
 
-  // Телепорт с клона на оригинал делаем ТОЛЬКО когда прокрутка затихла: если дёргать scrollLeft
-  // во время плавной анимации, браузер доводит её до старой цели и кадр возвращается назад.
-  var settle;
+  // Телепорт с кадра-клона на его оригинал. Делать только после остановки прокрутки:
+  // если дёргать scrollLeft во время движения, браузер доводит его до старой цели и кадр возвращается.
+  // ВАЖНО: на момент подмены гасим scroll-snap. Иначе браузер «доснапливает» к новой точке
+  // и СЛЕДУЮЩИЙ свайп подавляется — на втором круге лента ощущается залипшей.
+  function teleport(){
+    var p=pos();
+    if(p>0&&p<N+1)return;                   // мы не на клоне — подменять нечего
+    track.style.scrollSnapType='none';
+    track.scrollLeft=(p<=0?N:1)*W();
+    requestAnimationFrame(function(){requestAnimationFrame(function(){track.style.scrollSnapType='';});});
+    mark();
+  }
+  var settle, hasScrollEnd=('onscrollend' in window);
   track.addEventListener('scroll',function(){
     mark();                                 // real() у клонов совпадает с оригиналом, подсветка верна и на них
+    if(hasScrollEnd)return;                 // там подменим точно по окончанию жеста
     clearTimeout(settle);
-    settle=setTimeout(function(){
-      var p=pos();
-      if(p<=0)jump(N,false);
-      else if(p>=N+1)jump(1,false);
-      mark();
-    },140);
+    settle=setTimeout(teleport,70);         // 70мс: раньше было 140 — палец успевал начать новый свайп
   },{passive:true});
+  if(hasScrollEnd)track.addEventListener('scrollend',teleport);
 
   function go(d){jump(pos()+d,true);}       // из последнего вперёд ведёт на клон первого → круг
   aL.addEventListener('click',function(e){e.preventDefault();go(-1);});
