@@ -6,22 +6,22 @@
      Фото: raw.githubusercontent (репо hailey-assets), заменяются одной ссылкой. -->
 <style>
   .hxD *{margin:0;padding:0;box-sizing:border-box}
-  /* Палитра и темы — как в сквозной шапке (.hh): переключатель темы в шапке ставит
-     data-theme на :root, баннер обязан на него отзываться. Акцент #2B3648 — тёмно-синий
-     фирменный, в тёмной теме он светлеет до #9CB0D0. */
-  .hxD{--paper:#F2F0EB;--paper-2:#EAE7E0;--ink:#23262C;--ink-2:#5C626B;--ink-3:#8A9099;
-    --line:rgba(35,38,44,.14);--accent:#2B3648;
+  /* Палитра — ОДНА с контентными блоками сайта (каталог .hc, хиты, отзывы): чернила #191712,
+     бумага #F2F0EB, акцент #2B3648. Раньше баннер брал цвета из шапки (#23262C) и заголовок
+     выглядел светлее остальных на странице. Темы: data-theme из шапки + авто по системе. */
+  .hxD{--paper:#F2F0EB;--paper-2:#E9E6DF;--ink:#191712;
+    --ink-64:rgba(25,23,18,.64);--ink-44:rgba(25,23,18,.44);--line:rgba(25,23,18,.13);--accent:#2B3648;
     --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-family:var(--disp);-webkit-font-smoothing:antialiased;color:var(--ink);background:var(--paper);
     position:relative;overflow:hidden;display:flex;flex-direction:column;
     min-height:calc(100vh - var(--hh,0px));min-height:calc(100svh - var(--hh,0px))}
-  :root[data-theme="white"] .hxD{--paper:#FFFFFF;--paper-2:#F4F4F5;--ink:#1A1C22;--ink-2:#565B63;
-    --ink-3:#8A9099;--line:rgba(20,22,28,.12);--accent:#2B3648}
-  :root[data-theme="dark"] .hxD{--paper:#16181d;--paper-2:#1d2027;--ink:#ECE9E1;--ink-2:#a2a8b3;
-    --ink-3:#727a86;--line:rgba(236,233,225,.14);--accent:#9CB0D0}
+  :root[data-theme="white"] .hxD{--paper:#FFFFFF;--paper-2:#F4F4F5;--line:rgba(25,23,18,.11)}
+  :root[data-theme="dark"] .hxD{--paper:#14130F;--paper-2:#1c1b16;--ink:#EDEAE1;
+    --ink-64:rgba(237,234,225,.66);--ink-44:rgba(237,234,225,.46);--line:rgba(237,234,225,.14);--accent:#9CB0D0}
   @media(prefers-color-scheme:dark){
-    :root:not([data-theme="light"]):not([data-theme="white"]) .hxD{--paper:#16181d;--paper-2:#1d2027;
-      --ink:#ECE9E1;--ink-2:#a2a8b3;--ink-3:#727a86;--line:rgba(236,233,225,.14);--accent:#9CB0D0}
+    :root:not([data-theme="light"]):not([data-theme="white"]) .hxD{--paper:#14130F;--paper-2:#1c1b16;
+      --ink:#EDEAE1;--ink-64:rgba(237,234,225,.66);--ink-44:rgba(237,234,225,.46);
+      --line:rgba(237,234,225,.14);--accent:#9CB0D0}
   }
   .hxD a{text-decoration:none;color:inherit}
 
@@ -39,11 +39,13 @@
     background:linear-gradient(transparent,rgba(0,0,0,.5))}
 
   /* ---------- текст ---------- */
-  .hxD .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:14px}
-  .hxD h1{font-weight:800;text-transform:uppercase;line-height:.94;letter-spacing:-.02em;
+  .hxD .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-44);font-weight:600;margin-bottom:clamp(16px,2.2vw,26px)}
+    /* межстрочный 1.06 вместо 0.94: на сайте текст живёт с воздухом (1.5–1.65),
+     сплющенный заголовок выбивался из ритма страницы */
+  .hxD h1{font-weight:800;text-transform:uppercase;line-height:1.06;letter-spacing:-.01em;
     font-size:clamp(30px,8.4vw,44px)}
-  .hxD h1 .t{font-weight:200;color:var(--ink-3)}
-  .hxD .sub{font-size:14px;line-height:1.5;color:var(--ink-2);max-width:34ch;margin-top:14px}
+  .hxD h1 .t{font-weight:200;color:var(--ink-64)}
+  .hxD .sub{font-size:14px;line-height:1.6;color:var(--ink-64);max-width:34ch;margin-top:clamp(16px,2.2vw,26px)}
   .hxD .sub b{color:var(--ink);font-weight:700}
   .hxD .cta{display:flex;gap:10px;margin-top:20px}
   .hxD .btn{flex:1;text-align:center;padding:15px 12px;font-size:12px;letter-spacing:.1em;
@@ -52,7 +54,7 @@
   .hxD .btn.dark:hover{opacity:.86}
   .hxD .btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
   .hxD .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
-  .hxD .trust{margin-top:14px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .hxD .trust{margin-top:clamp(14px,1.8vw,20px);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-44)}
 
   /* ---------- телефон и планшет: текст сверху, фото забирают остаток, кнопки внизу ----------
      Держим эту раскладку до 1023px: в двухколоночной левая колонка уже кнопок,
@@ -64,7 +66,7 @@
     .hxD .strips{order:2;flex:1 1 auto;min-height:0}
     .hxD .bottom{order:3;flex:0 0 auto;padding:12px 16px calc(14px + env(safe-area-inset-bottom));
       background:var(--paper);border-top:1px solid var(--line)}
-    .hxD .sub{max-width:none;margin:10px auto 0}
+    .hxD .sub{max-width:none;margin:clamp(12px,1.8vh,18px) auto 0}
     .hxD .cta{margin-top:0}
     .hxD .trust{display:none}   /* дублирует плашку в шапке */
     .hxD .cap{padding:10px 8px;letter-spacing:.12em}
@@ -87,17 +89,17 @@
        без растянутой пустоты (высота колонки та же, что у полос) */
     .hxD .txt{display:flex;flex-direction:column;justify-content:center;
       height:min(100%,42vw);padding:0 clamp(24px,4vw,84px);min-width:0}
-    .hxD .bottom{margin-top:clamp(20px,3vh,36px)}
+    .hxD .bottom{margin-top:clamp(28px,4vh,48px)}
     .hxD .strips{height:min(100%,42vw);background:none}
     .hxD .st{background:var(--paper-2)}
     .hxD h1{font-size:clamp(34px,3.8vw,96px)}
-    .hxD .eyebrow{font-size:clamp(10px,.85vw,12px);letter-spacing:.32em;margin-bottom:clamp(10px,1.4vw,18px)}
-    .hxD .sub{font-size:clamp(13px,1.1vw,18px);margin-top:clamp(12px,1.6vw,22px)}
+    .hxD .eyebrow{font-size:clamp(10px,.85vw,12px);letter-spacing:.32em;margin-bottom:clamp(16px,2vw,26px)}
+    .hxD .sub{font-size:clamp(13px,1.1vw,18px);margin-top:clamp(18px,2.2vw,30px)}
     /* кнопки тянутся вместе с экраном — иначе на 1000–1300 они шире колонки и лезут на фото */
     .hxD .cta{gap:clamp(8px,.9vw,12px);flex-wrap:wrap;margin-top:0}
     .hxD .btn{flex:0 1 auto;min-width:0;font-size:clamp(10px,.9vw,13px);
       padding:clamp(11px,1.2vw,17px) clamp(14px,2.1vw,30px)}
-    .hxD .trust{font-size:clamp(9px,.75vw,11px);margin-top:clamp(10px,1.4vw,16px)}
+    .hxD .trust{font-size:clamp(9px,.75vw,11px);margin-top:clamp(14px,1.8vw,22px)}
   }
 </style>
 <div class="hxD">
