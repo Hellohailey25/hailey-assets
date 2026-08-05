@@ -53,7 +53,8 @@
   .hrv .rv .ph{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
   .hrv .rv .ph img{width:66px;height:84px;object-fit:cover;border-radius:6px;cursor:zoom-in;background:var(--paper2)}
   .hrv .rv .prod{display:flex;gap:10px;align-items:center;margin-top:13px;padding-top:12px;border-top:1px solid var(--line-soft)}
-  .hrv .rv .prod .nm{font-size:12.5px;color:var(--ink-2);line-height:1.35}
+  .hrv .rv .prod>div{min-width:0}   /* иначе длинное название не сжимается и «Смотреть →» вылезает за экран на 320px */
+  .hrv .rv .prod .nm{font-size:12.5px;color:var(--ink-2);line-height:1.35;overflow-wrap:anywhere}
   .hrv .rv .prod .art{font-size:11px;color:var(--ink-3);margin-top:2px;font-variant-numeric:tabular-nums}
   .hrv .rv .prod a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);white-space:nowrap;margin-left:auto}
   [data-theme="dark"] .hrv .rv .prod a{color:var(--ink)}
