@@ -323,7 +323,7 @@
 function hpReviewsInit(){
   var box=document.querySelector('.hp .revs'); if(!box) return;      // не карточка товара
   var SRC='https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/reviews.json';
-  var MAX=20;
+  var MAX=20, MIN_SHOW=8;   // ниже этого числа лента выглядит пустой — добираем отзывами без фото
 
   function sku(){
     try{
@@ -364,48 +364,18 @@ function hpReviewsInit(){
   box.innerHTML='<div style="color:var(--ink-3);font-size:13.5px;padding:6px 0">Загружаем отзывы…</div>';
 
   fetch(SRC+'?t='+Date.now()).then(function(r){return r.json();}).then(function(d){
-    var nm=sku(), agg=(d.products||{})[nm]||null;
-    var list=((d.reviews||{})[nm]||[]).filter(function(r){return (r.photos||[]).length;});
-
-    /* Разметка для поисковиков: в шаблоне у ВСЕХ карточек стоял один выдуманный
-       рейтинг 4.9/946. Фиктивный aggregateRating — прямой повод понизить сайт в выдаче. */
-    if(agg){
-      try{
-        var lds=document.querySelectorAll('script[type="application/ld+json"]');
-        for(var k=0;k<lds.length;k++){
-          var obj=JSON.parse(lds[k].textContent||'{}');
-          if(obj['@type']==='Product'&&obj.aggregateRating){
-            obj.aggregateRating.ratingValue=String(agg.avg);
-            obj.aggregateRating.reviewCount=String(agg.count);
-            lds[k].textContent=JSON.stringify(obj);
-          }
-        }
-      }catch(e){}
+    var nm=sku();
+    var all=(d.reviews||{})[nm]||[];
+    var withPhoto=all.filter(function(r){return (r.photos||[]).length;});
+    var list=withPhoto;
+    if(list.length<MIN_SHOW){                    // фото-отзывы редкие: добираем текстовыми, пока их не наберётся
+      var textOnly=all.filter(function(r){return !(r.photos||[]).length && r.text;});
+      list=withPhoto.concat(textOnly).slice(0,Math.max(MIN_SHOW,withPhoto.length));
     }
 
-    /* строка рейтинга под фото («4,9 · 946 отзывов») — тоже была выдумана в шаблоне */
-    if(agg){
-      var line=document.querySelector('.hp .rev-line');
-      if(line){
-        var st=line.querySelector('.st'), rl=line.querySelector('.rev-link');
-        if(st)st.textContent='★★★★★'.slice(0,Math.round(agg.avg));
-        if(rl)rl.textContent=agg.count.toLocaleString('ru-RU')+' '+plural(agg.count,'отзыв','отзыва','отзывов');
-        line.childNodes.forEach(function(n){
-          if(n.nodeType===3&&/\d,\d/.test(n.textContent))
-            n.textContent=n.textContent.replace(/\d+,\d+/,agg.avg.toFixed(1).replace('.',','));
-        });
-      }
-    }
-
-    var top=document.querySelector('.hp .rev-top');
-    if(top&&agg){
-      top.innerHTML='<span class="num">'+agg.avg.toFixed(1).replace('.',',')+'</span>'+
-        '<div><div class="stars">'+'★'.repeat(Math.round(agg.avg))+'</div>'+
-        '<div class="sub" style="margin:0">'+agg.count.toLocaleString('ru-RU')+' '+
-        plural(agg.count,'оценка','оценки','оценок')+' покупательниц'+
-        (list.length?' · ниже '+list.length+' '+plural(list.length,'отзыв','отзыва','отзывов')+' с фото':'')+
-        '</div></div>';
-    }else if(top){ top.style.display='none'; }
+    /* Рейтинг, число отзывов и aggregateRating НЕ трогаем: они приходят из таблицы
+       «Номенклатура сайта» через генератор карточек — это единый источник цифр
+       для каталога и карточки. Скрипт отвечает только за саму ленту отзывов. */
 
     if(!list.length){
       box.innerHTML='<div style="color:var(--ink-3);font-size:13.5px;padding:6px 0">Отзывы с фотографиями на этот товар скоро появятся.</div>';
