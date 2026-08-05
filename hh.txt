@@ -422,8 +422,8 @@ function hpReviewsInit(){
     if(fit&&fit.all&&line&&!line.querySelector('.fitbox')){
       var pc=function(x){return Math.round(x/fit.all*100);};
       var ok=pc(fit.ok), sm=pc(fit.smaller), bg=pc(fit.bigger);
-      var box=document.createElement('span'); box.className='fitbox'; box.tabIndex=0;
-      box.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'+
+      var fitEl=document.createElement('span'); fitEl.className='fitbox'; fitEl.tabIndex=0;
+      fitEl.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'+
         '<span><b>'+ok+'%</b> берут свой размер</span>'+
         '<span class="fitpop">'+
           '<span class="row"><span class="rt">Маломерит<b>'+sm+'%</b></span><span class="bar"><i style="width:'+sm+'%"></i></span></span>'+
@@ -431,7 +431,7 @@ function hpReviewsInit(){
           '<span class="row"><span class="rt">Большемерит<b>'+bg+'%</b></span><span class="bar"><i style="width:'+bg+'%"></i></span></span>'+
           '<span class="note">По оценкам '+fit.all+' покупательниц, которые отметили посадку в отзыве.</span>'+
         '</span>';
-      line.appendChild(box);
+      line.appendChild(fitEl);
     }
 
     var link=document.querySelector('.hp .revlink');
