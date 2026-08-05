@@ -129,11 +129,6 @@
   .hc .dots{position:absolute;left:0;right:0;bottom:9px;z-index:6;display:flex;justify-content:center;gap:5px;pointer-events:none}
   .hc .dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(0,0,0,.35);transition:.2s}
   .hc .dots i.on{background:#fff;transform:scale(1.25)}
-  /* значок «листается вбок» — правый нижний угол, гаснет после первого свайпа */
-  .hc .swipehint{position:absolute;right:8px;bottom:8px;z-index:6;display:flex;align-items:center;gap:3px;padding:4px 7px;
-    border-radius:20px;background:rgba(20,23,30,.5);backdrop-filter:blur(4px);color:#fff;pointer-events:none;transition:opacity .3s}
-  .hc .swipehint svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .hc .ph.seen .swipehint{opacity:0}
   .hc .arw{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:30px;height:30px;border-radius:50%;
     background:rgba(255,255,255,.9);color:#23262C;display:none;align-items:center;justify-content:center;font-size:15px;
     box-shadow:0 2px 8px rgba(0,0,0,.16);transition:.16s}
@@ -570,7 +565,6 @@
       '<div class="ph">'
       +'<div class="track">'+slides+'</div>'
       +(multi?'<div class="dots">'+imgs.map(function(_,i){return i?'<i></i>':'<i class="on"></i>';}).join('')+'</div>':'')
-      +(multi?'<div class="swipehint"><svg viewBox="0 0 24 24"><path d="M9 6l-4 6 4 6M15 6l4 6-4 6"/></svg></div>':'')
       +(multi?'<button class="arw l" data-arw="-1" aria-label="Предыдущее фото">‹</button><button class="arw r" data-arw="1" aria-label="Следующее фото">›</button>':'')
       +'<div class="phscrim"></div>'
       +((p.badges&&p.badges.length)?'<div class="badges">'+p.badges.map(function(b){return '<span class="bdg '+bcls(b)+'">'+b+'</span>';}).join('')+'</div>':'')
@@ -675,7 +669,6 @@
           tr.scrollBy({left:(+a.dataset.arw)*tr.clientWidth,behavior:'smooth'});};
       });
       tr.addEventListener('scroll',function(){
-        ph.classList.add('seen');
         var i=Math.round(tr.scrollLeft/Math.max(1,tr.clientWidth));
         ph.querySelectorAll('.dots i').forEach(function(d,n){d.classList.toggle('on',n===i);});
       },{passive:true});
