@@ -6,11 +6,23 @@
      Фото: raw.githubusercontent (репо hailey-assets), заменяются одной ссылкой. -->
 <style>
   .hxD *{margin:0;padding:0;box-sizing:border-box}
-  .hxD{--paper:#F2EFE7;--paper-2:#E6E1D4;--ink:#1D1C17;--ink-2:#5C574C;--ink-3:#8A8578;
+  /* Палитра и темы — как в сквозной шапке (.hh): переключатель темы в шапке ставит
+     data-theme на :root, баннер обязан на него отзываться. Акцент #2B3648 — тёмно-синий
+     фирменный, в тёмной теме он светлеет до #9CB0D0. */
+  .hxD{--paper:#F2F0EB;--paper-2:#EAE7E0;--ink:#23262C;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(35,38,44,.14);--accent:#2B3648;
     --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-family:var(--disp);-webkit-font-smoothing:antialiased;color:var(--ink);background:var(--paper);
     position:relative;overflow:hidden;display:flex;flex-direction:column;
     min-height:calc(100vh - var(--hh,0px));min-height:calc(100svh - var(--hh,0px))}
+  :root[data-theme="white"] .hxD{--paper:#FFFFFF;--paper-2:#F4F4F5;--ink:#1A1C22;--ink-2:#565B63;
+    --ink-3:#8A9099;--line:rgba(20,22,28,.12);--accent:#2B3648}
+  :root[data-theme="dark"] .hxD{--paper:#16181d;--paper-2:#1d2027;--ink:#ECE9E1;--ink-2:#a2a8b3;
+    --ink-3:#727a86;--line:rgba(236,233,225,.14);--accent:#9CB0D0}
+  @media(prefers-color-scheme:dark){
+    :root:not([data-theme="light"]):not([data-theme="white"]) .hxD{--paper:#16181d;--paper-2:#1d2027;
+      --ink:#ECE9E1;--ink-2:#a2a8b3;--ink-3:#727a86;--line:rgba(236,233,225,.14);--accent:#9CB0D0}
+  }
   .hxD a{text-decoration:none;color:inherit}
 
   /* ---------- полосы с фото ---------- */
@@ -30,16 +42,16 @@
   .hxD .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:14px}
   .hxD h1{font-weight:800;text-transform:uppercase;line-height:.94;letter-spacing:-.02em;
     font-size:clamp(30px,8.4vw,44px)}
-  .hxD h1 .t{font-weight:200;color:rgba(29,28,23,.5)}
+  .hxD h1 .t{font-weight:200;color:var(--ink-3)}
   .hxD .sub{font-size:14px;line-height:1.5;color:var(--ink-2);max-width:34ch;margin-top:14px}
   .hxD .sub b{color:var(--ink);font-weight:700}
   .hxD .cta{display:flex;gap:10px;margin-top:20px}
   .hxD .btn{flex:1;text-align:center;padding:15px 12px;font-size:12px;letter-spacing:.1em;
     text-transform:uppercase;font-weight:700;border-radius:2px;transition:.18s}
-  .hxD .btn.dark{background:var(--ink);color:var(--paper)}
+  .hxD .btn.dark{background:var(--accent);color:var(--paper)}
   .hxD .btn.dark:hover{opacity:.86}
-  .hxD .btn.ghost{background:rgba(255,255,255,.7);border:1.5px solid rgba(29,28,23,.24);color:var(--ink)}
-  .hxD .btn.ghost:hover{border-color:var(--ink)}
+  .hxD .btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+  .hxD .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
   .hxD .trust{margin-top:14px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 
   /* ---------- телефон и планшет: текст сверху, фото забирают остаток, кнопки внизу ----------
@@ -51,7 +63,7 @@
     .hxD .top{order:1;flex:0 0 auto;padding:clamp(12px,2.4vh,24px) 20px clamp(10px,1.8vh,18px);text-align:center}
     .hxD .strips{order:2;flex:1 1 auto;min-height:0}
     .hxD .bottom{order:3;flex:0 0 auto;padding:12px 16px calc(14px + env(safe-area-inset-bottom));
-      background:var(--paper);border-top:1px solid rgba(29,28,23,.08)}
+      background:var(--paper);border-top:1px solid var(--line)}
     .hxD .sub{max-width:none;margin:10px auto 0}
     .hxD .cta{margin-top:0}
     .hxD .trust{display:none}   /* дублирует плашку в шапке */
