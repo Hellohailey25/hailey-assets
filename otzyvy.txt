@@ -117,8 +117,6 @@
       }
       h+='</div>';
     }
-    h+='<div class="src">Отзывы с Wildberries по товарам, которые продаются на сайте.'+
-       (DATA.updated?'<br>Обновлено '+DATA.updated:'')+'</div>';
     $('hrvTop').innerHTML=h;
   }
 
