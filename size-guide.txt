@@ -19,10 +19,10 @@
   .hsg .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
   .hsg .crumb a:hover{color:var(--ink)}
   .hsg .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
-  .hsg h1{font-size:clamp(28px,5vw,44px);line-height:1.08;font-weight:700;letter-spacing:-.01em;max-width:16ch}
+  .hsg h1{font-size:clamp(26px,3.6vw,40px);line-height:1.1;font-weight:300;letter-spacing:-.01em;max-width:18ch}
   .hsg .lead{font-size:clamp(15px,2.2vw,18px);color:var(--ink-2);margin-top:16px;max-width:56ch;line-height:1.6}
   .hsg section{margin-top:clamp(44px,7vw,80px)}
-  .hsg h2{font-size:clamp(21px,3.2vw,30px);font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+  .hsg h2{font-size:clamp(21px,3.2vw,30px);font-weight:300;letter-spacing:-.01em;margin-bottom:6px}
   .hsg h2 .n{color:var(--ink-3);font-weight:400;margin-right:12px}
   .hsg .sub{font-size:15px;color:var(--ink-2);margin-bottom:24px;max-width:60ch;line-height:1.6}
   /* калькулятор */
@@ -38,7 +38,7 @@
   .hsg .cres .note{font-size:13px;color:var(--good);margin-top:10px}
   .hsg .cres .warn{font-size:13px;color:#b4442f;margin-top:10px}
   .hsg .cres .placeholder{font-size:14px;color:var(--ink-3)}
-  .hsg .cgo{margin-top:14px;display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:8px;background:var(--ink);color:var(--paper);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:background .18s}
+  .hsg .cgo{margin-top:14px;display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:4px;background:var(--ink);color:var(--paper);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:background .18s}
   .hsg .cgo:hover{background:var(--accent)}
   /* мерки */
   .hsg .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
