@@ -42,8 +42,10 @@
   .hxD .btn.ghost:hover{border-color:var(--ink)}
   .hxD .trust{margin-top:14px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 
-  /* ---------- телефон: текст сверху, фото забирают остаток, кнопки внизу ---------- */
-  @media(max-width:960px){
+  /* ---------- телефон и планшет: текст сверху, фото забирают остаток, кнопки внизу ----------
+     Держим эту раскладку до 1399px: в двухколоночной левая колонка уже кнопок,
+     и вторая кнопка наезжала на фото. */
+  @media(max-width:1399px){
     .hxD{height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px));min-height:0}
     .hxD .top{order:1;flex:0 0 auto;padding:clamp(12px,2.4vh,24px) 20px clamp(10px,1.8vh,18px);text-align:center}
     .hxD .strips{order:2;flex:1 1 auto;min-height:0}
@@ -55,14 +57,14 @@
     .hxD .cap{padding:10px 8px;letter-spacing:.12em}
   }
   /* телефон в альбомной: экран низкий, фото схлопывается в полоску — убираем кадры */
-  @media(max-width:960px) and (max-height:520px){
+  @media(max-width:1399px) and (max-height:520px){
     .hxD{height:auto;min-height:0}
     .hxD .strips{display:none}
     .hxD .bottom{border-top:0}
   }
 
   /* ---------- десктоп: текст слева, три полосы справа ---------- */
-  @media(min-width:961px){
+  @media(min-width:1400px){
     .hxD{display:grid;grid-template-columns:47% 53%;grid-template-rows:1fr 1fr;
       height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px))}
     /* текст упирается в низ первой строки, кнопки — в верх второй: блок собирается
@@ -76,7 +78,7 @@
     .hxD h1{font-size:clamp(44px,min(5vw,13vh),96px)}
     .hxD .eyebrow{font-size:12px;letter-spacing:.32em;margin-bottom:18px}
     .hxD .sub{font-size:clamp(15px,1.15vw,18px);margin-top:22px}
-    .hxD .cta{gap:12px}
+    .hxD .cta{gap:12px;flex-wrap:wrap}   /* страховка: не помещаются в строку — переносятся, а не вылезают */
     .hxD .btn{flex:0 0 auto;padding:17px 30px;font-size:13px}
   }
 </style>
