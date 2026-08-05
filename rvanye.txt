@@ -172,7 +172,13 @@
   .hc .meta{font-size:11.5px;color:var(--ink-44);margin-top:7px;letter-spacing:.03em;display:flex;align-items:center;gap:8px}
   .hc .meta .st{color:#d3a24a;letter-spacing:1px}
   .hc .buyrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;flex-wrap:nowrap}
+  /* Сначала строка «старая цена + скидка», под ней крупная актуальная цена:
+     так глаз сперва видит выгоду, а не наоборот. Порядок задаём через order,
+     чтобы не трогать разметку в трёх местах генератора. */
   .hc .prices{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;min-width:0}
+  .hc .prices .old{order:1}
+  .hc .prices .off{order:1}
+  .hc .prices .price{order:2;width:100%;margin-top:2px}
   .hc .price{font-size:19px;font-weight:700;letter-spacing:-.01em}
   .hc .old{font-size:13px;color:var(--ink-44);text-decoration:line-through}
   .hc .off{font-size:11px;font-weight:700;color:#fff;background:var(--accent);padding:3px 7px;border-radius:3px;letter-spacing:.03em}
