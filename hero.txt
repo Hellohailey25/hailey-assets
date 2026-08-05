@@ -41,7 +41,7 @@
     .hxC .top{order:1;flex:0 0 auto;padding:clamp(12px,2.4vh,24px) 20px clamp(10px,1.8vh,18px)}
     .hxC .bottom{order:3;flex:0 0 auto;margin-top:0;padding:12px 16px calc(14px + env(safe-area-inset-bottom));
       background:#fff;border-top:1px solid rgba(35,38,44,.08)}
-    .hxC h1{font-size:clamp(26px,7.4vw,38px);margin-bottom:8px}
+    .hxC h1{font-size:clamp(28px,9.2vw,46px);line-height:1;margin-bottom:8px}
     .hxC .sub{font-size:13.5px}
     .hxC .btn.ghost{background:#fff}
     .hxC .trust{display:none}   /* дублирует плашку в шапке */
@@ -55,19 +55,20 @@
       padding:0 clamp(32px,6vw,96px)}
     .hxC .shot{align-items:flex-end;justify-content:flex-end;
       padding:0 clamp(8px,3vw,56px) clamp(10px,2.4vh,28px) 0}
-    .hxC .shot img{width:auto;height:auto;max-height:92%;max-width:54%}   /* не 100%: иначе обувь упирается в край экрана */
-    .hxC .top{position:relative;transform:none;text-align:left;padding:0;max-width:min(46%,620px)}
-    .hxC h1{font-size:clamp(40px,4.4vw,74px);margin-bottom:16px}
+    .hxC .shot img{width:auto;height:auto;max-height:92%;max-width:46%}   /* не 100%: иначе обувь упирается в край экрана */
+    .hxC .top{position:relative;transform:none;text-align:left;padding:0;max-width:min(52%,760px)}
+    /* размер живёт от ширины, но ограничен высотой окна: на низком ноутбуке не разорвёт экран */
+    .hxC h1{font-size:clamp(40px,min(6vw,13vh),112px);line-height:.98;margin-bottom:18px}
     .hxC .eyebrow{font-size:12px;letter-spacing:.32em;margin-bottom:18px}
-    .hxC .sub{font-size:17px;max-width:42ch;margin:0}
-    .hxC .bottom{position:relative;margin:26px 0 0;padding:0;max-width:min(46%,620px);background:none;border:0}
+    .hxC .sub{font-size:clamp(15px,1.15vw,19px);max-width:44ch;margin:0}
+    .hxC .bottom{position:relative;margin:clamp(20px,3vh,34px) 0 0;padding:0;max-width:min(52%,760px);background:none;border:0}
     .hxC .cta{gap:12px}
     .hxC .btn{flex:0 0 auto;padding:17px 30px;font-size:13px}
     .hxC .trust{text-align:left;margin-top:18px;font-size:11px}
   }
   /* Низкое окно (ноутбук с высотой ~600): ужимаем вертикаль, чтобы всё осталось в экране */
   @media(min-width:961px) and (max-height:700px){
-    .hxC h1{font-size:clamp(34px,3.6vw,52px);margin-bottom:12px}
+    .hxC h1{font-size:clamp(34px,min(4.6vw,11vh),64px);margin-bottom:12px}
     .hxC .eyebrow{margin-bottom:12px}
     .hxC .sub{font-size:15px}
     .hxC .bottom{margin-top:18px}
