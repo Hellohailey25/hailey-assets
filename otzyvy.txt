@@ -1,0 +1,210 @@
+<!-- =========================================================
+     HAILEY · Страница отзывов /otzyvy (T123) — вручную не править,
+     источник: hailey-otzyvy-код.html.
+     Данные: reviews.json из hailey-assets (собирает wb_reviews.py по Feedbacks API WB).
+     Показываем только 4–5 звёзд с текстом или фото, по товарам, которые есть на сайте.
+     Оценка и количество — по ВСЕМ отзывам товара, не по отобранным (иначе враньё).
+     ========================================================= -->
+<style>
+  .hrv *{margin:0;padding:0;box-sizing:border-box}
+  .hrv{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--star:#E8A33D;--good:#2f6b46;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;padding:14px 0 clamp(40px,6vw,80px)}
+  @media(prefers-color-scheme:dark){.hrv{--paper:#14130F;--paper2:#1c1b16;--card:#1b1a15;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}}
+  [data-theme="light"] .hrv{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
+  [data-theme="dark"] .hrv{--paper:#14130F;--paper2:#1c1b16;--card:#1b1a15;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}
+  [data-theme="white"] .hrv{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06)}
+  .hrv .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hrv a{color:inherit;text-decoration:none}
+  .hrv .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 20px}
+  .hrv h1{font-size:clamp(26px,4.6vw,42px);line-height:1.1;font-weight:700;letter-spacing:-.01em}
+  .hrv .lead{font-size:15.5px;color:var(--ink-2);margin-top:12px;max-width:62ch}
+  /* сводка */
+  .hrv .top{display:flex;flex-wrap:wrap;gap:clamp(18px,3vw,40px);align-items:center;
+    margin-top:26px;padding:22px clamp(18px,2.4vw,26px);background:var(--card);border:1px solid var(--line);border-radius:16px}
+  .hrv .big{font-size:52px;font-weight:700;line-height:1}
+  .hrv .stars{display:flex;gap:3px;margin-top:6px}
+  .hrv .stars svg{width:17px;height:17px;fill:var(--star)}
+  .hrv .cnt{font-size:13px;color:var(--ink-2);margin-top:7px}
+  .hrv .bars{flex:1;min-width:220px;max-width:340px}
+  .hrv .bar{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--ink-2);margin:3px 0}
+  .hrv .bar i{flex:1;height:5px;border-radius:20px;background:var(--line-soft);overflow:hidden}
+  .hrv .bar i b{display:block;height:100%;background:var(--star);border-radius:20px}
+  .hrv .src{font-size:12px;color:var(--ink-3);line-height:1.5;max-width:30ch}
+  /* фильтр по товарам */
+  .hrv .filt{display:flex;gap:8px;overflow-x:auto;padding:22px 0 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .hrv .filt::-webkit-scrollbar{display:none}
+  .hrv .filt button{flex:0 0 auto;padding:9px 15px;border:1px solid var(--line);border-radius:20px;background:transparent;
+    color:var(--ink-2);font-family:inherit;font-size:13px;cursor:pointer;white-space:nowrap;transition:.15s}
+  .hrv .filt button:hover{border-color:var(--accent);color:var(--ink)}
+  .hrv .filt button.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  /* сетка отзывов */
+  .hrv .grid{columns:3 320px;column-gap:16px;margin-top:20px}
+  .hrv .rv{break-inside:avoid;background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px;margin-bottom:16px;display:inline-block;width:100%}
+  .hrv .rv .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .hrv .rv .who{font-size:14px;font-weight:600}
+  .hrv .rv .dt{font-size:12px;color:var(--ink-3);white-space:nowrap}
+  .hrv .rv .st{display:flex;gap:2px;margin:7px 0 9px}
+  .hrv .rv .st svg{width:14px;height:14px;fill:var(--star)}
+  .hrv .rv p{font-size:14px;color:var(--ink-2);line-height:1.55}
+  .hrv .rv .ph{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .hrv .rv .ph img{width:66px;height:84px;object-fit:cover;border-radius:6px;cursor:zoom-in;background:var(--paper2)}
+  .hrv .rv .prod{display:flex;gap:10px;align-items:center;margin-top:13px;padding-top:12px;border-top:1px solid var(--line-soft)}
+  .hrv .rv .prod .nm{font-size:12.5px;color:var(--ink-2);line-height:1.35}
+  .hrv .rv .prod .art{font-size:11px;color:var(--ink-3);margin-top:2px;font-variant-numeric:tabular-nums}
+  .hrv .rv .prod a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);white-space:nowrap;margin-left:auto}
+  [data-theme="dark"] .hrv .rv .prod a{color:var(--ink)}
+  .hrv .rv .sz{display:inline-block;font-size:11.5px;color:var(--ink-3);border:1px solid var(--line);border-radius:4px;padding:1px 7px;margin-top:9px}
+  .hrv .more{display:block;margin:26px auto 0;padding:14px 30px;border:1px solid var(--line);border-radius:8px;
+    background:transparent;color:var(--ink);font-family:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;cursor:pointer}
+  .hrv .more:hover{border-color:var(--accent)}
+  .hrv .empty{text-align:center;color:var(--ink-3);padding:50px 0;font-size:15px}
+  /* просмотр фото */
+  .hrv .lb{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+  .hrv .lb.on{display:flex}
+  .hrv .lb img{max-width:100%;max-height:92vh;border-radius:8px}
+  .hrv .lb .x{position:absolute;top:16px;right:20px;color:#fff;font-size:30px;cursor:pointer;line-height:1;background:none;border:none}
+  @media(max-width:600px){.hrv .grid{columns:1}}
+</style>
+
+<div class="hrv">
+  <div class="wrap">
+    <div class="crumb"><a href="/">Главная</a> → Отзывы</div>
+    <h1>Отзывы покупательниц</h1>
+    <p class="lead">Живые отзывы с фотографиями — как джинсы HAILEY сидят на настоящих фигурах.
+      Все отзывы оставлены на Wildberries после покупки, мы их не редактируем.</p>
+
+    <div class="top" id="hrvTop"></div>
+    <div class="filt" id="hrvFilt"></div>
+    <div class="grid" id="hrvGrid"></div>
+    <button class="more" id="hrvMore" style="display:none">Показать ещё</button>
+  </div>
+  <div class="lb" id="hrvLb"><button class="x" aria-label="Закрыть">✕</button><img alt="Фото из отзыва"></div>
+</div>
+
+<script>
+(function(){
+  var SRC='https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/reviews.json';
+  var PAGE=24, shown=0, filtered=[], DATA=null, cur='';
+  var $=function(id){return document.getElementById(id);};
+
+  function stars(n,cls){
+    var h='<div class="'+(cls||'stars')+'">';
+    for(var i=0;i<5;i++)h+='<svg viewBox="0 0 24 24"'+(i<n?'':' opacity=".22"')+'><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg>';
+    return h+'</div>';
+  }
+  function esc(s){return (s||'').replace(/[<>&]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c];});}
+  function ru(d){
+    var m=['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
+    var p=(d||'').split('-'); if(p.length<3)return '';
+    return parseInt(p[2],10)+' '+m[parseInt(p[1],10)-1]+' '+p[0];
+  }
+
+  function summary(){
+    var b=DATA.brand||{}, dist=DATA.dist||null;
+    var h='<div><div class="big">'+(b.avg||0).toFixed(1).replace('.',',')+'</div>'+
+          stars(Math.round(b.avg||0))+
+          '<div class="cnt">'+(b.count||0).toLocaleString('ru-RU')+' отзывов</div></div>';
+    if(dist){
+      h+='<div class="bars">';
+      for(var s=5;s>=1;s--){
+        var n=dist[s]||0, pc=b.count?Math.round(n/b.count*100):0;
+        h+='<div class="bar"><span>'+s+'</span><i><b style="width:'+pc+'%"></b></i><span>'+pc+'%</span></div>';
+      }
+      h+='</div>';
+    }
+    h+='<div class="src">Отзывы с Wildberries по товарам, которые продаются на сайте.'+
+       (DATA.updated?'<br>Обновлено '+DATA.updated:'')+'</div>';
+    $('hrvTop').innerHTML=h;
+  }
+
+  function products(){
+    var list=Object.keys(DATA.reviews||{}).map(function(nm){
+      var r=DATA.reviews[nm][0]||{};
+      return {nm:nm,name:r.product||('арт. '+nm),n:DATA.reviews[nm].length};
+    }).sort(function(a,b){return b.n-a.n;});
+    var h='<button class="on" data-nm="">Все отзывы</button>';
+    list.forEach(function(p){
+      h+='<button data-nm="'+p.nm+'">'+esc(p.name.slice(0,34))+' · '+p.n+'</button>';
+    });
+    $('hrvFilt').innerHTML=h;
+    $('hrvFilt').addEventListener('click',function(e){
+      var b=e.target.closest('button'); if(!b)return;
+      Array.prototype.forEach.call($('hrvFilt').children,function(x){x.classList.toggle('on',x===b);});
+      cur=b.dataset.nm; apply();
+    });
+  }
+
+  function apply(){
+    var all=[];
+    Object.keys(DATA.reviews||{}).forEach(function(nm){
+      if(cur&&nm!==cur)return;
+      all=all.concat(DATA.reviews[nm]);
+    });
+    // сначала с фото, дальше по дате — фото убеждают сильнее текста
+    all.sort(function(a,b){
+      var pa=(a.photos||[]).length>0, pb=(b.photos||[]).length>0;
+      if(pa!==pb)return pb-pa;
+      return (b.date||'').localeCompare(a.date||'');
+    });
+    filtered=all; shown=0; $('hrvGrid').innerHTML=''; render();
+  }
+
+  function render(){
+    var part=filtered.slice(shown,shown+PAGE), h='';
+    part.forEach(function(r){
+      h+='<article class="rv"><div class="hd"><div class="who">'+esc(r.user)+'</div>'+
+         '<div class="dt">'+ru(r.date)+'</div></div>'+
+         stars(r.val,'st')+
+         (r.text?'<p>'+esc(r.text)+'</p>':'')+
+         (r.pros?'<p style="margin-top:7px"><b>Плюсы:</b> '+esc(r.pros)+'</p>':'')+
+         (r.size?'<span class="sz">размер '+esc(r.size)+'</span>':'');
+      if((r.photos||[]).length){
+        h+='<div class="ph">';
+        r.photos.forEach(function(p){h+='<img loading="lazy" src="'+p+'" alt="Фото из отзыва — '+esc(r.product)+'">';});
+        h+='</div>';
+      }
+      h+='<div class="prod"><div><div class="nm">'+esc(r.product)+'</div>'+
+         '<div class="art">арт. '+esc(r.art||r.nm)+'</div></div>'+
+         (r.url?'<a href="'+r.url+'">Смотреть →</a>':'')+
+         '</div></article>';
+    });
+    $('hrvGrid').insertAdjacentHTML('beforeend',h);
+    shown+=part.length;
+    $('hrvMore').style.display=shown<filtered.length?'block':'none';
+    if(!filtered.length)$('hrvGrid').innerHTML='<div class="empty">Пока нет отзывов по этому товару.</div>';
+  }
+
+  $('hrvMore').addEventListener('click',render);
+
+  // просмотр фото
+  var lb=$('hrvLb');
+  document.addEventListener('click',function(e){
+    var img=e.target.closest('.hrv .ph img');
+    if(img){lb.querySelector('img').src=img.src;lb.classList.add('on');return;}
+    if(e.target.closest('.hrv .lb'))lb.classList.remove('on');
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+
+  fetch(SRC+'?t='+Date.now()).then(function(r){return r.json();}).then(function(d){
+    DATA=d; summary(); products(); apply();
+    // разметка для поисковиков: общая оценка магазина по нашим товарам
+    try{
+      var b=d.brand||{};
+      if(b.count){
+        var s=document.createElement('script');s.type='application/ld+json';
+        s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Product",
+          "name":"Женские джинсы больших размеров HAILEY","brand":{"@type":"Brand","name":"HAILEY"},
+          "aggregateRating":{"@type":"AggregateRating","ratingValue":b.avg,"reviewCount":b.count,
+            "bestRating":5,"worstRating":1}});
+        document.head.appendChild(s);
+      }
+    }catch(e){}
+  }).catch(function(){
+    $('hrvGrid').innerHTML='<div class="empty">Отзывы временно недоступны. Загляните чуть позже.</div>';
+  });
+})();
+</script>
