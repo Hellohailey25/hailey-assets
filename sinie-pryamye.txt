@@ -127,7 +127,9 @@
   .hc .track{position:absolute;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
     scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth}
   .hc .track::-webkit-scrollbar{display:none}
-  .hc .slide{flex:0 0 100%;width:100%;height:100%;scroll-snap-align:center;position:relative;display:block}
+  /* overflow:hidden обязателен: при наведении фото увеличивается и без обрезки
+     вылезает за свой кадр — по краям видно полоску соседнего снимка */
+  .hc .slide{flex:0 0 100%;width:100%;height:100%;scroll-snap-align:center;position:relative;display:block;overflow:hidden}
   .hc .slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
   .hc .card:hover .slide img{transform:scale(1.04)}
   .hc .dots{position:absolute;left:0;right:0;bottom:9px;z-index:6;display:flex;justify-content:center;gap:5px;pointer-events:none}
