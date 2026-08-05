@@ -28,11 +28,26 @@
   /* ---------- полосы с фото ---------- */
   /* minmax(0,1fr): иначе подписи под фото задают min-content и полосы вылезают за экран */
   .hxD .strips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--paper-2)}
-  .hxD .st{position:relative;overflow:hidden}
-  .hxD .st img{position:absolute;left:50%;width:auto;display:block}
+  /* каждая полоса — самостоятельный баннер-ссылка */
+  .hxD .st{position:relative;overflow:hidden;display:block;cursor:pointer;isolation:isolate}
+  .hxD .st img{position:absolute;left:50%;width:auto;display:block;
+    transition:transform .45s cubic-bezier(.22,.61,.36,1);will-change:transform}
+  .hxD .st::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:0;
+    transition:opacity .35s;pointer-events:none}
+  .hxD .st:hover::after,.hxD .st:focus-visible::after{opacity:.06}
+  .hxD .st:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
+  /* стрелка появляется у подписи — видно, что это ссылка */
+  .hxD .cap i{font-style:normal;display:inline-block;margin-left:8px;opacity:0;transform:translateX(-6px);
+    transition:opacity .3s,transform .3s}
+  .hxD .st:hover .cap i,.hxD .st:focus-visible .cap i{opacity:1;transform:translateX(0)}
+  @media(hover:none){.hxD .cap i{opacity:1;transform:none}}   /* на тапе анимации нет — стрелку показываем сразу */
+  @media(prefers-reduced-motion:reduce){.hxD .st img{transition:none}}
   /* выравнивание по фигуре — своё на каждый кадр */
+  .hxD .s1:hover img,.hxD .s1:focus-visible img{transform:translateX(-49.19%) scale(1.045)}
   .hxD .s1 img{height:105.7%;top:-4.72%;transform:translateX(-49.19%)}
+  .hxD .s2:hover img,.hxD .s2:focus-visible img{transform:translateX(-50.63%) scale(1.045)}
   .hxD .s2 img{height:113.8%;top:-6.20%;transform:translateX(-50.63%)}
+  .hxD .s3:hover img,.hxD .s3:focus-visible img{transform:translateX(-62.18%) scale(1.045)}
   .hxD .s3 img{height:114.7%;top:-0.63%;transform:translateX(-62.18%)}
   .hxD .cap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:14px 16px;
     font-size:clamp(9px,1vw,12px);letter-spacing:.2em;text-transform:uppercase;color:#fff;
@@ -118,9 +133,11 @@
     </div>
   </div>
   <div class="strips">
-    <div class="st s1"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-varenye-shirokie.jpg" alt="Варёные широкие женские джинсы больших размеров HAILEY"><span class="cap">Варёные</span></div>
-    <div class="st s2"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-svetlye-baggi.jpg" alt="Светлые джинсы багги больших размеров HAILEY"><span class="cap">Светлые багги</span></div>
-    <div class="st s3"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-kamuflyazh.jpg" alt="Камуфляжные широкие брюки HAILEY"><span class="cap">Камуфляж</span></div>
+    <a class="st s1" href="/catalog/golubye-shirokie-dzhinsy" aria-label="Голубые широкие джинсы — смотреть подборку"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-varenye-shirokie.jpg" alt="Варёные широкие женские джинсы больших размеров HAILEY"><span class="cap">Варёные<i>→</i></span></a>
+    <a class="st s2" href="/catalog/baggi-dzhinsy" aria-label="Джинсы багги — смотреть подборку"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-svetlye-baggi.jpg" alt="Светлые джинсы багги больших размеров HAILEY"><span class="cap">Светлые багги<i>→</i></span></a>
+    <!-- ВНИМАНИЕ: камуфляжных брюк в каталоге нет (18 товаров, все джинсы) — третья полоса
+         временно ведёт в общий каталог. Появится товар — поменять адрес здесь. -->
+    <a class="st s3" href="/catalog" aria-label="Весь каталог HAILEY"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-kamuflyazh.jpg" alt="Камуфляжные широкие брюки HAILEY"><span class="cap">Камуфляж<i>→</i></span></a>
   </div>
 </div>
 
