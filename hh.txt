@@ -340,6 +340,8 @@ function hpReviewsInit(){
   function esc(s){return (s||'').replace(/[<>&]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c];});}
   function ru(d){var m=['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'],p=(d||'').split('-');
     return p.length<3?'':parseInt(p[2],10)+' '+m[parseInt(p[1],10)-1]+' '+p[0];}
+  function plural(n,one,few,many){var a=n%100;if(a>=11&&a<=14)return many;a=n%10;
+    return a===1?one:(a>=2&&a<=4?few:many);}
 
   var css=document.createElement('style');
   css.textContent=
@@ -387,7 +389,7 @@ function hpReviewsInit(){
       if(line){
         var st=line.querySelector('.st'), rl=line.querySelector('.rev-link');
         if(st)st.textContent='★★★★★'.slice(0,Math.round(agg.avg));
-        if(rl)rl.textContent=agg.count.toLocaleString('ru-RU')+' отзывов';
+        if(rl)rl.textContent=agg.count.toLocaleString('ru-RU')+' '+plural(agg.count,'отзыв','отзыва','отзывов');
         line.childNodes.forEach(function(n){
           if(n.nodeType===3&&/\d,\d/.test(n.textContent))
             n.textContent=n.textContent.replace(/\d+,\d+/,agg.avg.toFixed(1).replace('.',','));
@@ -399,8 +401,9 @@ function hpReviewsInit(){
     if(top&&agg){
       top.innerHTML='<span class="num">'+agg.avg.toFixed(1).replace('.',',')+'</span>'+
         '<div><div class="stars">'+'★'.repeat(Math.round(agg.avg))+'</div>'+
-        '<div class="sub" style="margin:0">'+agg.count.toLocaleString('ru-RU')+' оценок покупательниц'+
-        (list.length?' · ниже '+list.length+' '+(list.length%10===1&&list.length%100!==11?'отзыв':'отзывов')+' с фото':'')+
+        '<div class="sub" style="margin:0">'+agg.count.toLocaleString('ru-RU')+' '+
+        plural(agg.count,'оценка','оценки','оценок')+' покупательниц'+
+        (list.length?' · ниже '+list.length+' '+plural(list.length,'отзыв','отзыва','отзывов')+' с фото':'')+
         '</div></div>';
     }else if(top){ top.style.display='none'; }
 
