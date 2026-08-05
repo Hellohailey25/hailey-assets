@@ -358,7 +358,25 @@ function hpReviewsInit(){
    '.hp .revs .rev .rz{font-size:11.5px;color:var(--ink-3);margin-top:4px}'+
    '.hp .revlb{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:99999;display:none;'+
    'align-items:center;justify-content:center;padding:20px}'+
-   '.hp .revlb.on{display:flex}.hp .revlb img{max-width:100%;max-height:92vh;border-radius:8px}';
+   '.hp .revlb.on{display:flex}.hp .revlb img{max-width:100%;max-height:92vh;border-radius:8px}'+
+   /* плашка «соответствует размеру» с распределением при наведении */
+   '.hp .fitbox{position:relative;display:inline-flex;align-items:center;gap:7px;margin-left:14px;'+
+   'padding:6px 12px;border-radius:20px;background:var(--paper2);font-size:12.5px;color:var(--ink-2);cursor:default}'+
+   '.hp .fitbox svg{width:14px;height:14px;stroke:var(--ink-2);fill:none;stroke-width:1.8}'+
+   '.hp .fitbox b{color:var(--ink);font-weight:600}'+
+   '.hp .fitpop{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-4px);'+
+   'width:290px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;'+
+   'box-shadow:0 18px 44px rgba(0,0,0,.16);opacity:0;pointer-events:none;transition:.18s;z-index:50}'+
+   '.hp .fitbox:hover .fitpop,.hp .fitbox:focus-within .fitpop{opacity:1;transform:translateX(-50%);pointer-events:auto}'+
+   '.hp .fitpop .row{margin-bottom:12px}'+
+   '.hp .fitpop .row:last-of-type{margin-bottom:0}'+
+   '.hp .fitpop .rt{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;color:var(--ink-2);margin-bottom:5px}'+
+   '.hp .fitpop .rt b{font-size:16px;color:var(--ink);font-weight:600}'+
+   '.hp .fitpop .bar{height:5px;border-radius:20px;background:var(--line-soft);overflow:hidden}'+
+   '.hp .fitpop .bar i{display:block;height:100%;border-radius:20px;background:var(--accent)}'+
+   '.hp .fitpop .note{margin-top:12px;padding-top:10px;border-top:1px solid var(--line-soft);font-size:11.5px;color:var(--ink-3);line-height:1.45}'+
+   '@media(max-width:600px){.hp .fitbox{margin-left:0;margin-top:10px}.hp .fitpop{left:0;transform:none;width:min(290px,86vw)}'+
+   '.hp .fitbox:hover .fitpop,.hp .fitbox:focus-within .fitpop{transform:none}}';
   document.head.appendChild(css);
 
   box.innerHTML='<div style="color:var(--ink-3);font-size:13.5px;padding:6px 0">Загружаем отзывы…</div>';
@@ -395,6 +413,25 @@ function hpReviewsInit(){
         h+='</div>';
       });
       box.innerHTML=h;
+    }
+
+    /* «Берут свой размер» — из отметок покупательниц в отзывах (ok/маломерит/большемерит).
+       Показываем только при достаточном числе оценок, иначе процент недостоверен. */
+    var fit=(d.fit||{})[nm];
+    var line=document.querySelector('.hp .rev-line');
+    if(fit&&fit.all&&line&&!line.querySelector('.fitbox')){
+      var pc=function(x){return Math.round(x/fit.all*100);};
+      var ok=pc(fit.ok), sm=pc(fit.smaller), bg=pc(fit.bigger);
+      var box=document.createElement('span'); box.className='fitbox'; box.tabIndex=0;
+      box.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'+
+        '<span><b>'+ok+'%</b> берут свой размер</span>'+
+        '<span class="fitpop">'+
+          '<span class="row"><span class="rt">Маломерит<b>'+sm+'%</b></span><span class="bar"><i style="width:'+sm+'%"></i></span></span>'+
+          '<span class="row"><span class="rt">Соответствует размеру<b>'+ok+'%</b></span><span class="bar"><i style="width:'+ok+'%"></i></span></span>'+
+          '<span class="row"><span class="rt">Большемерит<b>'+bg+'%</b></span><span class="bar"><i style="width:'+bg+'%"></i></span></span>'+
+          '<span class="note">По оценкам '+fit.all+' покупательниц, которые отметили посадку в отзыве.</span>'+
+        '</span>';
+      line.appendChild(box);
     }
 
     var link=document.querySelector('.hp .revlink');
