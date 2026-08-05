@@ -141,7 +141,7 @@
     var all=[];
     Object.keys(DATA.reviews||{}).forEach(function(nm){
       if(cur&&nm!==cur)return;
-      all=all.concat(DATA.reviews[nm]);
+      all=all.concat(DATA.reviews[nm].filter(function(r){return (r.photos||[]).length;}));  // только с фото
     });
     // сначала с фото, дальше по дате — фото убеждают сильнее текста
     all.sort(function(a,b){
