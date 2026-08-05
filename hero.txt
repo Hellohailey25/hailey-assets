@@ -17,7 +17,7 @@
   .hxC .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:10px}
   .hxC h1{font-weight:300;text-transform:uppercase;line-height:1.02;letter-spacing:-.015em;
     font-size:clamp(30px,8.4vw,44px);margin-bottom:10px}
-  .hxC h1 b{font-weight:800}
+  .hxC h1 b{font-weight:800;white-space:nowrap}
   .hxC .sub{font-size:14px;line-height:1.45;color:var(--ink-2);max-width:34ch;margin:0 auto}
   .hxC .sub b{color:var(--ink);font-weight:700}
   /* кнопки — прижаты к низу экрана поверх кадра */
@@ -56,12 +56,12 @@
     .hxC .shot{align-items:flex-end;justify-content:flex-end;
       padding:0 clamp(8px,3vw,56px) clamp(10px,2.4vh,28px) 0}
     .hxC .shot img{width:auto;height:auto;max-height:92%;max-width:46%}   /* не 100%: иначе обувь упирается в край экрана */
-    .hxC .top{position:relative;transform:none;text-align:left;padding:0;max-width:min(52%,760px)}
+    .hxC .top{position:relative;transform:none;text-align:left;padding:0;max-width:min(56%,980px)}
     /* размер живёт от ширины, но ограничен высотой окна: на низком ноутбуке не разорвёт экран */
-    .hxC h1{font-size:clamp(40px,min(6vw,13vh),112px);line-height:.98;margin-bottom:18px}
+    .hxC h1{font-size:clamp(40px,min(5vw,12.5vh),96px);line-height:.98;margin-bottom:18px;text-wrap:balance}
     .hxC .eyebrow{font-size:12px;letter-spacing:.32em;margin-bottom:18px}
     .hxC .sub{font-size:clamp(15px,1.15vw,19px);max-width:44ch;margin:0}
-    .hxC .bottom{position:relative;margin:clamp(20px,3vh,34px) 0 0;padding:0;max-width:min(52%,760px);background:none;border:0}
+    .hxC .bottom{position:relative;margin:clamp(20px,3vh,34px) 0 0;padding:0;max-width:min(56%,980px);background:none;border:0}
     .hxC .cta{gap:12px}
     .hxC .btn{flex:0 0 auto;padding:17px 30px;font-size:13px}
     .hxC .trust{text-align:left;margin-top:18px;font-size:11px}
