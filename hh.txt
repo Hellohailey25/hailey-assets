@@ -389,14 +389,14 @@ function hpReviewsInit(){
         if(rl)rl.textContent=agg.count.toLocaleString('ru-RU')+' отзывов';
         line.childNodes.forEach(function(n){
           if(n.nodeType===3&&/\d,\d/.test(n.textContent))
-            n.textContent=n.textContent.replace(/\d+,\d+/,String(agg.avg).replace('.',','));
+            n.textContent=n.textContent.replace(/\d+,\d+/,agg.avg.toFixed(1).replace('.',','));
         });
       }
     }
 
     var top=document.querySelector('.hp .rev-top');
     if(top&&agg){
-      top.innerHTML='<span class="num">'+String(agg.avg).replace('.',',')+'</span>'+
+      top.innerHTML='<span class="num">'+agg.avg.toFixed(1).replace('.',',')+'</span>'+
         '<div><div class="stars">'+'★'.repeat(Math.round(agg.avg))+'</div>'+
         '<div class="sub" style="margin:0">'+agg.count.toLocaleString('ru-RU')+' оценок покупательниц</div></div>';
     }else if(top){ top.style.display='none'; }
