@@ -9,7 +9,7 @@
   :root[data-theme="light"] .hf{--paper:#F2F0EB;--ink:#23262C;--ink-3:#8A9099;--line:rgba(35,38,44,.14)}
   :root[data-theme="white"] .hf{--paper:#FFFFFF;--ink:#1A1C22;--ink-3:#8A9099;--line:rgba(20,22,28,.12)}
   .hf a{color:inherit;text-decoration:none}
-  .hf .wrap{width:min(1440px,92vw);margin:0 auto}
+  .hf .wrap{width:min(1680px,94vw);margin:0 auto}
   .hf .foot{border-top:1px solid var(--line);padding:44px 0 40px}
   .hf .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
   .hf .fgrid h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;font-weight:600}
