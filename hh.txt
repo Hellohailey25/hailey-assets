@@ -320,7 +320,7 @@
    Живёт в сквозной шапке намеренно: иначе правку пришлось бы раскатывать
    на 17 карточек по отдельности при каждом изменении.
    ========================================================================= */
-(function(){
+function hpReviewsInit(){
   var box=document.querySelector('.hp .revs'); if(!box) return;      // не карточка товара
   var SRC='https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/reviews.json';
   var MAX=20;
@@ -426,5 +426,10 @@
   }).catch(function(){
     box.innerHTML='<div style="color:var(--ink-3);font-size:13.5px;padding:6px 0">Отзывы временно недоступны.</div>';
   });
-})();
+}
+/* ГРАБЛИ: шапка идёт на странице ПЕРВОЙ и её скрипт выполняется до того, как
+   отрисован блок карточки товара — querySelector('.hp .revs') возвращал null
+   и функция молча выходила, оставляя на сайте выдуманные отзывы. */
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hpReviewsInit);
+else hpReviewsInit();
 </script>
