@@ -362,7 +362,8 @@ function hpReviewsInit(){
   box.innerHTML='<div style="color:var(--ink-3);font-size:13.5px;padding:6px 0">Загружаем отзывы…</div>';
 
   fetch(SRC+'?t='+Date.now()).then(function(r){return r.json();}).then(function(d){
-    var nm=sku(), list=(d.reviews||{})[nm]||[], agg=(d.products||{})[nm]||null;
+    var nm=sku(), agg=(d.products||{})[nm]||null;
+    var list=((d.reviews||{})[nm]||[]).filter(function(r){return (r.photos||[]).length;});
 
     /* Разметка для поисковиков: в шаблоне у ВСЕХ карточек стоял один выдуманный
        рейтинг 4.9/946. Фиктивный aggregateRating — прямой повод понизить сайт в выдаче. */
@@ -398,11 +399,13 @@ function hpReviewsInit(){
     if(top&&agg){
       top.innerHTML='<span class="num">'+agg.avg.toFixed(1).replace('.',',')+'</span>'+
         '<div><div class="stars">'+'★'.repeat(Math.round(agg.avg))+'</div>'+
-        '<div class="sub" style="margin:0">'+agg.count.toLocaleString('ru-RU')+' оценок покупательниц</div></div>';
+        '<div class="sub" style="margin:0">'+agg.count.toLocaleString('ru-RU')+' оценок покупательниц'+
+        (list.length?' · ниже '+list.length+' '+(list.length%10===1&&list.length%100!==11?'отзыв':'отзывов')+' с фото':'')+
+        '</div></div>';
     }else if(top){ top.style.display='none'; }
 
     if(!list.length){
-      box.innerHTML='<div style="color:var(--ink-3);font-size:13.5px;padding:6px 0">Отзывы на этот товар скоро появятся.</div>';
+      box.innerHTML='<div style="color:var(--ink-3);font-size:13.5px;padding:6px 0">Отзывы с фотографиями на этот товар скоро появятся.</div>';
     }else{
       var h='';
       list.slice(0,MAX).forEach(function(r){
