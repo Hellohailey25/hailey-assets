@@ -211,13 +211,13 @@
   :root[data-theme="dark"] .hlxh{--paper:#16181d;--ink:#ECE9E1;--ink-2:#a2a8b3;--ink-3:#727a86;--accent:#9CB0D0}
   :root[data-theme="light"] .hlxh{--paper:#FFFFFF;--ink:#23262C;--ink-2:#5C626B;--ink-3:#8A9099;--accent:#2B3648}
   :root[data-theme="white"] .hlxh{--paper:#FFFFFF;--ink:#1A1C22;--ink-2:#565B63;--ink-3:#8A9099;--accent:#2B3648}
-  :root[data-theme="dark"] .hc{--paper:#14130F;--paper2:#1c1b16;--card:#1b1a15;--ink:#EDEAE1;--ink-64:rgba(237,234,225,.66);--ink-44:rgba(237,234,225,.46);--line:rgba(237,234,225,.14);--line-soft:rgba(237,234,225,.08);--accent:#9CB0D0;--accent-2:#7688a6;--good:#7cc79a}
+  :root[data-theme="dark"] .hc{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEAE1;--ink-64:rgba(237,234,225,.66);--ink-44:rgba(237,234,225,.46);--line:rgba(237,234,225,.14);--line-soft:rgba(237,234,225,.08);--accent:#9CB0D0;--accent-2:#7688a6;--good:#7cc79a}
   :root[data-theme="light"] .hc{--paper:#F2F0EB;--paper2:#E9E6DF;--card:#FBFAF7;--ink:#191712;--ink-64:rgba(25,23,18,.64);--ink-44:rgba(25,23,18,.44);--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.08);--accent:#2B3648;--accent-2:#55647E;--good:#2f6b46}
   :root[data-theme="white"] .hc{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-64:rgba(25,23,18,.64);--ink-44:rgba(25,23,18,.44);--line:rgba(25,23,18,.12);--line-soft:rgba(25,23,18,.06);--accent:#2B3648;--accent-2:#55647E;--good:#2f6b46}
-  :root[data-theme="dark"] .hsg{--paper:#14130F;--paper2:#1c1b16;--card:#1b1a15;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--accent:#9CB0D0;--good:#7cc79a}
+  :root[data-theme="dark"] .hsg{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--accent:#9CB0D0;--good:#7cc79a}
   :root[data-theme="light"] .hsg{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46}
   :root[data-theme="white"] .hsg{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06);--accent:#2B3648;--good:#2f6b46}
-  :root[data-theme="dark"] .hlxc{--paper:#14130F;--ink:#EDEAE1;--ink-64:rgba(237,234,225,.66);--ink-40:rgba(237,234,225,.42);--line:rgba(237,234,225,.14);--accent:#9CB0D0}
+  :root[data-theme="dark"] .hlxc{--paper:#16181d;--ink:#EDEAE1;--ink-64:rgba(237,234,225,.66);--ink-40:rgba(237,234,225,.42);--line:rgba(237,234,225,.14);--accent:#9CB0D0}
   :root[data-theme="light"] .hlxc{--paper:#F2F0EB;--ink:#191712;--ink-64:rgba(25,23,18,.60);--ink-40:rgba(25,23,18,.40);--line:rgba(25,23,18,.12);--accent:#2B3648}
   :root[data-theme="white"] .hlxc{--paper:#FFFFFF;--ink:#191712;--ink-64:rgba(25,23,18,.60);--ink-40:rgba(25,23,18,.40);--line:rgba(25,23,18,.10);--accent:#2B3648}
   /* === тонкий разделитель между блоками: ОДНА линия во всю ширину на границе === */
@@ -306,10 +306,23 @@
     var bs=thm.querySelectorAll('button');
     for(var i=0;i<bs.length;i++)bs[i].classList.toggle('on',bs[i].getAttribute('data-t')===n);
   }
+  /* Цвет «шапки» браузера: на айфоне им красится полоса со временем и сетью, на андроиде —
+     строка адреса. Без него Safari берёт белый и при тёмной теме сверху остаётся белая
+     полоса поперёк экрана. Держим ровно те же цвета, что и фон страницы. */
+  var BAR={light:'#F2F0EB',white:'#FFFFFF',dark:'#141821'};
+  function paintBar(n){
+    var c=BAR[n]||BAR.light;
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(!m){m=document.createElement('meta');m.setAttribute('name','theme-color');document.head.appendChild(m);}
+    m.setAttribute('content',c);
+    // Safari красит и «подложку» страницы за пределами контента — иначе при оттяжке видно белое
+    document.documentElement.style.background=c;
+    document.body.style.background=c;
+  }
   function setTheme(n){
     document.documentElement.setAttribute('data-theme',n);
     try{localStorage.setItem('hailey-theme',n);}catch(e){}
-    markTheme(n);
+    markTheme(n);paintBar(n);
   }
   // без явного выбора сайт идёт за системной темой (@media prefers-color-scheme),
   // поэтому подсвечиваем её же — иначе у гостя с тёмным телефоном горит «Бежевая» на тёмном сайте
@@ -318,7 +331,13 @@
     if(a)return a;
     return (window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light';
   }
-  markTheme(curTheme());
+  markTheme(curTheme());paintBar(curTheme());
+  // гость без явного выбора идёт за системой — перекрашиваем полосу и когда система переключается
+  if(window.matchMedia){
+    var mq=window.matchMedia('(prefers-color-scheme:dark)');
+    var onSys=function(){if(!document.documentElement.getAttribute('data-theme'))paintBar(curTheme());};
+    if(mq.addEventListener)mq.addEventListener('change',onSys);
+  }
   if(thm)thm.addEventListener('click',function(e){
     var b=e.target.closest('button[data-t]');
     if(b)setTheme(b.getAttribute('data-t'));   // меню не закрываем: тему видно сразу, можно перещёлкнуть
