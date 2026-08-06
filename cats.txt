@@ -17,7 +17,7 @@
 .hlxc .tile.jeans .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/pryamye.webp') center/cover}
 .hlxc .tile.jackets .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/rvanye.webp') center/cover}
 .hlxc .tile.hoodie .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/baggi.webp') center/cover}
-  .hlxc .tile.wide .bg{background:url('https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/c516x688/1.webp') center/cover}
+  .hlxc .tile.wide .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/shirokie.webp') center/cover}
 .hlxc .tile .cap{position:absolute;left:30px;bottom:30px;right:30px;color:#fff}
 .hlxc .tile .n{font-size:26px;font-weight:700;letter-spacing:.01em;margin-bottom:8px;display:block}
 .hlxc .tile .m{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82);display:block}
