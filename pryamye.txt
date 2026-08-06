@@ -54,8 +54,7 @@
     .hc .subcats.open .scl{display:block}
   }
   /* --- фильтры: одна кнопка + выезжающая панель (как бургер-меню) --- */
-  .hc .fbar{display:flex;align-items:center;gap:12px;padding:14px 0 4px;margin-bottom:4px;
-    border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .hc .fbar{display:flex;align-items:center;gap:12px;padding:14px 0 4px;margin-bottom:4px}
   /* Кнопка и сортировка — в тон полю поиска (тонкая рамка, приглушённый текст), а не чёрной плашкой:
      управление не должно спорить с товаром. Активные фильтры подсвечивает только счётчик. */
   .hc .fbtn{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border:1px solid var(--line);border-radius:30px;
@@ -264,7 +263,12 @@
   .hc .ship.done .sl svg{stroke:var(--good)}
   .hc .ship.done .bar i{background:var(--good)}
   /* кросс-селл «добавьте к заказу» */
-  .hc .xsell{margin:8px 0 18px;padding:13px 15px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+  .hc .xsell{margin:8px 0 18px;padding:11px 13px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+  /* Апселл занимал пол-экрана и заслонял сам заказ — ужимаем в две узкие строки */
+  .hc .xrow{padding:4px 0}
+  .hc .xi{width:38px!important;height:50px!important;flex:0 0 auto}
+  .hc .xn{font-size:12.5px;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .hc .xn b{display:block;margin-top:2px}
   .hc .xsell .xh{display:flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-64);margin-bottom:10px}
   .hc .xrow{display:flex;gap:11px;align-items:center;padding:6px 0}
   .hc .xrow .xi{width:42px;height:53px;border-radius:4px;flex:0 0 auto;background-size:cover;background-position:center;background-color:var(--paper2)}
@@ -361,7 +365,7 @@
   <button class="cartbtn" id="cartBtn">Корзина <span class="cc" id="cc">0</span></button>
   <div class="scrim" id="scrim"></div>
   <aside class="drawer" id="drawer" aria-label="Корзина">
-    <div class="dh"><b>Корзина</b><button class="x" id="closeCart">✕</button></div>
+    <div class="dh"><b>Корзина<span id="cartCnt" style="font-weight:400;opacity:.55"></span></b><button class="x" id="closeCart">✕</button></div>
     <div class="ship" id="shipWrap" style="display:none"></div>
     <div class="body" id="cartBody"></div>
     <div class="foot" id="cartFoot">
@@ -769,6 +773,11 @@
        +'<div class="cp mono">'+rub(i.price*i.qty)+'</div></div><button class="rm" data-a="rm" data-i="'+idx+'">Удалить</button></div>';
     }).join('')+xsellHTML();
     var g=goods(),sv=savings();
+    // сколько позиций в заказе — прямо в шапке корзины, иначе за апселлом его не видно
+    var _cc=document.getElementById('cartCnt');
+    if(_cc){var _n=cart.reduce(function(s,i){return s+i.qty;},0);
+      var _w=function(n){var t=n%100;if(t>=11&&t<=14)return 'товаров';t=n%10;return t===1?'товар':(t>=2&&t<=4?'товара':'товаров');};
+      _cc.textContent=_n?(' · '+_n+' '+_w(_n)):'';}
     document.getElementById('sumGoods').textContent=rub(g);
     document.getElementById('sumTotal').textContent=rub(g);
     var sr=document.getElementById('saveRow');if(sr){sr.style.display=sv>0?'flex':'none';var ss=document.getElementById('sumSave');if(ss)ss.textContent='−'+rub(sv);}
