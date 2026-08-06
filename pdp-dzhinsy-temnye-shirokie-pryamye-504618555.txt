@@ -109,6 +109,9 @@
   var vids=[].map.call(thumbs.querySelectorAll('img'),function(i){return i.getAttribute('data-video')||'';});
   var N=srcs.length;
   if(N<2)return;
+  // С какого кадра открывать: видео стоит первой миниатюрой, но карточка открывается фото —
+  // стартовый кадр помечен class="on" в разметке превью.
+  var START=0;[].forEach.call(thumbs.querySelectorAll('img'),function(t,i){if(t.classList.contains('on'))START=i;});
 
   // ---- лента главного фото: [клон последнего] 0..N-1 [клон первого] ----
   var track=document.createElement('div');track.className='mtrack';
@@ -122,7 +125,7 @@
     }else{
       var im=new Image();
       // кадр за пределами экрана грузим лениво: на старте нужен только первый
-      if(idx!==0){im.loading='lazy';im.decoding='async';}
+      if(idx!==START){im.loading='lazy';im.decoding='async';}
       im.src=srcs[idx];im.alt=alts[idx];im.draggable=false;
       s.appendChild(im);
     }
@@ -196,7 +199,7 @@
     if(p<=0)track.scrollLeft=N*W();
     else if(p>=N+1)track.scrollLeft=W();
   }
-  jump(1,false);
+  jump(START+1,false);
 
   // Телепорт с кадра-клона на его оригинал. Делать только после остановки прокрутки:
   // если дёргать scrollLeft во время движения, браузер доводит его до старой цели и кадр возвращается.
