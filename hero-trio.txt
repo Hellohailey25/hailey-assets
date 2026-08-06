@@ -130,8 +130,8 @@
   </div>
     <div class="bottom">
       <div class="cta">
-        <a class="btn dark" href="#shop">Смотреть коллекцию</a>
-        <a class="btn ghost" href="/kak-vybrat-razmer">Подобрать размер</a>
+        <a class="btn dark" href="/catalog">Смотреть коллекцию</a>
+        <a class="btn ghost" href="/catalog" data-promo>Скидка 10% на первый заказ</a>
       </div>
       <div class="trust">Примерка дома · Возврат 14 дней · Оплата картой или СБП</div>
     </div>
