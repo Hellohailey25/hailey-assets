@@ -610,7 +610,9 @@
       return u;
     };
     var slides=imgs.map(function(u,i){
-      var inner='<img src="'+card(u)+'" alt="'+p.name+(i?' — фото '+(i+1):'')+'"'+(i?' loading="lazy"':'')+'>';
+      // Битая картинка (обрыв или чистка кэша CDN) оставляла серый прямоугольник — одна попытка перезагрузить
+      var inner='<img src="'+card(u)+'" alt="'+p.name+(i?' — фото '+(i+1):'')+'"'+(i?' loading="lazy"':'')
+        +' onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.split(\'?\')[0]+\'?r=\'+Date.now();}">';
       return link?('<a class="slide" href="'+link+'"'+tgt+'>'+inner+'</a>'):('<span class="slide">'+inner+'</span>');
     }).join('');
     var multi=imgs.length>1;
