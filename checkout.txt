@@ -47,6 +47,17 @@
   .hco .opt .px.free{color:var(--good)}
   .hco .more{font-size:13px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:13px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
   .hco .more:hover{color:var(--ink)}
+  .hco .promo{margin:14px 0 4px}
+  .hco .promo .prow{display:flex;gap:8px}
+  .hco .promo input{flex:1;min-width:0;padding:11px 12px;border:1px solid var(--line);border-radius:4px;
+    background:var(--paper2);color:var(--ink);font-family:inherit;font-size:13.5px;text-transform:uppercase}
+  .hco .promo input:focus{outline:none;border-color:var(--accent);background:transparent}
+  .hco .promo button{padding:11px 16px;border:1px solid var(--line);border-radius:4px;background:transparent;
+    color:var(--ink);font-family:inherit;font-size:13px;cursor:pointer;white-space:nowrap;transition:.16s}
+  .hco .promo button:hover{border-color:var(--ink)}
+  .hco .promo .pmsg{font-size:12px;margin-top:7px;display:none}
+  .hco .promo .pmsg.ok{color:var(--good);display:block}
+  .hco .promo .pmsg.no{color:#c8503f;display:block}
   .hco #cmtBox{display:none;margin-top:11px}
   /* сводка */
   .hco .sum{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,22px);position:sticky;top:88px}
@@ -152,8 +163,13 @@
             <div class="lbl" style="margin-bottom:6px">Ваш заказ</div>
             <div id="items"></div>
             <div class="ship" id="ship"></div>
+            <div class="promo" id="promoBox">
+              <div class="prow"><input id="f_promo" type="text" placeholder="Я знаю промокод" autocomplete="off" spellcheck="false"><button type="button" id="promoGo">Применить</button></div>
+              <div class="pmsg" id="promoMsg"></div>
+            </div>
             <div class="tot">
               <div class="tr"><span style="color:var(--ink-2)">Товары</span><span id="tGoods">0 руб</span></div>
+              <div class="tr save" id="rPromo" style="display:none"><span>Промокод <b id="tPromoCode"></b></span><span id="tPromo">0 руб</span></div>
               <div class="tr save" id="rSave" style="display:none"><span>Ваша выгода</span><span id="tSave">0 руб</span></div>
               <div class="tr"><span style="color:var(--ink-2)">Доставка</span><span id="tShip">уточнит менеджер</span></div>
               <div class="tr big"><span>Итого</span><span id="tTotal">0 руб</span></div>
@@ -226,10 +242,40 @@
     $('tGoods').textContent=rub(g);
     $('rSave').style.display=sv>0?'flex':'none';$('tSave').textContent='−'+rub(sv);
     $('tShip').textContent=free?'бесплатно':'уточнит менеджер';
-    $('tTotal').textContent=rub(g);
-    var t='Заказать · '+rub(g);
+    var cut=promoCut(g);
+    $('rPromo').style.display=cut?'flex':'none';
+    $('tPromoCode').textContent=promo;$('tPromo').textContent='−'+rub(cut);
+    $('tTotal').textContent=rub(g-cut);
+    var t='Заказать · '+rub(g-cut);
     $('doOrder').textContent=t;$('doOrderM').textContent=t;
   }
+  /* Промокод. Скидку тут только ПОКАЗЫВАЕМ — к оплате её пересчитывает сервер (/pay/create),
+     иначе код можно было бы придумать в консоли браузера. Список кодов держать одинаковым
+     здесь и в PROMOS в pay_endpoint.py. */
+  var PROMOS={'HAILEY10':10};
+  var promo='';
+  // считаем ровно как сервер — построчно, иначе показанная скидка разойдётся с суммой к оплате
+  function promoCut(g){
+    var pc=PROMOS[promo]||0;
+    if(!pc)return 0;
+    var after=cart.reduce(function(s,i){return s+Math.max(1,Math.round(i.price*(100-pc)/100))*i.qty;},0);
+    return g-after;
+  }
+  try{promo=(localStorage.getItem('hailey_promo_v1')||'').toUpperCase();}catch(e){}
+  if(PROMOS[promo]){$('f_promo').value=promo;$('promoMsg').textContent='Промокод применён: −'+PROMOS[promo]+'%';$('promoMsg').className='pmsg ok';}
+  else promo='';
+  function applyPromo(){
+    var v=($('f_promo').value||'').trim().toUpperCase();
+    var m=$('promoMsg');
+    if(!v){promo='';m.className='pmsg';render();return;}
+    if(PROMOS[v]){promo=v;try{localStorage.setItem('hailey_promo_v1',v);}catch(e){}
+      m.textContent='Промокод применён: −'+PROMOS[v]+'%';m.className='pmsg ok';}
+    else{promo='';m.textContent='Такого промокода нет';m.className='pmsg no';}
+    render();
+  }
+  $('promoGo').addEventListener('click',applyPromo);
+  $('f_promo').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();applyPromo();}});
+
   $('items').addEventListener('click',function(e){
     var b=e.target.closest('[data-a]');if(!b)return;var i=+b.dataset.i,a=b.dataset.a;
     if(a==='inc')cart[i].qty++;else if(a==='dec'){cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);}else cart.splice(i,1);
@@ -260,9 +306,10 @@
   function orderText(){
     var L=cart.map(function(i){return '• '+i.name+(i.size?' (размер '+i.size+')':'')+' × '+i.qty+' = '+rub(i.price*i.qty);});
     L.push('———');
-    L.push('ИТОГО: '+rub(goods()));
+    L.push('ИТОГО: '+rub(goods()-promoCut(goods())));
     L.push('Доставка: '+dlv+(($('f_city').value||'').trim()?', '+$('f_city').value.trim():'')+(($('f_addr').value||'').trim()?', '+$('f_addr').value.trim():''));
     L.push('Оплата: '+pay);
+    if(promo&&PROMOS[promo])L.push('Промокод: '+promo+' (−'+PROMOS[promo]+'%)');
     var c=($('f_cmt').value||'').trim();if(c)L.push('Комментарий: '+c);
     return 'Заказ HAILEY (сайт)\n'+L.join('\n');
   }
@@ -294,7 +341,7 @@
     var t=setTimeout(finish,12000);
     try{
       fetch(PAY+'/create',{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({order_id:num,name:name,phone:phone,
+        body:JSON.stringify({order_id:num,name:name,phone:phone,promo:promo,
           method:(pay==='СБП'?'sbp':'card'),
           items:snapshot.map(function(i){return{id:i.id,qty:i.qty,size:i.size||''};})})})
       .then(function(r){return r.json();})
