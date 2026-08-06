@@ -3,9 +3,6 @@
 .hlxc{--paper:#F2F0EB;--ink:#191712;--ink-64:rgba(25,23,18,.60);--ink-40:rgba(25,23,18,.40);--line:rgba(25,23,18,.14);--disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
   background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;padding-bottom:96px}
 .hlxc a{text-decoration:none;color:inherit}
-.hlxc .strip{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:56px;padding:22px 24px;border-bottom:1px solid var(--line)}
-.hlxc .strip span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-40);position:relative}
-.hlxc .strip span::before{content:"·";position:absolute;left:-30px;color:var(--ink-40)}
 .hlxc .wrap{width:min(1680px,94vw);margin:0 auto}
 .hlxc .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:72px 0 42px}
 .hlxc .label{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-40);font-weight:600;margin-bottom:18px}
@@ -17,18 +14,17 @@
 .hlxc .tile{position:relative;aspect-ratio:3/4;overflow:hidden;display:block;border-radius:4px}.hlxc .tile .bg{transition:transform .7s cubic-bezier(.2,.7,.2,1)}.hlxc .tile:hover .bg{transform:scale(1.06)}.hlxc .tile .cap{transition:transform .35s ease;transform-origin:left bottom}.hlxc .tile:hover .cap{transform:scale(1.05)}
 .hlxc .tile .bg{position:absolute;inset:0}
 .hlxc .tile .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.12) 42%,rgba(0,0,0,0) 68%)}
-.hlxc .tile.jeans .bg{background:url('https://lh3.googleusercontent.com/d/1Yi_BFRUn1MBPKwlWQbL_B10GqAziBKAe=w1000') center/cover}
-.hlxc .tile.jackets .bg{background:url('https://lh3.googleusercontent.com/d/1v8DCXTqh6cTC11y5TaD46QHoE812jKuM=w1000') center/cover}
-.hlxc .tile.hoodie .bg{background:url('https://lh3.googleusercontent.com/d/1YldUFYf-RyExfLzYUTKOzwV3pU9Ye-6v=w1000') center/cover}
-  .hlxc .tile.wide .bg{background:url('https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/big/1.webp') center/cover}
+.hlxc .tile.jeans .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/pryamye.webp') center/cover}
+.hlxc .tile.jackets .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/rvanye.webp') center/cover}
+.hlxc .tile.hoodie .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/baggi.webp') center/cover}
+  .hlxc .tile.wide .bg{background:url('https://basket-27.wbbasket.ru/vol5044/part504407/504407015/images/c516x688/1.webp') center/cover}
 .hlxc .tile .cap{position:absolute;left:30px;bottom:30px;right:30px;color:#fff}
 .hlxc .tile .n{font-size:26px;font-weight:700;letter-spacing:.01em;margin-bottom:8px;display:block}
 .hlxc .tile .m{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82);display:block}
 @media(max-width:860px){
   /* Плашка «доставка · оплата · 40 000 · возврат» на телефоне занимала целый экран
      между баннером и каталогом — те же обещания уже стоят в шапке и в карточке. */
-  .hlxc .strip{display:none}
-  .hlxc .head{flex-direction:column;align-items:flex-start;padding:34px 0 24px}
+    .hlxc .head{flex-direction:column;align-items:flex-start;padding:34px 0 24px}
   .hlxc .grid{grid-template-columns:repeat(2,1fr);gap:12px}
   /* Кадры держим вертикальными, как карточки товара: в приплюснутом 16/11
      от модели оставались ноги и понять крой было нельзя. */
@@ -38,4 +34,4 @@
   .hlxc .tile .m{font-size:10px;letter-spacing:.1em;line-height:1.35}
 }
 </style>
-<div class="hlxc"> <div class="strip"> <span>Доставка по РФ от 2 дней</span> <span>Оплата картой или СБП</span> <span>40 000+ покупательниц</span> <span>Гарантия возврата</span> </div> <div class="wrap"> <div class="head"> <div> <div class="label">Каталог</div> <h2>Выбери <b>свой крой</b></h2> </div> <a class="all" href="/catalog">Весь каталог →</a> </div> <div class="grid"> <a class="tile jeans" href="/catalog/pryamye-dzhinsy"><span class="bg"></span><span class="cap"><span class="n">ПРЯМЫЕ</span><span class="m">Плотный деним · держат форму</span></span></a> <a class="tile jackets" href="/catalog/rvanye-dzhinsy"><span class="bg"></span><span class="cap"><span class="n">РВАНЫЕ</span><span class="m">Винтажные потёртости · хит 2026</span></span></a> <a class="tile hoodie" href="/catalog/baggi-dzhinsy"><span class="bg"></span><span class="cap"><span class="n">БАГГИ</span><span class="m">Свободный оверсайз · комфорт</span></span></a> <a class="tile wide" href="/catalog/shirokie-dzhinsy"><span class="bg"></span><span class="cap"><span class="n">ШИРОКИЕ</span><span class="m">Прямые и трубы · вытягивают силуэт</span></span></a> </div> </div> </div>
+<div class="hlxc">  <div class="wrap"> <div class="head"> <div> <div class="label">Каталог</div> <h2>Выбери <b>свой крой</b></h2> </div> <a class="all" href="/catalog">Весь каталог →</a> </div> <div class="grid"> <a class="tile jeans" href="/catalog/pryamye-dzhinsy"><span class="bg"></span><span class="cap"><span class="n">ПРЯМЫЕ</span><span class="m">Плотный деним · держат форму</span></span></a> <a class="tile jackets" href="/catalog/rvanye-dzhinsy"><span class="bg"></span><span class="cap"><span class="n">РВАНЫЕ</span><span class="m">Винтажные потёртости · хит 2026</span></span></a> <a class="tile hoodie" href="/catalog/baggi-dzhinsy"><span class="bg"></span><span class="cap"><span class="n">БАГГИ</span><span class="m">Свободный оверсайз · комфорт</span></span></a> <a class="tile wide" href="/catalog/shirokie-dzhinsy"><span class="bg"></span><span class="cap"><span class="n">ШИРОКИЕ</span><span class="m">Прямые и трубы · вытягивают силуэт</span></span></a> </div> </div> </div>
