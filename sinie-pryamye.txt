@@ -586,8 +586,16 @@
     // Кадры листаются свайпом; каждый — ссылка на товар, поэтому тап по фото = открыть карточку
     // (отдельная кнопка «Подробнее» убрана). Свайп кликом не считается — это нативный скролл ленты.
     var imgs=(p.imgs&&p.imgs.length)?p.imgs:[p.img];
+    // Карточка на витрине ~190-380 px, а сюда приходили ПОЛНОРАЗМЕРНЫЕ кадры по 50-105 КБ:
+    // на телефоне это мегабайт с лишним и фото дорисовывалось кусками. Берём средний вариант.
+    var card=function(u){
+      if(u.indexOf('/images/big/')>-1)return u.replace('/images/big/','/images/c516x688/');
+      if(u.indexOf('lmcdn.ru/img600x866/')>-1)return u.replace('/img600x866/','/img389x562/');
+      if(u.indexOf('/photos/')>-1){var k=u.lastIndexOf('/');return u.slice(0,k+1)+'c'+u.slice(k+1);}
+      return u;
+    };
     var slides=imgs.map(function(u,i){
-      var inner='<img src="'+u+'" alt="'+p.name+(i?' — фото '+(i+1):'')+'"'+(i?' loading="lazy"':'')+'>';
+      var inner='<img src="'+card(u)+'" alt="'+p.name+(i?' — фото '+(i+1):'')+'"'+(i?' loading="lazy"':'')+'>';
       return link?('<a class="slide" href="'+link+'"'+tgt+'>'+inner+'</a>'):('<span class="slide">'+inner+'</span>');
     }).join('');
     var multi=imgs.length>1;
