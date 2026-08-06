@@ -309,12 +309,18 @@
   /* Цвет «шапки» браузера: на айфоне им красится полоса со временем и сетью, на андроиде —
      строка адреса. Без него Safari берёт белый и при тёмной теме сверху остаётся белая
      полоса поперёк экрана. Держим ровно те же цвета, что и фон страницы. */
-  var BAR={light:'#F2F0EB',white:'#FFFFFF',dark:'#141821'};
+  var BAR={light:'#F2F0EB',white:'#FFFFFF',dark:'#16181d'};
   function paintBar(n){
     var c=BAR[n]||BAR.light;
-    var m=document.querySelector('meta[name="theme-color"]');
-    if(!m){m=document.createElement('meta');m.setAttribute('name','theme-color');document.head.appendChild(m);}
-    m.setAttribute('content',c);
+    // В <head> лежат ДВА тега (светлый и media=dark) — их вставляет «Вставка кода» проекта,
+    // чтобы Safari знал цвет ещё до нашего скрипта. При явном выборе темы красим ОБА:
+    // иначе на телефоне с системной тёмной победит media-вариант и выбор «Бежевая» не сработает.
+    var ms=document.querySelectorAll('meta[name="theme-color"]');
+    if(!ms.length){
+      var m=document.createElement('meta');m.setAttribute('name','theme-color');
+      document.head.appendChild(m);ms=[m];
+    }
+    [].forEach.call(ms,function(m){m.setAttribute('content',c);});
     // Safari красит и «подложку» страницы за пределами контента — иначе при оттяжке видно белое
     document.documentElement.style.background=c;
     document.body.style.background=c;
