@@ -476,7 +476,11 @@ function hpReviewsInit(){
    '.hp .fitpop{position:absolute;top:calc(100% + 10px);left:0;transform:translateY(-4px);'+
    'width:290px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;'+
    'box-shadow:0 18px 44px rgba(0,0,0,.16);opacity:0;pointer-events:none;transition:.18s;z-index:50}'+
-   '.hp .fitnote:hover .fitpop,.hp .fitnote:focus-within .fitpop{opacity:1;transform:none;pointer-events:auto}'+
+   /* .on ставит скрипт по клику/тапу: на телефоне наведения нет вообще,
+      да и на десктопе кликом надёжнее — плашка узкая. */
+   '.hp .fitnote:hover .fitpop,.hp .fitnote:focus-within .fitpop,.hp .fitnote.on .fitpop'+
+   '{opacity:1;transform:none;pointer-events:auto}'+
+   '.hp .fitnote{cursor:pointer}'+
    '.hp .fitpop .row{margin-bottom:12px}'+
    '.hp .fitpop .row:last-of-type{margin-bottom:0}'+
    '.hp .fitpop .rt{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;color:var(--ink-2);margin-bottom:5px}'+
@@ -544,6 +548,15 @@ function hpReviewsInit(){
           '<span class="row"><span class="rt">Большемерит<b>'+bg+'%</b></span><span class="bar"><i style="width:'+bg+'%"></i></span></span>'+
           '<span class="note">По оценкам '+fit.all+' покупательниц, которые отметили посадку в отзыве.</span>'+
         '</span>');
+      // Клик/тап по плашке открывает и закрывает распределение. Ссылку «по отзывам покупательниц»
+      // не перехватываем — она уводит к вкладке отзывов.
+      note.addEventListener('click',function(e){
+        if(e.target.closest('a'))return;
+        note.classList.toggle('on');
+      });
+      document.addEventListener('click',function(e){
+        if(!e.target.closest('.hp .fitnote'))note.classList.remove('on');
+      });
     }
 
     var link=document.querySelector('.hp .revlink');
