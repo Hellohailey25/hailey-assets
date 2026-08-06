@@ -16,10 +16,10 @@
     position:relative;overflow:hidden;display:flex;flex-direction:column;
     min-height:calc(100vh - var(--hh,0px));min-height:calc(100svh - var(--hh,0px))}
   :root[data-theme="white"] .hxD{--paper:#FFFFFF;--paper-2:#F4F4F5;--line:rgba(25,23,18,.11)}
-  :root[data-theme="dark"] .hxD{--paper:#14130F;--paper-2:#1c1b16;--ink:#EDEAE1;
+  :root[data-theme="dark"] .hxD{--paper:#16181d;--paper-2:#1d2027;--ink:#EDEAE1;
     --ink-64:rgba(237,234,225,.66);--ink-44:rgba(237,234,225,.46);--line:rgba(237,234,225,.14);--accent:#9CB0D0}
   @media(prefers-color-scheme:dark){
-    :root:not([data-theme="light"]):not([data-theme="white"]) .hxD{--paper:#14130F;--paper-2:#1c1b16;
+    :root:not([data-theme="light"]):not([data-theme="white"]) .hxD{--paper:#16181d;--paper-2:#1d2027;
       --ink:#EDEAE1;--ink-64:rgba(237,234,225,.66);--ink-44:rgba(237,234,225,.46);
       --line:rgba(237,234,225,.14);--accent:#9CB0D0}
   }
