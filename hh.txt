@@ -225,7 +225,12 @@
   :root[data-theme="light"] .hlxc{--paper:#F2F0EB;--ink:#191712;--ink-64:rgba(25,23,18,.60);--ink-40:rgba(25,23,18,.40);--line:rgba(25,23,18,.12);--accent:#2B3648}
   :root[data-theme="white"] .hlxc{--paper:#FFFFFF;--ink:#191712;--ink-64:rgba(25,23,18,.60);--ink-40:rgba(25,23,18,.40);--line:rgba(25,23,18,.10);--accent:#2B3648}
   /* === тонкий разделитель между блоками: ОДНА линия во всю ширину на границе === */
-  .hlxh,.hlxc,.hc,.hpr,.hf{border-top:1px solid color-mix(in srgb,currentColor 8%,transparent)}
+  /* Разделитель между блоками — по ширине контента, а не во всю ширину экрана.
+     Раньше это был border-top на самом блоке и линия упиралась в края. */
+  .hlxh,.hlxc,.hc,.hpr,.hf{border-top:0;position:relative}
+  .hlxh::before,.hlxc::before,.hc::before,.hpr::before,.hf::before{content:"";position:absolute;
+    top:0;left:50%;transform:translateX(-50%);width:min(1680px,94vw);height:1px;
+    background:color-mix(in srgb,currentColor 8%,transparent);pointer-events:none;z-index:1}
   /* гасим внутренние/контентные дубли-линии, чтобы не было двойных и разной ширины */
   .ha .about-social,.hf .foot{border-top:none!important}
 </style>
