@@ -133,7 +133,7 @@
         <a class="btn dark" href="/catalog">Смотреть коллекцию</a>
         <a class="btn ghost" href="/catalog" data-promo>Скидка 10% на первый заказ</a>
       </div>
-      <div class="trust">Примерка дома · Возврат 14 дней · Оплата картой или СБП</div>
+      <div class="trust">Оплата картой или СБП · Возврат 14 дней · Доставка по РФ</div>
     </div>
   </div>
   <div class="strips">
