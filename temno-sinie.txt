@@ -613,8 +613,11 @@
   function render(){
     renderFilters();
     document.getElementById('h1t').textContent=titleFor();
-    document.getElementById('sdesc').textContent=CONFIG.desc||'';
-    var _sb=document.getElementById('sdescB');if(_sb)_sb.textContent=CONFIG.desc||'';
+    var _d=CONFIG.desc||'';
+    var _s=document.getElementById('sdesc');
+    if(_s){_s.textContent=_d;_s.style.display=_d?'':'none';}
+    var _sb=document.getElementById('sdescB');
+    if(_sb){_sb.textContent=_d;_sb.style.display=_d?'':'none';}
     // Хлебные крошки: полная вложенность с «Главная». «Каталог» — ссылка только когда мы ГЛУБЖЕ него
     // (страница категории/под-категории); на самом каталоге это текущая страница → простой <b>, без само-ссылки.
     var base='/'+(CONFIG.baseSlug||'catalog');
