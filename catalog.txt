@@ -153,10 +153,11 @@
   .hc .bdg.def{background:rgba(20,23,30,.75)}
   /* Избранное — ОДИН вид везде (листинг/карточка/телефон/десктоп): белый кружок, контурное сердце,
      в активном состоянии заливается акцентом. Держать в паре с .hh .fav в блоке шапки. */
-  .hc .fav{position:absolute;top:10px;right:10px;z-index:7;width:32px;height:32px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.86);backdrop-filter:blur(4px);
-    box-shadow:0 1px 5px rgba(0,0,0,.14);transition:transform .18s,background .18s}
-  .hc .fav svg{width:17px;height:17px;fill:none;stroke:#23262C;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:.18s}
+  .hc .fav{position:absolute;top:10px;right:10px;z-index:7;min-width:32px;height:32px;padding:0 9px;gap:5px;
+    border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.86);
+    backdrop-filter:blur(4px);box-shadow:0 1px 5px rgba(0,0,0,.14);transition:transform .18s,background .18s}
+  .hc .fav svg{width:17px;height:17px;fill:none;stroke:#23262C;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:.18s;flex:0 0 auto}
+  .hc .fav .fc{font-size:11.5px;line-height:1;color:#23262C;font-variant-numeric:tabular-nums}
   .hc .fav:hover{transform:scale(1.1);background:#fff}
   .hc .fav.on svg{fill:#e2574c;stroke:#e2574c}
   .hc .hover{position:absolute;left:12px;right:12px;bottom:26px;z-index:5;display:flex;flex-direction:column;gap:8px;
@@ -579,7 +580,7 @@
       +(multi?'<button class="arw l" data-arw="-1" aria-label="Предыдущее фото">‹</button><button class="arw r" data-arw="1" aria-label="Следующее фото">›</button>':'')
       +'<div class="phscrim"></div>'
       +((p.badges&&p.badges.length)?'<div class="badges">'+p.badges.map(function(b){return '<span class="bdg '+bcls(b)+'">'+b+'</span>';}).join('')+'</div>':'')
-      +'<button class="fav" aria-label="В избранное"><svg viewBox="0 0 24 24"><path d="M12 20.7l-1.4-1.3C5.4 14.6 2 11.5 2 7.8 2 5 4.2 3 6.9 3c1.6 0 3.1.7 4.1 1.9C12 3.7 13.5 3 15.1 3 17.8 3 20 5 20 7.8c0 3.7-3.4 6.8-8.6 11.6L12 20.7z"/></svg></button>'
+      +'<button class="fav" aria-label="В избранное"><span class="fc"></span><svg viewBox="0 0 24 24"><path d="M12 20.7l-1.4-1.3C5.4 14.6 2 11.5 2 7.8 2 5 4.2 3 6.9 3c1.6 0 3.1.7 4.1 1.9C12 3.7 13.5 3 15.1 3 17.8 3 20 5 20 7.8c0 3.7-3.4 6.8-8.6 11.6L12 20.7z"/></svg></button>'
       +'<div class="hover">'
       +'<button class="hb quick" data-quick>Купить в 1 клик</button></div></div>'
       +'<div class="info">'
@@ -642,6 +643,14 @@
   function favLoad(){try{var a=JSON.parse(localStorage.getItem(FAV_KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
   function favSave(a){try{localStorage.setItem(FAV_KEY,JSON.stringify(a));}catch(e){}}
   function favHas(id){return favLoad().some(function(i){return i.id===id;});}
+  /* Число рядом с сердечком — витринный социальный сигнал, а НЕ реальная статистика:
+     считать её нам негде (лайки живут в localStorage браузера покупательницы).
+     Берём от артикула, поэтому у товара оно всегда одно и то же и не прыгает при перезагрузке. */
+  function favBase(id){
+    var n=0,s=String(id||'');
+    for(var i=0;i<s.length;i++)n=(n*31+s.charCodeAt(i))>>>0;
+    return 28+(n%372);
+  }
   function favToggle(c){
     var a=favLoad(),id=c.dataset.id,i=-1;
     a.forEach(function(x,n){if(x.id===id)i=n;});
@@ -656,12 +665,14 @@
       b.onclick=function(){var c=b.closest('.card');openSizePicker(prodOf(c),sizesOf(c),'add');};
     });
     root.querySelectorAll('.fav').forEach(function(f){
-      var c=f.closest('.card');
-      f.classList.toggle('on',favHas(c.dataset.id));
+      var c=f.closest('.card'), fc=f.querySelector('.fc');
+      var base=favBase(c.dataset.id);
+      var draw=function(on){f.classList.toggle('on',on);if(fc)fc.textContent=base+(on?1:0);};
+      draw(favHas(c.dataset.id));
       f.onclick=function(e){
         e.preventDefault();e.stopPropagation();
         var added=favToggle(c);
-        f.classList.toggle('on',added);
+        draw(added);
         showToast(added?'Добавлено в избранное':'Убрано из избранного');
       };
     });
