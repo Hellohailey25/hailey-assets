@@ -130,6 +130,7 @@
      ГРАБЛИ: оба элемента лежат ВНЕ .hh (сразу за шапкой), поэтому переменные
      --paper/--card/--line до них не доходят — фон был прозрачным, текст чёрным.
      Цвета задаём явными значениями и переключаем по data-theme вручную. */
+  .hh-up,.hh-ck,.hh-ck *{box-sizing:border-box}
   .hh-up,.hh-ck{--c-bg:#FBFAF7;--c-ink:#23262C;--c-ink2:#5C626B;--c-line:rgba(35,38,44,.16);--c-accent:#2B3648}
   @media(prefers-color-scheme:dark){.hh-up,.hh-ck{--c-bg:#1c1f26;--c-ink:#ECE9E1;--c-ink2:#a2a8b3;--c-line:rgba(236,233,225,.18);--c-accent:#9CB0D0}}
   :root[data-theme="light"] .hh-up,:root[data-theme="light"] .hh-ck{--c-bg:#FBFAF7;--c-ink:#23262C;--c-ink2:#5C626B;--c-line:rgba(35,38,44,.16);--c-accent:#2B3648}
