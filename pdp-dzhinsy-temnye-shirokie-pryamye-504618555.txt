@@ -23,6 +23,11 @@
 .hp .btn.tg:hover{background:#1f7d4c}
 .hp .btn.tg svg{width:18px;height:18px;fill:currentColor}
 .hp .drawer .trust{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;font-size:11px;color:var(--ink-3);margin-top:13px}
+.hp .xsell .xh{width:100%;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;text-align:left}
+.hp .xsell .xc{margin-left:auto;width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s ease}
+.hp .xsell.on .xc{transform:rotate(-135deg) translateY(-2px)}
+.hp .xsell .xb{display:none;margin-top:10px}
+.hp .xsell.on .xb{display:block}
 .hp .drawer .trust span{display:flex;align-items:center;gap:4px}
 .hp .drawer .trust svg{width:14px;height:14px;stroke:var(--ink-3);fill:none;stroke-width:1.7}
 </style>
@@ -63,8 +68,9 @@
   var hs=$('hpSave');if(hs){hs.style.display=sv>0?'flex':'none';var vv=$('hpSaveV');if(vv)vv.textContent='−'+rub(sv);}
   var sd=$('sumDelivery');if(sd)sd.textContent=g>=SHIP_FREE?'Бесплатно':'по РФ, от 2 дней';
   var xs=$('hpXsell');
-  if(xs){if(!c.length){xs.innerHTML='';}else{idx().then(function(list){var x=$('hpXsell');if(!x)return;var inn={};c.forEach(function(i){inn[i.name]=1;});var pool=list.filter(function(pp){return !inn[pp.n];});pool.sort(function(a,b){return ((b.o-b.p)||0)-((a.o-a.p)||0);});var rec=pool.slice(0,2);if(!rec.length){x.innerHTML='';return;}x.innerHTML='<div class="xsell"><div class="xh"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>Добавьте к заказу</div>'+rec.map(function(pp){return '<a class="xrow" href="'+(pp.u||'#')+'"><div class="xi" style="background-image:url('+pp.i+')"></div><div class="xn">'+pp.n+'<b class="mono">'+rub(pp.p)+'</b></div><span class="xgo">→</span></a>';}).join('')+'</div>';});}}
+  if(xs){if(!c.length){xs.innerHTML='';}else{idx().then(function(list){var x=$('hpXsell');if(!x)return;var inn={};c.forEach(function(i){inn[i.name]=1;});var pool=list.filter(function(pp){return !inn[pp.n];});pool.sort(function(a,b){return ((b.o-b.p)||0)-((a.o-a.p)||0);});var rec=pool.slice(0,2);if(!rec.length){x.innerHTML='';return;}x.innerHTML='<div class="xsell"><button class="xh" type="button"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>Добавьте к заказу<i class="xc"></i></button><div class="xb">'+rec.map(function(pp){return '<a class="xrow" href="'+(pp.u||'#')+'"><div class="xi" style="background-image:url('+pp.i+')"></div><div class="xn">'+pp.n+'<b class="mono">'+rub(pp.p)+'</b></div><span class="xgo">→</span></a>';}).join('')+'</div></div>';});}}
  }
+ document.addEventListener('click',function(ev){var t=ev.target.closest&&ev.target.closest('.hp .xsell .xh');if(t)t.parentNode.classList.toggle('on');});
  function init(){if(!boot())return;new MutationObserver(function(){renderEnh();}).observe($('cartBody'),{childList:true,subtree:true});window.addEventListener('storage',function(e){if(e.key===KEY)renderEnh();});renderEnh();}
  if(document.readyState!=='loading')setTimeout(init,0);else document.addEventListener('DOMContentLoaded',init);
 }catch(e){}})();
