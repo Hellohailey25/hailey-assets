@@ -165,6 +165,43 @@
   .hh-ck .no{background:transparent;color:var(--c-ink2);border-color:var(--c-line)}
   .hh-ck .no:hover{color:var(--c-ink);border-color:var(--c-ink2)}
   @media(max-width:860px){.hh-ck{left:12px;right:12px;bottom:12px;width:auto;padding:16px}}
+  /* ===== Поп-ап «−10% на первый заказ»: собирает базу для рассылки =====
+     Открывает ЛЮБОЙ элемент с data-promo (кнопка на главной, ссылки в подвале и т.д.). */
+  .hh-pm,.hh-pm *{box-sizing:border-box}
+  .hh-pm{--c-bg:#FBFAF7;--c-ink:#23262C;--c-ink2:#5C626B;--c-line:rgba(35,38,44,.16);--c-accent:#2B3648}
+  @media(prefers-color-scheme:dark){.hh-pm{--c-bg:#1c1f26;--c-ink:#ECE9E1;--c-ink2:#a2a8b3;--c-line:rgba(236,233,225,.18);--c-accent:#9CB0D0}}
+  :root[data-theme="light"] .hh-pm{--c-bg:#FBFAF7;--c-ink:#23262C;--c-ink2:#5C626B;--c-line:rgba(35,38,44,.16);--c-accent:#2B3648}
+  :root[data-theme="white"] .hh-pm{--c-bg:#FFFFFF;--c-ink:#1A1C22;--c-ink2:#565B63;--c-line:rgba(20,22,28,.14);--c-accent:#2B3648}
+  :root[data-theme="dark"] .hh-pm{--c-bg:#1c1f26;--c-ink:#ECE9E1;--c-ink2:#a2a8b3;--c-line:rgba(236,233,225,.18);--c-accent:#9CB0D0}
+  .hh-pm{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;
+    background:rgba(16,18,22,.55);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+  .hh-pm.on{display:flex}
+  .hh-pm .bx{width:min(420px,100%);background:var(--c-bg);color:var(--c-ink);border-radius:10px;padding:28px;
+    position:relative;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+  .hh-pm .x{position:absolute;top:12px;right:12px;width:30px;height:30px;border:none;background:none;cursor:pointer;
+    color:var(--c-ink2);font-size:20px;line-height:1;font-family:inherit}
+  .hh-pm .big{font-size:30px;font-weight:700;letter-spacing:-.01em}
+  .hh-pm h3{font-size:18px;font-weight:400;margin:4px 0 8px}
+  .hh-pm p{font-size:13px;color:var(--c-ink2);line-height:1.5;margin-bottom:16px}
+  .hh-pm input[type=email],.hh-pm input[type=tel]{width:100%;padding:12px 13px;border:1px solid var(--c-line);
+    border-radius:4px;background:transparent;color:var(--c-ink);font-family:inherit;font-size:14px;margin-bottom:9px}
+  .hh-pm input:focus{outline:none;border-color:var(--c-accent)}
+  .hh-pm input.err{border-color:#c8503f}
+  .hh-pm .agree{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--c-ink2);line-height:1.45;margin:4px 0 14px}
+  .hh-pm .agree input{margin-top:2px;flex:0 0 auto}
+  .hh-pm .agree a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+  .hh-pm .go{width:100%;padding:14px;border:1px solid var(--c-ink);background:var(--c-ink);color:var(--c-bg);
+    border-radius:4px;font-family:inherit;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;
+    font-weight:700;cursor:pointer;transition:.16s}
+  .hh-pm .go:hover{background:var(--c-accent);border-color:var(--c-accent)}
+  .hh-pm .tg{display:block;text-align:center;margin-top:12px;font-size:12.5px;color:var(--c-ink2);
+    text-decoration:underline;text-underline-offset:3px}
+  .hh-pm .emsg{font-size:12px;color:#c8503f;margin-bottom:10px;display:none}
+  .hh-pm .code{display:flex;align-items:center;justify-content:center;gap:10px;border:1px dashed var(--c-accent);
+    border-radius:6px;padding:15px;font-size:22px;font-weight:700;letter-spacing:.12em;margin:14px 0}
+  .hh-pm .code button{border:none;background:none;cursor:pointer;font-family:inherit;font-size:11px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--c-ink2);text-decoration:underline}
+  @media(max-width:520px){.hh-pm .bx{padding:22px}.hh-pm .big{font-size:26px}}
   .t706__carticon{display:none!important}
   /* прячем вшитые шапки страниц — их заменяет эта сквозная (корзина/тема остаются для связки) */
   .hp>.top,.hp>header{display:none!important}
@@ -238,6 +275,32 @@
   <p>Они нужны, чтобы корзина не терялась между страницами, а сайт работал быстрее.
     Подробнее — в <a href="/policy">политике конфиденциальности</a>.</p>
   <div class="row"><button class="ok" id="hhCkOk">Принять</button><button class="no" id="hhCkNo">Только необходимые</button></div>
+</div>
+<div class="hh-pm" id="hhPromo" role="dialog" aria-label="Скидка на первый заказ">
+  <div class="bx">
+    <button class="x" id="hhPmX" aria-label="Закрыть">×</button>
+    <div id="hhPmForm">
+      <div class="big">−10%</div>
+      <h3>на первый заказ</h3>
+      <p>Оставьте почту — сразу покажем промокод. Дальше будем присылать новинки и распродажи,
+         не чаще раза в неделю. Отписаться можно в один клик.</p>
+      <div class="emsg" id="hhPmErr"></div>
+      <input type="email" id="hhPmEmail" placeholder="Ваша почта" autocomplete="email" inputmode="email">
+      <input type="tel" id="hhPmPhone" placeholder="Телефон — если удобнее в WhatsApp (необязательно)" autocomplete="tel">
+      <label class="agree"><input type="checkbox" id="hhPmOk">
+        <span>Согласна на обработку персональных данных и получение писем.
+          <a href="/policy" target="_blank" rel="noopener">Политика</a>.</span></label>
+      <button class="go" id="hhPmGo">Показать промокод</button>
+      <a class="tg" href="https://t.me/Hailey_promo_bot" target="_blank" rel="noopener">или получить в Telegram →</a>
+    </div>
+    <div id="hhPmDone" style="display:none">
+      <div class="big">Готово</div>
+      <h3>Ваш промокод</h3>
+      <p>Введите его в корзине — скидка 10% посчитается сама.</p>
+      <div class="code"><span id="hhPmCode">HAILEY10</span><button id="hhPmCopy">Скопировать</button></div>
+      <button class="go" id="hhPmShop">В каталог</button>
+    </div>
+  </div>
 </div>
 <div class="hh-sp"></div>
 <script>
@@ -413,15 +476,16 @@ function hpReviewsInit(){
    '.hp .revlb{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:99999;display:none;'+
    'align-items:center;justify-content:center;padding:20px}'+
    '.hp .revlb.on{display:flex}.hp .revlb img{max-width:100%;max-height:92vh;border-radius:8px}'+
-   /* плашка «соответствует размеру» с распределением при наведении */
-   '.hp .fitbox{position:relative;display:inline-flex;align-items:center;gap:7px;margin-left:14px;'+
-   'padding:6px 12px;border-radius:20px;background:var(--paper2);font-size:12.5px;color:var(--ink-2);cursor:default}'+
-   '.hp .fitbox svg{width:14px;height:14px;stroke:var(--ink-2);fill:none;stroke-width:1.8}'+
-   '.hp .fitbox b{color:var(--ink);font-weight:600}'+
-   '.hp .fitpop{position:absolute;top:calc(100% + 10px);right:0;transform:translateY(-4px);'+
+   /* Распределение посадки — при наведении на зелёную плашку под размерами.
+      Раньше процент стоял ДВАЖДЫ: отдельной плашкой у артикула и в этой строке. Оставили одно место —
+      рядом с выбором размера, где он и нужен для решения. */
+   '.hp .fitnote{position:relative;cursor:default}'+
+   '.hp .fitnote .fitq{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;'+
+   'border-radius:50%;border:1px solid currentColor;font-size:10px;line-height:1;margin-left:4px;opacity:.75}'+
+   '.hp .fitpop{position:absolute;top:calc(100% + 10px);left:0;transform:translateY(-4px);'+
    'width:290px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;'+
    'box-shadow:0 18px 44px rgba(0,0,0,.16);opacity:0;pointer-events:none;transition:.18s;z-index:50}'+
-   '.hp .fitbox:hover .fitpop,.hp .fitbox:focus-within .fitpop{opacity:1;transform:none;pointer-events:auto}'+
+   '.hp .fitnote:hover .fitpop,.hp .fitnote:focus-within .fitpop{opacity:1;transform:none;pointer-events:auto}'+
    '.hp .fitpop .row{margin-bottom:12px}'+
    '.hp .fitpop .row:last-of-type{margin-bottom:0}'+
    '.hp .fitpop .rt{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;color:var(--ink-2);margin-bottom:5px}'+
@@ -429,7 +493,9 @@ function hpReviewsInit(){
    '.hp .fitpop .bar{height:5px;border-radius:20px;background:var(--line-soft);overflow:hidden}'+
    '.hp .fitpop .bar i{display:block;height:100%;border-radius:20px;background:var(--accent)}'+
    '.hp .fitpop .note{margin-top:12px;padding-top:10px;border-top:1px solid var(--line-soft);font-size:11.5px;color:var(--ink-3);line-height:1.45}'+
-   '@media(max-width:600px){.hp .fitbox{margin-left:0;margin-top:10px}.hp .fitpop{right:auto;left:0;width:min(290px,86vw)}}';
+   '@media(max-width:600px){.hp .fitpop{width:min(290px,86vw)}}'+
+   /* «В корзину» → «Перейти в корзину», пока выбранный размер уже лежит в корзине */
+   '.hp #addBtn.gocart{background:var(--good)!important;color:#fff!important;border-color:var(--good)!important}';
   document.head.appendChild(css);
 
   box.innerHTML='<div style="color:var(--ink-3);font-size:13.5px;padding:6px 0">Загружаем отзывы…</div>';
@@ -471,24 +537,20 @@ function hpReviewsInit(){
     /* «Берут свой размер» — из отметок покупательниц в отзывах (ok/маломерит/большемерит).
        Показываем только при достаточном числе оценок, иначе процент недостоверен. */
     var fit=(d.fit||{})[nm];
-    var line=document.querySelector('.hp .rev-line');
-    if(fit&&fit.all&&line&&!line.querySelector('.fitbox')){
+    var note=document.querySelector('.hp .fitnote');
+    if(fit&&fit.all&&note&&!note.querySelector('.fitpop')){
       var pc=function(x){return Math.round(x/fit.all*100);};
       var ok=pc(fit.ok), sm=pc(fit.smaller), bg=pc(fit.bigger);
-      var fitEl=document.createElement('span'); fitEl.className='fitbox'; fitEl.tabIndex=0;
-      fitEl.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'+
-        '<span><b>'+ok+'%</b> берут свой размер</span>'+
+      var b=note.querySelector('b'); if(b)b.textContent=ok+'%';   // в шаблоне стоят выдуманные 92%
+      note.tabIndex=0;
+      note.insertAdjacentHTML('beforeend',
+        '<span class="fitq">?</span>'+
         '<span class="fitpop">'+
           '<span class="row"><span class="rt">Маломерит<b>'+sm+'%</b></span><span class="bar"><i style="width:'+sm+'%"></i></span></span>'+
           '<span class="row"><span class="rt">Соответствует размеру<b>'+ok+'%</b></span><span class="bar"><i style="width:'+ok+'%"></i></span></span>'+
           '<span class="row"><span class="rt">Большемерит<b>'+bg+'%</b></span><span class="bar"><i style="width:'+bg+'%"></i></span></span>'+
           '<span class="note">По оценкам '+fit.all+' покупательниц, которые отметили посадку в отзыве.</span>'+
-        '</span>';
-      line.appendChild(fitEl);
-
-      /* та же цифра в зелёной плашке под сеткой размеров — в шаблоне там стояли выдуманные 92% */
-      var note=document.querySelector('.hp .fitnote b');
-      if(note)note.textContent=ok+'%';
+        '</span>');
     }
 
     var link=document.querySelector('.hp .revlink');
@@ -518,6 +580,49 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 else hpReviewsInit();
 
 /* =========================================================================
+   Кнопка «В корзину» на карточке товара.
+   Было: жмёшь сколько угодно — один и тот же размер копится в корзине,
+   а кнопка через 1,4 с возвращалась в исходный вид, будто ничего не произошло.
+   Стало: размер уже в корзине → кнопка «Перейти в корзину» и открывает её.
+   Родной обработчик блока не трогаем: перехватываем клик в фазе захвата
+   и не пускаем его дальше, когда добавлять уже нечего.
+   ========================================================================= */
+function hpBuyBtnInit(){
+  var btn=document.querySelector('.hp #addBtn'), box=document.querySelector('.hp #sizes');
+  if(!btn||!box) return;                                  // не карточка товара
+  var art=(document.querySelector('.hp .art')||{}).textContent||'';
+  var id=(art.match(/\d{6,}/)||[])[0]||'';
+  var LBL=btn.textContent;
+
+  function inCart(sz){
+    try{
+      return (JSON.parse(localStorage.getItem('hailey_cart_v1'))||[]).some(function(i){
+        return String(i.id)===String(id) && String(i.size)===String(sz);
+      });
+    }catch(e){ return false; }
+  }
+  function sync(){
+    var on=box.querySelector('.sz.on');
+    var go=!!(on && inCart(on.textContent.trim()));
+    btn.classList.toggle('gocart',go);
+    btn.textContent=go?'Перейти в корзину →':LBL;
+  }
+  btn.addEventListener('click',function(e){
+    if(!btn.classList.contains('gocart')) return;         // обычный клик — пусть кладёт в корзину
+    e.preventDefault(); e.stopImmediatePropagation();
+    var c=document.getElementById('hhCart'); if(c)c.click();
+  },true);
+  // родной обработчик 1,4 с держит «✓ Добавлено» — свою подпись ставим после него
+  btn.addEventListener('click',function(){ setTimeout(sync,1500); });
+  box.addEventListener('click',function(){ setTimeout(sync,20); });
+  window.addEventListener('storage',function(e){ if(e.key==='hailey_cart_v1') sync(); });
+  setInterval(sync,1500);                                 // удалили товар в корзине — кнопка вернётся
+  sync();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hpBuyBtnInit);
+else hpBuyBtnInit();
+
+/* =========================================================================
    Кнопка «наверх» и плашка о cookie — сквозные, живут в шапке.
    ========================================================================= */
 (function(){
@@ -543,5 +648,69 @@ else hpReviewsInit();
   }
   document.getElementById('hhCkOk').addEventListener('click',function(){close('all');});
   document.getElementById('hhCkNo').addEventListener('click',function(){close('necessary');});
+})();
+
+/* =========================================================================
+   Поп-ап «−10% на первый заказ».
+   Почта уходит на свой сервер (POST /pay/subscribe) — база остаётся у нас
+   и её можно выгрузить для рассылки; Игорю сразу падает сигнал в Telegram.
+   Открывает любой элемент с атрибутом data-promo — кнопку можно ставить где угодно.
+   ========================================================================= */
+(function(){
+  var pm=document.getElementById('hhPromo');
+  if(!pm) return;
+  var KEY='hailey_promo_v1';                      // выданный код помнит корзина
+  var ENDPOINT='https://hailey-looks.ru/pay/subscribe';
+  var frm=document.getElementById('hhPmForm'), done=document.getElementById('hhPmDone');
+  var em=document.getElementById('hhPmEmail'), ph=document.getElementById('hhPmPhone');
+  var ag=document.getElementById('hhPmOk'), err=document.getElementById('hhPmErr');
+  var go=document.getElementById('hhPmGo');
+
+  function open(){
+    var had='';try{had=localStorage.getItem(KEY)||'';}catch(e){}
+    // код уже получали — не заставляем оставлять почту второй раз
+    frm.style.display=had?'none':'block';
+    done.style.display=had?'block':'none';
+    if(had)document.getElementById('hhPmCode').textContent=had;
+    pm.classList.add('on');
+    if(!had)setTimeout(function(){em.focus();},60);
+  }
+  function shut(){pm.classList.remove('on');}
+
+  document.addEventListener('click',function(e){
+    var t=e.target&&e.target.closest?e.target.closest('[data-promo]'):null;
+    if(!t)return;
+    e.preventDefault(); open();
+  });
+  document.getElementById('hhPmX').addEventListener('click',shut);
+  pm.addEventListener('click',function(e){if(e.target===pm)shut();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')shut();});
+  document.getElementById('hhPmShop').addEventListener('click',function(){location.href='/catalog';});
+  document.getElementById('hhPmCopy').addEventListener('click',function(){
+    var c=document.getElementById('hhPmCode').textContent;
+    try{navigator.clipboard.writeText(c);this.textContent='Скопировано';}catch(e){}
+  });
+
+  function fail(msg,el){err.textContent=msg;err.style.display='block';if(el){el.classList.add('err');el.focus();}}
+  go.addEventListener('click',function(){
+    err.style.display='none';em.classList.remove('err');
+    var mail=(em.value||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail))return fail('Проверьте, пожалуйста, адрес почты',em);
+    if(!ag.checked)return fail('Нужно согласие на обработку данных');
+    go.disabled=true;go.textContent='Отправляем…';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:mail,phone:(ph.value||'').trim(),source:location.pathname})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(!d||!d.ok)throw 0;
+        try{localStorage.setItem(KEY,d.promo);}catch(e){}
+        document.getElementById('hhPmCode').textContent=d.promo;
+        frm.style.display='none';done.style.display='block';
+      })
+      .catch(function(){
+        go.disabled=false;go.textContent='Показать промокод';
+        fail('Не получилось отправить. Попробуйте ещё раз или напишите нам в Telegram.');
+      });
+  });
 })();
 </script>
