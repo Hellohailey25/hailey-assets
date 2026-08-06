@@ -279,27 +279,18 @@
 <div class="hh-pm" id="hhPromo" role="dialog" aria-label="Скидка на первый заказ">
   <div class="bx">
     <button class="x" id="hhPmX" aria-label="Закрыть">×</button>
-    <div id="hhPmForm">
-      <div class="big">−10%</div>
-      <h3>на первый заказ</h3>
-      <p>Оставьте почту — сразу покажем промокод. Дальше будем присылать новинки и распродажи,
-         не чаще раза в неделю. Отписаться можно в один клик.</p>
-      <div class="emsg" id="hhPmErr"></div>
-      <input type="email" id="hhPmEmail" placeholder="Ваша почта" autocomplete="email" inputmode="email">
-      <input type="tel" id="hhPmPhone" placeholder="Телефон — если удобнее в WhatsApp (необязательно)" autocomplete="tel">
-      <label class="agree"><input type="checkbox" id="hhPmOk">
-        <span>Согласна на обработку персональных данных и получение писем.
-          <a href="/policy" target="_blank" rel="noopener">Политика</a>.</span></label>
-      <button class="go" id="hhPmGo">Показать промокод</button>
-      <a class="tg" href="https://t.me/Hailey_promo_bot" target="_blank" rel="noopener">или получить в Telegram →</a>
-    </div>
-    <div id="hhPmDone" style="display:none">
-      <div class="big">Готово</div>
-      <h3>Ваш промокод</h3>
-      <p>Введите его в корзине — скидка 10% посчитается сама.</p>
-      <div class="code"><span id="hhPmCode">HAILEY10</span><button id="hhPmCopy">Скопировать</button></div>
-      <button class="go" id="hhPmShop">В каталог</button>
-    </div>
+    <div class="big">−10%</div>
+    <h3>на первый заказ</h3>
+    <p>Оставьте почту — и заберите промокод в нашем Telegram. Там же новинки и распродажи,
+       не чаще раза в неделю. Отписаться можно в один клик.</p>
+    <div class="emsg" id="hhPmErr"></div>
+    <input type="email" id="hhPmEmail" placeholder="Ваша почта" autocomplete="email" inputmode="email">
+    <label class="agree"><input type="checkbox" id="hhPmOk">
+      <span>Согласна на обработку персональных данных и получение писем.
+        <a href="/policy" target="_blank" rel="noopener">Политика</a>.</span></label>
+    <button class="go" id="hhPmGo">Забрать промокод в Telegram</button>
+    <a class="tg" id="hhPmManual" href="https://t.me/Hailey_promo_bot" target="_blank" rel="noopener"
+       style="display:none">Telegram не открылся — нажмите сюда →</a>
   </div>
 </div>
 <div class="hh-sp"></div>
@@ -490,8 +481,10 @@ function hpReviewsInit(){
    '.hp .fitpop .row:last-of-type{margin-bottom:0}'+
    '.hp .fitpop .rt{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;color:var(--ink-2);margin-bottom:5px}'+
    '.hp .fitpop .rt b{font-size:16px;color:var(--ink);font-weight:600}'+
-   '.hp .fitpop .bar{height:5px;border-radius:20px;background:var(--line-soft);overflow:hidden}'+
-   '.hp .fitpop .bar i{display:block;height:100%;border-radius:20px;background:var(--accent)}'+
+   /* Без серой подложки: у «Большемерит 0%» она рисовалась во всю ширину и читалась
+      как пустая серая полоска. Рисуем только заполненную часть. */
+   '.hp .fitpop .bar{height:5px;border-radius:20px;overflow:hidden}'+
+   '.hp .fitpop .bar i{display:block;height:100%;border-radius:20px;background:var(--accent);min-width:0}'+
    '.hp .fitpop .note{margin-top:12px;padding-top:10px;border-top:1px solid var(--line-soft);font-size:11.5px;color:var(--ink-3);line-height:1.45}'+
    '@media(max-width:600px){.hp .fitpop{width:min(290px,86vw)}}'+
    /* «В корзину» → «Перейти в корзину», пока выбранный размер уже лежит в корзине */
@@ -651,66 +644,69 @@ else hpBuyBtnInit();
 })();
 
 /* =========================================================================
-   Поп-ап «−10% на первый заказ».
-   Почта уходит на свой сервер (POST /pay/subscribe) — база остаётся у нас
-   и её можно выгрузить для рассылки; Игорю сразу падает сигнал в Telegram.
-   Открывает любой элемент с атрибутом data-promo — кнопку можно ставить где угодно.
+   Поп-ап «−10% на первый заказ» — сбор базы для рассылки.
+   Открывает любой элемент с атрибутом data-promo (кнопка на главной и где угодно).
+   Сам код НЕ показываем: почту сохранили и сразу уводим в Telegram-бота, он и выдаёт промокод.
+   Почта уходит в ДВА места:
+     • свой VPS (POST /pay/subscribe) — база остаётся у нас, её можно выгрузить;
+     • «Заявки» Tilda — тем же способом, что и заказы (форма из блока /checkout).
+   Оба запроса шлём через sendBeacon и НЕ ждём ответа: переход в Telegram должен быть мгновенным.
    ========================================================================= */
 (function(){
   var pm=document.getElementById('hhPromo');
   if(!pm) return;
-  var KEY='hailey_promo_v1';                      // выданный код помнит корзина
-  var ENDPOINT='https://hailey-looks.ru/pay/subscribe';
-  var frm=document.getElementById('hhPmForm'), done=document.getElementById('hhPmDone');
-  var em=document.getElementById('hhPmEmail'), ph=document.getElementById('hhPmPhone');
-  var ag=document.getElementById('hhPmOk'), err=document.getElementById('hhPmErr');
-  var go=document.getElementById('hhPmGo');
+  var KEY='hailey_promo_v1';                  // выданный код помнит корзина
+  var CODE='HAILEY10';
+  var BOT='https://t.me/Hailey_promo_bot';
+  var SUBS='https://hailey-looks.ru/pay/subscribe';
+  var TILDA='https://forms.tildacdn.com/procces/';
+  var TILDA_FORM='form2724802001', TILDA_SVC='8440afe0dfcf70373fdd19392ad1e851';
+  var em=document.getElementById('hhPmEmail'), ag=document.getElementById('hhPmOk');
+  var err=document.getElementById('hhPmErr'), go=document.getElementById('hhPmGo');
+  var manual=document.getElementById('hhPmManual');
 
-  function open(){
-    var had='';try{had=localStorage.getItem(KEY)||'';}catch(e){}
-    // код уже получали — не заставляем оставлять почту второй раз
-    frm.style.display=had?'none':'block';
-    done.style.display=had?'block':'none';
-    if(had)document.getElementById('hhPmCode').textContent=had;
-    pm.classList.add('on');
-    if(!had)setTimeout(function(){em.focus();},60);
-  }
   function shut(){pm.classList.remove('on');}
-
   document.addEventListener('click',function(e){
     var t=e.target&&e.target.closest?e.target.closest('[data-promo]'):null;
     if(!t)return;
-    e.preventDefault(); open();
+    e.preventDefault();
+    pm.classList.add('on');
+    setTimeout(function(){em.focus();},60);
   });
   document.getElementById('hhPmX').addEventListener('click',shut);
   pm.addEventListener('click',function(e){if(e.target===pm)shut();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')shut();});
-  document.getElementById('hhPmShop').addEventListener('click',function(){location.href='/catalog';});
-  document.getElementById('hhPmCopy').addEventListener('click',function(){
-    var c=document.getElementById('hhPmCode').textContent;
-    try{navigator.clipboard.writeText(c);this.textContent='Скопировано';}catch(e){}
-  });
 
+  function send(url,body,type){
+    try{
+      if(navigator.sendBeacon&&navigator.sendBeacon(url,new Blob([body],{type:type})))return;
+    }catch(e){}
+    // запасной путь: keepalive доносит запрос, даже если вкладка уже уходит на Telegram
+    try{fetch(url,{method:'POST',headers:{'Content-Type':type},body:body,keepalive:true});}catch(e){}
+  }
   function fail(msg,el){err.textContent=msg;err.style.display='block';if(el){el.classList.add('err');el.focus();}}
+
   go.addEventListener('click',function(){
     err.style.display='none';em.classList.remove('err');
     var mail=(em.value||'').trim();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail))return fail('Проверьте, пожалуйста, адрес почты',em);
     if(!ag.checked)return fail('Нужно согласие на обработку данных');
-    go.disabled=true;go.textContent='Отправляем…';
-    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email:mail,phone:(ph.value||'').trim(),source:location.pathname})})
-      .then(function(r){return r.json();})
-      .then(function(d){
-        if(!d||!d.ok)throw 0;
-        try{localStorage.setItem(KEY,d.promo);}catch(e){}
-        document.getElementById('hhPmCode').textContent=d.promo;
-        frm.style.display='none';done.style.display='block';
-      })
-      .catch(function(){
-        go.disabled=false;go.textContent='Показать промокод';
-        fail('Не получилось отправить. Попробуйте ещё раз или напишите нам в Telegram.');
-      });
+
+    send(SUBS, JSON.stringify({email:mail,source:location.pathname}), 'application/json');
+
+    var f=new URLSearchParams();
+    f.append('formid',TILDA_FORM);
+    f.append('formservices[]',TILDA_SVC);
+    f.append('Email',mail);
+    f.append('Name','Подписка на рассылку');
+    f.append('Comments','Промокод '+CODE+' · страница '+location.pathname);
+    f.append('tildaspec-formname','Подписка −10%');
+    send(TILDA, f.toString(), 'application/x-www-form-urlencoded;charset=UTF-8');
+
+    try{localStorage.setItem(KEY,CODE);}catch(e){}   // код сразу подставится в корзине
+    go.textContent='Открываем Telegram…';
+    manual.style.display='block';
+    location.href=BOT;
   });
 })();
 </script>
