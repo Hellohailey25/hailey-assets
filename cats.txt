@@ -14,10 +14,10 @@
 .hlxc .tile{position:relative;aspect-ratio:3/4;overflow:hidden;display:block;border-radius:4px}.hlxc .tile .bg{transition:transform .7s cubic-bezier(.2,.7,.2,1)}.hlxc .tile:hover .bg{transform:scale(1.06)}.hlxc .tile .cap{transition:transform .35s ease;transform-origin:left bottom}.hlxc .tile:hover .cap{transform:scale(1.05)}
 .hlxc .tile .bg{position:absolute;inset:0}
 .hlxc .tile .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.12) 42%,rgba(0,0,0,0) 68%)}
-.hlxc .tile.jeans .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/pryamye.webp') center/cover}
-.hlxc .tile.jackets .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/rvanye.webp') center/cover}
-.hlxc .tile.hoodie .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/baggi.webp') center/cover}
-  .hlxc .tile.wide .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/shirokie.webp') center/cover}
+.hlxc .tile.jeans .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@2af00c673ac9ecd000c7e1048762da292c53abbe/photos/cats/pryamye.webp') center/cover}
+.hlxc .tile.jackets .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@2af00c673ac9ecd000c7e1048762da292c53abbe/photos/cats/rvanye.webp') center/cover}
+.hlxc .tile.hoodie .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@2af00c673ac9ecd000c7e1048762da292c53abbe/photos/cats/baggi.webp') center/cover}
+  .hlxc .tile.wide .bg{background:url('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@2af00c673ac9ecd000c7e1048762da292c53abbe/photos/cats/shirokie.webp') center/cover}
 .hlxc .tile .cap{position:absolute;left:30px;bottom:30px;right:30px;color:#fff}
 .hlxc .tile .n{font-size:26px;font-weight:700;letter-spacing:.01em;margin-bottom:8px;display:block}
 .hlxc .tile .m{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82);display:block}
