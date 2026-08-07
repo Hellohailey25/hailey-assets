@@ -137,11 +137,11 @@
     </div>
   </div>
   <div class="strips">
-    <a class="st s1" href="/catalog/golubye-shirokie-dzhinsy" aria-label="Голубые широкие джинсы — смотреть подборку"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-varenye-shirokie.jpg" alt="Варёные широкие женские джинсы больших размеров HAILEY"><span class="cap">Варёные<i>→</i></span></a>
-    <a class="st s2" href="/catalog/baggi-dzhinsy" aria-label="Джинсы багги — смотреть подборку"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-svetlye-baggi.jpg" alt="Светлые джинсы багги больших размеров HAILEY"><span class="cap">Светлые багги<i>→</i></span></a>
+    <a class="st s1" href="/catalog/golubye-shirokie-dzhinsy" aria-label="Голубые широкие джинсы — смотреть подборку"><picture><source media="(max-width:640px)" srcset="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/hero/m-hero-varenye-shirokie.webp" type="image/webp"><img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/hero/hero-varenye-shirokie.webp" alt="Варёные широкие женские джинсы больших размеров HAILEY" width="800" height="1068" fetchpriority="high"></picture><span class="cap">Варёные<i>→</i></span></a>
+    <a class="st s2" href="/catalog/baggi-dzhinsy" aria-label="Джинсы багги — смотреть подборку"><picture><source media="(max-width:640px)" srcset="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/hero/m-hero-svetlye-baggi.webp" type="image/webp"><img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/hero/hero-svetlye-baggi.webp" alt="Светлые джинсы багги больших размеров HAILEY" width="800" height="1068" loading="lazy" decoding="async"></picture><span class="cap">Светлые багги<i>→</i></span></a>
     <!-- ВНИМАНИЕ: камуфляжных брюк в каталоге нет (18 товаров, все джинсы) — третья полоса
          временно ведёт в общий каталог. Появится товар — поменять адрес здесь. -->
-    <a class="st s3" href="/catalog" aria-label="Весь каталог HAILEY"><img src="https://raw.githubusercontent.com/Hellohailey25/hailey-assets/main/hero-kamuflyazh.jpg" alt="Камуфляжные широкие брюки HAILEY"><span class="cap">Камуфляж<i>→</i></span></a>
+    <a class="st s3" href="/catalog" aria-label="Весь каталог HAILEY"><picture><source media="(max-width:640px)" srcset="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/hero/m-hero-kamuflyazh.webp" type="image/webp"><img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/hero/hero-kamuflyazh.webp" alt="Камуфляжные широкие брюки HAILEY" width="800" height="1068" loading="lazy" decoding="async"></picture><span class="cap">Камуфляж<i>→</i></span></a>
   </div>
 </div>
 
