@@ -80,7 +80,7 @@
           <div><b>Размеры 42–74</b><span>найдётся на любую фигуру</span></div>
         </div>
       </div>
-      <div class="about-img"><img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/cats/about.webp" alt="Разработка джинсов HAILEY: лекала, деним, кожаная нашивка" loading="lazy"></div>
+      <div class="about-img"><img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@2af00c673ac9ecd000c7e1048762da292c53abbe/photos/cats/about.webp" alt="Разработка джинсов HAILEY: лекала, деним, кожаная нашивка" loading="lazy"></div>
     </div>
 </div></section>
 <section class="sect ha-reels"><div class="wrap">
