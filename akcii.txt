@@ -1,0 +1,41 @@
+<style>
+.hpr *{margin:0;padding:0;box-sizing:border-box}
+.hpr{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#23262C;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(35,38,44,.14);--accent:#2B3648;--disp:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;line-height:1.55;letter-spacing:.005em}
+@media(prefers-color-scheme:dark){.hpr{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#ECE9E1;--ink-2:#a2a8b3;--ink-3:#727a86;--line:rgba(236,233,225,.14);--accent:#9CB0D0}}
+:root[data-theme="dark"] .hpr{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#ECE9E1;--ink-2:#a2a8b3;--ink-3:#727a86;--line:rgba(236,233,225,.14);--accent:#9CB0D0}
+:root[data-theme="light"] .hpr{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#23262C;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(35,38,44,.14);--accent:#2B3648;--disp:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.hpr a{color:inherit;text-decoration:none}
+.hpr .wrap{width:min(1200px,92vw);margin:0 auto}
+  /* Разделитель — по ширине контента, а не во весь экран: border-top тянулся от края до края */
+  .hpr .sect{padding:54px 0;border-top:0;position:relative;scroll-margin-top:82px}
+  .hpr .sect::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:min(1680px,94vw);height:1px;background:var(--line);pointer-events:none}
+  .hpr .sect h2{font-size:26px;font-weight:400;margin-bottom:5px}
+  .hpr .sect .sub{color:var(--ink-3);font-size:14px;margin-bottom:26px}
+  .hpr .promo{background:var(--accent);color:#fff;border-radius:8px;padding:30px 32px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+  .hpr .promo .promo-h{font-size:21px;font-weight:400;line-height:1.2}
+  .hpr .promo .promo-s{font-size:13.5px;opacity:.82;margin-top:6px}
+  .hpr .promo-form{display:flex;gap:10px;flex-wrap:wrap}
+  .hpr .promo-form input{padding:14px 16px;border:1px solid rgba(255,255,255,.32);border-radius:5px;background:rgba(255,255,255,.10);color:#fff;font-family:inherit;font-size:15px;min-width:220px}
+  .hpr .promo-form input::placeholder{color:rgba(255,255,255,.6)}
+  .hpr .promo-form input:focus{outline:none;border-color:#fff;background:rgba(255,255,255,.16)}
+  .hpr .promo-form .btn{display:inline-block;text-align:center;text-decoration:none;background:#fff;color:var(--ink);padding:14px 22px;border-radius:5px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;cursor:pointer;white-space:nowrap}
+  .hpr .promo-form .btn:hover{opacity:.9}
+  .hpr .promo-err{color:#e0917f;font-size:13px;margin-top:10px;min-height:1px}
+</style>
+<div class="hpr">
+  <section class="sect" id="offer"><div class="wrap">
+    <h2>Акции</h2><div class="sub">Скидка на первый заказ через сайт</div>
+    <div class="promo">
+      <div class="promo-txt">
+        <div class="promo-h">Получите −10% на первый заказ</div>
+        <div class="promo-s">Оставьте почту — промокод придёт в Telegram.</div>
+      </div>
+      <div class="promo-form">
+        <input type="email" id="promoEmail" placeholder="Ваша почта" autocomplete="email">
+        <a class="btn" id="promoBtn" href="https://t.me/Hailey_promo_bot" target="_blank" rel="noopener">Получить промокод</a>
+      </div>
+    </div>
+    <div class="promo-err" id="promoErr"></div>
+  </div></section>
+</div>
