@@ -46,14 +46,17 @@
 
     <div class="grid" id="hblGrid"></div>
 
-    <div class="soon">Скоро: гид по джинсам багги, мом и не только — новые статьи выходят каждую неделю.</div>
+    <div class="soon">Скоро: гиды по джинсам мом, скинни и трубам — новые статьи выходят каждую неделю.</div>
   </div>
 </div>
 
 <script>
 (function(){
   var ARTICLES=[
-    {url:'/blog/vidy-i-nazvaniya-dzhinsov',tag:'Гид по фасонам',title:'Виды женских джинсов: все фасоны с названиями и фото',
+    {url:'/blog/dzhinsy-baggi-gid',tag:'Гид №2 · Фасон',title:'Джинсы багги: что это, кому подойдут и как носить',
+     desc:'Что значит «багги», отличия от бойфрендов и слоучи, правила длины и 4 формулы образов.',
+     img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754505251/1.webp',date:'8 августа 2026'},
+    {url:'/blog/vidy-i-nazvaniya-dzhinsov',tag:'Гид №1 · Все фасоны',title:'Виды женских джинсов: все фасоны с названиями и фото',
      desc:'Прямые, трубы, багги, мом, клёш, палаццо — сравнительная таблица 15 фасонов и советы, кому что идёт.',
      img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504638231/1.webp',date:'8 августа 2026'},
     {url:'/kak-vybrat-razmer',tag:'Размеры',title:'Таблица размеров женских джинсов 42–74: как выбрать свой',
