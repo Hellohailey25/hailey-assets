@@ -8,14 +8,14 @@
 <style>
   .hbg *{margin:0;padding:0;box-sizing:border-box}
   .hbg{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
-    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;--link:#2456A6;
     --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
     background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
     line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px);position:relative}
-  @media(prefers-color-scheme:dark){.hbg{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}}
+  @media(prefers-color-scheme:dark){.hbg{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}}
   [data-theme="light"] .hbg{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
-  [data-theme="dark"] .hbg{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}
-  [data-theme="white"] .hbg{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06)}
+  [data-theme="dark"] .hbg{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}
+  [data-theme="white"] .hbg{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06);--link:#1A73E8}
   .hbg .wrap{max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
   .hbg a{color:inherit;text-decoration:none}
   .hbg .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
@@ -75,6 +75,9 @@
   .hbg .series .dir{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
   .hbg .series b{display:block;font-size:14.5px;margin-top:5px}
   .hbg .series i b{color:var(--ink-3)}
+  .hbg p a,.hbg .sub a,.hbg dd a,.hbg .ans a,.hbg .hook a,.hbg .cardi a,.hbg .plus a,.hbg .second a,.hbg .size a,.hbg .why a{color:var(--link);text-decoration:underline;text-underline-offset:2px;border-bottom:none!important}
+  .hbg .tgo{display:inline-block;margin-top:9px;color:var(--link);text-decoration:underline;text-underline-offset:2px;font-style:normal;font-size:13.5px;font-weight:600}
+  .hbg .series a b{color:var(--link)}
   .hbg .cta{margin-top:clamp(44px,7vw,76px);background:var(--accent);border-radius:18px;padding:clamp(28px,5vw,46px);text-align:center;color:#F2F0EB}
   .hbg .cta h2{color:inherit;margin-bottom:8px}
   .hbg .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
@@ -119,7 +122,7 @@
           </tbody>
         </table>
       </div>
-      <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Продолжение темы</span><b>Не уверены, что багги — ваш фасон?</b><span>В гиде «Виды женских джинсов» — сравнительная таблица всех 15 фасонов с фото: за 3 минуты поймёте, что ищете на самом деле.</span></a>
+      <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Продолжение темы</span><b>Не уверены, что багги — ваш фасон?</b><span>В гиде «Виды женских джинсов» — сравнительная таблица всех 15 фасонов с фото: за 3 минуты поймёте, что ищете на самом деле.</span><em class="tgo">Перейти →</em></a>
     </section>
 
     <section id="who">
@@ -133,7 +136,7 @@
       </div>
     </section>
 
-    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov#kinds"><span class="tl">↪ Если багги — не ваше</span><b>Хочется объёма, но спокойнее?</b><span>Посмотрите wide leg и трубы — тот же комфорт, но элегантнее: разбор в гиде по фасонам. А мом и бананы дадут объём с акцентом на талию.</span></a>
+    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov#kinds"><span class="tl">↪ Если багги — не ваше</span><b>Хочется объёма, но спокойнее?</b><span>Посмотрите wide leg и трубы — тот же комфорт, но элегантнее: разбор в гиде по фасонам. А мом и бананы дадут объём с акцентом на талию.</span><em class="tgo">Перейти →</em></a>
 
     <section id="length">
       <h2><span class="n">04</span>Какой длины должны быть багги</h2>
@@ -160,7 +163,7 @@
       </div>
     </section>
 
-    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span><b>Сомневаетесь между багги и другими фасонами?</b><span>Пройдите подбор: 5 вопросов о фигуре, росте и стиле — получите свой фасон и второй запасной.</span></a>
+    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span><b>Сомневаетесь между багги и другими фасонами?</b><span>Пройдите подбор: 5 вопросов о фигуре, росте и стиле — получите свой фасон и второй запасной.</span><em class="tgo">Перейти →</em></a>
 
     <section id="faq">
       <h2><span class="n">06</span>Частые вопросы про багги</h2>
@@ -184,10 +187,10 @@
     <section id="also">
       <h2><span class="n">07</span>Читайте также</h2>
       <div class="also">
-        <a href="/blog/vidy-i-nazvaniya-dzhinsov"><b>Виды женских джинсов: все фасоны с названиями</b><span>Сравнительная таблица 15 фасонов — от прямых до палаццо, с фото.</span></a>
-        <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b><span>Калькулятор по вашим меркам и как правильно снять мерки.</span></a>
-        <a href="/catalog/trendy-2026"><b>Модные джинсы 2026: тренды сезона</b><span>Багги, wide leg и палаццо — что носят в этом сезоне.</span></a>
-        <a href="/catalog/oversize-dzhinsy"><b>Джинсы оверсайз: подборка</b><span>Свободный крой, который садится по любой фигуре — 42–74.</span></a>
+        <a href="/blog/vidy-i-nazvaniya-dzhinsov"><b>Виды женских джинсов: все фасоны с названиями</b><span>Сравнительная таблица 15 фасонов — от прямых до палаццо, с фото.</span><em class="tgo">Читать →</em></a>
+        <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b><span>Калькулятор по вашим меркам и как правильно снять мерки.</span><em class="tgo">Читать →</em></a>
+        <a href="/catalog/trendy-2026"><b>Модные джинсы 2026: тренды сезона</b><span>Багги, wide leg и палаццо — что носят в этом сезоне.</span><em class="tgo">Читать →</em></a>
+        <a href="/catalog/oversize-dzhinsy"><b>Джинсы оверсайз: подборка</b><span>Свободный крой, который садится по любой фигуре — 42–74.</span><em class="tgo">Читать →</em></a>
       </div>
     </section>
 
