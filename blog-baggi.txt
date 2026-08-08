@@ -160,6 +160,8 @@
       </div>
     </section>
 
+    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span><b>Сомневаетесь между багги и другими фасонами?</b><span>Пройдите подбор: 5 вопросов о фигуре, росте и стиле — получите свой фасон и второй запасной.</span></a>
+
     <section id="faq">
       <h2><span class="n">06</span>Частые вопросы про багги</h2>
       <details class="qa"><summary>Что значит «джинсы багги»?<span class="ic">+</span></summary>
