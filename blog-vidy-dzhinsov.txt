@@ -1,0 +1,266 @@
+<!-- =========================================================
+     HAILEY · Блог «Виды женских джинсов» (T123) — вручную не править,
+     источник: hailey-blog-vidy-dzhinsov-код.html. Кластер: blog-vidy-i-nazvaniya-dzhinsov
+     (1319/мес). Ключи ТОЛЬКО этого кластера; «широкие/багги/…» — ссылки на категории.
+     Тема сквозная (как .hsg гида размеров). JSON-LD Article+Breadcrumb+FAQ в теле.
+     ========================================================= -->
+<style>
+  .hba *{margin:0;padding:0;box-sizing:border-box}
+  .hba{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px);position:relative}
+  @media(prefers-color-scheme:dark){.hba{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}}
+  [data-theme="light"] .hba{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
+  [data-theme="dark"] .hba{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}
+  [data-theme="white"] .hba{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06)}
+  .hba .wrap{max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hba a{color:inherit;text-decoration:none}
+  .hba .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
+  .hba .crumb a:hover{color:var(--ink)}
+  .hba .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .hba h1{font-size:clamp(26px,3.6vw,40px);line-height:1.12;font-weight:300;letter-spacing:-.01em;max-width:22ch}
+  .hba .lead{font-size:clamp(15px,2.2vw,18px);color:var(--ink-2);margin-top:16px;max-width:58ch;line-height:1.6}
+  .hba .meta{font-size:12.5px;color:var(--ink-3);margin-top:14px}
+  .hba section{margin-top:clamp(44px,7vw,76px)}
+  .hba h2{font-size:clamp(21px,3.2vw,30px);font-weight:300;letter-spacing:-.01em;margin-bottom:6px}
+  .hba h2 .n{color:var(--ink-3);font-weight:400;margin-right:12px}
+  .hba .sub{font-size:15px;color:var(--ink-2);margin-bottom:24px;max-width:62ch;line-height:1.6}
+  .hba p{font-size:15px;color:var(--ink-2);line-height:1.65}
+  .hba .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .hba table{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+  .hba thead th{text-align:left;padding:14px 16px;background:var(--paper2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+  .hba tbody td{padding:12px 16px;border-top:1px solid var(--line-soft);color:var(--ink-2);vertical-align:top}
+  .hba tbody td:first-child{color:var(--ink);font-weight:700;white-space:nowrap}
+  .hba tbody a{border-bottom:1px solid var(--line);transition:border-color .15s}
+  .hba tbody a:hover{border-color:var(--ink)}
+  .hba .fits{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:660px){.hba .fits{grid-template-columns:1fr}}
+  .hba .fit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .hba .fit b{display:block;font-size:15px;margin-bottom:6px}
+  .hba .fit p{font-size:13.5px}
+  .hba .kinds{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+  @media(max-width:720px){.hba .kinds{grid-template-columns:1fr}}
+  .hba .kind{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .hba .kind .ph{aspect-ratio:4/3;overflow:hidden;background:var(--paper2)}
+  .hba .kind .ph img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .hba .kind .bd{padding:20px 22px 22px}
+  .hba .kind h3{font-size:17.5px;font-weight:700;letter-spacing:-.005em}
+  .hba .kind .aka{font-size:12px;color:var(--ink-3);margin-top:3px}
+  .hba .kind p{font-size:14px;margin-top:10px}
+  .hba .kind .go{display:inline-flex;margin-top:14px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .15s}
+  .hba .kind .go:hover{border-color:var(--ink)}
+  .hba dl.names{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px 24px}
+  .hba dl.names dt{font-size:15px;font-weight:700;padding-top:18px}
+  .hba dl.names dd{font-size:14.5px;color:var(--ink-2);line-height:1.6;padding:6px 0 18px;border-bottom:1px solid var(--line-soft)}
+  .hba dl.names dd:last-child{border-bottom:none}
+  .hba .plus{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,30px)}
+  .hba .plus ul{list-style:none;margin-top:14px}
+  .hba .plus li{font-size:14.5px;color:var(--ink-2);line-height:1.6;padding:9px 0 9px 26px;position:relative;border-top:1px solid var(--line-soft)}
+  .hba .plus li:before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+  .hba .qa{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:12px;overflow:hidden}
+  .hba .qa summary{padding:18px 22px;font-size:15px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .hba .qa summary::-webkit-details-marker{display:none}
+  .hba .qa summary .ic{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-weight:400;color:var(--ink-3);transition:transform .2s}
+  .hba .qa[open] summary .ic{transform:rotate(45deg)}
+  .hba .qa .ans{padding:0 22px 20px;font-size:14.5px;color:var(--ink-2);line-height:1.65;max-width:70ch}
+  .hba .cta{margin-top:clamp(44px,7vw,76px);background:var(--accent);border-radius:18px;padding:clamp(28px,5vw,46px);text-align:center;color:#F2F0EB}
+  .hba .cta h2{color:inherit;margin-bottom:8px}
+  .hba .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
+  .hba .cta a{display:inline-flex;margin-top:22px;padding:16px 34px;background:#F2F0EB;color:#191712;border-radius:4px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:opacity .18s}
+  .hba .cta a:hover{opacity:.9}
+</style>
+
+<div class="hba">
+  <div class="wrap">
+    <nav class="crumb"><a href="/">Главная</a> · <a href="/catalog">Каталог</a> · <b>Виды джинсов</b></nav>
+
+    <div class="eyebrow">Гид HAILEY · обновлено 8 августа 2026</div>
+    <h1>Виды женских джинсов: все фасоны с названиями и фото</h1>
+    <p class="lead">Прямые, трубы, багги, мом, клёш, палаццо — названий больше десятка, и в магазинах они путаются даже у продавцов. Разбираем все виды джинсов женских: как каждый фасон выглядит, чем отличается от соседних и кому идёт. Мы шьём джинсы от 42 до 74 размера, поэтому про посадку на реальную фигуру говорим из практики, а не по картинкам.</p>
+    <p class="meta">HAILEY · бренд женских джинсов больших размеров · читать ≈ 8 минут</p>
+
+    <section id="table">
+      <h2><span class="n">01</span>Все виды джинсов: сравнительная таблица</h2>
+      <p class="sub">Коротко и рядом — чтобы не листать. Дальше в статье каждый фасон разобран подробно, с фото.</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>Фасон</th><th>Силуэт</th><th>Посадка чаще</th><th>Кому идёт</th></tr></thead>
+          <tbody>
+            <tr><td>Прямые</td><td>ровная штанина от бедра до низа</td><td>средняя/высокая</td><td>всем — базовый фасон <a href="/catalog/pryamye-dzhinsy">→ прямые в каталоге</a></td></tr>
+            <tr><td>Широкие (wide leg)</td><td>свободная штанина от бедра</td><td>высокая</td><td>всем, особенно 48+ <a href="/catalog/shirokie-dzhinsy">→ широкие в каталоге</a></td></tr>
+            <tr><td>Трубы</td><td>широкая ровная «колонна»</td><td>высокая</td><td>рост от среднего <a href="/catalog/truby-dzhinsy">→ трубы в каталоге</a></td></tr>
+            <tr><td>Палаццо</td><td>очень широкие, текут как брюки</td><td>высокая</td><td>вытягивают силуэт</td></tr>
+            <tr><td>Багги</td><td>объёмные по всей длине</td><td>средняя/низкая</td><td>стрит-стиль, тренд <a href="/catalog/baggi-dzhinsy">→ багги в каталоге</a></td></tr>
+            <tr><td>Бойфренды</td><td>свободные, «с мужского плеча», подвороты</td><td>средняя</td><td>расслабленный кэжуал</td></tr>
+            <tr><td>Мом</td><td>объём в бёдрах, зауженный низ</td><td>высокая</td><td>подчёркивают талию</td></tr>
+            <tr><td>Бананы</td><td>дуга: объём в бедре, уже к низу</td><td>высокая</td><td>прячут живот и бёдра</td></tr>
+            <tr><td>Слоучи</td><td>мягко «сползающий» объём</td><td>средняя</td><td>оверсайз-образы</td></tr>
+            <tr><td>Клёш</td><td>расширение от колена или бедра</td><td>высокая</td><td>удлиняют ноги, под каблук</td></tr>
+            <tr><td>Буткат</td><td>лёгкий клёш «под сапог»</td><td>средняя</td><td>мягче клёша, ретро-стиль</td></tr>
+            <tr><td>Скинни</td><td>облегают по всей длине</td><td>любая</td><td>под объёмный верх</td></tr>
+            <tr><td>Зауженные (слим)</td><td>сужаются к низу, не обтягивают</td><td>средняя</td><td>компромисс скинни/прямых</td></tr>
+            <tr><td>Кюлоты</td><td>широкие укороченные</td><td>высокая</td><td>лето, невысокий рост — с осторожностью</td></tr>
+            <tr><td>Рваные</td><td>любой крой + потёртости и дырки</td><td>любая</td><td>акцент в образе <a href="/catalog/rvanye-dzhinsy">→ рваные в каталоге</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="fit">
+      <h2><span class="n">02</span>Сначала посадка, потом фасон</h2>
+      <p class="sub">Название фасона описывает штанину, а сидит модель из-за посадки — высоты пояса. Одни и те же трубы с высокой и низкой посадкой выглядят как две разные вещи.</p>
+      <div class="fits">
+        <div class="fit"><b>Высокая посадка (high rise)</b><p>Пояс на талии или выше. Держит живот, рисует талию, визуально удлиняет ноги. Для фигур 48+ — самый выигрышный вариант, поэтому почти все модели HAILEY сшиты именно так.</p></div>
+        <div class="fit"><b>Средняя посадка (regular)</b><p>Пояс чуть ниже талии, на 2–4 см ниже пупка. Универсальна и незаметна на теле — выбирают, когда хочется, чтобы джинсы «просто сидели».</p></div>
+        <div class="fit"><b>Низкая посадка (low rise)</b><p>Пояс на бёдрах. Вернулась с модой на y2k, но требовательна к фигуре и неудобна сидя. В работе с животом не помощник — берите осознанно.</p></div>
+      </div>
+    </section>
+
+    <section id="kinds">
+      <h2><span class="n">03</span>Фасоны по одному: как выглядят и кому идут</h2>
+      <p class="sub">Фото — наши, с реальной съёмки моделей HAILEY, а не сток. Где фасона нет в нашем каталоге — описали без фото, честно.</p>
+      <div class="kinds">
+        <article class="kind">
+          <div class="ph"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504646155/1.webp" alt="Прямые женские джинсы — классический фасон"></div>
+          <div class="bd"><h3>Прямые (straight)</h3><div class="aka">они же классические</div>
+          <p>Штанина одной ширины от бедра до низа. Не добавляют объёма и не обтягивают — за это прямые зовут вечной базой: они переживают любые тренды. Если сомневаетесь, с какого фасона начать, — начните с прямых.</p>
+          <a class="go" href="/catalog/pryamye-dzhinsy">Прямые джинсы →</a></div>
+        </article>
+        <article class="kind">
+          <div class="ph"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504638231/1.webp" alt="Широкие женские джинсы wide leg"></div>
+          <div class="bd"><h3>Широкие (wide leg)</h3><div class="aka">свободная штанина от бедра</div>
+          <p>Главный силуэт последних сезонов. Ткань идёт свободно от самого бедра, не касаясь ноги, — поэтому wide leg прощают всё: и колени, и икры, и пару лишних сантиметров. С высокой посадкой дают тот самый эффект «ноги от ушей».</p>
+          <a class="go" href="/catalog/shirokie-dzhinsy">Широкие джинсы →</a></div>
+        </article>
+        <article class="kind">
+          <div class="ph"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504645014/1.webp" alt="Джинсы трубы — широкая ровная штанина"></div>
+          <div class="bd"><h3>Трубы</h3><div class="aka">широкие и строго ровные</div>
+          <p>Подвид широких: штанина не расширяется и не сужается — идёт ровной «колонной». Смотрятся собраннее, чем клёш или палаццо, поэтому трубы легко носить и в офис, и с кроссовками.</p>
+          <a class="go" href="/catalog/truby-dzhinsy">Джинсы трубы →</a></div>
+        </article>
+        <article class="kind">
+          <div class="ph"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504634485/1.webp" alt="Джинсы палаццо с подворотами"></div>
+          <div class="bd"><h3>Палаццо</h3><div class="aka">максимально широкие</div>
+          <p>Самые широкие из всех: ткань «течёт», как у летних брюк. С высокой посадкой и каблуком палаццо вытягивают фигуру сильнее любого другого фасона. Требуют длины в пол — укороченные палаццо превращаются в кюлоты.</p>
+          <a class="go" href="/dzhinsy-shirokie-palacco-podvorotami-504634485">Палаццо с подворотами →</a></div>
+        </article>
+        <article class="kind">
+          <div class="ph"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754505251/1.webp" alt="Джинсы багги — объёмный уличный фасон"></div>
+          <div class="bd"><h3>Багги (baggy)</h3><div class="aka">объём по всей длине</div>
+          <p>Пришли из скейт-культуры 90-х: мешковатые, с объёмом от пояса до щиколотки. Багги — самый трендовый фасон 2026 года; носят с облегающим верхом, чтобы низ не «съедал» силуэт целиком.</p>
+          <a class="go" href="/catalog/baggi-dzhinsy">Джинсы багги →</a></div>
+        </article>
+        <article class="kind">
+          <div class="ph"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504644422/1.webp" alt="Прямые джинсы y2k с низкой посадкой"></div>
+          <div class="bd"><h3>Буткат и y2k</h3><div class="aka">лёгкий клёш «под сапог», ретро нулевых</div>
+          <p>Буткат расширяется совсем немного и только от колена — задумывался, чтобы штанина ложилась на сапог. Эстетика y2k добавила сюда низкую посадку и потёртости. Мягкая альтернатива клёшу для тех, кому полноценный клёш «слишком».</p>
+          <a class="go" href="/dzhinsy-pryamye-y2k-shirokie-504644422">Джинсы y2k →</a></div>
+        </article>
+        <article class="kind">
+          <div class="ph"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/545150789/1.webp" alt="Светлые джинсы клёш от бедра"></div>
+          <div class="bd"><h3>Клёш (flare)</h3><div class="aka">от колена или от бедра</div>
+          <p>Штанина расширяется книзу: от колена — классика 70-х, от бедра — драматичнее. Клёш зрительно удлиняет ноги, особенно с каблуком, и уравновешивает широкие бёдра. Требует правильной длины — край должен закрывать щиколотку.</p>
+          <a class="go" href="/dzhinsy-svetlye-shirokie-klesh-545150789">Светлые клёш →</a></div>
+        </article>
+        <article class="kind">
+          <div class="ph"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504631232/1.webp" alt="Широкие рваные джинсы с дырками"></div>
+          <div class="bd"><h3>Рваные</h3><div class="aka">потёртости, дырки, необработанный край</div>
+          <p>Строго говоря, не фасон, а отделка: рваным может быть и скинни, и багги. Дырки на коленях, потёртости по бедру, бахрома по низу — дозируйте: один акцент на образ. На широком крое рваность выглядит дороже, чем на облегающем.</p>
+          <a class="go" href="/catalog/rvanye-dzhinsy">Рваные джинсы →</a></div>
+        </article>
+      </div>
+
+      <div class="kinds" style="margin-top:20px">
+        <article class="kind"><div class="bd"><h3>Мом (mom jeans)</h3><div class="aka">«мамины джинсы» из 80-х</div>
+          <p>Высокая талия, объём в бёдрах, зауженный к щиколотке низ. Мом подчёркивают талию и прячут бёдра, но требуют примерки: посадка у всех брендов разная. Часто носят с подворотом.</p></div>
+        </article>
+        <article class="kind"><div class="bd"><h3>Бананы</h3><div class="aka">штанина дугой</div>
+          <p>Похожи на мом, но изгиб штанины заметнее: объём в бедре плавно уходит в узкий низ, силуэт напоминает банан. Комфортный фасон «на каждый день», который не обтягивает ни живот, ни колени.</p></div>
+        </article>
+        <article class="kind"><div class="bd"><h3>Слоучи (slouchy)</h3><div class="aka">от англ. slouch — «сутулиться, свисать»</div>
+          <p>Нарочито расслабленные: мягкая ткань, приспущенная посадка, объём, который слегка «сползает». Ближайший родственник багги, но мягче и женственнее. Носят с заправленным верхом.</p></div>
+        </article>
+        <article class="kind"><div class="bd"><h3>Скинни и зауженные</h3><div class="aka">облегающие и слим</div>
+          <p>Скинни обтягивают ногу по всей длине, зауженные (слим) — мягкий компромисс: сужаются к низу, но не липнут к телу. После эпохи тотальных скинни мода ушла к объёму, но как база «под высокие сапоги» и под длинный оверсайз-верх они по-прежнему работают.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="names">
+      <h2><span class="n">04</span>«А как называются…» — быстрые ответы</h2>
+      <p class="sub">Самые частые формулировки, с которыми ищут фасон, не зная названия.</p>
+      <dl class="names">
+        <dt>Как называются прямые женские джинсы?</dt>
+        <dd>Straight, они же классические. Ровная штанина без сужения и расширения. Если штанина заметно шире — это уже трубы или wide leg.</dd>
+        <dt>Как называются очень широкие джинсы?</dt>
+        <dd>Палаццо — самые широкие, со «стекающей» тканью. Чуть спокойнее — wide leg (широкие от бедра) и трубы (широкие и строго ровные).</dd>
+        <dt>Как называются широкие от бедра джинсы?</dt>
+        <dd>Wide leg. Расширение начинается сразу от бедра, а не от колена — этим они отличаются от клёша.</dd>
+        <dt>Как называются джинсы на резинке внизу?</dt>
+        <dd>Джоггеры — спортивный крой с манжетами по щиколотке. Если на резинке пояс, а низ свободный — это джинсы на резинке (комфорт-посадка), у нас такие тоже бывают в разделе <a href="/catalog/dzhinsy">всех джинсов</a>.</dd>
+        <dt>Как называются короткие широкие джинсы?</dt>
+        <dd>Кюлоты — широкие и укороченные до середины икры. Летний фасон; при невысоком росте визуально режет ногу, выручает каблук.</dd>
+        <dt>Как называются зауженные книзу джинсы?</dt>
+        <dd>Слим (зауженные) — сужаются, но не обтягивают; полностью облегающие — скинни; с объёмным бедром и узким низом — мом или бананы.</dd>
+      </dl>
+    </section>
+
+    <section id="plus">
+      <h2><span class="n">05</span>Какие виды джинсов идут на 48–74 размер</h2>
+      <p class="sub">Наша специализация — джинсы больших размеров, поэтому этот блок из практики примерок, а не из теории.</p>
+      <div class="plus">
+        <p><b>Правило простое: объём носит объём.</b> Свободная штанина скрадывает то, что облегающая подчёркивает, — поэтому на фигурах 48+ лучше всего работают широкие фасоны с высокой посадкой:</p>
+        <ul>
+          <li><b>Wide leg и трубы</b> — первая рекомендация: не касаются ни бёдер, ни икр, держат ровную вертикаль и «строят» силуэт.</li>
+          <li><b>Прямые с высокой посадкой</b> — если широкие кажутся слишком смелыми: та же свобода, классический вид.</li>
+          <li><b>Багги</b> — да, и на 60-м, и на 74-м: модный объём честно прячет живот; главное — облегающий или заправленный верх.</li>
+          <li><b>Бананы и мом</b> — когда хочется показать талию: высокий пояс собирает силуэт, объёмное бедро не обтянуто.</li>
+          <li><b>Скинни</b> — единственный фасон, который советуем примерять с осторожностью: он подчёркивает всё, что обтягивает. Если нравится узкий низ — берите слим.</li>
+        </ul>
+        <p style="margin-top:14px">Не менее важна ткань: плотный деним с 1–2% эластана держит форму и не вытягивается на коленях за день. Именно такой мы используем во всех моделях — размерный ряд каждой доходит до 74. Подобрать свой размер поможет <a href="/kak-vybrat-razmer" style="border-bottom:1px solid var(--line)">таблица размеров с калькулятором</a>.</p>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2><span class="n">06</span>Частые вопросы</h2>
+      <details class="qa"><summary>Какие виды джинсов в моде в 2026 году?<span class="ic">+</span></summary>
+        <div class="ans">Тренд сезона — объём: багги, wide leg, трубы и палаццо. Прямые остаются вне трендов как база. Скинни вернулись точечно — в эстетике y2k, с низкой посадкой. Подборку трендовых моделей мы собрали на странице <a href="/catalog/trendy-2026" style="border-bottom:1px solid var(--line)">модные джинсы 2026</a>.</div>
+      </details>
+      <details class="qa"><summary>Чем отличаются широкие джинсы от труб и палаццо?<span class="ic">+</span></summary>
+        <div class="ans">Все три — свободная штанина от бедра. Разница в геометрии: у труб штанина строго ровная, у wide leg допускается лёгкое расширение, палаццо — самые широкие, из мягкой «текущей» ткани. На фигуре разница заметна в динамике: трубы держат форму, палаццо двигаются вместе с шагом.</div>
+      </details>
+      <details class="qa"><summary>Чем мом отличаются от бананов?<span class="ic">+</span></summary>
+        <div class="ans">У обоих высокая талия и объём в бёдрах. У мом штанина от бедра сужается почти по прямой, у бананов — заметной дугой, отчего силуэт округлее и мягче. На фигуре бананы чуть лучше прячут галифе.</div>
+      </details>
+      <details class="qa"><summary>Какие джинсы скрывают живот?<span class="ic">+</span></summary>
+        <div class="ans">Любой фасон с высокой посадкой и плотным поясом: широкие, трубы, прямые, бананы. Пояс должен приходиться на талию — тогда он фиксирует живот, а свободная штанина не создаёт обтяжки ниже. Избегайте низкой посадки: она делит живот пополам.</div>
+      </details>
+      <details class="qa"><summary>Как понять свой размер джинсов?<span class="ic">+</span></summary>
+        <div class="ans">Измерьте обхват талии и бёдер сантиметровой лентой и сверьтесь с таблицей бренда — размерные сетки у всех разные. У нас есть <a href="/kak-vybrat-razmer" style="border-bottom:1px solid var(--line)">таблица размеров женских джинсов 42–74 с калькулятором</a>: вводите мерки — получаете размер HAILEY.</div>
+      </details>
+    </section>
+
+    <div class="cta">
+      <h2>Посмотреть фасоны вживую</h2>
+      <p>Широкие, трубы, багги, прямые и клёш — размеры 42–74, примерка перед оплатой, доставка по России, возврат 14 дней.</p>
+      <a href="/catalog/dzhinsy">Смотреть каталог джинсов</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Виды женских джинсов: все фасоны с названиями и фото","description":"Все виды женских джинсов с названиями: прямые, широкие, трубы, палаццо, багги, бойфренды, мом, бананы, клёш, скинни и другие. Сравнительная таблица и советы, кому что идёт.","image":"https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504638231/1.webp","author":{"@type":"Organization","name":"HAILEY","url":"https://hello-hailey.ru/"},"publisher":{"@type":"Organization","name":"HAILEY","url":"https://hello-hailey.ru/"},"datePublished":"2026-08-08","dateModified":"2026-08-08","mainEntityOfPage":"https://hello-hailey.ru/blog/vidy-i-nazvaniya-dzhinsov"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://hello-hailey.ru/"},{"@type":"ListItem","position":2,"name":"Каталог","item":"https://hello-hailey.ru/catalog"},{"@type":"ListItem","position":3,"name":"Виды джинсов","item":"https://hello-hailey.ru/blog/vidy-i-nazvaniya-dzhinsov"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Какие виды джинсов в моде в 2026 году?","acceptedAnswer":{"@type":"Answer","text":"Тренд сезона — объём: багги, wide leg, трубы и палаццо. Прямые остаются вне трендов как база. Скинни вернулись точечно — в эстетике y2k, с низкой посадкой."}},
+{"@type":"Question","name":"Чем отличаются широкие джинсы от труб и палаццо?","acceptedAnswer":{"@type":"Answer","text":"Все три — свободная штанина от бедра. У труб штанина строго ровная, у wide leg допускается лёгкое расширение, палаццо — самые широкие, из мягкой «текущей» ткани."}},
+{"@type":"Question","name":"Чем мом отличаются от бананов?","acceptedAnswer":{"@type":"Answer","text":"У обоих высокая талия и объём в бёдрах. У мом штанина сужается почти по прямой, у бананов — заметной дугой, отчего силуэт округлее; бананы чуть лучше прячут галифе."}},
+{"@type":"Question","name":"Какие джинсы скрывают живот?","acceptedAnswer":{"@type":"Answer","text":"Фасоны с высокой посадкой и плотным поясом: широкие, трубы, прямые, бананы. Пояс на талии фиксирует живот, свободная штанина не обтягивает. Низкая посадка — наоборот, делит живот пополам."}},
+{"@type":"Question","name":"Как понять свой размер джинсов?","acceptedAnswer":{"@type":"Answer","text":"Измерьте обхват талии и бёдер и сверьтесь с таблицей бренда. На hello-hailey.ru есть таблица размеров женских джинсов 42–74 с калькулятором: вводите мерки — получаете размер HAILEY."}}]}
+</script>
