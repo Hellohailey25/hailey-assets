@@ -53,6 +53,9 @@
 <script>
 (function(){
   var ARTICLES=[
+    {url:'/podbor-fasona',tag:'Тест · 1 минута',title:'Какие джинсы подойдут именно вам? Подбор фасона',
+     desc:'5 вопросов о фигуре, росте и стиле — и вы знаете свой фасон. Без регистрации, результат сразу.',
+     img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754477427/1.webp',date:'интерактив'},
     {url:'/blog/dzhinsy-baggi-gid',tag:'Гид №2 · Фасон',title:'Джинсы багги: что это, кому подойдут и как носить',
      desc:'Что значит «багги», отличия от бойфрендов и слоучи, правила длины и 4 формулы образов.',
      img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754505251/1.webp',date:'8 августа 2026'},
