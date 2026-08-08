@@ -429,7 +429,7 @@
       if(!IDX||!q){sug.classList.remove('on');return;}
       items=IDX.filter(function(p){return matchQ(p.s||p.n,q);}).slice(0,6);
       if(!items.length){sug.innerHTML='<div class="snone">Ничего не найдено</div><div class="sall" data-all>Смотреть весь каталог →</div>';sug.classList.add('on');return;}
-      sug.innerHTML=items.map(function(p,i){return '<a class="si" data-i="'+i+'" href="'+p.u+'"><img src="'+p.i+'" alt="" loading="lazy"><div><div class="sn">'+p.n+'</div><div class="sp">'+rub(p.p)+'</div></div></a>';}).join('')
+      sug.innerHTML=items.map(function(p,i){return '<a class="si" data-i="'+i+'" href="'+p.u+'"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"><div><div class="sn">'+p.n+'</div><div class="sp">'+rub(p.p)+'</div></div></a>';}).join('')
         +'<div class="sall" data-all>Все результаты по «'+q+'» →</div>';
       sug.classList.add('on');
     }
