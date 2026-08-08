@@ -7,14 +7,14 @@
 <style>
   .hba *{margin:0;padding:0;box-sizing:border-box}
   .hba{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
-    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;--link:#2456A6;
     --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
     background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
     line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px);position:relative}
-  @media(prefers-color-scheme:dark){.hba{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}}
+  @media(prefers-color-scheme:dark){.hba{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}}
   [data-theme="light"] .hba{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
-  [data-theme="dark"] .hba{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}
-  [data-theme="white"] .hba{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06)}
+  [data-theme="dark"] .hba{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}
+  [data-theme="white"] .hba{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06);--link:#1A73E8}
   .hba .wrap{max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
   .hba a{color:inherit;text-decoration:none}
   .hba .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
@@ -86,6 +86,9 @@
   .hba .series .dir{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
   .hba .series b{display:block;font-size:14.5px;margin-top:5px}
   .hba .series i b{color:var(--ink-3)}
+  .hba p a,.hba .sub a,.hba dd a,.hba .ans a,.hba .hook a,.hba .cardi a,.hba .plus a,.hba .second a,.hba .size a,.hba .why a{color:var(--link);text-decoration:underline;text-underline-offset:2px;border-bottom:none!important}
+  .hba .tgo{display:inline-block;margin-top:9px;color:var(--link);text-decoration:underline;text-underline-offset:2px;font-style:normal;font-size:13.5px;font-weight:600}
+  .hba .series a b{color:var(--link)}
   .hba .cta{margin-top:clamp(44px,7vw,76px);background:var(--accent);border-radius:18px;padding:clamp(28px,5vw,46px);text-align:center;color:#F2F0EB}
   .hba .cta h2{color:inherit;margin-bottom:8px}
   .hba .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
@@ -106,7 +109,7 @@
       <p>1) свой фасон — облегающий крой и свободный сидят на одной фигуре совершенно по-разному (<a href="#plus">какие виды идут на 48–74 — ниже</a>); 2) посадку — низкая талия и высокая дают разный силуэт (<a href="#fit">раздел о посадке</a>); 3) свой точный размер — сетки брендов не совпадают, сверьтесь с <a href="/kak-vybrat-razmer">таблицей размеров и калькулятором</a>. Эти три проверки экономят возврат и разочарование.</p>
     </div>
 
-    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span><b>Не хочется читать про все 15 фасонов?</b><span>Ответьте на 5 вопросов — подберём фасон под вашу фигуру, рост и стиль. Без регистрации, результат сразу.</span></a>
+    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span><b>Не хочется читать про все 15 фасонов?</b><span>Ответьте на 5 вопросов — подберём фасон под вашу фигуру, рост и стиль. Без регистрации, результат сразу.</span><em class="tgo">Перейти →</em></a>
 
     <section id="table">
       <h2><span class="n">01</span>Все виды джинсов: сравнительная таблица</h2>
@@ -199,7 +202,7 @@
         </article>
       </div>
 
-      <a class="tease" href="/blog/dzhinsy-baggi-gid"><span class="tl">↪ Разбор фасона</span><b>Присмотрели багги?</b><span>Отдельный гид: что значит «багги», кому подойдут по фигуре и росту, какой длины должны быть и с чем носить.</span></a>
+      <a class="tease" href="/blog/dzhinsy-baggi-gid"><span class="tl">↪ Разбор фасона</span><b>Присмотрели багги?</b><span>Отдельный гид: что значит «багги», кому подойдут по фигуре и росту, какой длины должны быть и с чем носить.</span><em class="tgo">Перейти →</em></a>
 
       <div class="kinds" style="margin-top:20px">
         <article class="kind"><div class="bd"><h3>Мом (mom jeans)</h3><div class="aka">«мамины джинсы» из 80-х</div>
@@ -274,10 +277,10 @@
     <section id="also">
       <h2><span class="n">07</span>Читайте также</h2>
       <div class="also">
-        <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b><span>Калькулятор по вашим меркам, как снять мерки и как сидит каждый крой.</span></a>
-        <a href="/catalog/trendy-2026"><b>Модные джинсы 2026: тренды сезона</b><span>Багги, wide leg и палаццо — что носят в этом сезоне и с чем сочетать.</span></a>
-        <a href="/catalog/oversize-dzhinsy"><b>Джинсы оверсайз: подборка</b><span>Свободный объёмный крой, который садится по любой фигуре — размеры 42–74.</span></a>
-        <a href="/blog/dzhinsy-baggi-gid"><b>Джинсы багги: кому подойдут и как носить</b><span>Что значит «багги», отличия от бойфрендов и правила длины.</span></a>
+        <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b><span>Калькулятор по вашим меркам, как снять мерки и как сидит каждый крой.</span><em class="tgo">Читать →</em></a>
+        <a href="/catalog/trendy-2026"><b>Модные джинсы 2026: тренды сезона</b><span>Багги, wide leg и палаццо — что носят в этом сезоне и с чем сочетать.</span><em class="tgo">Читать →</em></a>
+        <a href="/catalog/oversize-dzhinsy"><b>Джинсы оверсайз: подборка</b><span>Свободный объёмный крой, который садится по любой фигуре — размеры 42–74.</span><em class="tgo">Читать →</em></a>
+        <a href="/blog/dzhinsy-baggi-gid"><b>Джинсы багги: кому подойдут и как носить</b><span>Что значит «багги», отличия от бойфрендов и правила длины.</span><em class="tgo">Читать →</em></a>
       </div>
     </section>
 
