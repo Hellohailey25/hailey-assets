@@ -96,31 +96,31 @@
     <div class="reels-call"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg><div><b>Отметьте <a href="https://www.instagram.com/hailey.looks/" target="_blank" rel="noopener">@hailey.looks</a> с хэштегом <span class="tag">#HAILEYнаМне</span></b><span>Лучшие образы репостим в наш аккаунт и показываем здесь — пусть вас увидят те, кто ещё сомневается в своём размере.</span></div></div>
     <div class="reels-row">
       <a class="reel" href="https://www.instagram.com/reel/Darnv4CCVaW/" target="_blank" rel="noopener" aria-label="Смотреть reels: образ дня">
-        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/reels/cover1.jpg" alt="Образ HAILEY: коричневый бомбер и широкие джинсы" loading="lazy">
+        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@39560aaa74fd6849bb3d7a2ed62056426afc4aa7/photos/reels/cover1.webp" alt="Образ HAILEY: коричневый бомбер и широкие джинсы" loading="lazy">
         <span class="reel-tag">Образ дня</span>
         <span class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="reel-views"><svg viewBox="0 0 24 24"><path d="M12 5C6 5 2 12 2 12s4 7 10 7 10-7 10-7-4-7-10-7zm0 11a4 4 0 110-8 4 4 0 010 8z"/></svg>4 966</span>
       </a>
       <a class="reel" href="https://www.instagram.com/reel/DZ5ePArtpAt/" target="_blank" rel="noopener" aria-label="Смотреть reels: стрит-стиль">
-        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/reels/cover2.jpg" alt="Образ HAILEY: бомбер и белый деним" loading="lazy">
+        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@39560aaa74fd6849bb3d7a2ed62056426afc4aa7/photos/reels/cover2.webp" alt="Образ HAILEY: бомбер и белый деним" loading="lazy">
         <span class="reel-tag">Стрит-стиль</span>
         <span class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="reel-views"><svg viewBox="0 0 24 24"><path d="M12 5C6 5 2 12 2 12s4 7 10 7 10-7 10-7-4-7-10-7zm0 11a4 4 0 110-8 4 4 0 010 8z"/></svg>3 108</span>
       </a>
       <a class="reel" href="https://www.instagram.com/reel/DWjqptRjBtb/" target="_blank" rel="noopener" aria-label="Смотреть reels: посадка джинсов">
-        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/reels/cover3.jpg" alt="Джинсы HAILEY с идеальной посадкой" loading="lazy">
+        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@39560aaa74fd6849bb3d7a2ed62056426afc4aa7/photos/reels/cover3.webp" alt="Джинсы HAILEY с идеальной посадкой" loading="lazy">
         <span class="reel-tag">Посадка</span>
         <span class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="reel-views"><svg viewBox="0 0 24 24"><path d="M12 5C6 5 2 12 2 12s4 7 10 7 10-7 10-7-4-7-10-7zm0 11a4 4 0 110-8 4 4 0 010 8z"/></svg>1 250</span>
       </a>
       <a class="reel" href="https://www.instagram.com/reel/DWlVoAzjPWc/" target="_blank" rel="noopener" aria-label="Смотреть reels: лук дня">
-        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/reels/cover4.jpg" alt="Образ HAILEY: кожаный бомбер и рваные джинсы" loading="lazy">
+        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@39560aaa74fd6849bb3d7a2ed62056426afc4aa7/photos/reels/cover4.webp" alt="Образ HAILEY: кожаный бомбер и рваные джинсы" loading="lazy">
         <span class="reel-tag">Лук дня</span>
         <span class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="reel-views"><svg viewBox="0 0 24 24"><path d="M12 5C6 5 2 12 2 12s4 7 10 7 10-7 10-7-4-7-10-7zm0 11a4 4 0 110-8 4 4 0 010 8z"/></svg>7 093</span>
       </a>
       <a class="reel" href="https://www.instagram.com/reel/DVGyKdSjOU7/" target="_blank" rel="noopener" aria-label="Смотреть reels: идеальные джинсы">
-        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/reels/cover6.jpg" alt="Идеальные джинсы HAILEY, синий деним" loading="lazy">
+        <img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@39560aaa74fd6849bb3d7a2ed62056426afc4aa7/photos/reels/cover6.webp" alt="Идеальные джинсы HAILEY, синий деним" loading="lazy">
         <span class="reel-tag">Хит</span>
         <span class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="reel-views"><svg viewBox="0 0 24 24"><path d="M12 5C6 5 2 12 2 12s4 7 10 7 10-7 10-7-4-7-10-7zm0 11a4 4 0 110-8 4 4 0 010 8z"/></svg>15 000</span>
