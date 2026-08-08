@@ -65,6 +65,16 @@
   .hba .qa summary .ic{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-weight:400;color:var(--ink-3);transition:transform .2s}
   .hba .qa[open] summary .ic{transform:rotate(45deg)}
   .hba .qa .ans{padding:0 22px 20px;font-size:14.5px;color:var(--ink-2);line-height:1.65;max-width:70ch}
+  .hba .hook{margin-top:26px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:20px 24px}
+  .hba .hook b{font-size:15px}
+  .hba .hook p{font-size:14px;margin-top:8px}
+  .hba .hook a{border-bottom:1px solid var(--line)}
+  .hba .also{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hba .also{grid-template-columns:1fr}}
+  .hba .also a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:block;transition:border-color .15s}
+  .hba .also a:hover{border-color:var(--ink)}
+  .hba .also b{display:block;font-size:15px;margin-bottom:6px}
+  .hba .also span{font-size:13px;color:var(--ink-2);line-height:1.5}
   .hba .cta{margin-top:clamp(44px,7vw,76px);background:var(--accent);border-radius:18px;padding:clamp(28px,5vw,46px);text-align:center;color:#F2F0EB}
   .hba .cta h2{color:inherit;margin-bottom:8px}
   .hba .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
@@ -80,6 +90,10 @@
     <h1>Виды женских джинсов: все фасоны с названиями и фото</h1>
     <p class="lead">Прямые, трубы, багги, мом, клёш, палаццо — названий больше десятка, и в магазинах они путаются даже у продавцов. Разбираем все виды джинсов женских: как каждый фасон выглядит, чем отличается от соседних и кому идёт. Мы шьём джинсы от 42 до 74 размера, поэтому про посадку на реальную фигуру говорим из практики, а не по картинкам.</p>
     <p class="meta">HAILEY · бренд женских джинсов больших размеров · читать ≈ 8 минут</p>
+
+    <div class="hook"><b>⚠️ Не покупайте джинсы, пока не проверите три вещи</b>
+      <p>1) свой фасон — облегающий крой и свободный сидят на одной фигуре совершенно по-разному (<a href="#plus">какие виды идут на 48–74 — ниже</a>); 2) посадку — низкая талия и высокая дают разный силуэт (<a href="#fit">раздел о посадке</a>); 3) свой точный размер — сетки брендов не совпадают, сверьтесь с <a href="/kak-vybrat-razmer">таблицей размеров и калькулятором</a>. Эти три проверки экономят возврат и разочарование.</p>
+    </div>
 
     <section id="table">
       <h2><span class="n">01</span>Все виды джинсов: сравнительная таблица</h2>
@@ -240,6 +254,16 @@
       <details class="qa"><summary>Как понять свой размер джинсов?<span class="ic">+</span></summary>
         <div class="ans">Измерьте обхват талии и бёдер сантиметровой лентой и сверьтесь с таблицей бренда — размерные сетки у всех разные. У нас есть <a href="/kak-vybrat-razmer" style="border-bottom:1px solid var(--line)">таблица размеров женских джинсов 42–74 с калькулятором</a>: вводите мерки — получаете размер HAILEY.</div>
       </details>
+    </section>
+
+    <section id="also">
+      <h2><span class="n">07</span>Читайте также</h2>
+      <div class="also">
+        <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b><span>Калькулятор по вашим меркам, как снять мерки и как сидит каждый крой.</span></a>
+        <a href="/catalog/trendy-2026"><b>Модные джинсы 2026: тренды сезона</b><span>Багги, wide leg и палаццо — что носят в этом сезоне и с чем сочетать.</span></a>
+        <a href="/catalog/oversize-dzhinsy"><b>Джинсы оверсайз: подборка</b><span>Свободный объёмный крой, который садится по любой фигуре — размеры 42–74.</span></a>
+        <a href="/otzyvy"><b>Отзывы покупательниц HAILEY</b><span>Реальные отзывы с фото: как джинсы сидят на разных фигурах.</span></a>
+      </div>
     </section>
 
     <div class="cta">
