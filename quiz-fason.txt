@@ -1,0 +1,180 @@
+<!-- =========================================================
+     HAILEY · Квиз «Какой фасон джинсов вам подойдёт» (T123) — вручную не править,
+     источник: hailey-quiz-fason-код.html. Страница /podbor-fasona.
+     5 вопросов → скоринг 5 фасонов (wide/baggi/straight/mom/flare) → результат
+     с объяснением + ссылки на категорию, гид и калькулятор размера.
+     Тема сквозная. WebPage+Breadcrumb schema. Геймификация по гайду «SEO-завод».
+     ========================================================= -->
+<style>
+  .hq *{margin:0;padding:0;box-sizing:border-box}
+  .hq{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px)}
+  @media(prefers-color-scheme:dark){.hq{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}}
+  [data-theme="light"] .hq{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
+  [data-theme="dark"] .hq{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}
+  [data-theme="white"] .hq{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06)}
+  .hq .wrap{max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hq a{color:inherit;text-decoration:none}
+  .hq .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
+  .hq .crumb a:hover{color:var(--ink)}
+  .hq .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .hq h1{font-size:clamp(26px,3.6vw,38px);line-height:1.12;font-weight:300;letter-spacing:-.01em}
+  .hq .lead{font-size:clamp(15px,2.2vw,17px);color:var(--ink-2);margin-top:14px;max-width:54ch;line-height:1.6}
+  .hq .box{margin-top:clamp(28px,5vw,44px);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(22px,4vw,34px)}
+  .hq .prog{display:flex;gap:6px;margin-bottom:22px}
+  .hq .prog i{flex:1;height:4px;border-radius:2px;background:var(--line-soft)}
+  .hq .prog i.on{background:var(--accent)}
+  .hq .qt{font-size:clamp(18px,2.6vw,22px);font-weight:700;letter-spacing:-.005em}
+  .hq .qs{font-size:13.5px;color:var(--ink-3);margin-top:4px}
+  .hq .opts{display:grid;gap:12px;margin-top:20px}
+  .hq .opt{display:block;border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px 18px;cursor:pointer;transition:border-color .15s,transform .1s;font-size:15px;text-align:left;font-family:inherit;color:var(--ink);width:100%}
+  .hq .opt:hover{border-color:var(--ink)}
+  .hq .opt:active{transform:scale(.99)}
+  .hq .opt small{display:block;color:var(--ink-3);font-size:12.5px;margin-top:3px}
+  .hq .back{margin-top:18px;font-size:13px;color:var(--ink-3);background:none;border:none;cursor:pointer;font-family:inherit;display:none}
+  .hq .back:hover{color:var(--ink)}
+  .hq .res{display:none}
+  .hq .res .rl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--good);font-weight:700}
+  .hq .res h2{font-size:clamp(24px,3.4vw,34px);font-weight:300;letter-spacing:-.01em;margin-top:8px}
+  .hq .res .why{font-size:15px;color:var(--ink-2);line-height:1.65;margin-top:14px;max-width:56ch}
+  .hq .res .ph{margin-top:22px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .hq .res .ph img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;object-position:top center}
+  .hq .res .btns{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+  .hq .res .go{display:inline-flex;padding:15px 28px;background:var(--ink);color:var(--paper);border-radius:4px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:background .18s}
+  .hq .res .go:hover{background:var(--accent)}
+  .hq .res .alt{display:inline-flex;padding:15px 28px;border:1px solid var(--line);border-radius:4px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:border-color .18s}
+  .hq .res .alt:hover{border-color:var(--ink)}
+  .hq .res .second{margin-top:22px;padding-top:20px;border-top:1px solid var(--line-soft);font-size:14px;color:var(--ink-2)}
+  .hq .res .second a{border-bottom:1px solid var(--line)}
+  .hq .res .size{margin-top:18px;font-size:13.5px;color:var(--ink-2)}
+  .hq .res .size a{border-bottom:1px solid var(--line)}
+  .hq .res .again{margin-top:18px;font-size:13px;color:var(--ink-3);background:none;border:none;cursor:pointer;font-family:inherit}
+  .hq .res .again:hover{color:var(--ink)}
+  .hq .note{margin-top:22px;font-size:13px;color:var(--ink-3);max-width:60ch}
+</style>
+
+<div class="hq">
+  <div class="wrap">
+    <nav class="crumb"><a href="/">Главная</a> · <a href="/blog">Блог</a> · <b>Подбор фасона</b></nav>
+    <div class="eyebrow">Тест HAILEY · 5 вопросов · 1 минута</div>
+    <h1>Какие джинсы подойдут именно вам?</h1>
+    <p class="lead">Ответьте на 5 коротких вопросов — подберём фасон под вашу фигуру, рост и стиль. Без почты и регистрации, результат сразу.</p>
+
+    <div class="box">
+      <div class="prog" id="hqProg"></div>
+      <div id="hqQuiz"></div>
+      <button class="back" id="hqBack">← Назад</button>
+
+      <div class="res" id="hqRes">
+        <span class="rl">Ваш фасон</span>
+        <h2 id="hqResTitle"></h2>
+        <p class="why" id="hqResWhy"></p>
+        <div class="ph"><img id="hqResImg" src="" alt="Подходящий фасон джинсов"></div>
+        <div class="btns">
+          <a class="go" id="hqResGo" href="/catalog/dzhinsy">Смотреть модели</a>
+          <a class="alt" id="hqResGuide" href="/blog">Читать гид по фасону</a>
+        </div>
+        <p class="second" id="hqResSecond"></p>
+        <p class="size">Фасон выбран — остался размер: <a href="/kak-vybrat-razmer">калькулятор размера по вашим меркам</a> (42–74).</p>
+        <button class="again" id="hqAgain">↺ Пройти ещё раз</button>
+      </div>
+    </div>
+    <p class="note">Тест составлен по опыту примерок бренда HAILEY — мы шьём джинсы от 42 до 74 размера и каждый день видим, как разные фасоны садятся на разные фигуры.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var F={
+    wide:{t:'Широкие (wide leg) и трубы',img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504638231/1.webp',
+      go:'/catalog/shirokie-dzhinsy',guide:'/blog/vidy-i-nazvaniya-dzhinsov',
+      why:'Свободная штанина от бедра не касается ни бёдер, ни икр — сидит по силуэту, а не по телу. С высокой посадкой держит живот и вытягивает ноги: самый универсальный и самый благодарный фасон.'},
+    baggi:{t:'Багги',img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754505251/1.webp',
+      go:'/catalog/baggi-dzhinsy',guide:'/blog/dzhinsy-baggi-gid',
+      why:'Вам нужен модный объём: багги дают его по всей длине и честно прячут всё, что не хочется показывать. Носите с прилегающим верхом — и образ соберётся сам.'},
+    straight:{t:'Прямые (классика)',img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504646155/1.webp',
+      go:'/catalog/pryamye-dzhinsy',guide:'/blog/vidy-i-nazvaniya-dzhinsov',
+      why:'Ровная штанина без обтяжки и лишнего объёма — база, которая работает с чем угодно и не выходит из моды. Ваш вариант «одни джинсы на все случаи».'},
+    mom:{t:'Мом и бананы',img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504644422/1.webp',
+      go:'/catalog/dzhinsy',guide:'/blog/vidy-i-nazvaniya-dzhinsov',
+      why:'Высокая талия рисует талию, объём в бедре не обтягивает, зауженный низ показывает щиколотку — фасон, который делает силуэт, а не просто одевает.'},
+    flare:{t:'Клёш',img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/545150789/1.webp',
+      go:'/catalog?q=%D0%BA%D0%BB%D0%B5%D1%88',guide:'/blog/vidy-i-nazvaniya-dzhinsov',
+      why:'Расширение книзу уравновешивает бёдра и удлиняет ноги, особенно с каблуком. Самый «нарядный» из повседневных фасонов — ваш почерк.'}
+  };
+  var Q=[
+    {t:'Как бы вы описали свою фигуру?',s:'Нет правильных ответов — это просто геометрия.',o:[
+      ['Бёдра заметно шире плеч («груша»)',{wide:2,flare:2,mom:1}],
+      ['Объём в талии и животе («яблоко»)',{wide:2,baggi:2,straight:1}],
+      ['Талия выражена («песочные часы»)',{mom:2,flare:2,straight:1}],
+      ['Плечи и бёдра примерно равны («прямоугольник»)',{baggi:2,wide:1,straight:1}]]},
+    {t:'Ваш рост?',s:'От него зависит, какая длина и объём сработают.',o:[
+      ['До 162 см',{straight:1,mom:1,flare:1}],
+      ['162–172 см',{wide:1,baggi:1,straight:1,mom:1,flare:1}],
+      ['Выше 172 см',{wide:2,baggi:1,flare:1}]]},
+    {t:'Что для вас важнее всего?',s:'Выберите одно — главное.',o:[
+      ['Скрыть живот',{wide:2,straight:1,baggi:1}],
+      ['Скрыть бёдра и галифе',{wide:2,mom:1,baggi:1}],
+      ['Подчеркнуть талию',{mom:2,flare:1}],
+      ['Визуально удлинить ноги',{flare:2,wide:1}]]},
+    {t:'Какой стиль вам ближе?',s:'Куда чаще всего наденете джинсы.',o:[
+      ['Классика, офис, «прилично»',{straight:2,wide:1}],
+      ['Стрит, тренды, «как в ленте»',{baggi:3}],
+      ['Кэжуал на каждый день',{straight:1,mom:1,wide:1}],
+      ['Женственно и наряднее',{flare:2,mom:1}]]},
+    {t:'Как относитесь к облегающему крою?',s:'Честно.',o:[
+      ['Ни за что — только свободное',{wide:2,baggi:2}],
+      ['Низ может быть зауженным, но не в обтяжку',{mom:1,straight:1}],
+      ['Нормально, люблю по фигуре',{straight:1,flare:1,mom:1}]]}
+  ];
+  var step=0,score={wide:0,baggi:0,straight:0,mom:0,flare:0},hist=[];
+  var qEl=document.getElementById('hqQuiz'),prog=document.getElementById('hqProg'),
+      back=document.getElementById('hqBack'),res=document.getElementById('hqRes');
+  function drawProg(){var h='';for(var i=0;i<Q.length;i++)h+='<i class="'+(i<step?'on':'')+'"></i>';prog.innerHTML=h;}
+  function draw(){
+    drawProg();back.style.display=step>0?'inline':'none';res.style.display='none';qEl.style.display='block';
+    var q=Q[step],h='<div class="qt">'+q.t+'</div><div class="qs">'+q.s+'</div><div class="opts">';
+    for(var i=0;i<q.o.length;i++)h+='<button class="opt" data-i="'+i+'">'+q.o[i][0]+'</button>';
+    qEl.innerHTML=h+'</div>';
+    [].forEach.call(qEl.querySelectorAll('.opt'),function(b){b.addEventListener('click',function(){pick(+b.getAttribute('data-i'));});});
+  }
+  function pick(i){
+    var pts=Q[step].o[i][1];hist.push(pts);
+    for(var k in pts)score[k]+=pts[k];
+    step++;
+    if(step<Q.length)draw();else finish();
+  }
+  function finish(){
+    drawProg();prog.querySelectorAll('i').forEach(function(x){x.className='on';});
+    qEl.style.display='none';back.style.display='none';
+    var order=Object.keys(score).sort(function(a,b){return score[b]-score[a];});
+    var w=F[order[0]],s=F[order[1]];
+    document.getElementById('hqResTitle').textContent=w.t;
+    document.getElementById('hqResWhy').textContent=w.why;
+    document.getElementById('hqResImg').src=w.img;
+    document.getElementById('hqResImg').alt=w.t+' — подходящий вам фасон джинсов';
+    document.getElementById('hqResGo').href=w.go;
+    document.getElementById('hqResGuide').href=w.guide;
+    document.getElementById('hqResSecond').innerHTML='Второй подходящий вариант — <a href="'+s.go+'">'+s.t.toLowerCase()+'</a>: примерьте оба и сравните.';
+    res.style.display='block';
+    try{if(window.ym)ym(111076798,'reachGoal','quiz_fason_done',{fason:order[0]});}catch(e){}
+  }
+  document.getElementById('hqBack').addEventListener('click',function(){
+    if(step===0)return;step--;var pts=hist.pop();for(var k in pts)score[k]-=pts[k];draw();
+  });
+  document.getElementById('hqAgain').addEventListener('click',function(){
+    step=0;score={wide:0,baggi:0,straight:0,mom:0,flare:0};hist=[];draw();
+  });
+  draw();
+})();
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Тест: какие джинсы подойдут вашей фигуре","url":"https://hello-hailey.ru/podbor-fasona","description":"Интерактивный подбор фасона женских джинсов за 5 вопросов: по фигуре, росту и стилю. От бренда джинсов больших размеров HAILEY (42–74)."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://hello-hailey.ru/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://hello-hailey.ru/blog"},{"@type":"ListItem","position":3,"name":"Подбор фасона","item":"https://hello-hailey.ru/podbor-fasona"}]}
+</script>
