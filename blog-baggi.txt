@@ -1,0 +1,218 @@
+<!-- =========================================================
+     HAILEY · Блог «Джинсы багги: гид» (T123) — вручную не править,
+     источник: hailey-blog-baggi-код.html. Кластер: blog-gayd-baggi (307/мес).
+     Ключи ТОЛЬКО этого кластера (вопросы «что это/кому/как носить/длина»);
+     коммерческие «джинсы багги женские» — у категории /catalog/baggi-dzhinsy.
+     JSON-LD Article+Breadcrumb+FAQ в теле. Тема сквозная.
+     ========================================================= -->
+<style>
+  .hbg *{margin:0;padding:0;box-sizing:border-box}
+  .hbg{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px);position:relative}
+  @media(prefers-color-scheme:dark){.hbg{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}}
+  [data-theme="light"] .hbg{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
+  [data-theme="dark"] .hbg{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08)}
+  [data-theme="white"] .hbg{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06)}
+  .hbg .wrap{max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hbg a{color:inherit;text-decoration:none}
+  .hbg .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
+  .hbg .crumb a:hover{color:var(--ink)}
+  .hbg .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .hbg h1{font-size:clamp(26px,3.6vw,40px);line-height:1.12;font-weight:300;letter-spacing:-.01em;max-width:24ch}
+  .hbg .lead{font-size:clamp(15px,2.2vw,18px);color:var(--ink-2);margin-top:16px;max-width:58ch;line-height:1.6}
+  .hbg .meta{font-size:12.5px;color:var(--ink-3);margin-top:14px}
+  .hbg section{margin-top:clamp(44px,7vw,76px)}
+  .hbg h2{font-size:clamp(21px,3.2vw,30px);font-weight:300;letter-spacing:-.01em;margin-bottom:6px}
+  .hbg h2 .n{color:var(--ink-3);font-weight:400;margin-right:12px}
+  .hbg .sub{font-size:15px;color:var(--ink-2);margin-bottom:24px;max-width:62ch;line-height:1.6}
+  .hbg p{font-size:15px;color:var(--ink-2);line-height:1.65}
+  .hbg .hook{margin-top:26px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:20px 24px}
+  .hbg .hook b{font-size:15px}
+  .hbg .hook p{font-size:14px;margin-top:8px}
+  .hbg .hook a{border-bottom:1px solid var(--line)}
+  .hbg .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media(max-width:720px){.hbg .duo{grid-template-columns:1fr}}
+  .hbg .shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}
+  .hbg .shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .hbg .shot figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px}
+  .hbg .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .hbg table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  .hbg thead th{text-align:left;padding:14px 16px;background:var(--paper2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+  .hbg tbody td{padding:12px 16px;border-top:1px solid var(--line-soft);color:var(--ink-2);vertical-align:top}
+  .hbg tbody td:first-child{color:var(--ink);font-weight:700;white-space:nowrap}
+  .hbg .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hbg .cards{grid-template-columns:1fr}}
+  .hbg .cardi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .hbg .cardi b{display:block;font-size:15px;margin-bottom:6px}
+  .hbg .cardi p{font-size:13.5px}
+  .hbg .plus{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,30px)}
+  .hbg .plus ul{list-style:none;margin-top:14px}
+  .hbg .plus li{font-size:14.5px;color:var(--ink-2);line-height:1.6;padding:9px 0 9px 26px;position:relative;border-top:1px solid var(--line-soft)}
+  .hbg .plus li:before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+  .hbg .qa{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:12px;overflow:hidden}
+  .hbg .qa summary{padding:18px 22px;font-size:15px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .hbg .qa summary::-webkit-details-marker{display:none}
+  .hbg .qa summary .ic{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-weight:400;color:var(--ink-3);transition:transform .2s}
+  .hbg .qa[open] summary .ic{transform:rotate(45deg)}
+  .hbg .qa .ans{padding:0 22px 20px;font-size:14.5px;color:var(--ink-2);line-height:1.65;max-width:70ch}
+  .hbg .also{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hbg .also{grid-template-columns:1fr}}
+  .hbg .also a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:block;transition:border-color .15s}
+  .hbg .also a:hover{border-color:var(--ink)}
+  .hbg .also b{display:block;font-size:15px;margin-bottom:6px}
+  .hbg .also span{font-size:13px;color:var(--ink-2);line-height:1.5}
+  .hbg .tease{margin:26px 0 0;background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:block;transition:border-color .15s}
+  .hbg .tease:hover{border-color:var(--ink)}
+  .hbg .tease .tl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .hbg .tease b{display:block;font-size:15.5px;margin-top:6px}
+  .hbg .tease span{font-size:13.5px;color:var(--ink-2);display:block;margin-top:4px}
+  .hbg .series{display:flex;gap:14px;justify-content:space-between;margin-top:clamp(30px,5vw,44px);flex-wrap:wrap}
+  .hbg .series a,.hbg .series i{flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-style:normal}
+  .hbg .series a:hover{border-color:var(--ink)}
+  .hbg .series .dir{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .hbg .series b{display:block;font-size:14.5px;margin-top:5px}
+  .hbg .series i b{color:var(--ink-3)}
+  .hbg .cta{margin-top:clamp(44px,7vw,76px);background:var(--accent);border-radius:18px;padding:clamp(28px,5vw,46px);text-align:center;color:#F2F0EB}
+  .hbg .cta h2{color:inherit;margin-bottom:8px}
+  .hbg .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
+  .hbg .cta a{display:inline-flex;margin-top:22px;padding:16px 34px;background:#F2F0EB;color:#191712;border-radius:4px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:opacity .18s}
+  .hbg .cta a:hover{opacity:.9}
+</style>
+
+<div class="hbg">
+  <div class="wrap">
+    <nav class="crumb"><a href="/">Главная</a> · <a href="/blog">Блог</a> · <b>Джинсы багги</b></nav>
+
+    <div class="eyebrow">Гид HAILEY · обновлено 8 августа 2026</div>
+    <h1>Джинсы багги: что это за модель, кому подойдут и как их носить</h1>
+    <p class="lead">Багги — самый обсуждаемый фасон последних сезонов: их носят и на подиумах, и в универах, и в офисах с мягким дресс-кодом. Разбираем, что значит «багги», чем они отличаются от бойфрендов и слоучи, какой длины должны быть и — главное — кому подойдут. Мы шьём багги до 74 размера, так что про посадку на реальную фигуру говорим из примерочной, а не из интернета.</p>
+    <p class="meta">HAILEY · Гид №2 в серии о джинсах · читать ≈ 6 минут</p>
+
+    <div class="hook"><b>⚠️ Не покупайте багги, пока не проверите три вещи</b>
+      <p>1) точно ли это багги, а не бойфренды или слоучи — <a href="#diff">разница в таблице ниже</a>; 2) свою длину — у багги она решает всё (<a href="#length">какой должна быть</a>); 3) свой размер — багги свободные, но пояс должен сидеть точно, сверьтесь с <a href="/kak-vybrat-razmer">таблицей размеров и калькулятором</a>.</p>
+    </div>
+
+    <section id="what">
+      <h2><span class="n">01</span>Что такое джинсы багги и что значит это слово</h2>
+      <p class="sub">Прямой ответ — без истории на три абзаца.</p>
+      <p>«Багги» — от английского <b>baggy</b>, «мешковатый». Это джинсы, объёмные по всей длине: свободные в бёдрах, широкие в колене и у щиколотки. В отличие от классических широких моделей, багги часто сидят чуть ниже талии и ложатся мягкими складками — тот самый расслабленный силуэт из скейт-культуры 90-х, который вернулся в моду и остаётся её центром в 2026 году.</p>
+      <div class="duo" style="margin-top:24px">
+        <figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754505251/1.webp" alt="Джинсы багги женские — как выглядят на фигуре"><figcaption>Багги HAILEY: объём по всей длине, мягкие складки</figcaption></figure>
+        <figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754477427/1.webp" alt="Джинсы прямые широкие багги — вид спереди"><figcaption>Прямые багги: собраннее, но тот же свободный характер</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="diff">
+      <h2><span class="n">02</span>Багги, бойфренды, слоучи или wide leg — как отличить</h2>
+      <p class="sub">Эти четыре фасона путают чаще всего — даже продавцы. Запомните по одной примете на каждый.</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>Фасон</th><th>Главная примета</th><th>Посадка</th><th>Характер</th></tr></thead>
+          <tbody>
+            <tr><td>Багги</td><td>объём равномерно по ВСЕЙ длине</td><td>средняя или низкая</td><td>уличный, дерзкий</td></tr>
+            <tr><td>Бойфренды</td><td>объём в бёдрах, низ уже, подвороты</td><td>средняя</td><td>«с мужского плеча»</td></tr>
+            <tr><td>Слоучи</td><td>мягкая ткань, объём «сползает»</td><td>приспущенная</td><td>расслабленный, женственный</td></tr>
+            <tr><td>Wide leg</td><td>ровная широкая штанина от бедра</td><td>высокая</td><td>элегантный, строит вертикаль</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Продолжение темы</span><b>Не уверены, что багги — ваш фасон?</b><span>В гиде «Виды женских джинсов» — сравнительная таблица всех 15 фасонов с фото: за 3 минуты поймёте, что ищете на самом деле.</span></a>
+    </section>
+
+    <section id="who">
+      <h2><span class="n">03</span>Кому подойдут джинсы багги</h2>
+      <p class="sub">Честно: багги — один из самых универсальных фасонов, но с оговорками по росту и пропорциям.</p>
+      <div class="cards">
+        <div class="cardi"><b>Фигура «прямоугольник» и «яблоко»</b><p>Багги — находка: объём штанин уравновешивает верх, а средняя посадка не давит на живот. Верх — облегающий или заправленный, иначе силуэт «поплывёт».</p></div>
+        <div class="cardi"><b>Фигура «груша» и «песочные часы»</b><p>Работают отлично: свободное бедро не обтягивает, ногу не видно — только силуэт. Выбирайте пару с чуть зауженным поясом, чтобы талия читалась.</p></div>
+        <div class="cardi"><b>Невысокий рост (до ~162 см)</b><p>Можно, но с правилами: длина строго до верха подошвы (не гармошка в пол), обувь на платформе или каблуке, верх короткий. Иначе объём «съест» рост.</p></div>
+        <div class="cardi"><b>Большие размеры 48–74</b><p>Наша специализация — и багги мы советуем смело: модный объём честно прячет живот и бёдра, не обтягивая ни то, ни другое. Главное правило то же: низ объёмный — верх по фигуре.</p></div>
+      </div>
+    </section>
+
+    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov#kinds"><span class="tl">↪ Если багги — не ваше</span><b>Хочется объёма, но спокойнее?</b><span>Посмотрите wide leg и трубы — тот же комфорт, но элегантнее: разбор в гиде по фасонам. А мом и бананы дадут объём с акцентом на талию.</span></a>
+
+    <section id="length">
+      <h2><span class="n">04</span>Какой длины должны быть багги</h2>
+      <p class="sub">Длина — то, что отличает «модный объём» от «джинсы велики».</p>
+      <div class="plus">
+        <ul>
+          <li><b>Эталон:</b> штанина ложится на обувь с одним мягким заломом и закрывает щиколотку — край на уровне верха подошвы.</li>
+          <li><b>Допустимо:</b> лёгкая «гармошка» у щиколотки — если рост позволяет (от ~165 см) и обувь массивная.</li>
+          <li><b>Ошибка:</b> край волочится по полу или задирается выше косточки — первое неопрятно, второе превращает багги в кюлоты.</li>
+          <li><b>Про каблук:</b> под каблук берите длину «в пол» минус 1–2 см — багги с каблуком и коротким верхом дают самый стройнящий вариант этого фасона.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="wear">
+      <h2><span class="n">05</span>Как правильно носить багги: верх и обувь</h2>
+      <p class="sub">Одно правило и три готовые формулы — больше не нужно.</p>
+      <p><b>Правило: объём носят с прилеганием.</b> Багги дают низу максимум объёма — значит, верх должен дать силуэту точку опоры: топ, облегающая футболка, рубашка с заправкой спереди, короткая куртка до талии.</p>
+      <div class="cards" style="margin-top:20px">
+        <div class="cardi"><b>На каждый день</b><p>Багги + белая футболка с заправкой + кеды или массивные кроссовки. Куртка — короткая: бомбер или джинсовка до талии.</p></div>
+        <div class="cardi"><b>В офис (мягкий дресс-код)</b><p>Тёмные багги без потёртостей + рубашка + лоферы. Ремень в тон обуви собирает образ.</p></div>
+        <div class="cardi"><b>На выход</b><p>Багги + каблук + топ или корсетная блуза. Контраст «объём низа — открытый верх» и делает образ.</p></div>
+        <div class="cardi"><b>Чего избегать</b><p>Оверсайз-худи до бёдер поверх багги (силуэт исчезает) и обуви на тонкой подошве без каблука при невысоком росте.</p></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2><span class="n">06</span>Частые вопросы про багги</h2>
+      <details class="qa"><summary>Что значит «джинсы багги»?<span class="ic">+</span></summary>
+        <div class="ans">От английского baggy — «мешковатый». Фасон с равномерным объёмом по всей длине штанины, из джинсовой ткани, обычно со средней или низкой посадкой.</div>
+      </details>
+      <details class="qa"><summary>Багги ещё в моде в 2026 году?<span class="ic">+</span></summary>
+        <div class="ans">Да, багги — центр денимового тренда 2026 года вместе с wide leg и палаццо. Подборка актуальных моделей — на странице <a href="/catalog/trendy-2026" style="border-bottom:1px solid var(--line)">модные джинсы 2026</a>.</div>
+      </details>
+      <details class="qa"><summary>Кому багги не подойдут?<span class="ic">+</span></summary>
+        <div class="ans">Категоричного «нельзя» нет — есть условия. При невысоком росте нужны точная длина и каблук/платформа; при любви к оверсайз-верху придётся выбирать: объёмным может быть либо верх, либо низ.</div>
+      </details>
+      <details class="qa"><summary>Есть ли багги на большие размеры?<span class="ic">+</span></summary>
+        <div class="ans">Да — у нас багги идут в размерах 42–74 с высокой и средней посадкой. Смотрите раздел <a href="/catalog/baggi-dzhinsy" style="border-bottom:1px solid var(--line)">джинсы багги</a>: примерка перед оплатой, возврат 14 дней.</div>
+      </details>
+      <details class="qa"><summary>Чем багги отличаются от джинсов оверсайз?<span class="ic">+</span></summary>
+        <div class="ans">«Оверсайз» — общее слово про свободную посадку, багги — конкретный фасон с объёмом по всей длине. Практически все багги — оверсайз, но не всякий оверсайз — багги: свободные прямые или wide leg тоже оверсайз, силуэт другой.</div>
+      </details>
+    </section>
+
+    <section id="also">
+      <h2><span class="n">07</span>Читайте также</h2>
+      <div class="also">
+        <a href="/blog/vidy-i-nazvaniya-dzhinsov"><b>Виды женских джинсов: все фасоны с названиями</b><span>Сравнительная таблица 15 фасонов — от прямых до палаццо, с фото.</span></a>
+        <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b><span>Калькулятор по вашим меркам и как правильно снять мерки.</span></a>
+        <a href="/catalog/trendy-2026"><b>Модные джинсы 2026: тренды сезона</b><span>Багги, wide leg и палаццо — что носят в этом сезоне.</span></a>
+        <a href="/catalog/oversize-dzhinsy"><b>Джинсы оверсайз: подборка</b><span>Свободный крой, который садится по любой фигуре — 42–74.</span></a>
+      </div>
+    </section>
+
+    <div class="series">
+      <a href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="dir">← Гид №1</span><b>Виды женских джинсов: все фасоны с названиями</b></a>
+      <i><span class="dir">Гид №3 · скоро</span><b>Джинсы мом: кому подойдут и с чем носить</b></i>
+    </div>
+
+    <div class="cta">
+      <h2>Примерить багги вживую</h2>
+      <p>Багги и широкие джинсы в размерах 42–74: примерка перед оплатой, доставка по России, возврат 14 дней.</p>
+      <a href="/catalog/baggi-dzhinsy">Смотреть джинсы багги</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Джинсы багги: что это за модель, кому подойдут и как их носить","description":"Что значит «джинсы багги», чем отличаются от бойфрендов и слоучи, кому подойдут по фигуре и росту, какой длины должны быть и как их носить.","image":"https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754505251/1.webp","author":{"@type":"Organization","name":"HAILEY","url":"https://hello-hailey.ru/"},"publisher":{"@type":"Organization","name":"HAILEY","url":"https://hello-hailey.ru/"},"datePublished":"2026-08-08","dateModified":"2026-08-08","mainEntityOfPage":"https://hello-hailey.ru/blog/dzhinsy-baggi-gid"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://hello-hailey.ru/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://hello-hailey.ru/blog"},{"@type":"ListItem","position":3,"name":"Джинсы багги","item":"https://hello-hailey.ru/blog/dzhinsy-baggi-gid"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Что значит «джинсы багги»?","acceptedAnswer":{"@type":"Answer","text":"От английского baggy — «мешковатый». Фасон с равномерным объёмом по всей длине штанины, обычно со средней или низкой посадкой."}},
+{"@type":"Question","name":"Багги ещё в моде в 2026 году?","acceptedAnswer":{"@type":"Answer","text":"Да, багги — центр денимового тренда 2026 года вместе с wide leg и палаццо."}},
+{"@type":"Question","name":"Кому багги не подойдут?","acceptedAnswer":{"@type":"Answer","text":"Категоричного «нельзя» нет. При невысоком росте нужны точная длина и каблук или платформа; объёмным может быть либо верх, либо низ."}},
+{"@type":"Question","name":"Есть ли багги на большие размеры?","acceptedAnswer":{"@type":"Answer","text":"Да, багги HAILEY идут в размерах 42–74 с высокой и средней посадкой, с примеркой перед оплатой и возвратом 14 дней."}},
+{"@type":"Question","name":"Чем багги отличаются от джинсов оверсайз?","acceptedAnswer":{"@type":"Answer","text":"Оверсайз — общее слово про свободную посадку, багги — конкретный фасон с объёмом по всей длине штанины."}}]}
+</script>
