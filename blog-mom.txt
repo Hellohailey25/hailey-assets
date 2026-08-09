@@ -126,7 +126,7 @@
       <p style="margin-top:16px">Короткая формула: <b>мом — про талию, бойфренды — про свободу, бананы — про мягкую дугу, слоучи — про небрежность.</b> Если сомневаетесь, какой из них ваш, — быстрее всего решает <a href="/podbor-fasona">тест-подбор фасона</a>.</p>
     </section>
 
-    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Продолжение темы</span><b>Хотите увидеть всю картину фасонов?</b> <span>В гиде «Виды женских джинсов» — сравнительная таблица 15 фасонов с фото: мом, бананы, багги, клёш и остальные на одном экране.</span><em class="tgo">Перейти →</em></a>
+    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Продолжение темы</span> <b>Хотите увидеть всю картину фасонов?</b> <span>В гиде «Виды женских джинсов» — сравнительная таблица 15 фасонов с фото: мом, бананы, багги, клёш и остальные на одном экране.</span><em class="tgo">Перейти →</em></a>
 
     <section id="who">
       <h2><span class="n">03</span> Кому подойдут джинсы мом</h2>
@@ -139,7 +139,7 @@
       </div>
     </section>
 
-    <a class="tease" href="/blog/dzhinsy-baggi-gid"><span class="tl">↪ Если мом — не ваше</span><b>Нужен модный объём без акцента на талии?</b> <span>Посмотрите багги: гид о том, что это за фасон, кому идёт и какой длины должен быть.</span><em class="tgo">Перейти →</em></a>
+    <a class="tease" href="/blog/dzhinsy-baggi-gid"><span class="tl">↪ Если мом — не ваше</span> <b>Нужен модный объём без акцента на талии?</b> <span>Посмотрите багги: гид о том, что это за фасон, кому идёт и какой длины должен быть.</span><em class="tgo">Перейти →</em></a>
 
     <section id="wear">
       <h2><span class="n">04</span> С чем носить мом</h2>
@@ -183,8 +183,8 @@
     </section>
 
     <div class="series">
-      <a href="/blog/dzhinsy-baggi-gid"><span class="dir">← Гид №2</span><b>Джинсы багги: кому подойдут и как носить</b></a>
-      <a href="/blog/dzhinsy-klesh-gid"><span class="dir">Гид №4 →</span><b>Джинсы клёш: с чем носить и кому идут</b></a>
+      <a href="/blog/dzhinsy-baggi-gid"><span class="dir">← Гид №2</span> <b>Джинсы багги: кому подойдут и как носить</b></a>
+      <a href="/blog/dzhinsy-klesh-gid"><span class="dir">Гид №4 →</span> <b>Джинсы клёш: с чем носить и кому идут</b></a>
     </div>
 
     <div class="cta">
