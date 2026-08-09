@@ -1,0 +1,213 @@
+<!-- =========================================================
+     HAILEY · Блог «Джинсы клёш: гид» (T123) — вручную не править,
+     источник: hailey-blog-klesh-код.html. Кластер: blog-gayd-klesh (83/мес):
+     «с чем носить» (36+28) + «кому идут». Коммерческие «джинсы клеш женские» —
+     у будущей категории /catalog/klesh-dzhinsy (не таргетим!).
+     JSON-LD Article+Breadcrumb+FAQ. Правила: синие анкоры, .tease+.tgo, серия №4.
+     ========================================================= -->
+<style>
+  .hbk *{margin:0;padding:0;box-sizing:border-box}
+  .hbk{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;--link:#2456A6;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px);position:relative}
+  @media(prefers-color-scheme:dark){.hbk{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}}
+  [data-theme="light"] .hbk{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
+  [data-theme="dark"] .hbk{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}
+  [data-theme="white"] .hbk{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06);--link:#1A73E8}
+  .hbk .wrap{max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hbk a{color:inherit;text-decoration:none}
+  .hbk .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
+  .hbk .crumb a:hover{color:var(--ink)}
+  .hbk .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .hbk h1{font-size:clamp(26px,3.6vw,40px);line-height:1.12;font-weight:300;letter-spacing:-.01em;max-width:24ch}
+  .hbk .lead{font-size:clamp(15px,2.2vw,18px);color:var(--ink-2);margin-top:16px;max-width:58ch;line-height:1.6}
+  .hbk .meta{font-size:12.5px;color:var(--ink-3);margin-top:14px}
+  .hbk section{margin-top:clamp(44px,7vw,76px)}
+  .hbk h2{font-size:clamp(21px,3.2vw,30px);font-weight:300;letter-spacing:-.01em;margin-bottom:6px}
+  .hbk h2 .n{color:var(--ink-3);font-weight:400;margin-right:12px}
+  .hbk .sub{font-size:15px;color:var(--ink-2);margin-bottom:24px;max-width:62ch;line-height:1.6}
+  .hbk p{font-size:15px;color:var(--ink-2);line-height:1.65}
+  .hbk .hook{margin-top:26px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:20px 24px}
+  .hbk .hook b{font-size:15px}
+  .hbk .hook p{font-size:14px;margin-top:8px}
+  .hbk .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media(max-width:720px){.hbk .duo{grid-template-columns:1fr}}
+  .hbk .shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}
+  .hbk .shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .hbk .shot figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px}
+  .hbk .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .hbk table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  .hbk thead th{text-align:left;padding:14px 16px;background:var(--paper2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+  .hbk tbody td{padding:12px 16px;border-top:1px solid var(--line-soft);color:var(--ink-2);vertical-align:top}
+  .hbk tbody td:first-child{color:var(--ink);font-weight:700;white-space:nowrap}
+  .hbk .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hbk .cards{grid-template-columns:1fr}}
+  .hbk .cardi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .hbk .cardi b{display:block;font-size:15px;margin-bottom:6px}
+  .hbk .cardi p{font-size:13.5px}
+  .hbk .plus{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,30px)}
+  .hbk .plus ul{list-style:none;margin-top:14px}
+  .hbk .plus li{font-size:14.5px;color:var(--ink-2);line-height:1.6;padding:9px 0 9px 26px;position:relative;border-top:1px solid var(--line-soft)}
+  .hbk .plus li:before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+  .hbk .qa{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:12px;overflow:hidden}
+  .hbk .qa summary{padding:18px 22px;font-size:15px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .hbk .qa summary::-webkit-details-marker{display:none}
+  .hbk .qa summary .ic{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-weight:400;color:var(--ink-3);transition:transform .2s}
+  .hbk .qa[open] summary .ic{transform:rotate(45deg)}
+  .hbk .qa .ans{padding:0 22px 20px;font-size:14.5px;color:var(--ink-2);line-height:1.65;max-width:70ch}
+  .hbk .also{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hbk .also{grid-template-columns:1fr}}
+  .hbk .also a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:block;transition:border-color .15s}
+  .hbk .also a:hover{border-color:var(--ink)}
+  .hbk .also b{display:block;font-size:15px;margin-bottom:6px}
+  .hbk .also span{font-size:13px;color:var(--ink-2);line-height:1.5}
+  .hbk .tease{margin:26px 0 0;background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:block;transition:border-color .15s}
+  .hbk .tease:hover{border-color:var(--ink)}
+  .hbk .tease .tl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .hbk .tease b{display:block;font-size:15.5px;margin-top:6px}
+  .hbk .tease span{font-size:13.5px;color:var(--ink-2);display:block;margin-top:4px}
+  .hbk .series{display:flex;gap:14px;justify-content:space-between;margin-top:clamp(30px,5vw,44px);flex-wrap:wrap}
+  .hbk .series a,.hbk .series i{flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-style:normal}
+  .hbk .series a:hover{border-color:var(--ink)}
+  .hbk .series .dir{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .hbk .series b{display:block;font-size:14.5px;margin-top:5px}
+  .hbk .series i b{color:var(--ink-3)}
+  .hbk p a,.hbk .sub a,.hbk dd a,.hbk .ans a,.hbk .hook a,.hbk .cardi a,.hbk .plus a{color:var(--link);text-decoration:underline;text-underline-offset:2px;border-bottom:none!important}
+  .hbk .tgo{display:inline-block;margin-top:9px;color:var(--link);text-decoration:underline;text-underline-offset:2px;font-style:normal;font-size:13.5px;font-weight:600}
+  .hbk .series a b{color:var(--link)}
+  .hbk .cta{margin-top:clamp(44px,7vw,76px);background:var(--accent);border-radius:18px;padding:clamp(28px,5vw,46px);text-align:center;color:#F2F0EB}
+  .hbk .cta h2{color:inherit;margin-bottom:8px}
+  .hbk .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
+  .hbk .cta a{display:inline-flex;margin-top:22px;padding:16px 34px;background:#F2F0EB;color:#191712;border-radius:4px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:opacity .18s}
+  .hbk .cta a:hover{opacity:.9}
+</style>
+
+<div class="hbk">
+  <div class="wrap">
+    <nav class="crumb"><a href="/">Главная</a> · <a href="/blog">Блог</a> · <b>Джинсы клёш</b></nav>
+
+    <div class="eyebrow">Гид HAILEY · обновлено 9 августа 2026</div>
+    <h1>Джинсы клёш: с чем носить и кому идут</h1>
+    <p class="lead">Клёш — фасон-возвращенец из 70-х, который каждый сезон объявляют «снова главным». Разбираем, чем клёш от колена отличается от клёша от бедра, кому этот силуэт действительно идёт и с чем носить клёш в 2026 году, чтобы он вытягивал ноги, а не резал их пополам.</p>
+    <p class="meta">HAILEY · Гид №4 в серии о джинсах · читать ≈ 5 минут</p>
+
+    <div class="hook"><b>⚠️ Не покупайте клёш, пока не проверите три вещи</b>
+      <p>1) откуда идёт расширение — от колена и от бедра сидят совершенно по-разному (<a href="#what">разница ниже</a>); 2) длину с ВАШЕЙ обувью — клёш безжалостен к ошибкам длины (<a href="#length">правило</a>); 3) свой размер — расклешённая штанина требует точной посадки в бедре, сверьтесь с <a href="/kak-vybrat-razmer">таблицей размеров и калькулятором</a>.</p>
+    </div>
+
+    <section id="what">
+      <h2><span class="n">01</span>Какие бывают клёш: от колена, от бедра и буткат</h2>
+      <p class="sub">Три степени драматичности — выбирают под характер и случай.</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>Вид</th><th>Где расширение</th><th>Эффект</th><th>Куда носить</th></tr></thead>
+          <tbody>
+            <tr><td>Буткат</td><td>едва заметное, от колена</td><td>мягкая классика «под сапог»</td><td>офис, каждый день</td></tr>
+            <tr><td>Клёш от колена</td><td>выраженное, ниже колена</td><td>ретро 70-х, вытягивает ноги</td><td>город, выход</td></tr>
+            <tr><td>Клёш от бедра</td><td>штанина расходится от самого бедра</td><td>максимум драмы, силуэт «колокол»</td><td>вечер, образы с характером</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="duo" style="margin-top:24px">
+        <figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/545150789/1.webp" alt="Светлые джинсы клёш женские — с чем носить"><figcaption>Светлые клёш HAILEY — расширение от колена</figcaption></figure>
+        <figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504624622/1.webp" alt="Джинсы клёш для высоких — длина и посадка"><figcaption>Клёш для высоких: длина решает весь образ</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="who">
+      <h2><span class="n">02</span>Кому идут джинсы клёш</h2>
+      <p class="sub">Клёш — редкий случай фасона, который добавляет ногам длины почти любой фигуре. Но есть нюансы.</p>
+      <div class="cards">
+        <div class="cardi"><b>«Груша» и выраженные бёдра</b><p>Лучший сценарий: расширение внизу уравновешивает бёдра, силуэт становится пропорциональным. Клёш от колена — самый безопасный вариант.</p></div>
+        <div class="cardi"><b>Невысокий рост</b><p>Клёш + каблук = легальный способ «дорисовать» 10 см роста. Без каблука берите буткат или неширокий клёш строго в длину до пола минус 1 см.</p></div>
+        <div class="cardi"><b>«Песочные часы»</b><p>Клёш с высокой посадкой повторяет изгибы фигуры — то, что этот тип умеет носить лучше всех. Смело берите клёш от бедра.</p></div>
+        <div class="cardi"><b>Большие размеры 48–74</b><p>Работает: расширение внизу балансирует объём в бедре, высокая посадка держит живот. Правило одно — плотный деним, который держит форму расширения, а не висит.</p></div>
+      </div>
+    </section>
+
+    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span><b>Сомневаетесь, клёш ли это вообще ваш фасон?</b><span>5 вопросов о фигуре, росте и стиле — и вы получите свой фасон плюс запасной вариант.</span><em class="tgo">Пройти →</em></a>
+
+    <section id="wear">
+      <h2><span class="n">03</span>С чем носить клёш в 2026 году</h2>
+      <p class="sub">Правило простое: клёш — низ-солист. Верх и обувь ему аккомпанируют.</p>
+      <p><b>Главное правило: узкий или заправленный верх.</b> Клёш расширяется внизу — значит, наверху силуэту нужна чистая линия: облегающий топ, боди, заправленная рубашка, короткий жакет. Объёмный свитер поверх клёша превращает образ в «колокол на колоколе».</p>
+      <div class="cards" style="margin-top:20px">
+        <div class="cardi"><b>На каждый день</b><p>Клёш от колена + белая футболка с заправкой + кеды на платформе или ботинки на массивной подошве. Джинсовка — короткая, до талии.</p></div>
+        <div class="cardi"><b>В офис</b><p>Тёмный буткат + рубашка + лоферы на подошве повыше. Ремень в цвет обуви. Выглядит строже любых брюк — а сидит удобнее.</p></div>
+        <div class="cardi"><b>На выход</b><p>Клёш от бедра + каблук (обязательно!) + топ или корсет + удлинённый жакет НА плечи, не застёгнутый. Каблук прячется под штаниной — ноги «бесконечные».</p></div>
+        <div class="cardi"><b>Тренд 2026</b><p>Клёш + балетки или мэри-джейн + бант/платок в волосах — ретро-линия сезона. Для смелых: клёш + укороченный кардиган в тон.</p></div>
+      </div>
+    </section>
+
+    <section id="length">
+      <h2><span class="n">04</span>Длина клёша: правило одной пары обуви</h2>
+      <p class="sub">Клёш не прощает «примерно» — длину подбирают под конкретную высоту подошвы.</p>
+      <div class="plus">
+        <ul>
+          <li><b>Эталон:</b> край штанины на 1–2 см от пола в ТОЙ обуви, с которой будете носить. Каблук прячется под штаниной почти целиком.</li>
+          <li><b>Ошибка №1 — короткий клёш:</b> край выше щиколотки обрубает ногу ровно там, где фасон должен её удлинять.</li>
+          <li><b>Ошибка №2 — клёш в пол без каблука:</b> край обтрёпывается и собирается складками — неопрятно.</li>
+          <li><b>Лайфхак:</b> если носите клёш и с каблуком, и без — берите длину под каблук, а для плоской подошвы делайте аккуратный внутренний подгиб.</li>
+        </ul>
+      </div>
+    </section>
+
+    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Если клёш — не ваше</span><b>Хочется силуэта поспокойнее?</b><span>Посмотрите прямые и wide leg — та же вертикаль без драмы: разбор всех 15 фасонов в гиде по видам джинсов.</span><em class="tgo">Перейти →</em></a>
+
+    <section id="faq">
+      <h2><span class="n">05</span>Частые вопросы про клёш</h2>
+      <details class="qa"><summary>Клёш в моде в 2026 году?<span class="ic">+</span></summary>
+        <div class="ans">Да — как часть большого тренда на объём внизу. Носят и классический клёш от колена, и драматичный от бедра; буткат вернулся как «тихая» альтернатива. Актуальные модели — в подборке <a href="/catalog/trendy-2026">модные джинсы 2026</a>.</div>
+      </details>
+      <details class="qa"><summary>Чем клёш отличается от буткат?<span class="ic">+</span></summary>
+        <div class="ans">Степенью расширения: буткат расходится едва заметно (задуман, чтобы штанина ложилась на сапог), клёш — выраженно, от колена или от бедра. Буткат — про сдержанность, клёш — про эффект.</div>
+      </details>
+      <details class="qa"><summary>Можно ли носить клёш без каблука?<span class="ic">+</span></summary>
+        <div class="ans">Можно: буткат и клёш от колена отлично живут с кедами на платформе и массивными ботинками — если длина подобрана под эту обувь. Клёш от бедра без каблука требует высокого роста.</div>
+      </details>
+      <details class="qa"><summary>Есть ли клёш в каталоге HAILEY?<span class="ic">+</span></summary>
+        <div class="ans">Да — светлые клёш и клёш для высоких, в размерах 42–74: смотрите <a href="/catalog?q=%D0%BA%D0%BB%D0%B5%D1%88">все модели клёш в каталоге</a>. Примерка перед оплатой, возврат 14 дней.</div>
+      </details>
+      <details class="qa"><summary>Кому клёш не подойдёт?<span class="ic">+</span></summary>
+        <div class="ans">Категоричного запрета нет. Осторожность нужна при невысоком росте без каблука (берите буткат) и при любви к объёмному верху — с клёшем он спорит за внимание.</div>
+      </details>
+    </section>
+
+    <section id="also">
+      <h2><span class="n">06</span>Читайте также</h2>
+      <div class="also">
+        <a href="/blog/vidy-i-nazvaniya-dzhinsov"><b>Виды женских джинсов: все фасоны с названиями</b><span>Сравнительная таблица 15 фасонов — от прямых до палаццо, с фото.</span><em class="tgo">Читать →</em></a>
+        <a href="/blog/dzhinsy-mom-gid"><b>Джинсы мом: что это за модель и кому подойдут</b><span>Высокая талия, отличия от бананов и бойфрендов, формулы образов.</span><em class="tgo">Читать →</em></a>
+        <a href="/podbor-fasona"><b>Тест: какие джинсы подойдут именно вам</b><span>5 вопросов о фигуре и стиле — фасон в результате. 1 минута.</span><em class="tgo">Пройти →</em></a>
+        <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b><span>Калькулятор по вашим меркам и как правильно снять мерки.</span><em class="tgo">Читать →</em></a>
+      </div>
+    </section>
+
+    <div class="series">
+      <a href="/blog/dzhinsy-mom-gid"><span class="dir">← Гид №3</span><b>Джинсы мом: что это за модель и кому подойдут</b></a>
+      <i><span class="dir">Гид №5 · скоро</span><b>Джинсы бананы: чем отличаются и кому идут</b></i>
+    </div>
+
+    <div class="cta">
+      <h2>Примерить клёш вживую</h2>
+      <p>Светлые клёш и клёш для высоких — размеры 42–74, примерка перед оплатой, доставка по России, возврат 14 дней.</p>
+      <a href="/catalog?q=%D0%BA%D0%BB%D0%B5%D1%88">Смотреть модели клёш</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Джинсы клёш: с чем носить и кому идут","description":"С чем носить джинсы клёш в 2026 году, кому идёт этот фасон, чем клёш от колена отличается от клёша от бедра и буткат, как выбрать длину.","image":"https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/545150789/1.webp","author":{"@type":"Organization","name":"HAILEY","url":"https://hello-hailey.ru/"},"publisher":{"@type":"Organization","name":"HAILEY","url":"https://hello-hailey.ru/"},"datePublished":"2026-08-09","dateModified":"2026-08-09","mainEntityOfPage":"https://hello-hailey.ru/blog/dzhinsy-klesh-gid"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://hello-hailey.ru/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://hello-hailey.ru/blog"},{"@type":"ListItem","position":3,"name":"Джинсы клёш","item":"https://hello-hailey.ru/blog/dzhinsy-klesh-gid"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Клёш в моде в 2026 году?","acceptedAnswer":{"@type":"Answer","text":"Да — как часть тренда на объём внизу: классический клёш от колена, драматичный от бедра и буткат как спокойная альтернатива."}},
+{"@type":"Question","name":"Чем клёш отличается от буткат?","acceptedAnswer":{"@type":"Answer","text":"Степенью расширения: буткат расходится едва заметно, клёш — выраженно, от колена или от бедра."}},
+{"@type":"Question","name":"Можно ли носить клёш без каблука?","acceptedAnswer":{"@type":"Answer","text":"Да: буткат и клёш от колена носят с кедами на платформе и массивными ботинками, если длина подобрана под эту обувь. Клёш от бедра без каблука требует высокого роста."}},
+{"@type":"Question","name":"Кому клёш не подойдёт?","acceptedAnswer":{"@type":"Answer","text":"Категоричного запрета нет: при невысоком росте без каблука выбирайте буткат, а объёмный верх с клёшем спорит за внимание."}}]}
+</script>
