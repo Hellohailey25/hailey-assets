@@ -53,6 +53,12 @@
 <script>
 (function(){
   var ARTICLES=[
+    {url:'/blog/kak-podvernut-shirokie-dzhinsy',tag:'Гид №4 · Практика',title:'Как подвернуть широкие джинсы: 4 способа и правило длины',
+     desc:'Где заканчивается подворот, четыре способа под разную плотность денима и что делать, если отворот разворачивается.',
+     img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504634485/1.webp',date:'9 августа 2026'},
+    {url:'/blog/dzhinsy-klesh-gid',tag:'Гид №5 · Фасон',title:'Джинсы клёш: с чем носить и кому идут',
+     desc:'Откуда идёт расширение, кому подходит фасон по росту и фигуре, с какой обувью и верхом носить.',
+     img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/545150789/1.webp',date:'9 августа 2026'},
     {url:'/blog/dzhinsy-klesh-gid',tag:'Гид №4 · Фасон',title:'Джинсы клёш: с чем носить и кому идут',
      desc:'Буткат, клёш от колена и от бедра: формулы образов 2026, правило длины и кому идёт фасон.',
      img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/545150789/1.webp',date:'9 августа 2026'},
