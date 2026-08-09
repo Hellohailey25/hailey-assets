@@ -1,0 +1,210 @@
+<!-- =========================================================
+     HAILEY · Блог «Джинсы мом: гид» (T123) — вручную не править,
+     источник: hailey-blog-mom-код.html. Кластер: blog-gayd-mom (219/мес).
+     Ключи ТОЛЬКО этого кластера (вопросы «что это за модель/что значит/кому/
+     отличия от бойфрендов»). Мом в каталоге HAILEY пока НЕТ — честный блок
+     альтернатив (бананы/багги/y2k). JSON-LD Article+Breadcrumb+FAQ в теле.
+     Правила: синие анкоры (--link), .tease+.tgo, серия «Гид №3». Тема сквозная.
+     ========================================================= -->
+<style>
+  .hbm *{margin:0;padding:0;box-sizing:border-box}
+  .hbm{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;--link:#2456A6;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px);position:relative}
+  @media(prefers-color-scheme:dark){.hbm{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}}
+  [data-theme="light"] .hbm{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
+  [data-theme="dark"] .hbm{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}
+  [data-theme="white"] .hbm{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06);--link:#1A73E8}
+  .hbm .wrap{max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hbm a{color:inherit;text-decoration:none}
+  .hbm .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
+  .hbm .crumb a:hover{color:var(--ink)}
+  .hbm .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .hbm h1{font-size:clamp(26px,3.6vw,40px);line-height:1.12;font-weight:300;letter-spacing:-.01em;max-width:24ch}
+  .hbm .lead{font-size:clamp(15px,2.2vw,18px);color:var(--ink-2);margin-top:16px;max-width:58ch;line-height:1.6}
+  .hbm .meta{font-size:12.5px;color:var(--ink-3);margin-top:14px}
+  .hbm section{margin-top:clamp(44px,7vw,76px)}
+  .hbm h2{font-size:clamp(21px,3.2vw,30px);font-weight:300;letter-spacing:-.01em;margin-bottom:6px}
+  .hbm h2 .n{color:var(--ink-3);font-weight:400;margin-right:12px}
+  .hbm .sub{font-size:15px;color:var(--ink-2);margin-bottom:24px;max-width:62ch;line-height:1.6}
+  .hbm p{font-size:15px;color:var(--ink-2);line-height:1.65}
+  .hbm .hook{margin-top:26px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:20px 24px}
+  .hbm .hook b{font-size:15px}
+  .hbm .hook p{font-size:14px;margin-top:8px}
+  .hbm .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media(max-width:720px){.hbm .duo{grid-template-columns:1fr}}
+  .hbm .shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}
+  .hbm .shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .hbm .shot figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px}
+  .hbm .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .hbm table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  .hbm thead th{text-align:left;padding:14px 16px;background:var(--paper2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+  .hbm tbody td{padding:12px 16px;border-top:1px solid var(--line-soft);color:var(--ink-2);vertical-align:top}
+  .hbm tbody td:first-child{color:var(--ink);font-weight:700;white-space:nowrap}
+  .hbm .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hbm .cards{grid-template-columns:1fr}}
+  .hbm .cardi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .hbm .cardi b{display:block;font-size:15px;margin-bottom:6px}
+  .hbm .cardi p{font-size:13.5px}
+  .hbm .plus{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,30px)}
+  .hbm .plus ul{list-style:none;margin-top:14px}
+  .hbm .plus li{font-size:14.5px;color:var(--ink-2);line-height:1.6;padding:9px 0 9px 26px;position:relative;border-top:1px solid var(--line-soft)}
+  .hbm .plus li:before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+  .hbm .qa{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:12px;overflow:hidden}
+  .hbm .qa summary{padding:18px 22px;font-size:15px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .hbm .qa summary::-webkit-details-marker{display:none}
+  .hbm .qa summary .ic{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-weight:400;color:var(--ink-3);transition:transform .2s}
+  .hbm .qa[open] summary .ic{transform:rotate(45deg)}
+  .hbm .qa .ans{padding:0 22px 20px;font-size:14.5px;color:var(--ink-2);line-height:1.65;max-width:70ch}
+  .hbm .also{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hbm .also{grid-template-columns:1fr}}
+  .hbm .also a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:block;transition:border-color .15s}
+  .hbm .also a:hover{border-color:var(--ink)}
+  .hbm .also b{display:block;font-size:15px;margin-bottom:6px}
+  .hbm .also span{font-size:13px;color:var(--ink-2);line-height:1.5}
+  .hbm .tease{margin:26px 0 0;background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:block;transition:border-color .15s}
+  .hbm .tease:hover{border-color:var(--ink)}
+  .hbm .tease .tl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .hbm .tease b{display:block;font-size:15.5px;margin-top:6px}
+  .hbm .tease span{font-size:13.5px;color:var(--ink-2);display:block;margin-top:4px}
+  .hbm .series{display:flex;gap:14px;justify-content:space-between;margin-top:clamp(30px,5vw,44px);flex-wrap:wrap}
+  .hbm .series a,.hbm .series i{flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-style:normal}
+  .hbm .series a:hover{border-color:var(--ink)}
+  .hbm .series .dir{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .hbm .series b{display:block;font-size:14.5px;margin-top:5px}
+  .hbm .series i b{color:var(--ink-3)}
+  .hbm p a,.hbm .sub a,.hbm dd a,.hbm .ans a,.hbm .hook a,.hbm .cardi a,.hbm .plus a{color:var(--link);text-decoration:underline;text-underline-offset:2px;border-bottom:none!important}
+  .hbm .tgo{display:inline-block;margin-top:9px;color:var(--link);text-decoration:underline;text-underline-offset:2px;font-style:normal;font-size:13.5px;font-weight:600}
+  .hbm .series a b{color:var(--link)}
+  .hbm .cta{margin-top:clamp(44px,7vw,76px);background:var(--accent);border-radius:18px;padding:clamp(28px,5vw,46px);text-align:center;color:#F2F0EB}
+  .hbm .cta h2{color:inherit;margin-bottom:8px}
+  .hbm .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
+  .hbm .cta a{display:inline-flex;margin-top:22px;padding:16px 34px;background:#F2F0EB;color:#191712;border-radius:4px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:opacity .18s}
+  .hbm .cta a:hover{opacity:.9}
+</style>
+
+<div class="hbm">
+  <div class="wrap">
+    <nav class="crumb"><a href="/">Главная</a> · <a href="/blog">Блог</a> · <b>Джинсы мом</b></nav>
+
+    <div class="eyebrow">Гид HAILEY · обновлено 9 августа 2026</div>
+    <h1>Джинсы мом: что это за модель, кому подойдут и чем отличаются от бойфрендов</h1>
+    <p class="lead">«Мамины джинсы» из 80-х стали одним из самых носимых фасонов современности — и самым путаемым: мом постоянно принимают за бойфренды, бананы и слоучи. Разбираем, что значит «мом», как узнать этот крой с первого взгляда и кому он действительно идёт.</p>
+    <p class="meta">HAILEY · Гид №3 в серии о джинсах · читать ≈ 5 минут</p>
+
+    <div class="hook"><b>⚠️ Не покупайте «мом», пока не проверите три вещи</b>
+      <p>1) точно ли это мом, а не бананы или бойфренды — <a href="#diff">отличия в таблице ниже</a>; 2) посадку — настоящие мом сидят строго на талии, заниженный пояс превращает их в другой фасон; 3) свой размер — мом требовательны к посадке в поясе, сверьтесь с <a href="/kak-vybrat-razmer">таблицей размеров и калькулятором</a>.</p>
+    </div>
+
+    <section id="what">
+      <h2><span class="n">01</span>Что это за модель и что значит «мом»</h2>
+      <p class="sub">Прямой ответ — в двух абзацах.</p>
+      <p><b>Мом (mom jeans, «мамины джинсы»)</b> — фасон с высокой талией, свободным объёмом в бёдрах и штаниной, зауженной к щиколотке. Название буквальное: так выглядели джинсы, которые носили американские мамы в 1980-е — практичные, с высоким поясом, не в обтяжку. В 2010-х фасон вернулся через винтажные магазины и стал классикой уличного стиля.</p>
+      <p style="margin-top:12px">Узнать мом просто по трём приметам: <b>пояс на талии или выше</b>, <b>объём в бёдрах</b> (часто с мягкими складками у карманов) и <b>сужение к низу</b> — щиколотка почти всегда открыта или подчёркнута подворотом. Ткань обычно плотная, без сильной эластичности — форма держится, а не обтягивает.</p>
+      <div class="duo" style="margin-top:24px">
+        <figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504644422/1.webp" alt="Силуэт с высокой талией и зауженным низом — ближайший к мом крой HAILEY"><figcaption>Ближайший к мом силуэт в каталоге HAILEY — прямые y2k с высокой посадкой</figcaption></figure>
+        <figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754505251/1.webp" alt="Джинсы багги — более свободная альтернатива мом"><figcaption>Багги — альтернатива, если от мом вам нужен объём, а не талия</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="diff">
+      <h2><span class="n">02</span>Мом, бананы, бойфренды или слоучи — чем отличаются</h2>
+      <p class="sub">Четыре фасона с высокой роднёй — по одной примете на каждый, чтобы больше не путать.</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>Фасон</th><th>Главная примета</th><th>Посадка</th><th>Характер</th></tr></thead>
+          <tbody>
+            <tr><td>Мом</td><td>объём в бёдрах, сужение к низу почти по прямой</td><td>высокая, на талии</td><td>винтажный, собранный</td></tr>
+            <tr><td>Бананы</td><td>штанина изгибается заметной дугой</td><td>высокая</td><td>мягкий, округлый силуэт</td></tr>
+            <tr><td>Бойфренды</td><td>свободные по всей ноге, подвороты, «с мужского плеча»</td><td>средняя, чуть спущенная</td><td>расслабленный</td></tr>
+            <tr><td>Слоучи</td><td>мягкая ткань, объём словно «сползает»</td><td>приспущенная</td><td>нарочито небрежный</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px">Короткая формула: <b>мом — про талию, бойфренды — про свободу, бананы — про мягкую дугу, слоучи — про небрежность.</b> Если сомневаетесь, какой из них ваш, — быстрее всего решает <a href="/podbor-fasona">тест-подбор фасона</a>.</p>
+    </section>
+
+    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Продолжение темы</span><b>Хотите увидеть всю картину фасонов?</b><span>В гиде «Виды женских джинсов» — сравнительная таблица 15 фасонов с фото: мом, бананы, багги, клёш и остальные на одном экране.</span><em class="tgo">Перейти →</em></a>
+
+    <section id="who">
+      <h2><span class="n">03</span>Кому подойдут джинсы мом</h2>
+      <p class="sub">Мом любят за талию — но именно посадка на талии диктует правила.</p>
+      <div class="cards">
+        <div class="cardi"><b>«Песочные часы» и «груша»</b><p>Идеальный сценарий: высокий пояс подчёркивает талию, объём в бёдрах не обтягивает. Верх — заправленный, иначе главный козырь фасона пропадёт.</p></div>
+        <div class="cardi"><b>«Прямоугольник»</b><p>Мом рисуют талию там, где её не подчёркивает природа: складки у карманов добавляют бёдрам объёма, сужение к низу строит силуэт. Один из лучших фасонов для этого типа.</p></div>
+        <div class="cardi"><b>«Яблоко» и животик</b><p>Осторожно: жёсткий пояс на талии может подчёркивать то, что хочется скрыть. Примеряйте мом с мягким поясом — или посмотрите на <a href="/catalog/shirokie-dzhinsy">широкие с высокой посадкой</a>: они решают ту же задачу деликатнее.</p></div>
+        <div class="cardi"><b>Большие размеры 48–74</b><p>Мом работают и на больших размерах — если пояс сидит точно по талии, а бедро не натягивается. Открытая щиколотка — самое узкое место ноги — визуально облегчает весь силуэт.</p></div>
+      </div>
+    </section>
+
+    <a class="tease" href="/blog/dzhinsy-baggi-gid"><span class="tl">↪ Если мом — не ваше</span><b>Нужен модный объём без акцента на талии?</b><span>Посмотрите багги: гид о том, что это за фасон, кому идёт и какой длины должен быть.</span><em class="tgo">Перейти →</em></a>
+
+    <section id="wear">
+      <h2><span class="n">04</span>С чем носить мом</h2>
+      <p class="sub">Одно правило и три формулы.</p>
+      <p><b>Правило: мом показывают талию и щиколотку.</b> Верх заправляют (полностью или спереди), низ не закрывают длинными широкими штанинами обуви.</p>
+      <div class="cards" style="margin-top:20px">
+        <div class="cardi"><b>На каждый день</b><p>Мом + заправленная футболка + кеды или лоферы. Подворот в один оборот, носок не виден.</p></div>
+        <div class="cardi"><b>Прохладный сезон</b><p>Мом + тонкий свитер с заправкой спереди + ботинки на массивной подошве, но с открытой щиколоткой джинсов.</p></div>
+        <div class="cardi"><b>Наряднее</b><p>Мом + топ или рубашка с поясом + каблук. Высокая талия + каблук — самая «длинноногая» версия фасона.</p></div>
+        <div class="cardi"><b>Чего избегать</b><p>Верха навыпуск ниже бёдер (прячет талию — теряется смысл фасона) и слишком длинных штанин, собирающихся гармошкой.</p></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2><span class="n">05</span>Частые вопросы про мом</h2>
+      <details class="qa"><summary>Что значит «джинсы мом»?<span class="ic">+</span></summary>
+        <div class="ans">От английского mom jeans — «мамины джинсы». Фасон 80-х: высокая талия, объём в бёдрах, зауженный низ. Вернулся в моду в 2010-х и стал базовым.</div>
+      </details>
+      <details class="qa"><summary>Чем мом отличаются от бойфрендов?<span class="ic">+</span></summary>
+        <div class="ans">Посадкой и силуэтом: мом сидят высоко на талии и сужаются к низу, бойфренды — свободные по всей ноге, со средней или чуть спущенной посадкой, будто взяты «с мужского плеча».</div>
+      </details>
+      <details class="qa"><summary>Мом ещё в моде в 2026 году?<span class="ic">+</span></summary>
+        <div class="ans">Да — мом перешли в разряд классики: тренды сместились к объёмным багги и wide leg, но мом продолжают носить как базу. Актуальные объёмные модели — в подборке <a href="/catalog/trendy-2026">модные джинсы 2026</a>.</div>
+      </details>
+      <details class="qa"><summary>Есть ли мом в каталоге HAILEY?<span class="ic">+</span></summary>
+        <div class="ans">Классических мом сейчас нет — честно. Ближайшие по духу: прямые y2k с высокой посадкой (талия + сужение), бананы ждём в новых поставках, а если от мом вам нужен объём — посмотрите <a href="/catalog/baggi-dzhinsy">багги</a>. Все модели — в размерах 42–74.</div>
+      </details>
+      <details class="qa"><summary>Какой длины должны быть мом?<span class="ic">+</span></summary>
+        <div class="ans">До косточки щиколотки или чуть выше — щиколотка остаётся открытой. Допустим один аккуратный подворот. Длина «в пол» превращает мом в другой фасон и крадёт рост.</div>
+      </details>
+    </section>
+
+    <section id="also">
+      <h2><span class="n">06</span>Читайте также</h2>
+      <div class="also">
+        <a href="/blog/vidy-i-nazvaniya-dzhinsov"><b>Виды женских джинсов: все фасоны с названиями</b><span>Сравнительная таблица 15 фасонов — от прямых до палаццо, с фото.</span><em class="tgo">Читать →</em></a>
+        <a href="/blog/dzhinsy-baggi-gid"><b>Джинсы багги: кому подойдут и как носить</b><span>Что значит «багги», отличия от бойфрендов и правила длины.</span><em class="tgo">Читать →</em></a>
+        <a href="/podbor-fasona"><b>Тест: какие джинсы подойдут именно вам</b><span>5 вопросов о фигуре и стиле — фасон в результате. 1 минута.</span><em class="tgo">Пройти →</em></a>
+        <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b><span>Калькулятор по вашим меркам и как правильно снять мерки.</span><em class="tgo">Читать →</em></a>
+      </div>
+    </section>
+
+    <div class="series">
+      <a href="/blog/dzhinsy-baggi-gid"><span class="dir">← Гид №2</span><b>Джинсы багги: кому подойдут и как носить</b></a>
+      <i><span class="dir">Гид №4 · скоро</span><b>Джинсы клёш: кому идут и с чем носить</b></i>
+    </div>
+
+    <div class="cta">
+      <h2>Высокая талия — наша специальность</h2>
+      <p>Прямые, широкие и багги с высокой посадкой в размерах 42–74: доставка по России, возврат 14 дней.</p>
+      <a href="/catalog/dzhinsy">Смотреть каталог джинсов</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Джинсы мом: что это за модель, кому подойдут и чем отличаются от бойфрендов","description":"Что значит «джинсы мом», как узнать фасон по трём приметам, чем мом отличаются от бананов, бойфрендов и слоучи, кому подойдут и с чем их носить.","image":"https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504644422/1.webp","author":{"@type":"Organization","name":"HAILEY","url":"https://hello-hailey.ru/"},"publisher":{"@type":"Organization","name":"HAILEY","url":"https://hello-hailey.ru/"},"datePublished":"2026-08-09","dateModified":"2026-08-09","mainEntityOfPage":"https://hello-hailey.ru/blog/dzhinsy-mom-gid"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://hello-hailey.ru/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://hello-hailey.ru/blog"},{"@type":"ListItem","position":3,"name":"Джинсы мом","item":"https://hello-hailey.ru/blog/dzhinsy-mom-gid"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Что значит «джинсы мом»?","acceptedAnswer":{"@type":"Answer","text":"От английского mom jeans — «мамины джинсы». Фасон 80-х: высокая талия, объём в бёдрах, зауженный низ. Вернулся в моду в 2010-х и стал базовым."}},
+{"@type":"Question","name":"Чем мом отличаются от бойфрендов?","acceptedAnswer":{"@type":"Answer","text":"Мом сидят высоко на талии и сужаются к низу; бойфренды — свободные по всей ноге, со средней или чуть спущенной посадкой."}},
+{"@type":"Question","name":"Мом ещё в моде в 2026 году?","acceptedAnswer":{"@type":"Answer","text":"Да, мом перешли в разряд классики. Тренды сместились к объёмным багги и wide leg, но мом продолжают носить как базу."}},
+{"@type":"Question","name":"Какой длины должны быть мом?","acceptedAnswer":{"@type":"Answer","text":"До косточки щиколотки или чуть выше — щиколотка открыта. Допустим один аккуратный подворот; длина в пол крадёт рост."}}]}
+</script>
