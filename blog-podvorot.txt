@@ -1,0 +1,241 @@
+<!-- =========================================================
+     HAILEY · Блог «Как подвернуть широкие джинсы» (T123) — вручную не править,
+     источник: hailey-blog-podvorot-код.html. Кластер: blog-trendy-i-moda-2026 (265/мес).
+     Ключи ТОЛЬКО этого кластера («как подвернуть», «как называются»);
+     коммерческие «широкие джинсы женские» — у категории /catalog/shirokie-dzhinsy.
+     JSON-LD Article+Breadcrumb+FAQ в теле. Тема сквозная.
+     ========================================================= -->
+<style>
+  .hpd *{margin:0;padding:0;box-sizing:border-box}
+  .hpd{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;--link:#2456A6;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px);position:relative}
+  @media(prefers-color-scheme:dark){.hpd{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}}
+  [data-theme="light"] .hpd{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
+  [data-theme="dark"] .hpd{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}
+  [data-theme="white"] .hpd{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06);--link:#1A73E8}
+  .hpd .wrap{max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hpd a{color:inherit;text-decoration:none}
+  .hpd .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
+  .hpd .crumb a:hover{color:var(--ink)}
+  .hpd .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .hpd h1{font-size:clamp(26px,3.6vw,40px);line-height:1.12;font-weight:300;letter-spacing:-.01em;max-width:24ch}
+  .hpd .lead{font-size:clamp(15px,2.2vw,18px);color:var(--ink-2);margin-top:16px;max-width:58ch;line-height:1.6}
+  .hpd .meta{font-size:12.5px;color:var(--ink-3);margin-top:14px}
+  .hpd section{margin-top:clamp(44px,7vw,76px)}
+  .hpd h2{font-size:clamp(21px,3.2vw,30px);font-weight:300;letter-spacing:-.01em;margin-bottom:6px}
+  .hpd h2 .n{color:var(--ink-3);font-weight:400;margin-right:12px}
+  .hpd .sub{font-size:15px;color:var(--ink-2);margin-bottom:24px;max-width:62ch;line-height:1.6}
+  .hpd p{font-size:15px;color:var(--ink-2);line-height:1.65}
+  .hpd .hook{margin-top:26px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:20px 24px}
+  .hpd .hook b{font-size:15px}
+  .hpd .hook p{font-size:14px;margin-top:8px}
+  .hpd .hook a{border-bottom:1px solid var(--line)}
+  .hpd .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media(max-width:720px){.hpd .duo{grid-template-columns:1fr}}
+  .hpd .shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}
+  .hpd .shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .hpd .shot figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px}
+  .hpd .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .hpd table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  .hpd thead th{text-align:left;padding:14px 16px;background:var(--paper2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+  .hpd tbody td{padding:12px 16px;border-top:1px solid var(--line-soft);color:var(--ink-2);vertical-align:top}
+  .hpd tbody td:first-child{color:var(--ink);font-weight:700;white-space:nowrap}
+  .hpd .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hpd .cards{grid-template-columns:1fr}}
+  .hpd .cardi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .hpd .cardi b{display:block;font-size:15px;margin-bottom:6px}
+  .hpd .cardi p{font-size:13.5px}
+  .hpd .plus{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,30px)}
+  .hpd .plus ul{list-style:none;margin-top:14px}
+  .hpd .plus li{font-size:14.5px;color:var(--ink-2);line-height:1.6;padding:9px 0 9px 26px;position:relative;border-top:1px solid var(--line-soft)}
+  .hpd .plus li:before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+  .hpd .qa{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:12px;overflow:hidden}
+  .hpd .qa summary{padding:18px 22px;font-size:15px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .hpd .qa summary::-webkit-details-marker{display:none}
+  .hpd .qa summary .ic{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-weight:400;color:var(--ink-3);transition:transform .2s}
+  .hpd .qa[open] summary .ic{transform:rotate(45deg)}
+  .hpd .qa .ans{padding:0 22px 20px;font-size:14.5px;color:var(--ink-2);line-height:1.65;max-width:70ch}
+  .hpd .also{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hpd .also{grid-template-columns:1fr}}
+  .hpd .also a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:block;transition:border-color .15s}
+  .hpd .also a:hover{border-color:var(--ink)}
+  .hpd .also b{display:block;font-size:15px;margin-bottom:6px}
+  .hpd .also span{font-size:13px;color:var(--ink-2);line-height:1.5}
+  .hpd .tease{margin:26px 0 0;background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:block;transition:border-color .15s}
+  .hpd .tease:hover{border-color:var(--ink)}
+  .hpd .tease .tl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .hpd .tease b{display:block;font-size:15.5px;margin-top:6px}
+  .hpd .tease span{font-size:13.5px;color:var(--ink-2);display:block;margin-top:4px}
+  .hpd .series{display:flex;gap:14px;justify-content:space-between;margin-top:clamp(30px,5vw,44px);flex-wrap:wrap}
+  .hpd .series a,.hpd .series i{flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-style:normal}
+  .hpd .series a:hover{border-color:var(--ink)}
+  .hpd .series .dir{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .hpd .series b{display:block;font-size:14.5px;margin-top:5px}
+  .hpd .series i b{color:var(--ink-3)}
+  .hpd p a,.hpd .sub a,.hpd dd a,.hpd .ans a,.hpd .hook a,.hpd .cardi a,.hpd .plus a,.hpd .second a,.hpd .size a,.hpd .why a{color:var(--link);text-decoration:underline;text-underline-offset:2px;border-bottom:none!important}
+  .hpd .tgo{display:inline-block;margin-top:9px;color:var(--link);text-decoration:underline;text-underline-offset:2px;font-style:normal;font-size:13.5px;font-weight:600}
+  .hpd .series a b{color:var(--link)}
+  .hpd .cta{margin-top:clamp(44px,7vw,76px);background:var(--accent);border-radius:18px;padding:clamp(28px,5vw,46px);text-align:center;color:#F2F0EB}
+  .hpd .cta h2{color:inherit;margin-bottom:8px}
+  .hpd .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
+  .hpd .cta a{display:inline-flex;margin-top:22px;padding:16px 34px;background:#F2F0EB;color:#191712;border-radius:4px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:opacity .18s}
+  .hpd .cta a:hover{opacity:.9}
+</style>
+<div class="hpd">
+  <div class="wrap">
+    <nav class="crumb"><a href="/">Главная</a> · <a href="/blog">Блог</a> · <b>Как подвернуть широкие джинсы</b></nav>
+
+    <div class="eyebrow">Гид HAILEY · обновлено 9 августа 2026</div>
+    <h1>Как подвернуть широкие джинсы: 4 способа и правило длины</h1>
+    <p class="lead">Широкие джинсы шьют длинными — с запасом на каблук и на рост 170+. Если у вас 160, штанина ложится на пол и силуэт рассыпается. Подворот это чинит за минуту, но только если знать, где он должен заканчиваться. Разбираем четыре способа, правило высоты и что делать, если подворот разворачивается к обеду.</p>
+    <p class="meta">HAILEY · Гид №4 в серии о джинсах · читать ≈ 6 минут</p>
+
+    <div class="hook"><b>Коротко, если некогда читать</b>
+      <p>Подворот заканчивается <b>на косточке щиколотки или на 2–3 см выше</b> — там, где нога самая тонкая. Ширина отворота — <b>4–6 см</b> для плотного денима, <b>2–3 см</b> в два оборота для мягкого. Всё остальное — <a href="#sposoby">в четырёх способах ниже</a>.</p>
+    </div>
+
+    <section id="when">
+      <h2><span class="n">01</span> Когда широкие джинсы нужно подворачивать, а когда нет</h2>
+      <p class="sub">Половина неудачных образов — это подворот там, где он не нужен.</p>
+      <p>Широкие джинсы задуманы длинными: штанина должна идти отвесно вниз и закрывать подъём стопы. Это и создаёт вытянутый силуэт, ради которого фасон покупают. Подворот эту линию укорачивает — значит, он нужен не всегда.</p>
+      <div class="cards">
+        <div class="cardi"><b>Подворачивайте, если</b><p>штанина заминается гармошкой у щиколотки; вы носите пару без каблука, а сшита она под каблук; хотите показать обувь — ботинки, лоферы, кроссовки с высоким верхом; на улице слякоть и низ намокает.</p></div>
+        <div class="cardi"><b>Не подворачивайте, если</b><p>джинсы и так заканчиваются на уровне пола — вы просто отрежете себе несколько сантиметров роста; у вас фасон клёш или палаццо, где расширение идёт от колена: подворот ломает расклешённую линию и делает низ квадратным.</p></div>
+      </div>
+      <p class="second">Все широкие модели HAILEY сшиты с высокой посадкой и длиной под рост от 170 см. При росте ниже подворот — не украшение, а рабочий инструмент: он убирает лишние 4–8 см без ножниц и ателье.</p>
+    </section>
+
+    <section id="length">
+      <h2><span class="n">02</span> Главное правило: где заканчивается подворот</h2>
+      <p class="sub">Одно правило, которое решает больше, чем способ подворота.</p>
+      <p>Ориентир — <b>косточка щиколотки</b>. Край подворота должен приходиться на неё или заканчиваться на 2–3 см выше. В этом месте нога самая тонкая, и открытый участок между джинсами и обувью работает как просвет: он визуально удлиняет ногу и не даёт объёму штанины «съесть» рост.</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>Где заканчивается подворот</th><th>Как читается</th></tr></thead>
+          <tbody>
+            <tr><td>На косточке или на 2–3 см выше</td><td>Работает всегда. Нога выглядит длиннее, обувь видно целиком</td></tr>
+            <tr><td>На середине голени</td><td>Режет ногу пополам. Годится только под высокие ботинки и при росте от 175</td></tr>
+            <tr><td>Ниже косточки, на подъёме стопы</td><td>Смысла нет: длину не убрали, а низ стал тяжёлым и мятым</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="second">Мерить сантиметром не нужно: наденьте ту обувь, с которой будете носить, встаньте перед зеркалом и подворачивайте до тех пор, пока не появится просвет над обувью. Это и есть ваша высота.</p>
+    </section>
+
+    <section id="sposoby">
+      <h2><span class="n">03</span> Четыре способа подворота</h2>
+      <p class="sub">Способ выбирают не по моде, а по плотности денима — иначе отворот не держится.</p>
+
+      <div class="cards">
+        <div class="cardi"><b>1. Одинарный широкий — для плотного денима</b>
+          <p>Отворачиваете штанину один раз на 4–6 см. Самый устойчивый вариант: чем шире отворот, тем больше его собственный вес и тем крепче он держится.</p>
+          <p><b>Как сделать:</b> расправьте штанину, возьмитесь за низ с двух сторон по боковым швам, отверните ровно один раз на ширину ладони, прогладьте сгиб пальцами по кругу. Проверьте, чтобы задняя часть не была ниже передней — на широкой штанине это видно сразу.</p>
+          <p><b>Кому:</b> трубы, wide leg, прямые широкие из плотного хлопка.</p>
+        </div>
+
+        <div class="cardi"><b>2. Двойной узкий — для мягкой ткани</b>
+          <p>Два оборота по 2–3 см. Мягкий деним с вискозой или лиоцеллом в одинарном отвороте расправляется за полчаса ходьбы — второй оборот его фиксирует.</p>
+          <p><b>Как сделать:</b> подверните на 2–3 см, затем ещё раз на столько же. Второй оборот прижимает первый, и конструкция держится сама. Итоговая высота — те же 5–6 см, но плотнее.</p>
+          <p><b>Кому:</b> модели с вискозой, лиоцеллом и эластаном — те, что мягче на ощупь.</p>
+        </div>
+
+        <div class="cardi"><b>3. Небрежный — для рваных и варёных</b>
+          <p>Один неровный оборот, край намеренно не выравнивается. Работает только на дениме с потёртостями: на гладком тёмном выглядит не как приём, а как неаккуратность.</p>
+          <p><b>Как сделать:</b> отверните один раз примерно на 5 см и не приглаживайте. Слегка потяните за край в одном месте, чтобы линия «поехала». Спереди можно оставить чуть короче, чем сзади.</p>
+          <p><b>Кому:</b> рваные, варёные, светлые джинсы с фабричными потёртостями.</p>
+        </div>
+
+        <div class="cardi"><b>4. Внутренний подгиб — когда отворот не нужно показывать</b>
+          <p>Штанину подворачивают внутрь, наружу ничего не выступает. Длина уходит, а низ остаётся ровным — как будто джинсы такой длины и сшиты.</p>
+          <p><b>Как сделать:</b> заверните край внутрь штанины на нужную величину и прогладьте утюгом через ткань. Если подгиб больше 5 см, низ станет плотным и будет топорщиться — тогда лучше отдать в ателье.</p>
+          <p><b>Кому:</b> клёш и палаццо, где наружный отворот ломает линию; строгие образы.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="shoes">
+      <h2><span class="n">04</span> Какой подворот под какую обувь</h2>
+      <p class="sub">Обувь диктует высоту — не наоборот.</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>Обувь</th><th>Подворот</th><th>Почему так</th></tr></thead>
+          <tbody>
+            <tr><td>Кроссовки на плоской подошве</td><td>Одинарный, край на косточке</td><td>Просвет над кроссовком не даёт силуэту «сесть»</td></tr>
+            <tr><td>Массивные кроссовки, платформа</td><td>Двойной, на 2–3 см выше косточки</td><td>Обувь объёмная — низ штанины нужно приподнять, иначе она ложится на неё</td></tr>
+            <tr><td>Ботинки с высоким берцем</td><td>Одинарный, край на голенище</td><td>Отворот ложится на ботинок и держится на нём</td></tr>
+            <tr><td>Лоферы, балетки</td><td>Двойной, на 3–4 см выше косточки</td><td>Обувь низкая и открытая — нужен максимальный просвет</td></tr>
+            <tr><td>Каблук от 5 см</td><td>Не подворачивать</td><td>Каблук уже добавил высоту, длина уходит в него</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="fix">
+      <h2><span class="n">05</span> Что делать, если подворот разворачивается</h2>
+      <p class="sub">Причина почти всегда в ткани, а не в руках.</p>
+      <p>Чем мягче деним, тем хуже он держит залом. Хлопок с эластаном, вискозой или лиоцеллом пружинит и распрямляется — это свойство ткани, а не брак. Плотный хлопок, наоборот, запоминает сгиб после первой же глажки.</p>
+      <div class="cards">
+        <div class="cardi"><b>Прогладить сгиб</b><p>Утюг с паром через хлопковую ткань, 10 секунд на участок. Плотный деним после этого держит форму до стирки.</p></div>
+        <div class="cardi"><b>Перейти на двойной</b><p>Два узких оборота вместо одного широкого: верхний прижимает нижний собственным весом.</p></div>
+        <div class="cardi"><b>Закрепить изнутри</b><p>Две потайные стежки нитками в цвет по боковым швам — снаружи не видно, снимается за минуту.</p></div>
+        <div class="cardi"><b>Взять модель с подворотами в крое</b><p>У нас есть широкие палаццо, где отворот заложен конструкцией и прострочен: разворачиваться там нечему.</p></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2><span class="n">06</span> Частые вопросы</h2>
+
+      <details class="qa"><summary>Как модно подвернуть широкие джинсы в 2026 году?<span class="ic">+</span></summary>
+        <div class="ans">Актуальны два варианта: один широкий отворот 4–6 см на плотном дениме и небрежный неровный подворот на рваных и варёных моделях. Общее правило одно — край заканчивается на косточке щиколотки или чуть выше, чтобы между джинсами и обувью оставался просвет.</div>
+      </details>
+
+      <details class="qa"><summary>Как называются широкие женские джинсы?<span class="ic">+</span></summary>
+        <div class="ans">Единого названия нет, фасонов несколько: <b>wide leg</b> — широкие по всей длине; <b>трубы</b> — ровная штанина без сужения к низу; <b>палаццо</b> — расширение от бедра; <b>клёш</b> — расширение от колена; <b>багги</b> — объёмные и мешковатые. Разница между всеми фасонами с фото — в статье <a href="/blog/vidy-i-nazvaniya-dzhinsov" style="border-bottom:1px solid var(--line)">Виды женских джинсов</a>.</div>
+      </details>
+
+      <details class="qa"><summary>На сколько сантиметров подворачивать?<span class="ic">+</span></summary>
+        <div class="ans">Не считайте сантиметры отворота — смотрите, где оказался край. Плотный деним: один оборот 4–6 см. Мягкий: два оборота по 2–3 см. Итоговая высота у обоих примерно одинаковая, разница только в устойчивости.</div>
+      </details>
+
+      <details class="qa"><summary>Можно ли подворачивать клёш и палаццо?<span class="ic">+</span></summary>
+        <div class="ans">Наружный отворот на них лучше не делать: он обрезает расклешённую линию и низ становится квадратным. Если нужно укоротить — подгибайте внутрь и проглаживайте, тогда силуэт сохраняется.</div>
+      </details>
+
+      <details class="qa"><summary>Подворот полнит?<span class="ic">+</span></summary>
+        <div class="ans">Полнит не подворот, а его высота. Край на середине голени режет ногу пополам и визуально укорачивает. Край на косточке даёт обратный эффект: открытая щиколотка — самая тонкая часть ноги, и рядом с ней силуэт читается стройнее.</div>
+      </details>
+
+      <details class="qa"><summary>Что делать, если джинсы длинные на 10 см и больше?<span class="ic">+</span></summary>
+        <div class="ans">Подворот такую разницу не заберёт — отворот получится с ладонь и будет тянуть низ вниз. Здесь либо укорачивать в ателье с сохранением фабричного шва, либо брать модель на свой рост. У нас длина указана в карточке каждой пары, а подобрать размер помогает <a href="/kak-vybrat-razmer" style="border-bottom:1px solid var(--line)">таблица с калькулятором</a>.</div>
+      </details>
+    </section>
+
+    <section id="also">
+      <h2><span class="n">07</span> Читайте также</h2>
+      <div class="also">
+        <a href="/blog/vidy-i-nazvaniya-dzhinsov"><b>Виды женских джинсов: все фасоны с названиями</b> <span>Сравнительная таблица фасонов — от прямых до палаццо, с фото.</span><em class="tgo">Читать →</em></a>
+        <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b> <span>Калькулятор по вашим меркам и как правильно снять мерки.</span><em class="tgo">Читать →</em></a>
+        <a href="/blog/dzhinsy-baggi-gid"><b>Джинсы багги: что это и как их носить</b> <span>Чем отличаются от бойфрендов и слоучи, кому подойдут.</span><em class="tgo">Читать →</em></a>
+      </div>
+    </section>
+
+    <div class="cta">
+      <h2>Широкие джинсы, которые не надо подворачивать</h2>
+      <p>Wide leg, трубы и палаццо в размерах 42–74. Длина указана в каждой карточке — доставка по России, возврат 14 дней.</p>
+      <a href="/catalog/shirokie-dzhinsy">Смотреть широкие джинсы</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Как подвернуть широкие джинсы: 4 способа и правило длины", "description": "Где должен заканчиваться подворот, четыре способа под разную плотность денима, какой подворот под какую обувь и что делать, если отворот разворачивается.", "image": "https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504634485/1.webp", "author": {"@type": "Organization", "name": "HAILEY", "url": "https://hello-hailey.ru/"}, "publisher": {"@type": "Organization", "name": "HAILEY", "url": "https://hello-hailey.ru/"}, "datePublished": "2026-08-09", "dateModified": "2026-08-09", "mainEntityOfPage": "https://hello-hailey.ru/blog/kak-podvernut-shirokie-dzhinsy"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://hello-hailey.ru/"}, {"@type": "ListItem", "position": 2, "name": "Блог", "item": "https://hello-hailey.ru/blog"}, {"@type": "ListItem", "position": 3, "name": "Как подвернуть широкие джинсы", "item": "https://hello-hailey.ru/blog/kak-podvernut-shirokie-dzhinsy"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Как модно подвернуть широкие джинсы в 2026 году?", "acceptedAnswer": {"@type": "Answer", "text": "Актуальны два варианта: один широкий отворот 4–6 см на плотном дениме и небрежный неровный подворот на рваных и варёных моделях. Общее правило одно — край заканчивается на косточке щиколотки или чуть выше, чтобы между джинсами и обувью оставался просвет."}}, {"@type": "Question", "name": "Как называются широкие женские джинсы?", "acceptedAnswer": {"@type": "Answer", "text": "Единого названия нет, фасонов несколько: wide leg — широкие по всей длине; трубы — ровная штанина без сужения к низу; палаццо — расширение от бедра; клёш — расширение от колена; багги — объёмные и мешковатые. Разница между всеми фасонами с фото — в статье Виды женских джинсов."}}, {"@type": "Question", "name": "На сколько сантиметров подворачивать?", "acceptedAnswer": {"@type": "Answer", "text": "Не считайте сантиметры отворота — смотрите, где оказался край. Плотный деним: один оборот 4–6 см. Мягкий: два оборота по 2–3 см. Итоговая высота у обоих примерно одинаковая, разница только в устойчивости."}}, {"@type": "Question", "name": "Можно ли подворачивать клёш и палаццо?", "acceptedAnswer": {"@type": "Answer", "text": "Наружный отворот на них лучше не делать: он обрезает расклешённую линию и низ становится квадратным. Если нужно укоротить — подгибайте внутрь и проглаживайте, тогда силуэт сохраняется."}}, {"@type": "Question", "name": "Подворот полнит?", "acceptedAnswer": {"@type": "Answer", "text": "Полнит не подворот, а его высота. Край на середине голени режет ногу пополам и визуально укорачивает. Край на косточке даёт обратный эффект: открытая щиколотка — самая тонкая часть ноги, и рядом с ней силуэт читается стройнее."}}, {"@type": "Question", "name": "Что делать, если джинсы длинные на 10 см и больше?", "acceptedAnswer": {"@type": "Answer", "text": "Подворот такую разницу не заберёт — отворот получится с ладонь и будет тянуть низ вниз. Здесь либо укорачивать в ателье с сохранением фабричного шва, либо брать модель на свой рост. У нас длина указана в карточке каждой пары, а подобрать размер помогает таблица с калькулятором."}}]}
+</script>
