@@ -122,7 +122,7 @@
           </tbody>
         </table>
       </div>
-      <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Продолжение темы</span><b>Не уверены, что багги — ваш фасон?</b> <span>В гиде «Виды женских джинсов» — сравнительная таблица всех 15 фасонов с фото: за 3 минуты поймёте, что ищете на самом деле.</span><em class="tgo">Перейти →</em></a>
+      <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Продолжение темы</span> <b>Не уверены, что багги — ваш фасон?</b> <span>В гиде «Виды женских джинсов» — сравнительная таблица всех 15 фасонов с фото: за 3 минуты поймёте, что ищете на самом деле.</span><em class="tgo">Перейти →</em></a>
     </section>
 
     <section id="who">
@@ -136,7 +136,7 @@
       </div>
     </section>
 
-    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov#kinds"><span class="tl">↪ Если багги — не ваше</span><b>Хочется объёма, но спокойнее?</b> <span>Посмотрите wide leg и трубы — тот же комфорт, но элегантнее: разбор в гиде по фасонам. А мом и бананы дадут объём с акцентом на талию.</span><em class="tgo">Перейти →</em></a>
+    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov#kinds"><span class="tl">↪ Если багги — не ваше</span> <b>Хочется объёма, но спокойнее?</b> <span>Посмотрите wide leg и трубы — тот же комфорт, но элегантнее: разбор в гиде по фасонам. А мом и бананы дадут объём с акцентом на талию.</span><em class="tgo">Перейти →</em></a>
 
     <section id="length">
       <h2><span class="n">04</span> Какой длины должны быть багги</h2>
@@ -163,7 +163,7 @@
       </div>
     </section>
 
-    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span><b>Сомневаетесь между багги и другими фасонами?</b> <span>Пройдите подбор: 5 вопросов о фигуре, росте и стиле — получите свой фасон и второй запасной.</span><em class="tgo">Перейти →</em></a>
+    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span> <b>Сомневаетесь между багги и другими фасонами?</b> <span>Пройдите подбор: 5 вопросов о фигуре, росте и стиле — получите свой фасон и второй запасной.</span><em class="tgo">Перейти →</em></a>
 
     <section id="faq">
       <h2><span class="n">06</span> Частые вопросы про багги</h2>
@@ -195,8 +195,8 @@
     </section>
 
     <div class="series">
-      <a href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="dir">← Гид №1</span><b>Виды женских джинсов: все фасоны с названиями</b></a>
-      <a href="/blog/dzhinsy-mom-gid"><span class="dir">Гид №3 →</span><b>Джинсы мом: что это за модель и кому подойдут</b></a>
+      <a href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="dir">← Гид №1</span> <b>Виды женских джинсов: все фасоны с названиями</b></a>
+      <a href="/blog/dzhinsy-mom-gid"><span class="dir">Гид №3 →</span> <b>Джинсы мом: что это за модель и кому подойдут</b></a>
     </div>
 
     <div class="cta">
