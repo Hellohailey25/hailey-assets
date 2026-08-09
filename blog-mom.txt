@@ -184,7 +184,7 @@
 
     <div class="series">
       <a href="/blog/dzhinsy-baggi-gid"><span class="dir">← Гид №2</span><b>Джинсы багги: кому подойдут и как носить</b></a>
-      <i><span class="dir">Гид №4 · скоро</span><b>Джинсы клёш: кому идут и с чем носить</b></i>
+      <a href="/blog/dzhinsy-klesh-gid"><span class="dir">Гид №4 →</span><b>Джинсы клёш: с чем носить и кому идут</b></a>
     </div>
 
     <div class="cta">
