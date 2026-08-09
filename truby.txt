@@ -345,7 +345,7 @@
     <nav class="crumb" id="crumb"></nav>
     <div class="shead">
       <h1 id="h1"><span id="h1t">Женские джинсы трубы</span></h1> <span class="h1count mono" id="h1count"></span>
-      <div class="sdesc"><span id="sdesc"></span> <span class="found" id="found"></span></div>
+      <div class="sdesc"><span id="sdesc">Женские джинсы трубы — ровный крой-труба без сужения к низу. Размеры 42–74, доставка по России.</span> <span class="found" id="found"></span></div>
     </div>
     <div class="fbar">
       <button class="fbtn" id="fOpen"><svg viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M10 18h4"/></svg>Фильтры<span class="fcount" id="fCount" style="display:none"></span></button>
