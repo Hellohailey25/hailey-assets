@@ -46,13 +46,16 @@
 
     <div class="grid" id="hblGrid"></div>
 
-    <div class="soon">Скоро: гиды по джинсам клёш, скинни и трубам — новые статьи выходят каждую неделю.</div>
+    <div class="soon">Скоро: гиды по джинсам бананы, скинни и трубам — новые статьи выходят каждую неделю.</div>
   </div>
 </div>
 
 <script>
 (function(){
   var ARTICLES=[
+    {url:'/blog/dzhinsy-klesh-gid',tag:'Гид №4 · Фасон',title:'Джинсы клёш: с чем носить и кому идут',
+     desc:'Буткат, клёш от колена и от бедра: формулы образов 2026, правило длины и кому идёт фасон.',
+     img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/545150789/1.webp',date:'9 августа 2026'},
     {url:'/blog/dzhinsy-mom-gid',tag:'Гид №3 · Фасон',title:'Джинсы мом: что это за модель и кому подойдут',
      desc:'Что значит «мом», отличия от бананов и бойфрендов, кому идут и с чем носить.',
      img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504644422/1.webp',date:'9 августа 2026'},
