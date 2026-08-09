@@ -127,7 +127,7 @@
       </div>
     </section>
 
-    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span><b>Сомневаетесь, клёш ли это вообще ваш фасон?</b> <span>5 вопросов о фигуре, росте и стиле — и вы получите свой фасон плюс запасной вариант.</span><em class="tgo">Пройти →</em></a>
+    <a class="tease" href="/podbor-fasona"><span class="tl">🎯 Тест · 1 минута</span> <b>Сомневаетесь, клёш ли это вообще ваш фасон?</b> <span>5 вопросов о фигуре, росте и стиле — и вы получите свой фасон плюс запасной вариант.</span><em class="tgo">Пройти →</em></a>
 
     <section id="wear">
       <h2><span class="n">03</span> С чем носить клёш в 2026 году</h2>
@@ -154,7 +154,7 @@
       </div>
     </section>
 
-    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Если клёш — не ваше</span><b>Хочется силуэта поспокойнее?</b> <span>Посмотрите прямые и wide leg — та же вертикаль без драмы: разбор всех 15 фасонов в гиде по видам джинсов.</span><em class="tgo">Перейти →</em></a>
+    <a class="tease" href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="tl">↪ Если клёш — не ваше</span> <b>Хочется силуэта поспокойнее?</b> <span>Посмотрите прямые и wide leg — та же вертикаль без драмы: разбор всех 15 фасонов в гиде по видам джинсов.</span><em class="tgo">Перейти →</em></a>
 
     <section id="faq">
       <h2><span class="n">05</span> Частые вопросы про клёш</h2>
@@ -186,8 +186,8 @@
     </section>
 
     <div class="series">
-      <a href="/blog/dzhinsy-mom-gid"><span class="dir">← Гид №3</span><b>Джинсы мом: что это за модель и кому подойдут</b></a>
-      <i><span class="dir">Гид №5 · скоро</span><b>Джинсы бананы: чем отличаются и кому идут</b></i>
+      <a href="/blog/dzhinsy-mom-gid"><span class="dir">← Гид №3</span> <b>Джинсы мом: что это за модель и кому подойдут</b></a>
+      <i><span class="dir">Гид №5 · скоро</span> <b>Джинсы бананы: чем отличаются и кому идут</b></i>
     </div>
 
     <div class="cta">
