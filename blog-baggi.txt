@@ -196,7 +196,7 @@
 
     <div class="series">
       <a href="/blog/vidy-i-nazvaniya-dzhinsov"><span class="dir">← Гид №1</span><b>Виды женских джинсов: все фасоны с названиями</b></a>
-      <i><span class="dir">Гид №3 · скоро</span><b>Джинсы мом: кому подойдут и с чем носить</b></i>
+      <a href="/blog/dzhinsy-mom-gid"><span class="dir">Гид №3 →</span><b>Джинсы мом: что это за модель и кому подойдут</b></a>
     </div>
 
     <div class="cta">
