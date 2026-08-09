@@ -345,7 +345,7 @@
     <nav class="crumb" id="crumb"></nav>
     <div class="shead">
       <h1 id="h1"><span id="h1t">Прямые женские джинсы</span></h1> <span class="h1count mono" id="h1count"></span>
-      <div class="sdesc"><span id="sdesc"></span> <span class="found" id="found"></span></div>
+      <div class="sdesc"><span id="sdesc">Прямые женские джинсы — самый универсальный крой, который идёт любой фигуре и не выходит из моды. Ровная штанина от бедра визуально вытягивает ноги и скрывает лишнее, а плотный деним держит силуэт и не липнет. Размеры от 42 до 74, высокая талия для комфортной посадки. Сочетаются с чем угодно — от футболки до жакета. Оплата картой или СБП, доставка по России, возврат 14 дней.</span> <span class="found" id="found"></span></div>
     </div>
     <div class="fbar">
       <button class="fbtn" id="fOpen"><svg viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M10 18h4"/></svg>Фильтры<span class="fcount" id="fCount" style="display:none"></span></button>
