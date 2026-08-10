@@ -93,6 +93,17 @@
   .hbg .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
   .hbg .cta a{display:inline-flex;margin-top:22px;padding:16px 34px;background:#F2F0EB;color:#191712;border-radius:4px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:opacity .18s}
   .hbg .cta a:hover{opacity:.9}
+
+  .hbg details{border-bottom:1px solid var(--line-soft);}
+  .hbg details summary{cursor:pointer;padding:15px 0;font-size:16px;color:var(--ink);list-style:none;
+                       display:flex;align-items:center;gap:10px}
+  .hbg details summary::-webkit-details-marker{display:none}
+  .hbg details summary::after{content:'+';margin-left:auto;color:var(--ink-3);font-size:20px;line-height:1}
+  .hbg details[open] summary::after{content:'–'}
+  .hbg details .ans{padding:0 0 16px;font-size:15px;color:var(--ink-2);line-height:1.7;max-width:70ch}
+  /* Кадр целиком: задаём пропорции заранее, иначе до загрузки на месте фото висит серый прямоугольник */
+  .hbg .shot{background:none}
+  .hbg .shot img{aspect-ratio:3/4;object-fit:contain}
 </style>
 
 <div class="hbg">
@@ -110,30 +121,30 @@
 
     <section id="what">
       <h2><span class="n">01</span> Какие джинсы женские сейчас в моде 2026</h2>
-      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/754477427/1.webp" alt="Объём и высокая талия — база модных джинсов 2026"><figcaption>Объём и высокая талия — база модных джинсов 2026</figcaption></figure><p>Главное правило сезона: джинсы не должны обтягивать. Скинни ушли из трендов ещё пару лет назад и в 2026-м не вернулись — их место заняли объёмные фасоны, где ткань не повторяет линию ноги, а падает свободно. Второе правило: талия высокая. Пояс садится на самую узкую точку и держит силуэт, а не режет живот посередине.</p></div>
+      <div class="split"><figure class="shot"><img loading="lazy" width="1200" height="1600" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/754477427/1.webp" alt="Объём и высокая талия — база модных джинсов 2026"><figcaption>Объём и высокая талия — база модных джинсов 2026</figcaption></figure><p>Главное правило сезона: джинсы не должны обтягивать. Скинни ушли из трендов ещё пару лет назад и в 2026-м не вернулись — их место заняли объёмные фасоны, где ткань не повторяет линию ноги, а падает свободно. Второе правило: талия высокая. Пояс садится на самую узкую точку и держит силуэт, а не режет живот посередине.</p></div>
       <p>Третье — длина. Модные джинсы в 2026 году женские носят в пол: край штанины закрывает подъём обуви и почти касается земли. Короткие варианты остались только у укороченных фасонов, которые в этом сезоне отошли на второй план.</p>
     </section>
 
     <section id="baggy">
       <h2><span class="n">02</span> Багги — главный фасон сезона</h2>
-      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/754505251/1.webp" alt="Багги: объём по всей длине, посадка высокая"><figcaption>Багги: объём по всей длине, посадка высокая</figcaption></figure><p>Багги — самый обсуждаемый крой последних сезонов и центр денимового тренда 2026 года. Объём идёт по всей длине штанины, посадка чаще высокая, силуэт мешковатый, но не бесформенный: держит его плотная ткань. Багги прощают фигуре многое и при этом выглядят не «спрятанно», а намеренно.</p></div>
+      <div class="split"><figure class="shot"><img loading="lazy" width="1200" height="1600" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/754505251/1.webp" alt="Багги: объём по всей длине, посадка высокая"><figcaption>Багги: объём по всей длине, посадка высокая</figcaption></figure><p>Багги — самый обсуждаемый крой последних сезонов и центр денимового тренда 2026 года. Объём идёт по всей длине штанины, посадка чаще высокая, силуэт мешковатый, но не бесформенный: держит его плотная ткань. Багги прощают фигуре многое и при этом выглядят не «спрятанно», а намеренно.</p></div>
       <p>С чем носить: облегающий верх — топ, водолазка, короткий джемпер. Правило объёма работает жёстко: если низ свободный, верх должен быть по фигуре, иначе силуэт теряется. Подробнее — в <a href="/blog/dzhinsy-baggi-gid">гиде по багги</a>.</p>
     </section>
 
     <section id="wide">
       <h2><span class="n">03</span> Широкие и палаццо</h2>
-      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/504634485/1.webp" alt="Палаццо с подворотами — максимальный объём сезона"><figcaption>Палаццо с подворотами — максимальный объём сезона</figcaption></figure><p>Wide leg — самый универсальный из объёмных фасонов: штанина идёт прямо и широко от бедра, без резких расширений. Палаццо — его максимальная версия, с шириной как у брюк-клёш от бедра. Оба варианта визуально вытягивают силуэт за счёт вертикальной линии и хорошо работают на любом размере.</p></div>
+      <div class="split"><figure class="shot"><img loading="lazy" width="1200" height="1600" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/504634485/1.webp" alt="Палаццо с подворотами — максимальный объём сезона"><figcaption>Палаццо с подворотами — максимальный объём сезона</figcaption></figure><p>Wide leg — самый универсальный из объёмных фасонов: штанина идёт прямо и широко от бедра, без резких расширений. Палаццо — его максимальная версия, с шириной как у брюк-клёш от бедра. Оба варианта визуально вытягивают силуэт за счёт вертикальной линии и хорошо работают на любом размере.</p></div>
       <p>Если объём смущает, начните с умеренно широких: они дают ту же вертикаль, но менее заметны в потоке. Модели — <a href="/catalog/shirokie-dzhinsy">в разделе широких джинсов</a>.</p>
     </section>
 
     <section id="flare">
       <h2><span class="n">04</span> Клёш от колена</h2>
-      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/545150789/1.webp" alt="Клёш от колена: верх облегает, низ расширяется"><figcaption>Клёш от колена: верх облегает, низ расширяется</figcaption></figure><p>Клёш вернулся в моду вместе с эстетикой семидесятых и держится третий сезон подряд. Верх облегает бедро, расширение начинается от колена — за счёт этого нога выглядит длиннее, а бедро уже. Это единственный из модных фасонов 2026 года, который работает на облегании сверху, поэтому его любят те, кому объёмные багги кажутся слишком мешковатыми.</p></div>
+      <div class="split"><figure class="shot"><img loading="lazy" width="1200" height="1600" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/545150789/1.webp" alt="Клёш от колена: верх облегает, низ расширяется"><figcaption>Клёш от колена: верх облегает, низ расширяется</figcaption></figure><p>Клёш вернулся в моду вместе с эстетикой семидесятых и держится третий сезон подряд. Верх облегает бедро, расширение начинается от колена — за счёт этого нога выглядит длиннее, а бедро уже. Это единственный из модных фасонов 2026 года, который работает на облегании сверху, поэтому его любят те, кому объёмные багги кажутся слишком мешковатыми.</p></div>
     </section>
 
     <section id="y2k">
       <h2><span class="n">05</span> Y2K: потёртости, варка, «грязная стирка»</h2>
-      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/504645629/1.webp" alt="Y2K: потёртости и эффект грязной стирки"><figcaption>Y2K: потёртости и эффект грязной стирки</figcaption></figure><p>Мода на нулевые никуда не ушла: в 2026-м это потёртости, варёный деним, эффект грязной стирки и рваные детали. Такие джинсы выглядят живыми, а не «только что с полки». Важный нюанс: чем крупнее размер, тем аккуратнее должны быть потёртости — крупные светлые пятна на бедре зрительно добавляют объём именно там, где не нужно.</p></div>
+      <div class="split"><figure class="shot"><img loading="lazy" width="1200" height="1600" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/504645629/1.webp" alt="Y2K: потёртости и эффект грязной стирки"><figcaption>Y2K: потёртости и эффект грязной стирки</figcaption></figure><p>Мода на нулевые никуда не ушла: в 2026-м это потёртости, варёный деним, эффект грязной стирки и рваные детали. Такие джинсы выглядят живыми, а не «только что с полки». Важный нюанс: чем крупнее размер, тем аккуратнее должны быть потёртости — крупные светлые пятна на бедре зрительно добавляют объём именно там, где не нужно.</p></div>
     </section>
 
     <section id="colors">
