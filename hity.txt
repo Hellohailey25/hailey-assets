@@ -163,11 +163,20 @@ return '<div class="facc'+open+'" data-acc="'+field+'">'
 }
 function subcatLinks(){
 var here=location.pathname.replace(/\/+$/,'');
-return PAGES.filter(function(p){
+var list=PAGES.filter(function(p){
 if(p.slug.replace(/\/+$/,'')===here)return false;
 if(CONFIG.predmet)return p.predmet===CONFIG.predmet;
 return !!p.predmet;
 });
+var col=(CONFIG.color||'').toLowerCase(), mod=(CONFIG.model||'').toLowerCase();
+var rank=function(p){
+var pc=(p.color||'').toLowerCase(), pm=(p.model||'').toLowerCase();
+if((col&&pc===col&&pm)||(mod&&pm===mod&&pc))return 0;
+if(!pc&&!pm)return 1;
+if((col&&pc===col)||(mod&&pm===mod))return 2;
+return 3;
+};
+return list.sort(function(a,b){return rank(a)-rank(b);});
 }
 function discOf(p){return (p.old>p.price)?(1-p.price/p.old):0;}
 function sortList(a){
