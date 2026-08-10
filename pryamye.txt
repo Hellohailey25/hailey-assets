@@ -18,7 +18,7 @@
 </select>
 <div class="scwrap" id="scwrap">
 <button class="scarr" id="scPrev" type="button" aria-label="Предыдущие категории">‹</button>
-<nav class="subcats" id="subcats"><span class="sclabel">Смотрите также</span><a class="scl" href="/catalog/dzhinsy">Все джинсы</a><a class="scl" href="/catalog/golubye-dzhinsy">Голубые</a><a class="scl" href="/catalog/shirokie-dzhinsy">Широкие</a><a class="scl" href="/catalog/golubye-shirokie-dzhinsy">Голубые широкие</a><a class="scl" href="/catalog/rvanye-dzhinsy">Рваные</a><a class="scl" href="/catalog/baggi-dzhinsy">Багги</a><a class="scl" href="/catalog/sinie-dzhinsy">Синие</a><a class="scl" href="/catalog/sinie-pryamye-dzhinsy">Синие прямые</a><a class="scl" href="/catalog/truby-dzhinsy">Трубы</a><a class="scl" href="/catalog/trendy-2026">Тренды 2026</a><a class="scl" href="/catalog/temno-sinie-dzhinsy">Тёмно-синие</a><a class="scl" href="/catalog/oversize-dzhinsy">Оверсайз</a></nav>
+<nav class="subcats" id="subcats"><span class="sclabel">Смотрите также</span><a class="scl" href="/catalog/sinie-pryamye-dzhinsy">Синие прямые</a><a class="scl" href="/catalog/dzhinsy">Все джинсы</a><a class="scl" href="/catalog/golubye-shirokie-dzhinsy">Голубые широкие</a><a class="scl" href="/catalog/temno-sinie-dzhinsy">Тёмно-синие</a><a class="scl" href="/catalog/oversize-dzhinsy">Оверсайз</a><a class="scl" href="/catalog/golubye-dzhinsy">Голубые</a><a class="scl" href="/catalog/shirokie-dzhinsy">Широкие</a><a class="scl" href="/catalog/rvanye-dzhinsy">Рваные</a><a class="scl" href="/catalog/baggi-dzhinsy">Багги</a><a class="scl" href="/catalog/sinie-dzhinsy">Синие</a><a class="scl" href="/catalog/truby-dzhinsy">Трубы</a><a class="scl" href="/catalog/trendy-2026">Тренды 2026</a></nav>
 <button class="scarr" id="scNext" type="button" aria-label="Следующие категории">›</button>
 </div>
 </div>
@@ -163,11 +163,20 @@ return '<div class="facc'+open+'" data-acc="'+field+'">'
 }
 function subcatLinks(){
 var here=location.pathname.replace(/\/+$/,'');
-return PAGES.filter(function(p){
+var list=PAGES.filter(function(p){
 if(p.slug.replace(/\/+$/,'')===here)return false;
 if(CONFIG.predmet)return p.predmet===CONFIG.predmet;
 return !!p.predmet;
 });
+var col=(CONFIG.color||'').toLowerCase(), mod=(CONFIG.model||'').toLowerCase();
+var rank=function(p){
+var pc=(p.color||'').toLowerCase(), pm=(p.model||'').toLowerCase();
+if((col&&pc===col&&pm)||(mod&&pm===mod&&pc))return 0;
+if(!pc&&!pm)return 1;
+if((col&&pc===col)||(mod&&pm===mod))return 2;
+return 3;
+};
+return list.sort(function(a,b){return rank(a)-rank(b);});
 }
 function discOf(p){return (p.old>p.price)?(1-p.price/p.old):0;}
 function sortList(a){
