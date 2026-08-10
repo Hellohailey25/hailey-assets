@@ -114,6 +114,15 @@
   .hc .finp:focus{outline:none;border-color:var(--accent)}
   .hc input.finp::placeholder{color:var(--ink-44)}
   /* описание категории: на десктопе под H1, на телефоне уезжает ПОД товары (иначе закрывает витрину) */
+  .hc .faq{margin-top:34px;border-top:1px solid var(--line-soft);padding-top:26px}
+  .hc .faq h2{font-size:clamp(19px,2.2vw,24px);font-weight:400;margin-bottom:14px;color:var(--ink)}
+  .hc .faq details{border-bottom:1px solid var(--line-soft)}
+  .hc .faq summary{cursor:pointer;padding:14px 0;font-size:15px;color:var(--ink);list-style:none}
+  .hc .faq summary::-webkit-details-marker{display:none}
+  .hc .faq summary::after{content:'+';float:right;color:var(--ink-44);font-size:18px;line-height:1}
+  .hc .faq details[open] summary::after{content:'–'}
+  .hc .faq .ans{padding:0 0 16px;font-size:14px;color:var(--ink-64);line-height:1.7;max-width:74ch}
+  .hc .faq .ans a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
   .hc .szhelp{margin-top:34px;border:1px solid var(--line-soft);border-radius:14px;background:var(--card)}
   .hc .szhelp summary{cursor:pointer;padding:16px 20px;font-size:15px;color:var(--ink);list-style:none}
   .hc .szhelp summary::-webkit-details-marker{display:none}
@@ -392,6 +401,9 @@
       </div>
     </details>
     <div class="sdesc btm" id="sdescB"></div>
+    <!-- Вопросы-ответы: закрывают страхи покупателя (сядет ли, что если не подойдёт) и дают
+         расширенный сниппет в выдаче — Яндекс и Google читают разметку FAQPage. -->
+    <section class="faq" id="faq"></section>
   </div>
 
   <div class="fovl" id="fOvl"></div>
