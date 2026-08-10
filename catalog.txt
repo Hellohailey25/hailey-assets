@@ -560,6 +560,43 @@ if(fc){fc.textContent=n||'';fc.style.display=n?'':'none';}
 var fb=document.getElementById('fOpen');if(fb)fb.classList.toggle('on',n>0);
 var fr=document.getElementById('fReset');if(fr)fr.style.display=n||state.q?'':'none';
 }
+function freshReviews(){
+var box=document.querySelector('#rvs .rvgrid'); if(!box)return;
+fetch('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/reviews.json',{cache:'no-cache'})
+.then(function(r){return r.json();})
+.then(function(d){
+var all=[]; Object.keys(d.reviews||{}).forEach(function(k){all=all.concat(d.reviews[k]);});
+var good=all.filter(function(r){return +r.val===5 && (r.text||'').length>60;});
+good.sort(function(a,b){
+var pa=(a.photos&&a.photos.length)?1:0, pb=(b.photos&&b.photos.length)?1:0;
+return pb-pa || (b.text.length-a.text.length) || String(b.date||'').localeCompare(String(a.date||''));
+});
+var seen={}, pick=[];
+good.forEach(function(r){ if(pick.length>=4||seen[r.size])return; seen[r.size]=1; pick.push(r); });
+if(pick.length<4)return;                       // мало данных — оставляем статику
+var byId={}; PRODUCTS.forEach(function(p){byId[String(p.id)]=p;});
+var M=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+var ru=function(iso){var a=String(iso||'').split('-');return a.length===3?(+a[2])+' '+M[+a[1]-1]+' '+a[0]:'';};
+var esc=function(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');};
+box.innerHTML=pick.map(function(r){
+var ours=byId[String(r.nm)]||{}, title=ours.name||r.product||'смотреть товар';
+var link=ours.page||r.url||'/otzyvy';
+var ph=(r.photos&&r.photos.length)?r.photos[0]:'';
+return '<figure class="rv"><figcaption class="rvtop"><b>'+esc(r.user||'Покупательница')+'</b>'
++(r.size?' · размер '+esc(r.size):'')+(r.date?' · '+ru(r.date):'')
++'<a href="'+link+'">'+esc(title)+'</a></figcaption>'
++(ph?'<img class="rvph" src="'+ph+'" alt="Отзыв покупательницы: '+esc(title)+'" loading="lazy">':'')
++'<blockquote class="rvtx">'+esc(r.text)+'</blockquote>'
++'<button class="rvmore" type="button">Показать полностью</button></figure>';
+}).join('');
+var sum=document.querySelector('#rvs .rvsum');
+if(sum&&d.brand){sum.innerHTML=String(d.brand.avg).replace('.',',')+' из 5 — средняя оценка по '
++Number(d.brand.count).toLocaleString('ru-RU')+' отзывам на Wildberries. '
++'<a href="/otzyvy">Читать все отзывы →</a>';}
+initReviews();
+})
+.catch(function(){});
+}
 function initReviews(){
 [].forEach.call(document.querySelectorAll('.rv'),function(fig){
 var tx=fig.querySelector('.rvtx'),btn=fig.querySelector('.rvmore');
@@ -652,6 +689,7 @@ return el;
 function render(){
 renderFilters();
 initReviews();
+freshReviews();
 document.getElementById('h1t').textContent=titleFor();
 var SZ=[[42,'66–69','92–95','76 см'],[44,'70–73','96–99','76 см'],[46,'74–77','100–103','76 см'],
 [48,'78–81','104–107','77 см'],[50,'82–85','108–111','77 см'],[52,'86–89','112–115','77 см'],
