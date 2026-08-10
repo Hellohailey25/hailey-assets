@@ -115,7 +115,9 @@
   .hc input.finp::placeholder{color:var(--ink-44)}
   /* описание категории: на десктопе под H1, на телефоне уезжает ПОД товары (иначе закрывает витрину) */
   .hc .sdesc.btm{display:block;margin-top:34px;padding-top:22px;border-top:1px solid var(--line-soft);
-    font-size:14px;color:var(--ink-64);line-height:1.7;max-width:900px}
+    font-size:14px;color:var(--ink-64);line-height:1.7}
+  /* на широком экране читать строку в 1500px тяжело — раскладываем абзацы в две колонки */
+  @media(min-width:1000px){.hc .sdesc.btm{column-count:2;column-gap:48px}}
   .hc .sdesc.btm p{margin:0 0 12px}
   .hc .sdesc.btm p:last-child{margin-bottom:0}
   @media(max-width:760px){
