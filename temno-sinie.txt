@@ -38,7 +38,8 @@ background:var(--card);color:var(--ink-64);font-size:16px;line-height:1;cursor:p
 display:flex;align-items:center;justify-content:center;transition:.15s}
 .hc .scarr:hover{border-color:var(--accent);color:var(--ink)}
 @media(max-width:760px){.hc .scarr{display:none}}
-.hc .subcats .sclabel{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-44);font-weight:600;margin-right:4px}
+.hc .subcats .sclabel{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-44);
+font-weight:600;margin-right:2px;white-space:nowrap;flex:0 0 auto}
 .hc .subcats .scl{padding:7px 15px;border:1px solid var(--line);border-radius:22px;font-size:13px;color:var(--ink-64);transition:.15s}
 .hc .subcats .scl:hover{border-color:var(--accent);color:var(--ink)}
 .hc .subcats .sclabel{cursor:default}
