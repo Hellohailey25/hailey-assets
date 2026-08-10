@@ -391,7 +391,7 @@
         <p class="szmore"><a href="/kak-vybrat-razmer">Подробный гид по размерам с калькулятором →</a></p>
       </div>
     </details>
-    <div class="sdesc btm" id="sdescB"><p>Женские джинсы трубы — ровный крой-труба без сужения к низу. Размеры 42–74, доставка по России.</p></div>
+    <div class="sdesc btm" id="sdescB"></div>
   </div>
 
   <div class="fovl" id="fOvl"></div>
@@ -683,13 +683,17 @@
     var _d=CONFIG.desc||'';
     var _dp=_d.split('\n\n').map(function(x){return x.trim();}).filter(Boolean);
     var _lead=_dp.length?_dp[0]:'', _rest=_dp.slice(1);
+    // Абзац один: делим по предложениям — два наверх, остальное под товары.
+    // Дублировать лид вниз нельзя: одинаковый текст сверху и снизу уже забраковали.
+    if(!_rest.length&&_lead){
+      var _sn=_lead.match(/[^.!?]+[.!?]+(\s|$)/g)||[_lead];
+      if(_sn.length>2){_lead=_sn.slice(0,2).join('').trim();_rest=[_sn.slice(2).join('').trim()];}
+    }
     var _s=document.getElementById('sdesc');
     if(_s){_s.textContent=_lead;_s.style.display=_lead?'':'none';}
     var _sb=document.getElementById('sdescB');
     if(_sb){
-      // описание из одного абзаца оставляло низ пустым, а JS ещё и затирал статику —
-      // Игорь просил текст и сверху, и снизу, поэтому без продолжения дублируем лид.
-      var _btm=_rest.length?_rest:(_lead?[_lead]:[]);
+      var _btm=_rest;
       _sb.innerHTML=_btm.map(function(x){
         return '<p>'+x.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';}).join('');
       _sb.style.display=_btm.length?'':'none';
