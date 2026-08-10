@@ -36,7 +36,17 @@
   .hbg .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
   @media(max-width:720px){.hbg .duo{grid-template-columns:1fr}}
   .hbg .shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}
-  .hbg .shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .hbg .shot img{width:100%;display:block;height:auto;max-height:82vh;object-fit:contain;background:var(--paper2)}
+  .split{display:grid;grid-template-columns:minmax(260px,38%) 1fr;gap:clamp(18px,3vw,34px);
+         align-items:center;margin:30px 0}
+  .split .shot img{max-height:none}
+  .split:nth-of-type(even){direction:rtl}
+  .split:nth-of-type(even)>*{direction:ltr}
+  .tocat{display:inline-flex;align-items:center;gap:8px;margin:26px 0 6px;padding:13px 22px;
+         border-radius:30px;background:var(--ink);color:var(--paper);font-size:14px;
+         letter-spacing:.02em;text-decoration:none}
+  .tocat:hover{background:var(--accent,#2B3648)}
+  @media(max-width:760px){.split{grid-template-columns:1fr}}
   .hbg .shot figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px}
   .hbg .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
   .hbg table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
@@ -92,7 +102,7 @@
     <div class="eyebrow">Гид HAILEY · обновлено 8 августа 2026</div>
     <h1>Джинсы багги: что это за модель, кому подойдут и как их носить</h1>
     <p class="lead">Багги — самый обсуждаемый фасон последних сезонов: их носят и на подиумах, и в универах, и в офисах с мягким дресс-кодом. Разбираем, что значит «багги», чем они отличаются от бойфрендов и слоучи, какой длины должны быть и — главное — кому подойдут. Мы шьём багги до 74 размера, так что про посадку на реальную фигуру говорим из примерочной, а не из интернета.</p>
-    <p class="meta">HAILEY · Гид №2 в серии о джинсах · читать ≈ 6 минут</p>
+    <p class="meta">HAILEY · Гид №2 в серии о <a href="/catalog/dzhinsy">джинсах</a> · читать ≈ 6 минут</p>
 
     <div class="hook"><b>⚠️ Не покупайте багги, пока не проверите три вещи</b>
       <p>1) точно ли это багги, а не бойфренды или слоучи — <a href="#diff">разница в таблице ниже</a>; 2) свою длину — у багги она решает всё (<a href="#length">какой должна быть</a>); 3) свой размер — багги свободные, но пояс должен сидеть точно, сверьтесь с <a href="/kak-vybrat-razmer">таблицей размеров и калькулятором</a>.</p>
@@ -100,7 +110,7 @@
 
     <section id="what">
       <h2><span class="n">01</span> Что такое джинсы багги и что значит это слово</h2>
-      <p class="sub">Прямой ответ — без истории на три абзаца.</p>
+      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/754505251/1.webp" alt="Багги: объём по всей длине, мягкие складки"><figcaption>Багги: объём по всей длине, мягкие складки</figcaption></figure><p class="sub">Прямой ответ — без истории на три абзаца.</p></div>
       <p>«Багги» — от английского <b>baggy</b>, «мешковатый». Это джинсы, объёмные по всей длине: свободные в бёдрах, широкие в колене и у щиколотки. В отличие от классических широких моделей, багги часто сидят чуть ниже талии и ложатся мягкими складками — тот самый расслабленный силуэт из скейт-культуры 90-х, который вернулся в моду и остаётся её центром в 2026 году.</p>
       <div class="duo" style="margin-top:24px">
         <figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/754505251/1.webp" alt="Джинсы багги женские — как выглядят на фигуре"><figcaption>Багги HAILEY: объём по всей длине, мягкие складки</figcaption></figure>
@@ -110,7 +120,7 @@
 
     <section id="diff">
       <h2><span class="n">02</span> Багги, бойфренды, слоучи или wide leg — как отличить</h2>
-      <p class="sub">Эти четыре фасона путают чаще всего — даже продавцы. Запомните по одной примете на каждый.</p>
+      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/754477427/1.webp" alt="Тот же фасон на фигуре 54 — линия бедра не подчёркнута"><figcaption>Тот же фасон на фигуре 54 — линия бедра не подчёркнута</figcaption></figure><p class="sub">Эти четыре фасона путают чаще всего — даже продавцы. Запомните по одной примете на каждый.</p></div>
       <div class="tblwrap">
         <table>
           <thead><tr><th>Фасон</th><th>Главная примета</th><th>Посадка</th><th>Характер</th></tr></thead>
@@ -127,7 +137,7 @@
 
     <section id="who">
       <h2><span class="n">03</span> Кому подойдут джинсы багги</h2>
-      <p class="sub">Честно: багги — один из самых универсальных фасонов, но с оговорками по росту и пропорциям.</p>
+      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/504618555/1.webp" alt="Багги с высокой талией: пояс садится на самую узкую точку"><figcaption>Багги с высокой талией: пояс садится на самую узкую точку</figcaption></figure><p class="sub">Честно: багги — один из самых универсальных фасонов, но с оговорками по росту и пропорциям.</p></div>
       <div class="cards">
         <div class="cardi"><b>Фигура «прямоугольник» и «яблоко»</b><p>Багги — находка: объём штанин уравновешивает верх, а средняя посадка не давит на живот. Верх — облегающий или заправленный, иначе силуэт «поплывёт».</p></div>
         <div class="cardi"><b>Фигура «груша» и «песочные часы»</b><p>Работают отлично: свободное бедро не обтягивает, ногу не видно — только силуэт. Выбирайте пару с чуть зауженным поясом, чтобы талия читалась.</p></div>
