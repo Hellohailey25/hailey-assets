@@ -639,11 +639,19 @@
   function render(){
     renderFilters();
     document.getElementById('h1t').textContent=titleFor();
+    // описание делим так же, как в статике: лид — под H1, остальные абзацы — ПОД товарами.
+    // Раньше JS писал полный текст в оба блока, и один и тот же абзац шёл дважды.
     var _d=CONFIG.desc||'';
+    var _dp=_d.split('\n\n').map(function(x){return x.trim();}).filter(Boolean);
+    var _lead=_dp.length?_dp[0]:'', _rest=_dp.slice(1);
     var _s=document.getElementById('sdesc');
-    if(_s){_s.textContent=_d;_s.style.display=_d?'':'none';}
+    if(_s){_s.textContent=_lead;_s.style.display=_lead?'':'none';}
     var _sb=document.getElementById('sdescB');
-    if(_sb){_sb.textContent=_d;_sb.style.display=_d?'':'none';}
+    if(_sb){
+      _sb.innerHTML=_rest.map(function(x){
+        return '<p>'+x.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';}).join('');
+      _sb.style.display=_rest.length?'':'none';
+    }
     // Хлебные крошки: полная вложенность с «Главная». «Каталог» — ссылка только когда мы ГЛУБЖЕ него
     // (страница категории/под-категории); на самом каталоге это текущая страница → простой <b>, без само-ссылки.
     var base='/'+(CONFIG.baseSlug||'catalog');
