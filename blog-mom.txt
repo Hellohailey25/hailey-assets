@@ -36,7 +36,17 @@
   .hbm .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
   @media(max-width:720px){.hbm .duo{grid-template-columns:1fr}}
   .hbm .shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}
-  .hbm .shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .hbm .shot img{width:100%;display:block;height:auto;max-height:82vh;object-fit:contain;background:var(--paper2)}
+  .split{display:grid;grid-template-columns:minmax(260px,38%) 1fr;gap:clamp(18px,3vw,34px);
+         align-items:center;margin:30px 0}
+  .split .shot img{max-height:none}
+  .split:nth-of-type(even){direction:rtl}
+  .split:nth-of-type(even)>*{direction:ltr}
+  .tocat{display:inline-flex;align-items:center;gap:8px;margin:26px 0 6px;padding:13px 22px;
+         border-radius:30px;background:var(--ink);color:var(--paper);font-size:14px;
+         letter-spacing:.02em;text-decoration:none}
+  .tocat:hover{background:var(--accent,#2B3648)}
+  @media(max-width:760px){.split{grid-template-columns:1fr}}
   .hbm .shot figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px}
   .hbm .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
   .hbm table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
@@ -100,7 +110,7 @@
 
     <section id="what">
       <h2><span class="n">01</span> Что это за модель и что значит «мом»</h2>
-      <p class="sub">Прямой ответ — в двух абзацах.</p>
+      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/504646155/1.webp" alt="Мом: сужение к низу и высокая посадка"><figcaption>Мом: сужение к низу и высокая посадка</figcaption></figure><p class="sub">Прямой ответ — в двух абзацах.</p></div>
       <p><b>Мом (mom jeans, «мамины джинсы»)</b> — фасон с высокой талией, свободным объёмом в бёдрах и штаниной, зауженной к щиколотке. Название буквальное: так выглядели джинсы, которые носили американские мамы в 1980-е — практичные, с высоким поясом, не в обтяжку. В 2010-х фасон вернулся через винтажные магазины и стал классикой уличного стиля.</p>
       <p style="margin-top:12px">Узнать мом просто по трём приметам: <b>пояс на талии или выше</b>, <b>объём в бёдрах</b> (часто с мягкими складками у карманов) и <b>сужение к низу</b> — щиколотка почти всегда открыта или подчёркнута подворотом. Ткань обычно плотная, без сильной эластичности — форма держится, а не обтягивает.</p>
       <div class="duo" style="margin-top:24px">
@@ -111,7 +121,7 @@
 
     <section id="diff">
       <h2><span class="n">02</span> Мом, бананы, бойфренды или слоучи — чем отличаются</h2>
-      <p class="sub">Четыре фасона с высокой роднёй — по одной примете на каждый, чтобы больше не путать.</p>
+      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/504645014/1.webp" alt="Прямой крой без обтяжки — так мом сидит на 52-м"><figcaption>Прямой крой без обтяжки — так мом сидит на 52-м</figcaption></figure><p class="sub">Четыре фасона с высокой роднёй — по одной примете на каждый, чтобы больше не путать.</p></div>
       <div class="tblwrap">
         <table>
           <thead><tr><th>Фасон</th><th>Главная примета</th><th>Посадка</th><th>Характер</th></tr></thead>
