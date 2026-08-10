@@ -53,7 +53,7 @@
 <script>
 (function(){
   var ARTICLES=[
-    {url:'/blog/kak-podvernut-shirokie-dzhinsy',tag:'Гид №4 · Практика',title:'Как подвернуть широкие джинсы: 4 способа и правило длины',
+    {url:'/blog/modnye-dzhinsy-2026',tag:'Тренды · 2026',title:'Модные женские джинсы 2026: какие фасоны в тренде', desc:'Багги, широкие, палаццо и клёш: что носят в этом сезоне, какие цвета и длина — и что из этого идёт на размерах 42–74.', img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/754477427/1.webp',date:'10 августа 2026'}, {url:'/blog/kak-podvernut-shirokie-dzhinsy',tag:'Гид №4 · Практика',title:'Как подвернуть широкие джинсы: 4 способа и правило длины',
      desc:'Где заканчивается подворот, четыре способа под разную плотность денима и что делать, если отворот разворачивается.',
      img:'https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@49cc63171937b5335322182c17566105c90a1668/photos/504634485/1.webp',date:'9 августа 2026'},
     {url:'/blog/dzhinsy-klesh-gid',tag:'Гид №5 · Фасон',title:'Джинсы клёш: с чем носить и кому идут',
