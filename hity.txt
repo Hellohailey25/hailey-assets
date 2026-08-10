@@ -35,7 +35,16 @@
   .hc .shead .found{color:var(--ink-44)}
   .hc .hitslink{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-64);transition:color .15s}
   .hc .hitslink:hover{color:var(--ink)}
-  .hc .subcats{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:20px 0 2px}
+  .hc .scwrap{display:flex;align-items:center;gap:8px;margin:16px 0 20px}
+  .hc .subcats{display:flex;flex-wrap:nowrap;gap:9px;align-items:center;overflow-x:auto;
+               scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;flex:1;padding:2px 0}
+  .hc .subcats::-webkit-scrollbar{display:none}
+  .hc .subcats .scl{white-space:nowrap;flex:0 0 auto}
+  .hc .scarr{flex:0 0 auto;width:30px;height:30px;border:1px solid var(--line);border-radius:50%;
+             background:var(--card);color:var(--ink-64);font-size:16px;line-height:1;cursor:pointer;
+             display:flex;align-items:center;justify-content:center;transition:.15s}
+  .hc .scarr:hover{border-color:var(--accent);color:var(--ink)}
+  @media(max-width:760px){.hc .scarr{display:none}}
   .hc .subcats .sclabel{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-44);font-weight:600;margin-right:4px}
   .hc .subcats .scl{padding:7px 15px;border:1px solid var(--line);border-radius:22px;font-size:13px;color:var(--ink-64);transition:.15s}
   .hc .subcats .scl:hover{border-color:var(--accent);color:var(--ink)}
@@ -392,10 +401,16 @@
         <option value="rate">Выше рейтинг</option>
       </select>
     </div>
+    <!-- Соседние категории — НАД витриной: внизу их не находили, а это главный способ
+         перейти в нужный раздел. Лента прокручивается стрелками по кругу; каждый чип — <a>,
+         поэтому вес по ним передаётся и робот видит связь категорий. -->
+    <div class="scwrap" id="scwrap" style="display:none">
+      <button class="scarr" id="scPrev" type="button" aria-label="Предыдущие категории">‹</button>
+      <nav class="subcats" id="subcats"></nav>
+      <button class="scarr" id="scNext" type="button" aria-label="Следующие категории">›</button>
+    </div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" style="display:none">В этой комбинации пока нет товаров. Сбросьте фильтр.</div>
-    <!-- SEO-текст и соседние категории — ПОД товарами: сверху они перетягивали внимание с витрины -->
-    <nav class="subcats" id="subcats" style="display:none"></nav>
     <!-- Подбор размера прямо в каталоге: в плюс-сайзе «сядет ли на меня» — главный вопрос,
          и гонять человека на отдельную страницу значит терять его. -->
     <details class="szhelp">
@@ -609,11 +624,19 @@
     var sibs=subcatLinks();   // тот же список, что в аккордеоне «Смотрите также» внутри панели фильтров
     if(!sibs.length){el.style.display='none';return;}
     el.style.display='';
-    el.innerHTML='<span class="sclabel">Смотрите также'
-      +'<svg class="schev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>'
+    el.innerHTML='<span class="sclabel">Смотрите также</span>'
       +sibs.map(function(p){return '<a class="scl" href="'+p.slug+'">'+p.label+'</a>';}).join('');
-    // тап по заголовку раскрывает список (на десктопе он и так всегда виден)
-    el.querySelector('.sclabel').onclick=function(){el.classList.toggle('open');};
+    var wrap=document.getElementById('scwrap'); if(wrap)wrap.style.display='';
+    // стрелки листают ленту по кругу: дошли до края — прыгаем на противоположный
+    var step=function(dir){
+      var max=el.scrollWidth-el.clientWidth;
+      if(dir>0&&el.scrollLeft>=max-4){el.scrollTo({left:0});return;}
+      if(dir<0&&el.scrollLeft<=4){el.scrollTo({left:max});return;}
+      el.scrollBy({left:dir*Math.max(200,el.clientWidth*0.8)});
+    };
+    var pv=document.getElementById('scPrev'),nx=document.getElementById('scNext');
+    if(pv)pv.onclick=function(){step(-1);};
+    if(nx)nx.onclick=function(){step(1);};
   }
 
   function titleFor(){
