@@ -1,0 +1,146 @@
+<!-- =========================================================
+     HAILEY · Служебная страница «Тест оплаты» (T123)
+     Товары — щётки за 5, 6 и 7 руб, три цвета × два размера.
+     Разные цены нужны, чтобы проверить, что сервер считает сумму построчно.
+     Пишет в тот же localStorage hailey_cart_v1, что и карточки товара,
+     поэтому дальше идёт РЕАЛЬНЫЙ путь: /checkout → /pay/create → Т-Банк
+     → возврат на checkout?paid= → цель Метрики «01 ПОКУПКА — оплачено».
+     Цену к оплате сервер берёт из search.json (позиции с h:1), а не отсюда:
+     подменить 5 руб в браузере не выйдет.
+     Страница закрыта от индексации и ниоткуда не залинкована.
+     ========================================================= -->
+<meta name="robots" content="noindex,nofollow">
+<style>
+  .hto *{margin:0;padding:0;box-sizing:border-box}
+  .hto{--paper:#F2F0EB;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--accent:#2B3648;--warn:#B3541E;--good:#2f6b46;
+    background:var(--paper);color:var(--ink);
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.55;
+    padding:24px 0 64px;-webkit-font-smoothing:antialiased}
+  @media(prefers-color-scheme:dark){.hto{--paper:#16181d;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15)}}
+  [data-theme="dark"] .hto{--paper:#16181d;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15)}
+  [data-theme="light"] .hto{--paper:#F2F0EB;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--line:rgba(25,23,18,.13)}
+  [data-theme="white"] .hto{--paper:#FFFFFF;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--line:rgba(20,22,28,.12)}
+  .hto .wrap{max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hto .warn{background:var(--warn);color:#fff;border-radius:10px;padding:14px 16px;font-size:14px;margin-bottom:26px}
+  .hto .warn b{display:block;font-size:15px;margin-bottom:4px}
+  .hto h1{font-size:clamp(22px,3vw,30px);font-weight:300;letter-spacing:-.01em;margin-bottom:8px}
+  .hto .sub{color:var(--ink-2);font-size:14px;margin-bottom:26px}
+  .hto .prod{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:14px}
+  .hto .pt{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .hto .sw{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);flex:0 0 auto}
+  .hto .pn{font-size:16px;font-weight:500}
+  .hto .pp{color:var(--ink-2);font-size:13px}
+  .hto .szs{display:flex;gap:8px;flex-wrap:wrap}
+  .hto .sz{min-width:64px;padding:10px 14px;border:1px solid var(--line);border-radius:8px;
+    background:transparent;color:inherit;font:inherit;cursor:pointer;transition:.15s}
+  .hto .sz:hover{border-color:var(--ink-3)}
+  .hto .sz.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .hto .add{margin-top:14px;width:100%;padding:13px;border:0;border-radius:8px;background:var(--accent);
+    color:#fff;font:inherit;font-weight:500;cursor:pointer;opacity:.45;pointer-events:none}
+  .hto .add.ready{opacity:1;pointer-events:auto}
+  .hto .bar{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+  .hto .cartline{font-size:14px;color:var(--ink-2);margin-bottom:12px;min-height:22px}
+  .hto .cartline b{color:var(--ink)}
+  .hto .row{display:flex;gap:10px;flex-wrap:wrap}
+  .hto .go{padding:13px 22px;border-radius:8px;background:var(--good);color:#fff;
+    text-decoration:none;font-size:15px;font-weight:500;display:inline-block}
+  .hto .clr{padding:13px 22px;border-radius:8px;border:1px solid var(--line);background:transparent;
+    color:var(--ink-2);font:inherit;cursor:pointer}
+  .hto .steps{margin-top:30px;font-size:13.5px;color:var(--ink-2)}
+  .hto .steps h2{font-size:14px;color:var(--ink);margin-bottom:8px;font-weight:600}
+  .hto .steps li{margin:0 0 6px 18px}
+  .hto code{background:rgba(128,128,128,.14);padding:1px 5px;border-radius:4px;font-size:12.5px}
+</style>
+
+<div class="hto">
+  <div class="wrap">
+    <div class="warn"><b>Служебная страница</b>Проверка приёма оплаты. Товары ненастоящие, цены 5, 6 и 7 руб. Страница закрыта от индексации и не показывается в каталоге и поиске по сайту.</div>
+
+    <h1>Тест оплаты</h1>
+    <p class="sub">Выберите цвет и размер, добавьте в корзину и оформите заказ. Дальше всё идёт по обычному пути: оформление → Т-Банк → возврат на сайт.</p>
+
+    <div class="prod" data-id="9000000001" data-name="ТЕСТ Щётка чёрная" data-price="5">
+      <div class="pt"><span class="sw" style="background:#1b1b1b"></span>
+        <span><span class="pn">Щётка чёрная</span><br><span class="pp">5 руб · артикул 9000000001</span></span></div>
+      <div class="szs"><button class="sz" type="button">S</button><button class="sz" type="button">M</button></div>
+      <button class="add" type="button">Выберите размер</button>
+    </div>
+
+    <div class="prod" data-id="9000000002" data-name="ТЕСТ Щётка синяя" data-price="6">
+      <div class="pt"><span class="sw" style="background:#2f4d8a"></span>
+        <span><span class="pn">Щётка синяя</span><br><span class="pp">6 руб · артикул 9000000002</span></span></div>
+      <div class="szs"><button class="sz" type="button">S</button><button class="sz" type="button">M</button></div>
+      <button class="add" type="button">Выберите размер</button>
+    </div>
+
+    <div class="prod" data-id="9000000003" data-name="ТЕСТ Щётка серая" data-price="7">
+      <div class="pt"><span class="sw" style="background:#8a8f96"></span>
+        <span><span class="pn">Щётка серая</span><br><span class="pp">7 руб · артикул 9000000003</span></span></div>
+      <div class="szs"><button class="sz" type="button">S</button><button class="sz" type="button">M</button></div>
+      <button class="add" type="button">Выберите размер</button>
+    </div>
+
+    <div class="bar">
+      <div class="cartline" id="toCart">Корзина пуста</div>
+      <div class="row">
+        <a class="go" href="/checkout">Оформить заказ →</a>
+        <button class="clr" type="button" id="toClear">Очистить корзину</button>
+      </div>
+    </div>
+
+    <div class="steps">
+      <h2>Что проверяем</h2>
+      <ol>
+        <li>сумма к оплате совпала с корзиной (её считает сервер, не браузер);</li>
+        <li>в чеке от банка видны название, цвет и размер;</li>
+        <li>после оплаты вернуло на <code>/checkout?paid=HL-…</code>;</li>
+        <li>в Метрике сработала цель «01 ПОКУПКА — оплачено»;</li>
+        <li>при отказе вернуло на <code>/checkout?failed=1</code>.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){try{
+  var KEY='hailey_cart_v1';
+  function load(){try{var a=JSON.parse(localStorage.getItem(KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
+  function save(a){try{localStorage.setItem(KEY,JSON.stringify(a));}catch(e){}}
+  function rub(n){return n.toLocaleString('ru-RU')+' руб';}
+
+  function paint(){
+    var c=load(), el=document.getElementById('toCart');
+    if(!c.length){el.textContent='Корзина пуста';return;}
+    var sum=c.reduce(function(s,i){return s+i.price*i.qty;},0);
+    var n=c.reduce(function(s,i){return s+i.qty;},0);
+    el.innerHTML='В корзине <b>'+n+'</b> шт на <b>'+rub(sum)+'</b>: '+
+      c.map(function(i){return i.name+' · '+i.size+(i.qty>1?' ×'+i.qty:'');}).join(', ');
+  }
+
+  [].forEach.call(document.querySelectorAll('.hto .prod'),function(box){
+    var sizes=box.querySelectorAll('.sz'), btn=box.querySelector('.add'), chosen=null;
+    [].forEach.call(sizes,function(b){
+      b.addEventListener('click',function(){
+        [].forEach.call(sizes,function(x){x.classList.remove('on');});
+        b.classList.add('on'); chosen=b.textContent.trim();
+        btn.classList.add('ready'); btn.textContent='В корзину · размер '+chosen;
+      });
+    });
+    btn.addEventListener('click',function(){
+      if(!chosen)return;
+      var c=load(), id=box.dataset.id, name=box.dataset.name;
+      // структура позиции ровно как в карточке товара, иначе корзина и оформление её не поймут
+      var ex=c.filter(function(i){return i.id===id&&i.size===chosen;})[0];
+      if(ex) ex.qty++;
+      else c.push({id:id,name:name,price:+box.dataset.price,img:'',size:chosen,qty:1});
+      save(c); paint();
+      btn.textContent='Добавлено · ещё раз?';
+      setTimeout(function(){btn.textContent='В корзину · размер '+chosen;},1600);
+    });
+  });
+
+  document.getElementById('toClear').addEventListener('click',function(){save([]);paint();});
+  paint();
+}catch(e){}})();
+</script>
