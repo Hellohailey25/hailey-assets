@@ -35,7 +35,17 @@
   .hbk .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
   @media(max-width:720px){.hbk .duo{grid-template-columns:1fr}}
   .hbk .shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}
-  .hbk .shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .hbk .shot img{width:100%;display:block;height:auto;max-height:82vh;object-fit:contain;background:var(--paper2)}
+  .split{display:grid;grid-template-columns:minmax(260px,38%) 1fr;gap:clamp(18px,3vw,34px);
+         align-items:center;margin:30px 0}
+  .split .shot img{max-height:none}
+  .split:nth-of-type(even){direction:rtl}
+  .split:nth-of-type(even)>*{direction:ltr}
+  .tocat{display:inline-flex;align-items:center;gap:8px;margin:26px 0 6px;padding:13px 22px;
+         border-radius:30px;background:var(--ink);color:var(--paper);font-size:14px;
+         letter-spacing:.02em;text-decoration:none}
+  .tocat:hover{background:var(--accent,#2B3648)}
+  @media(max-width:760px){.split{grid-template-columns:1fr}}
   .hbk .shot figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px}
   .hbk .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
   .hbk table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
@@ -91,7 +101,7 @@
     <div class="eyebrow">Гид HAILEY · обновлено 9 августа 2026</div>
     <h1>Джинсы клёш: с чем носить и кому идут</h1>
     <p class="lead">Клёш — фасон-возвращенец из 70-х, который каждый сезон объявляют «снова главным». Разбираем, чем клёш от колена отличается от клёша от бедра, кому этот силуэт действительно идёт и с чем носить клёш в 2026 году, чтобы он вытягивал ноги, а не резал их пополам.</p>
-    <p class="meta">HAILEY · Гид №4 в серии о джинсах · читать ≈ 5 минут</p>
+    <p class="meta">HAILEY · Гид №4 в серии о <a href="/catalog/dzhinsy">джинсах</a> · читать ≈ 5 минут</p>
 
     <div class="hook"><b>⚠️ Не покупайте клёш, пока не проверите три вещи</b>
       <p>1) откуда идёт расширение — от колена и от бедра сидят совершенно по-разному (<a href="#what">разница ниже</a>); 2) длину с ВАШЕЙ обувью — клёш безжалостен к ошибкам длины (<a href="#length">правило</a>); 3) свой размер — расклешённая штанина требует точной посадки в бедре, сверьтесь с <a href="/kak-vybrat-razmer">таблицей размеров и калькулятором</a>.</p>
@@ -99,7 +109,7 @@
 
     <section id="what">
       <h2><span class="n">01</span> Какие бывают клёш: от колена, от бедра и буткат</h2>
-      <p class="sub">Три степени драматичности — выбирают под характер и случай.</p>
+      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/545150789/1.webp" alt="Клёш от колена: верх облегает, низ расширяется"><figcaption>Клёш от колена: верх облегает, низ расширяется</figcaption></figure><p class="sub">Три степени драматичности — выбирают под характер и случай.</p></div>
       <div class="tblwrap">
         <table>
           <thead><tr><th>Вид</th><th>Где расширение</th><th>Эффект</th><th>Куда носить</th></tr></thead>
@@ -118,7 +128,7 @@
 
     <section id="who">
       <h2><span class="n">02</span> Кому идут джинсы клёш</h2>
-      <p class="sub">Клёш — редкий случай фасона, который добавляет ногам длины почти любой фигуре. Но есть нюансы.</p>
+      <div class="split"><figure class="shot"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/photos/504624622/1.webp" alt="Светлый клёш визуально вытягивает силуэт"><figcaption>Светлый клёш визуально вытягивает силуэт</figcaption></figure><p class="sub">Клёш — редкий случай фасона, который добавляет ногам длины почти любой фигуре. Но есть нюансы.</p></div>
       <div class="cards">
         <div class="cardi"><b>«Груша» и выраженные бёдра</b><p>Лучший сценарий: расширение внизу уравновешивает бёдра, силуэт становится пропорциональным. Клёш от колена — самый безопасный вариант.</p></div>
         <div class="cardi"><b>Невысокий рост</b><p>Клёш + каблук = легальный способ «дорисовать» 10 см роста. Без каблука берите буткат или неширокий клёш строго в длину до пола минус 1 см.</p></div>
