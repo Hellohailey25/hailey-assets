@@ -687,9 +687,12 @@
     if(_s){_s.textContent=_lead;_s.style.display=_lead?'':'none';}
     var _sb=document.getElementById('sdescB');
     if(_sb){
-      _sb.innerHTML=_rest.map(function(x){
+      // описание из одного абзаца оставляло низ пустым, а JS ещё и затирал статику —
+      // Игорь просил текст и сверху, и снизу, поэтому без продолжения дублируем лид.
+      var _btm=_rest.length?_rest:(_lead?[_lead]:[]);
+      _sb.innerHTML=_btm.map(function(x){
         return '<p>'+x.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';}).join('');
-      _sb.style.display=_rest.length?'':'none';
+      _sb.style.display=_btm.length?'':'none';
     }
     // Хлебные крошки: полная вложенность с «Главная». «Каталог» — ссылка только когда мы ГЛУБЖЕ него
     // (страница категории/под-категории); на самом каталоге это текущая страница → простой <b>, без само-ссылки.
