@@ -114,6 +114,17 @@
   .hc .finp:focus{outline:none;border-color:var(--accent)}
   .hc input.finp::placeholder{color:var(--ink-44)}
   /* описание категории: на десктопе под H1, на телефоне уезжает ПОД товары (иначе закрывает витрину) */
+  .hc .szhelp{margin-top:34px;border:1px solid var(--line-soft);border-radius:14px;background:var(--card)}
+  .hc .szhelp summary{cursor:pointer;padding:16px 20px;font-size:15px;color:var(--ink);list-style:none}
+  .hc .szhelp summary::-webkit-details-marker{display:none}
+  .hc .szhelp summary::after{content:'+';float:right;color:var(--ink-44);font-size:18px;line-height:1}
+  .hc .szhelp[open] summary::after{content:'–'}
+  .hc .szhelp-in{padding:0 20px 20px;font-size:14px;color:var(--ink-64);line-height:1.65}
+  .hc .szwrap{overflow-x:auto;margin:12px 0}
+  .hc .sztab{border-collapse:collapse;width:100%;font-size:13px;min-width:420px}
+  .hc .sztab th,.hc .sztab td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+  .hc .sztab th{color:var(--ink-44);font-weight:400}
+  .hc .szmore a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
   .hc .sdesc.btm{display:block;margin-top:34px;padding-top:22px;border-top:1px solid var(--line-soft);
     font-size:14px;color:var(--ink-64);line-height:1.7}
   /* на широком экране читать строку в 1500px тяжело — раскладываем абзацы в две колонки */
@@ -364,6 +375,22 @@
     <div class="empty" id="empty" style="display:none">В этой комбинации пока нет товаров. Сбросьте фильтр.</div>
     <!-- SEO-текст и соседние категории — ПОД товарами: сверху они перетягивали внимание с витрины -->
     <nav class="subcats" id="subcats" style="display:none"></nav>
+    <!-- Подбор размера прямо в каталоге: в плюс-сайзе «сядет ли на меня» — главный вопрос,
+         и гонять человека на отдельную страницу значит терять его. -->
+    <details class="szhelp">
+      <summary>Не уверены в размере? Откройте таблицу 42–74</summary>
+      <div class="szhelp-in">
+        <p>Снимите две мерки сантиметром по самой широкой части — талия и бёдра — и найдите строку.
+           Если мерки попали в разные строки, берите размер по бёдрам.</p>
+        <div class="szwrap">
+          <table class="sztab">
+            <thead><tr><th>Размер</th><th>Талия, см</th><th>Бёдра, см</th><th>Длина по внутр. шву</th></tr></thead>
+            <tbody id="sztb"></tbody>
+          </table>
+        </div>
+        <p class="szmore"><a href="/kak-vybrat-razmer">Подробный гид по размерам с калькулятором →</a></p>
+      </div>
+    </details>
     <div class="sdesc btm" id="sdescB"><p>Если сверху 48, а снизу 54 — это норма, и мы это учитываем: посадка считается по обхвату бёдер, а не по общей табличке. Перед заказом откройте калькулятор размера: по двум меркам он покажет ваш российский размер от 42 до 74.</p><p>В каталоге прямые и классические, широкие, багги, клёш, трубы, палаццо, бойфренды, зауженные. Цвета — синий, тёмно-синий, голубой, серый, чёрный, белый, коричневый. Есть укороченные модели и длина 7/8 на рост до 165 см, а также стрейч: деним с эластаном тянется и не пережимает.</p><p>Шьём в Турции из плотного денима: ткань держит форму, не пузырится на коленях и не вытягивается после стирки. Высокая талия не сползает при движении. Все фото на сайте — наши, снятые на живых моделях: видно, как джинсы сидят и на 46-м, и на 62-м.</p><p>Цены — от 4 000 руб. Оплата картой или СБП, доставка по России от 2 дней, возврат 14 дней: меряете дома и решаете спокойно. Женские джинсы больших размеров у нас можно взять сразу в двух соседних размерах и вернуть тот, что не подошёл.</p></div>
   </div>
 
@@ -641,6 +668,16 @@
   function render(){
     renderFilters();
     document.getElementById('h1t').textContent=titleFor();
+    // таблица размеров: сетка 42–74, одна с гидом /kak-vybrat-razmer
+    var SZ=[[42,'66–69','92–95','76 см'],[44,'70–73','96–99','76 см'],[46,'74–77','100–103','76 см'],
+      [48,'78–81','104–107','77 см'],[50,'82–85','108–111','77 см'],[52,'86–89','112–115','77 см'],
+      [54,'90–94','116–120','78 см'],[56,'95–99','121–125','78 см'],[58,'100–104','126–130','78 см'],
+      [60,'105–109','131–135','78 см'],[62,'110–115','136–140','79 см'],[64,'116–121','141–146','79 см'],
+      [66,'122–128','147–152','79 см'],[68,'129–135','153–158','79 см'],[70,'136–142','159–164','80 см'],
+      [72,'143–149','165–170','80 см'],[74,'150–156','171–176','80 см']];
+    var _tb=document.getElementById('sztb');
+    if(_tb)_tb.innerHTML=SZ.map(function(r){
+      return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>';}).join('');
     // описание делим так же, как в статике: лид — под H1, остальные абзацы — ПОД товарами.
     // Раньше JS писал полный текст в оба блока, и один и тот же абзац шёл дважды.
     var _d=CONFIG.desc||'';
