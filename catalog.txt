@@ -203,6 +203,8 @@ fetch('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/reviews.json
 .then(function(d){
 var all=[]; Object.keys(d.reviews||{}).forEach(function(k){all=all.concat(d.reviews[k]);});
 var good=all.filter(function(r){return +r.val===5 && (r.text||'').length>60;});
+var wo=good.filter(function(r){return (r.text||'').indexOf('азмер')<0;});
+if(wo.length>=4)good=wo;
 good.sort(function(a,b){
 var pa=(a.photos&&a.photos.length)?1:0, pb=(b.photos&&b.photos.length)?1:0;
 return pb-pa || (b.text.length-a.text.length) || String(b.date||'').localeCompare(String(a.date||''));
@@ -219,7 +221,7 @@ var ours=byId[String(r.nm)]||{}, title=ours.name||r.product||'смотреть �
 var link=ours.page||r.url||'/otzyvy';
 var ph=(r.photos&&r.photos.length)?r.photos[0]:'';
 return '<figure class="rv"><figcaption class="rvtop"><b>'+esc(r.user||'Покупательница')+'</b>'
-+(r.size?' · размер '+esc(r.size):'')+(r.date?' · '+ru(r.date):'')
++(r.size?' · '+esc(r.size):'')+(r.date?' · '+ru(r.date):'')
 +'<a href="'+link+'">'+esc(title)+'</a></figcaption>'
 +(ph?'<img class="rvph" src="'+ph+'" alt="Отзыв покупательницы: '+esc(title)+'" loading="lazy">':'')
 +'<blockquote class="rvtx">'+esc(r.text)+'</blockquote>'
