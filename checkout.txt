@@ -278,7 +278,8 @@
     var m=$('promoMsg');
     if(!v){promo='';m.className='pmsg';render();return;}
     if(PROMOS[v]){promo=v;try{localStorage.setItem('hailey_promo_v1',v);}catch(e){}
-      m.textContent='Промокод применён: −'+PROMOS[v]+'%';m.className='pmsg ok';}
+      m.textContent='Промокод применён: −'+PROMOS[v]+'%';m.className='pmsg ok';
+      promoChecked='';checkPromo(($('f_phone').value||'').replace(/\D/g,''));}
     else{promo='';m.textContent='Такого промокода нет';m.className='pmsg no';}
     render();
   }
@@ -310,7 +311,29 @@
     if(d.length>7)s+='-'+d.slice(7,9);
     if(d.length>9)s+='-'+d.slice(9,11);
     this.value=s;
+    checkPromo(d);
   });
+
+  /* Промокод действует на первый заказ ЧЕЛОВЕКА, а лежит он в памяти УСТРОЙСТВА — поэтому
+     у постоянного покупателя подставляется сам. Как только телефон введён полностью,
+     спрашиваем сервер (он же считает сумму к оплате) и снимаем скидку, если она не положена:
+     иначе в корзине одна цена, а на странице банка другая. */
+  var promoChecked='';
+  function checkPromo(digits){
+    if(!promo||digits.length<11||promoChecked===digits)return;
+    promoChecked=digits;
+    fetch(PAY+'/promo',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({phone:digits})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(!d||d.eligible!==false)return;
+        promo='';try{localStorage.removeItem('hailey_promo_v1');}catch(e){}
+        $('f_promo').value='';
+        $('promoMsg').textContent='Промокод действует только на первый заказ';
+        $('promoMsg').className='pmsg no';
+        render();
+      }).catch(function(){});
+  }
 
   function orderText(){
     var L=cart.map(function(i){return '• '+i.name+(i.size?' (размер '+i.size+')':'')+' × '+i.qty+' = '+rub(i.price*i.qty);});
