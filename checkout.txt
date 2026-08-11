@@ -131,7 +131,7 @@
     <div id="hcoMain">
       <a class="back" href="/catalog">← Вернуться в каталог</a>
       <h1>Оформление заказа</h1>
-      <div class="hint">Два поля — и всё. Менеджер перезвонит за 15 минут, подтвердит размер, срок и стоимость доставки, пришлёт ссылку на оплату.</div>
+      <div class="hint">Два поля — и всё. Дальше оплата картой или через СБП. Менеджер перезвонит за 15 минут: подтвердит размер и срок доставки.</div>
 
       <div class="cols">
         <div>
@@ -206,7 +206,7 @@
       <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
       <h2 id="okTitle">Заказ принят</h2>
       <div class="num" id="okNum">HL-000000</div>
-      <p id="okMsg">Менеджер перезвонит за 15 минут, подтвердит размер, наличие, срок и стоимость доставки, и пришлёт ссылку на оплату.</p>
+      <p id="okMsg">Менеджер перезвонит за 15 минут, подтвердит размер, наличие и срок доставки.</p>
       <div class="btns"><a class="b dark" href="/catalog">Вернуться в каталог</a><a class="b tg" id="okTg" href="https://t.me/hailey_mgr" target="_blank" rel="noopener">Написать в Telegram</a></div>
     </div>
   </div>
@@ -356,6 +356,9 @@
       .then(function(r){return r.json();})
       .then(function(d){
         if(done)return;
+        // сервер срезал скидку как повторную — стираем код, чтобы корзина больше не рисовала
+        // цену, которой не будет: настоящая сумма всё равно видна на странице банка
+        if(d&&d.promo_used===false&&promo){try{localStorage.removeItem('hailey_promo_v1');}catch(e){}}
         if(d&&d.redirect){done=true;clearTimeout(t);location.href=d.redirect;}
         else{clearTimeout(t);finish();}
       })
@@ -382,7 +385,10 @@
   // возврат с платёжной страницы банка — только после render(), иначе он перерисует экран
   (function(){
     var m=location.search.match(/[?&]paid=([^&]+)/);
-    if(m){cart=[];save();$('hcoEmpty').style.display='none';
+    // код акции живёт в браузере, а действует только на первый заказ — после оплаты стираем,
+    // иначе постоянному покупателю он молча подставляется в каждый следующий заказ
+    if(m){cart=[];save();try{localStorage.removeItem('hailey_promo_v1');}catch(e){}
+      $('hcoEmpty').style.display='none';
       showOk(decodeURIComponent(m[1]),'Оплачено — спасибо!',
         'Заказ оплачен, чек придёт на почту или телефон. Мы уже собираем его к отправке.');return;}
     if(/[?&]failed=1/.test(location.search)){$('hcoEmpty').style.display='none';
