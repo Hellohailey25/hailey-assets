@@ -1,0 +1,172 @@
+<!-- =========================================================
+     HAILEY · Страница «Частые вопросы» (T123) — вручную не править,
+     источник: hailey-voprosy-код.html.
+     Ссылка «Частые вопросы» в подвале вела на сырой адрес карточки товара
+     (/page156060236.html#faq) — теперь на эту страницу.
+     JSON-LD Article+Breadcrumb+FAQ в теле. Тема сквозная.
+     ========================================================= -->
+<style>
+  .hfq *{margin:0;padding:0;box-sizing:border-box}
+  .hfq{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;
+    --line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07);--accent:#2B3648;--good:#2f6b46;--link:#2456A6;
+    --disp:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;
+    line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(40px,6vw,80px);position:relative}
+  @media(prefers-color-scheme:dark){.hfq{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}}
+  [data-theme="light"] .hfq{--paper:#F2F0EB;--paper2:#EAE7E0;--card:#FBFAF7;--ink:#191712;--ink-2:#5C626B;--ink-3:#8A9099;--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.07)}
+  [data-theme="dark"] .hfq{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEBE4;--ink-2:#A7A399;--ink-3:#7C786E;--line:rgba(237,235,228,.15);--line-soft:rgba(237,235,228,.08);--link:#8AB4FF}
+  [data-theme="white"] .hfq{--paper:#FFFFFF;--paper2:#F4F4F5;--card:#FFFFFF;--ink:#191712;--ink-2:#565B63;--ink-3:#8A9099;--line:rgba(20,22,28,.12);--line-soft:rgba(20,22,28,.06);--link:#1A73E8}
+  .hfq .wrap{max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+  .hfq a{color:inherit;text-decoration:none}
+  .hfq .crumb{font-size:12px;color:var(--ink-3);letter-spacing:.04em;padding:6px 0 22px}
+  .hfq .crumb a:hover{color:var(--ink)}
+  .hfq .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .hfq h1{font-size:clamp(26px,3.6vw,40px);line-height:1.12;font-weight:300;letter-spacing:-.01em;max-width:24ch}
+  .hfq .lead{font-size:clamp(15px,2.2vw,18px);color:var(--ink-2);margin-top:16px;max-width:58ch;line-height:1.6}
+  .hfq .meta{font-size:12.5px;color:var(--ink-3);margin-top:14px}
+  .hfq section{margin-top:clamp(44px,7vw,76px)}
+  .hfq h2{font-size:clamp(21px,3.2vw,30px);font-weight:300;letter-spacing:-.01em;margin-bottom:6px}
+  .hfq h2 .n{color:var(--ink-3);font-weight:400;margin-right:12px}
+  .hfq .sub{font-size:15px;color:var(--ink-2);margin-bottom:24px;max-width:62ch;line-height:1.6}
+  .hfq p{font-size:15px;color:var(--ink-2);line-height:1.65}
+  .hfq .hook{margin-top:26px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:20px 24px}
+  .hfq .hook b{font-size:15px}
+  .hfq .hook p{font-size:14px;margin-top:8px}
+  .hfq .hook a{border-bottom:1px solid var(--line)}
+  .hfq .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media(max-width:720px){.hfq .duo{grid-template-columns:1fr}}
+  .hfq .shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--paper2)}
+  .hfq .shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .hfq .shot figcaption{font-size:12.5px;color:var(--ink-3);padding:10px 14px}
+  .hfq .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .hfq table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  .hfq thead th{text-align:left;padding:14px 16px;background:var(--paper2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+  .hfq tbody td{padding:12px 16px;border-top:1px solid var(--line-soft);color:var(--ink-2);vertical-align:top}
+  .hfq tbody td:first-child{color:var(--ink);font-weight:700;white-space:nowrap}
+  .hfq .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hfq .cards{grid-template-columns:1fr}}
+  .hfq .cardi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .hfq .cardi b{display:block;font-size:15px;margin-bottom:6px}
+  .hfq .cardi p{font-size:13.5px}
+  .hfq .plus{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,30px)}
+  .hfq .plus ul{list-style:none;margin-top:14px}
+  .hfq .plus li{font-size:14.5px;color:var(--ink-2);line-height:1.6;padding:9px 0 9px 26px;position:relative;border-top:1px solid var(--line-soft)}
+  .hfq .plus li:before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+  .hfq .qa{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:12px;overflow:hidden}
+  .hfq .qa summary{padding:18px 22px;font-size:15px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .hfq .qa summary::-webkit-details-marker{display:none}
+  .hfq .qa summary .ic{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-weight:400;color:var(--ink-3);transition:transform .2s}
+  .hfq .qa[open] summary .ic{transform:rotate(45deg)}
+  .hfq .qa .ans{padding:0 22px 20px;font-size:14.5px;color:var(--ink-2);line-height:1.65;max-width:70ch}
+  .hfq .also{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.hfq .also{grid-template-columns:1fr}}
+  .hfq .also a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:block;transition:border-color .15s}
+  .hfq .also a:hover{border-color:var(--ink)}
+  .hfq .also b{display:block;font-size:15px;margin-bottom:6px}
+  .hfq .also span{font-size:13px;color:var(--ink-2);line-height:1.5}
+  .hfq .tease{margin:26px 0 0;background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:block;transition:border-color .15s}
+  .hfq .tease:hover{border-color:var(--ink)}
+  .hfq .tease .tl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .hfq .tease b{display:block;font-size:15.5px;margin-top:6px}
+  .hfq .tease span{font-size:13.5px;color:var(--ink-2);display:block;margin-top:4px}
+  .hfq .series{display:flex;gap:14px;justify-content:space-between;margin-top:clamp(30px,5vw,44px);flex-wrap:wrap}
+  .hfq .series a,.hfq .series i{flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-style:normal}
+  .hfq .series a:hover{border-color:var(--ink)}
+  .hfq .series .dir{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .hfq .series b{display:block;font-size:14.5px;margin-top:5px}
+  .hfq .series i b{color:var(--ink-3)}
+  .hfq p a,.hfq .sub a,.hfq dd a,.hfq .ans a,.hfq .hook a,.hfq .cardi a,.hfq .plus a,.hfq .second a,.hfq .size a,.hfq .why a{color:var(--link);text-decoration:underline;text-underline-offset:2px;border-bottom:none!important}
+  .hfq .tgo{display:inline-block;margin-top:9px;color:var(--link);text-decoration:underline;text-underline-offset:2px;font-style:normal;font-size:13.5px;font-weight:600}
+  .hfq .series a b{color:var(--link)}
+  .hfq .cta{margin-top:clamp(44px,7vw,76px);background:var(--accent);border-radius:18px;padding:clamp(28px,5vw,46px);text-align:center;color:#F2F0EB}
+  .hfq .cta h2{color:inherit;margin-bottom:8px}
+  .hfq .cta p{color:rgba(242,240,235,.75);font-size:15px;max-width:48ch;margin:0 auto}
+  .hfq .cta a{display:inline-flex;margin-top:22px;padding:16px 34px;background:#F2F0EB;color:#191712;border-radius:4px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:opacity .18s}
+  .hfq .cta a:hover{opacity:.9}
+</style>
+<div class="hfq">
+  <div class="wrap">
+    <nav class="crumb"><a href="/">Главная</a> · <b>Частые вопросы</b></nav>
+
+    <div class="eyebrow">HAILEY · обновлено 11 августа 2026</div>
+    <h1>Частые вопросы</h1>
+    <p class="lead">Собрали то, что спрашивают чаще всего: как выбрать размер, что делать, если верх и низ разные, сколько идёт доставка и как вернуть, если не подошло. Если вопроса тут нет — напишите нам в Telegram, отвечаем в тот же день.</p>
+
+    <section id="razmer">
+      <h2><span class="n">01</span> Размер и посадка</h2>
+
+      <details class="qa"><summary>Как понять свой размер?<span class="ic">+</span></summary>
+        <div class="ans">Снимите две мерки сантиметром по самой широкой части — талию и бёдра — и сверьтесь с таблицей. Если мерки попали в разные строки, берите по бёдрам: посадка считается по ним. Таблица 42–74 и калькулятор по двум меркам — в <a href="/kak-vybrat-razmer" style="border-bottom:1px solid var(--line)">гиде по размерам</a>.</div>
+      </details>
+
+      <details class="qa"><summary>Сверху 48, а снизу 54 — какой размер брать?<span class="ic">+</span></summary>
+        <div class="ans">Берите по бёдрам, это самая широкая точка. Талия в наших моделях высокая и сидит мягко, поэтому разница в два размера между верхом и низом не мешает — крой рассчитан именно на такую фигуру.</div>
+      </details>
+
+      <details class="qa"><summary>Какая длина у моделей?<span class="ic">+</span></summary>
+        <div class="ans">Длина рассчитана на рост от 170 см. На меньший рост штанину подворачивают — как сделать это аккуратно, разобрали в <a href="/blog/kak-podvernut-shirokie-dzhinsy" style="border-bottom:1px solid var(--line)">гиде по подворотам</a>. Если разница больше 10 см, лучше укоротить в ателье с сохранением фабричного шва.</div>
+      </details>
+
+      <details class="qa"><summary>Джинсы тянутся и растягиваются после носки?<span class="ic">+</span></summary>
+        <div class="ans">Нет. Мы берём плотный деним — от 100% хлопка до смесей с небольшой долей вискозы, лиоцелла или полиэстера. Он держит форму, не пузырится на коленях и не вытягивается после стирки. Поэтому размер выбирайте по меркам, а не «на вырост».</div>
+      </details>
+    </section>
+
+    <section id="dostavka">
+      <h2><span class="n">02</span> Доставка и оплата</h2>
+
+      <details class="qa"><summary>Сколько идёт доставка?<span class="ic">+</span></summary>
+        <div class="ans">По России от 2 дней. Срок зависит от города — точный назовёт менеджер при подтверждении заказа.</div>
+      </details>
+
+      <details class="qa"><summary>Как оплатить заказ?<span class="ic">+</span></summary>
+        <div class="ans">Картой онлайн или через СБП по QR-коду. Данные карты вводятся на защищённой странице банка и нам не передаются. Полные условия — в <a href="/dostavka-i-oplata" style="border-bottom:1px solid var(--line)">разделе о доставке и оплате</a>.</div>
+      </details>
+
+      <details class="qa"><summary>Есть бесплатная доставка?<span class="ic">+</span></summary>
+        <div class="ans">Да, при заказе от 10 000 руб. В корзине видно, сколько осталось до бесплатной.</div>
+      </details>
+    </section>
+
+    <section id="vozvrat">
+      <h2><span class="n">03</span> Возврат</h2>
+
+      <details class="qa"><summary>Что делать, если размер не подошёл?<span class="ic">+</span></summary>
+        <div class="ans">Возврат 14 дней. Можно сразу заказать две соседние ростовки, померить дома и вернуть ту, которая не подошла — деньги возвращаем на ту же карту.</div>
+      </details>
+
+      <details class="qa"><summary>Возврат платный?<span class="ic">+</span></summary>
+        <div class="ans">Отправка возврата — за счёт покупателя, стоимость зависит от службы доставки. Стоимость самого товара возвращаем полностью.</div>
+      </details>
+    </section>
+
+    <section id="brend">
+      <h2><span class="n">04</span> О товаре и бренде</h2>
+
+      <details class="qa"><summary>Это ваше производство или перепродажа?<span class="ic">+</span></summary>
+        <div class="ans">Своё. Мы рисуем лекала под фигуру plus-size, подбираем деним и отшиваем сами. Фурнитура тоже своя: пять карманов, крепкая молния, фирменные заклёпки и кожаная нашивка. Подробнее — <a href="/o-brende" style="border-bottom:1px solid var(--line)">о бренде</a>.</div>
+      </details>
+
+      <details class="qa"><summary>Фото на сайте настоящие?<span class="ic">+</span></summary>
+        <div class="ans">Да, снимаем сами на живых моделях разных размеров — видно, как вещь сидит и на 46-м, и на 62-м, спереди и сзади. Никаких стоковых картинок и отрисованных манекенов.</div>
+      </details>
+
+      <details class="qa"><summary>Чем отличаются широкие, трубы и палаццо?<span class="ic">+</span></summary>
+        <div class="ans">У широких штанина идёт прямо и свободно от бедра. Трубы — та же ширина сверху донизу, без сужения к низу. Палаццо расширяются от бедра книзу. Разбор всех фасонов с фото — в <a href="/blog/vidy-i-nazvaniya-dzhinsov" style="border-bottom:1px solid var(--line)">гиде по видам джинсов</a>.</div>
+      </details>
+    </section>
+
+    <div class="cta">
+      <h2>Не нашли ответ?</h2>
+      <p>Напишите в Telegram — отвечаем в тот же день. Поможем подобрать размер по вашим меркам.</p>
+      <a href="https://t.me/hailey_mgr" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Как понять свой размер?", "acceptedAnswer": {"@type": "Answer", "text": "Снимите две мерки сантиметром по самой широкой части — талию и бёдра — и сверьтесь с таблицей. Если мерки попали в разные строки, берите по бёдрам: посадка считается по ним. Таблица 42–74 и калькулятор по двум меркам — в гиде по размерам."}}, {"@type": "Question", "name": "Сверху 48, а снизу 54 — какой размер брать?", "acceptedAnswer": {"@type": "Answer", "text": "Берите по бёдрам, это самая широкая точка. Талия в наших моделях высокая и сидит мягко, поэтому разница в два размера между верхом и низом не мешает — крой рассчитан именно на такую фигуру."}}, {"@type": "Question", "name": "Какая длина у моделей?", "acceptedAnswer": {"@type": "Answer", "text": "Длина рассчитана на рост от 170 см. На меньший рост штанину подворачивают — как сделать это аккуратно, разобрали в гиде по подворотам. Если разница больше 10 см, лучше укоротить в ателье с сохранением фабричного шва."}}, {"@type": "Question", "name": "Джинсы тянутся и растягиваются после носки?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Мы берём плотный деним — от 100% хлопка до смесей с небольшой долей вискозы, лиоцелла или полиэстера. Он держит форму, не пузырится на коленях и не вытягивается после стирки. Поэтому размер выбирайте по меркам, а не «на вырост»."}}, {"@type": "Question", "name": "Сколько идёт доставка?", "acceptedAnswer": {"@type": "Answer", "text": "По России от 2 дней. Срок зависит от города — точный назовёт менеджер при подтверждении заказа."}}, {"@type": "Question", "name": "Как оплатить заказ?", "acceptedAnswer": {"@type": "Answer", "text": "Картой онлайн или через СБП по QR-коду. Данные карты вводятся на защищённой странице банка и нам не передаются. Полные условия — в разделе о доставке и оплате."}}, {"@type": "Question", "name": "Есть бесплатная доставка?", "acceptedAnswer": {"@type": "Answer", "text": "Да, при заказе от 10 000 руб. В корзине видно, сколько осталось до бесплатной."}}, {"@type": "Question", "name": "Что делать, если размер не подошёл?", "acceptedAnswer": {"@type": "Answer", "text": "Возврат 14 дней. Можно сразу заказать две соседние ростовки, померить дома и вернуть ту, которая не подошла — деньги возвращаем на ту же карту."}}, {"@type": "Question", "name": "Возврат платный?", "acceptedAnswer": {"@type": "Answer", "text": "Отправка возврата — за счёт покупателя, стоимость зависит от службы доставки. Стоимость самого товара возвращаем полностью."}}, {"@type": "Question", "name": "Это ваше производство или перепродажа?", "acceptedAnswer": {"@type": "Answer", "text": "Своё. Мы рисуем лекала под фигуру plus-size, подбираем деним и отшиваем сами. Фурнитура тоже своя: пять карманов, крепкая молния, фирменные заклёпки и кожаная нашивка. Подробнее — о бренде."}}, {"@type": "Question", "name": "Фото на сайте настоящие?", "acceptedAnswer": {"@type": "Answer", "text": "Да, снимаем сами на живых моделях разных размеров — видно, как вещь сидит и на 46-м, и на 62-м, спереди и сзади. Никаких стоковых картинок и отрисованных манекенов."}}, {"@type": "Question", "name": "Чем отличаются широкие, трубы и палаццо?", "acceptedAnswer": {"@type": "Answer", "text": "У широких штанина идёт прямо и свободно от бедра. Трубы — та же ширина сверху донизу, без сужения к низу. Палаццо расширяются от бедра книзу. Разбор всех фасонов с фото — в гиде по видам джинсов."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://hello-hailey.ru/"}, {"@type": "ListItem", "position": 2, "name": "Частые вопросы", "item": "https://hello-hailey.ru/voprosy"}]}
+</script>
