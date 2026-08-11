@@ -39,7 +39,7 @@
       <a href="/catalog">Каталог</a>
       <a href="/dostavka-i-oplata">Доставка и оплата</a>
       <a href="/kak-vybrat-razmer">Как выбрать размер</a>
-      <a href="/page156060236.html#faq">Частые вопросы</a>
+      <a href="/voprosy">Частые вопросы</a>
       <a href="/otzyvy">Отзывы</a></div>
     <div><h4>Документы</h4>
       <a href="/oferta">Публичная оферта</a>
