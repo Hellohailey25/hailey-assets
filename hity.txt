@@ -26,7 +26,6 @@
 <div class="empty" id="empty" style="display:none">В этой комбинации пока нет товаров. Сбросьте фильтр.</div>
 <div class="sdesc btm" id="sdescB"></div>
 <section class="rvs" id="rvs"></section>
-<section class="faq" id="faq"></section>
 </div>
 <div class="fovl" id="fOvl"></div>
 <aside class="fpanel" id="fPanel" aria-label="Фильтры">
