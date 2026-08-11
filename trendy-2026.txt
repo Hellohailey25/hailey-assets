@@ -600,8 +600,15 @@ var szb=e.target.closest('.szbtn');
 if(szb){[].forEach.call(sheet.querySelectorAll('.szbtn'),function(x){x.classList.remove('sel');});szb.classList.add('sel');szSel=szb.dataset.sz;
 [].forEach.call(sheet.querySelectorAll('.sztbl tbody tr'),function(tr){tr.classList.toggle('hl',tr.dataset.row===szSel);});
 var a=document.getElementById('szAdd');if(a)a.disabled=false;return;}
-if(e.target.id==='szAdd'){if(!szSel||!szProd)return;addToCart(szProd,szSel);closeModal();
-if(szMode==='quick')openCheckout();else{openCart();showToast('Добавлено · размер '+szSel);}return;}
+if(e.target.id==='szAdd'){if(!szSel||!szProd)return;
+/* «Купить в 1 клик» — ровно одна вещь и сразу оплата. В корзину НЕ кладём: повторное
+нажатие копило товар, и человек уходил платить за две пары вместо одной. Позиция
+едет отдельным ключом, собранная корзина остаётся нетронутой. */
+if(szMode==='quick'){
+var one=[{id:szProd.id,name:szProd.name,price:szProd.price,old:szProd.old||0,img:szProd.img,size:szSel,qty:1}];
+try{localStorage.setItem('hailey_buynow_v1',JSON.stringify(one));}catch(e){}
+closeModal();location.href='/checkout?quick=1';return;}
+addToCart(szProd,szSel);closeModal();openCart();showToast('Добавлено · размер '+szSel);return;}
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeCart();}});
 window.addEventListener('popstate',function(){state=readURL();var _q=document.getElementById('fQ');if(_q)_q.value=state.q||'';render();}); // кнопка «назад/вперёд»
