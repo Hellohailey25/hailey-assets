@@ -336,7 +336,8 @@
   }
 
   function orderText(){
-    var L=cart.map(function(i){return '• '+i.name+(i.size?' (размер '+i.size+')':'')+' × '+i.qty+' = '+rub(i.price*i.qty);});
+    // артикул в заявке: по одному названию не понять, какую именно модель собирать
+    var L=cart.map(function(i){return '• '+i.name+(i.id?' (арт. '+i.id+')':'')+(i.size?' (размер '+i.size+')':'')+' × '+i.qty+' = '+rub(i.price*i.qty);});
     L.push('———');
     L.push('ИТОГО: '+rub(goods()-promoCut(goods())));
     L.push('Доставка: '+dlv+(($('f_city').value||'').trim()?', '+$('f_city').value.trim():'')+(($('f_addr').value||'').trim()?', '+$('f_addr').value.trim():''));
