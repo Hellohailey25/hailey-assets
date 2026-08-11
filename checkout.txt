@@ -270,14 +270,13 @@
     var after=cart.reduce(function(s,i){return s+Math.max(1,Math.round(i.price*(100-pc)/100))*i.qty;},0);
     return g-after;
   }
-  try{promo=(localStorage.getItem('hailey_promo_v1')||'').toUpperCase();}catch(e){}
-  if(PROMOS[promo]){$('f_promo').value=promo;$('promoMsg').textContent='Промокод применён: −'+PROMOS[promo]+'%';$('promoMsg').className='pmsg ok';}
-  else promo='';
+  // Код из попапа НЕ подставляем: он оседает в памяти браузера навсегда и молча даёт скидку
+  // тому, кто её не просил. Хочешь скидку — впиши код руками, как на любом другом сайте.
   function applyPromo(){
     var v=($('f_promo').value||'').trim().toUpperCase();
     var m=$('promoMsg');
     if(!v){promo='';m.className='pmsg';render();return;}
-    if(PROMOS[v]){promo=v;try{localStorage.setItem('hailey_promo_v1',v);}catch(e){}
+    if(PROMOS[v]){promo=v;
       m.textContent='Промокод применён: −'+PROMOS[v]+'%';m.className='pmsg ok';
       promoChecked='';checkPromo(($('f_phone').value||'').replace(/\D/g,''));}
     else{promo='';m.textContent='Такого промокода нет';m.className='pmsg no';}
