@@ -1,7 +1,7 @@
 <!-- =========================================================
      HAILEY · Страница оформления заказа /checkout (T123) — вручную не править,
      источник: hailey-checkout-код.html.
-     Один экран, 2 обязательных поля. Корзина из localStorage hailey_cart_v1.
+     Один экран, 3 обязательных поля (имя, телефон, почта — на неё касса шлёт чек). Корзина из localStorage hailey_cart_v1.
      ВАЖНО: на странице Tilda должен стоять блок «Форма» с полем Phone (движок отправки).
      ========================================================= -->
 <style>
@@ -35,6 +35,8 @@
   .hco .lbl i{width:19px;height:19px;border-radius:50%;background:var(--accent);color:#fff;font-style:normal;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
   .hco .f{margin-bottom:12px}
   .hco .f>span{display:block;font-size:12px;color:var(--ink-2);margin-bottom:6px}
+  /* подпись ПОД полем: объясняет, зачем просим почту — иначе поле выглядит как сбор рассылки */
+  .hco .f>span.fhint{margin:6px 0 0;font-size:11.5px;color:var(--ink-3)}
   .hco input,.hco textarea{width:100%;padding:14px 15px;border:1px solid var(--line);border-radius:10px;background:var(--card);
     color:var(--ink);font-family:inherit;font-size:16px;outline:none;transition:border-color .15s}
   .hco input:focus,.hco textarea:focus{border-color:var(--accent)}
@@ -141,6 +143,7 @@
               <div class="f"><span>Имя *</span><input id="f_name" placeholder="Как к вам обращаться" autocomplete="given-name"></div>
               <div class="f"><span>Телефон *</span><input id="f_phone" type="tel" inputmode="tel" placeholder="+7 900 000-00-00" autocomplete="tel"></div>
             </div>
+            <div class="f" style="margin-top:12px"><span>Почта *</span><input id="f_email" type="email" inputmode="email" placeholder="anna@mail.ru" autocomplete="email"><span class="fhint">Сюда придёт кассовый чек и ссылка для отслеживания заказа</span></div>
             <div class="ferr" id="err1"></div>
           </div>
 
@@ -354,15 +357,18 @@
 
   function submit(){
     var name=($('f_name').value||'').trim(), phone=($('f_phone').value||'').trim();
-    $('err1').style.display='none';$('f_name').classList.remove('err');$('f_phone').classList.remove('err');
+    var email=($('f_email').value||'').trim();
+    $('err1').style.display='none';['f_name','f_phone','f_email'].forEach(function(i){$(i).classList.remove('err');});
     if(name.length<2)return fail('Впишите, пожалуйста, имя','f_name');
     if(phone.replace(/\D/g,'').length<11)return fail('Впишите телефон полностью','f_phone');
+    // Почта обязательна: по 54-ФЗ кассовый чек должен уйти покупателю, а касса отправляет его письмом
+    if(!/^[^@\s]+@[^@\s.]+\.[a-zа-я]{2,}$/i.test(email))return fail('Впишите почту — на неё придёт кассовый чек','f_email');
     var f=nativeForm();
     if(f){
       function set(n,v){var el=f.querySelector('[name="'+n+'"]');if(el){el.value=v;['input','change','blur'].forEach(function(ev){el.dispatchEvent(new Event(ev,{bubbles:true}));});}}
       set(f.querySelector('[name="zakaz"]')?'zakaz':'form-spec-comments',orderText());
       set('Name',name);set('Phone',phone);
-      var em=f.querySelector('[name="Email"]');if(em&&!em.value)set('Email','order+'+phone.replace(/\D/g,'')+'@hailey.site');
+      set('Email',email);
       var cm=($('f_cmt').value||'').trim();if(cm)set('Comments',cm);
       var b=f.querySelector('.t-submit, .t-form__submit button, button[type=submit]');
       if(b)b.click();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
@@ -379,7 +385,7 @@
     var t=setTimeout(finish,12000);
     try{
       fetch(PAY+'/create',{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({order_id:num,name:name,phone:phone,promo:promo,
+        body:JSON.stringify({order_id:num,name:name,phone:phone,email:email,promo:promo,
           method:(pay==='СБП'?'sbp':'card'),
           items:snapshot.map(function(i){return{id:i.id,qty:i.qty,size:i.size||''};})})})
       .then(function(r){return r.json();})
