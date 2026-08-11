@@ -220,8 +220,12 @@
   var PAY='https://hailey-looks.ru/pay';   // платёжный эндпоинт на VPS (Т-Банк: карта + СБП)
   function $(i){return document.getElementById(i);}
   function rub(n){return n.toLocaleString('ru-RU')+' руб';}
-  function load(){try{var a=JSON.parse(localStorage.getItem(KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
-  function save(){try{localStorage.setItem(KEY,JSON.stringify(cart));}catch(e){}}
+  /* «Купить в 1 клик» — покупка ровно одной вещи мимо корзины: каталог кладёт позицию
+     в отдельный ключ и приводит сюда с ?quick=1. Корзину при этом не трогаем — человек мог
+     собирать её неделю, и терять её из-за быстрой покупки нельзя. */
+  var QKEY='hailey_buynow_v1', QUICK=/[?&]quick=1/.test(location.search);
+  function load(){try{var a=JSON.parse(localStorage.getItem(QUICK?QKEY:KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
+  function save(){try{localStorage.setItem(QUICK?QKEY:KEY,JSON.stringify(cart));}catch(e){}}
   // нативная Tilda-форма = движок отправки: держим в DOM, но прячем (наши поля выше)
   try{var st=document.createElement('style');st.textContent='.t-records .t-form_inputs-total_4,.t-records [class*="t678"],.t-records .js-form-proccess{position:absolute!important;left:-9999px!important;top:0!important;width:1px!important;height:1px!important;overflow:hidden!important}';document.head.appendChild(st);}catch(e){}
   var cart=load();
@@ -365,6 +369,8 @@
     }
     var num='HL-'+String(new Date().getTime()).slice(-6);
     var snapshot=cart.slice();
+    // пометка для возврата из банка: платили быстрой покупкой, значит корзину трогать нельзя
+    if(QUICK){try{localStorage.setItem('hailey_buynow_paid','1');}catch(e){}}
     cart=[];save();
     // Заказ уже ушёл в «Заявки». Дальше пробуем поднять оплату; не вышло — обычный экран «Заказ принят».
     [$('doOrder'),$('doOrderM')].forEach(function(b){if(b){b.disabled=true;b.textContent='Переходим к оплате…';}});
@@ -410,7 +416,14 @@
     var m=location.search.match(/[?&]paid=([^&]+)/);
     // код акции живёт в браузере, а действует только на первый заказ — после оплаты стираем,
     // иначе постоянному покупателю он молча подставляется в каждый следующий заказ
-    if(m){cart=[];save();try{localStorage.removeItem('hailey_promo_v1');}catch(e){}
+    // банк возвращает на /checkout?paid=… без нашего ?quick=1, поэтому чистим ровно то, что купили:
+    // после быстрой покупки собранная корзина должна остаться на месте
+    if(m){var wasQuick=false;
+      try{wasQuick=localStorage.getItem('hailey_buynow_paid')==='1';
+        localStorage.removeItem('hailey_buynow_paid');
+        localStorage.removeItem(wasQuick?QKEY:KEY);
+        localStorage.removeItem('hailey_promo_v1');}catch(e){}
+      cart=[];
       $('hcoEmpty').style.display='none';
       showOk(decodeURIComponent(m[1]),'Оплачено — спасибо!',
         'Заказ оплачен, чек придёт на почту или телефон. Мы уже собираем его к отправке.');return;}
