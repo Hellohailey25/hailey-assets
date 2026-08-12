@@ -652,12 +652,11 @@ else hpBuyBtnInit();
   var CODE='HAILEY10';
   var BOT='https://t.me/Hailey_promo_bot';
   var SUBS='https://hailey-looks.ru/pay/subscribe';
-  var TILDA='https://forms.tildacdn.com/procces/';
   /* Форма подписки form2724802001 заявки не принимает — сервер Tilda на неё не отвечает,
      и подписки не доходили до раздела «Заявки». Шлём в ту же форму, что принимает заказы.
      Имя — без цифр: Tilda отбивает «Промокод −10%» как некорректное имя. Почта идёт
      в поле «Телефон», своего поля для почты у этой формы нет. */
-  var TILDA_FORM='form2545682501', TILDA_SVC='8440afe0dfcf70373fdd19392ad1e851';
+  var TILDA_FORM='form2545682501';
   var em=document.getElementById('hhPmEmail'), ag=document.getElementById('hhPmOk');
   var err=document.getElementById('hhPmErr'), go=document.getElementById('hhPmGo');
   var manual=document.getElementById('hhPmManual');
@@ -689,6 +688,31 @@ else hpBuyBtnInit();
     }
     try{fetch(url,{method:'POST',headers:{'Content-Type':type},body:body,keepalive:true});}catch(e){}
   }
+  /* Заявку в «Заявки» Tilda нельзя послать запросом со стороны: forms.tildacdn.com не отвечает
+     кросс-доменным запросам, а sendBeacon такие запросы молча теряет. Единственный рабочий путь —
+     заполнить настоящую форму Tilda на странице и нажать её кнопку, дальше отправляет сама Tilda.
+     Форма стоит только на карточках товара; на остальных страницах почта уходит на свой сервер
+     и в Telegram — этот канал работает везде. Имя без цифр: «Промокод −10%» Tilda отбивает
+     как некорректное имя. Почта идёт в поле «Телефон» — своего поля для почты у формы нет. */
+  function toTildaLeads(mail){
+    var f=document.querySelector('#'+TILDA_FORM+', form[name="'+TILDA_FORM+'"]');
+    if(!f)return false;
+    var put=function(n,v){
+      var e=f.querySelector('[name="'+n+'"]'); if(!e)return;
+      var proto=e.tagName==='TEXTAREA'?window.HTMLTextAreaElement.prototype:window.HTMLInputElement.prototype;
+      Object.getOwnPropertyDescriptor(proto,'value').set.call(e,v);
+      e.dispatchEvent(new Event('input',{bubbles:true}));
+      e.dispatchEvent(new Event('change',{bubbles:true}));
+    };
+    put('Name','Заявка на промокод');
+    put('Phone',mail);
+    put('zakaz','Промокод на первый заказ · почта: '+mail+' · страница '+location.pathname);
+    var b=f.querySelector('.t-submit, .t-form__submit button, button[type=submit]');
+    if(!b)return false;
+    b.click();
+    return true;
+  }
+
   function fail(msg,el){err.textContent=msg;err.style.display='block';if(el){el.classList.add('err');el.focus();}}
 
   go.addEventListener('click',function(){
@@ -699,13 +723,7 @@ else hpBuyBtnInit();
 
     send(SUBS, JSON.stringify({email:mail,source:location.pathname}), 'application/json');
 
-    var f=new URLSearchParams();
-    f.append('formid',TILDA_FORM);
-    f.append('formservices[]',TILDA_SVC);
-    f.append('Name','Заявка на промокод');
-    f.append('Phone',mail);
-    f.append('zakaz','Промокод на первый заказ · почта: '+mail+' · страница '+location.pathname);
-    send(TILDA, f.toString(), 'application/x-www-form-urlencoded;charset=UTF-8');
+    toTildaLeads(mail);
 
     try{localStorage.setItem(KEY,CODE);}catch(e){}   // код сразу подставится в корзине
     go.textContent='Открываем Telegram…';
@@ -742,13 +760,7 @@ else hpBuyBtnInit();
         return;
       }
       send(SUBS, JSON.stringify({email:mail,source:location.pathname}), 'application/json');
-      var f2=new URLSearchParams();
-      f2.append('formid',TILDA_FORM);
-      f2.append('formservices[]',TILDA_SVC);
-      f2.append('Name','Заявка на промокод');
-      f2.append('Phone',mail);
-      f2.append('zakaz','Промокод на первый заказ · почта: '+mail+' · страница '+location.pathname);
-      send(TILDA, f2.toString(), 'application/x-www-form-urlencoded;charset=UTF-8');
+      toTildaLeads(mail);
       try{localStorage.setItem(KEY,CODE);}catch(err){}
     });
   }
