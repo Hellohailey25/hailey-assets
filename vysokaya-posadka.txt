@@ -1,0 +1,679 @@
+<style>.hc *{margin:0;padding:0;box-sizing:border-box}.hc{--paper:#F2F0EB;--paper2:#E9E6DF;--card:#FBFAF7;--ink:#191712;--ink-64:rgba(25,23,18,.64);--ink-44:rgba(25,23,18,.44);--line:rgba(25,23,18,.13);--line-soft:rgba(25,23,18,.08);--accent:#2B3648;--accent-2:#55647E;--good:#2f6b46;--disp:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);font-family:var(--disp);-webkit-font-smoothing:antialiased;line-height:1.55;letter-spacing:.005em;padding:14px 0 clamp(28px,5vw,64px);position:relative}@media(prefers-color-scheme:dark){.hc{--paper:#16181d;--paper2:#1d2027;--card:#1c1f26;--ink:#EDEAE1;--ink-64:rgba(237,234,225,.66);--ink-44:rgba(237,234,225,.46);--line:rgba(237,234,225,.14);--line-soft:rgba(237,234,225,.08);--accent:#9CB0D0;--accent-2:#7688a6;--good:#7cc79a}}.hc a{color:inherit;text-decoration:none}.hc button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}.hc .wrap{width:min(1680px,94vw);margin:0 auto}.hc .mono{font-variant-numeric:tabular-nums}.hc .crumb{font-size:12px;color:var(--ink-44);letter-spacing:.03em;margin-bottom:18px}.hc .crumb a:hover{color:var(--ink)}.hc .crumb b{color:var(--ink-64);font-weight:400}.hc .shead{margin-bottom:22px}.hc .eyebrow{font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-44);font-weight:600}.hc .shead h1,.hc .shead h2{font-size:clamp(24px,3.2vw,38px);font-weight:300;letter-spacing:-.01em;margin-top:12px;display:inline-block;vertical-align:baseline}.hc .shead h1 b,.hc .shead h2 b{font-weight:600}.hc .shead .h1count{font-size:14px;font-weight:400;letter-spacing:0;color:var(--ink-44);margin-left:12px;white-space:nowrap;display:inline-block;vertical-align:baseline}.hc .shead .sdesc{font-size:14px;color:var(--ink-64);margin-top:12px;line-height:1.65}.hc .shead .found{color:var(--ink-44)}.hc .hitslink{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-64);transition:color .15s}.hc .hitslink:hover{color:var(--ink)}.hc .scwrap{display:flex;align-items:center;gap:8px;margin:16px 0 20px;min-width:0}.hc .subcats{display:flex;flex-wrap:nowrap;gap:9px;align-items:center;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;flex:1;padding:2px 0}.hc .subcats::-webkit-scrollbar{display:none}.hc .subcats .scl{white-space:nowrap;flex:0 0 auto}.hc .scarr{flex:0 0 auto;width:30px;height:30px;border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--ink-64);font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}.hc .scarr:hover{border-color:var(--accent);color:var(--ink)}@media(max-width:760px){.hc .scarr{display:none}}.hc .subcats .sclabel{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-44);font-weight:600;margin-right:2px;white-space:nowrap;flex:0 0 auto}.hc .subcats .scl{padding:7px 15px;border:1px solid var(--line);border-radius:22px;font-size:13px;color:var(--ink-64);transition:.15s}.hc .subcats .scl:hover{border-color:var(--accent);color:var(--ink)}.hc .subcats .sclabel{cursor:default}.hc .subcats .schev{display:none}@media(max-width:760px){.hc .subcats{gap:8px}.hc .subcats .sclabel{cursor:pointer;display:flex;align-items:center;gap:6px;width:100%;margin:0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.hc .subcats .schev{display:block;width:14px;height:14px;margin-left:auto;stroke:var(--ink-44);fill:none;stroke-width:2;transition:transform .2s}.hc .subcats.open .schev{transform:rotate(180deg)}.hc .subcats .scl{display:none}.hc .subcats.open .scl{display:block}}.hc .fbar{display:flex;align-items:center;gap:12px;padding:14px 0 4px;margin-bottom:4px}.hc .fbar .scwrap{flex:1;min-width:0;margin:0}.hc .fbtn{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border:1px solid var(--line);border-radius:30px;background:var(--card);color:var(--ink-64);font-size:12px;letter-spacing:.06em;transition:.16s}.hc .fbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round}.hc .fbtn:hover{border-color:var(--accent);color:var(--ink)}.hc .fbtn.on{border-color:var(--accent);color:var(--ink)}.hc .fcount{min-width:19px;height:19px;padding:0 6px;border-radius:10px;background:var(--accent);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center}.hc .fsort{appearance:none;-webkit-appearance:none;padding:11px 36px 11px 16px;border:1px solid var(--line);border-radius:30px;background:var(--card);color:var(--ink-64);font-family:inherit;font-size:12px;letter-spacing:.06em;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A9099' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;background-size:14px;transition:.16s}.hc .fsort:hover{border-color:var(--accent);color:var(--ink)}.hc .fsort:focus{outline:none;border-color:var(--accent)}@media(max-width:560px){.hc .fbar{gap:8px;flex-wrap:wrap}.hc .fbar .scwrap{flex:1 0 100%;order:2;margin-top:4px}.hc .fbtn,.hc .fsort{padding:10px 14px;font-size:11.5px}.hc .fsort{padding-right:32px;max-width:52vw;text-overflow:ellipsis}}.hc .fovl{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:999996;opacity:0;pointer-events:none;transition:opacity .26s}.hc .fovl.on{opacity:1;pointer-events:auto}.hc .fpanel{position:fixed;top:0;bottom:0;left:0;width:min(88vw,360px);background:var(--paper);z-index:999997;transform:translateX(-101%);transition:transform .28s ease;display:flex;flex-direction:column;box-shadow:0 0 40px rgba(0,0,0,.2)}.hc .fpanel.on{transform:none}.hc .fph{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid var(--line-soft)}.hc .fph b{font-size:12px;letter-spacing:.18em;text-transform:uppercase}.hc .fph .x{width:32px;height:32px;font-size:18px;color:var(--ink-44)}.hc .fpq{padding:14px 20px 6px}.hc .fpbody{flex:1;overflow-y:auto;padding:6px 20px 20px}.hc .facc{border-bottom:1px solid var(--line-soft)}.hc .facch{width:100%;display:flex;align-items:center;gap:8px;padding:15px 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink);text-align:left}.hc .facch .fsel-n{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--accent);color:#fff;font-size:10.5px;display:flex;align-items:center;justify-content:center;letter-spacing:0}.hc .fchev{width:16px;height:16px;margin-left:auto;stroke:var(--ink-44);fill:none;stroke-width:2;transition:transform .2s}.hc .facc.open .fchev{transform:rotate(180deg)}.hc .faccb{display:none;padding-bottom:10px}.hc .facc.open .faccb{display:block}.hc .fopt{display:flex;align-items:center;gap:10px;padding:9px 0;cursor:pointer;font-size:14px;color:var(--ink-64)}.hc .fopt input{position:absolute;opacity:0;width:0;height:0}.hc .fbox{width:19px;height:19px;flex:0 0 auto;border:1.5px solid var(--line);border-radius:5px;transition:.15s;position:relative}.hc .fopt.on .fbox{background:var(--accent);border-color:var(--accent)}.hc .fopt.on .fbox:after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}.hc .fopt.on{color:var(--ink)}.hc .fopt .fnum{margin-left:auto;font-size:11.5px;color:var(--ink-44)}.hc .fopt.zero{opacity:.42}.hc .fsubs{display:flex;flex-wrap:wrap;gap:8px;padding:4px 0 10px}.hc .fpfoot{display:flex;gap:10px;padding:14px 20px;border-top:1px solid var(--line-soft)}.hc .freset{flex:0 0 auto;padding:13px 16px;border:1px solid var(--line);border-radius:6px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-64)}.hc .fapply{flex:1;padding:13px;border-radius:6px;background:var(--ink);color:var(--paper);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}.hc .finp{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-family:inherit;font-size:14px;cursor:text;-webkit-appearance:none;appearance:none}.hc .finp:focus{outline:none;border-color:var(--accent)}.hc input.finp::placeholder{color:var(--ink-44)}.hc .rvs{margin-top:38px;border-top:1px solid var(--line-soft);padding-top:26px}.hc .rvs h2{font-size:clamp(19px,2.2vw,24px);font-weight:400;margin-bottom:6px;color:var(--ink)}.hc .rvsum{font-size:13px;color:var(--ink-64);margin-bottom:18px}.hc .rvsum a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}.hc .rvgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.hc .rv{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;margin:0}.hc .rv::before{content:'★★★★★';color:var(--accent-2);font-size:13px;letter-spacing:2px}.hc .rv blockquote{margin:0;font-size:14px;line-height:1.6;color:var(--ink)}.hc .rv .rvtop{font-size:12px;color:var(--ink-44);display:flex;flex-direction:column;gap:3px;margin:0}.hc .rv .rvtop b{color:var(--ink);font-weight:600}.hc .rv .rvtop a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;font-size:12.5px}.hc .rv .rvtx{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}.hc .rv.open .rvtx{display:block}.hc .rvmore{align-self:flex-start;font-size:12px;color:var(--ink-64);border-bottom:1px dashed var(--line);padding:0 0 1px;background:none;cursor:pointer}.hc .rvmore:hover{color:var(--ink)}.hc .rv.short .rvmore{display:none}.hc .rvph{width:100%;height:170px;object-fit:cover;border-radius:10px}.hc .faq{margin-top:34px;border-top:1px solid var(--line-soft);padding-top:26px}.hc .faq h2{font-size:clamp(19px,2.2vw,24px);font-weight:400;margin-bottom:14px;color:var(--ink)}.hc .faq details{border-bottom:1px solid var(--line-soft)}.hc .faq summary{cursor:pointer;padding:14px 0;font-size:15px;color:var(--ink);list-style:none}.hc .faq summary::-webkit-details-marker{display:none}.hc .faq summary::after{content:'+';float:right;color:var(--ink-44);font-size:18px;line-height:1}.hc .faq details[open] summary::after{content:'–'}.hc .faq .ans{padding:0 0 16px;font-size:14px;color:var(--ink-64);line-height:1.7;max-width:74ch}.hc .faq .ans a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}.hc .szhelp{margin-top:34px;border:1px solid var(--line-soft);border-radius:14px;background:var(--card)}.hc .szhelp summary{cursor:pointer;padding:16px 20px;font-size:15px;color:var(--ink);list-style:none}.hc .szhelp summary::-webkit-details-marker{display:none}.hc .szhelp summary::after{content:'+';float:right;color:var(--ink-44);font-size:18px;line-height:1}.hc .szhelp[open] summary::after{content:'–'}.hc .szhelp-in{padding:0 20px 20px;font-size:14px;color:var(--ink-64);line-height:1.65}.hc .szwrap{overflow-x:auto;margin:12px 0}.hc .sztab{border-collapse:collapse;width:100%;font-size:13px;min-width:420px}.hc .sztab th,.hc .sztab td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line-soft);white-space:nowrap}.hc .sztab th{color:var(--ink-44);font-weight:400}.hc .szmore a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}.hc .sdesc.btm{display:block;margin-top:34px;padding-top:22px;border-top:1px solid var(--line-soft);font-size:14px;color:var(--ink-64);line-height:1.7}@media(min-width:1000px){.hc .sdesc.btm{column-count:2;column-gap:48px}}.hc .sdesc.btm p{margin:0 0 12px}.hc .sdesc.btm p:last-child{margin-bottom:0}@media(max-width:760px){.hc .shead{margin-bottom:6px}}.hc input.finp::-webkit-search-cancel-button{-webkit-appearance:none;height:14px;width:14px;background:var(--ink-44);cursor:pointer;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18 6L6 18M6 6l12 12' stroke='black' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat}.hc .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,1.8vw,26px);margin-top:26px}@media(max-width:1000px){.hc .grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:760px){.hc .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}}@media(max-width:460px){.hc .grid{gap:14px 10px}}.hc .empty{padding:60px 0;text-align:center;color:var(--ink-44);font-size:15px}.hc .card{display:flex;flex-direction:column;height:100%;min-width:0}.hc .info{display:flex;flex-direction:column;flex:1;min-width:0}.hc .pname{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;max-width:100%}.hc .buyrow{margin-top:auto}.hc .ph{position:relative;aspect-ratio:2/3;overflow:hidden;border-radius:4px;background:var(--paper2)}.hc .track{position:absolute;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth}.hc .track::-webkit-scrollbar{display:none}.hc .slide{flex:0 0 100%;width:100%;height:100%;scroll-snap-align:center;position:relative;display:block;overflow:hidden}.hc .slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}.hc .card:hover .slide img{transform:scale(1.04)}.hc .dots{position:absolute;left:0;right:0;bottom:9px;z-index:6;display:flex;justify-content:center;gap:5px;pointer-events:none}.hc .dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(0,0,0,.35);transition:.2s}.hc .dots i.on{background:#fff;transform:scale(1.25)}.hc .arw{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.9);color:#23262C;display:none;align-items:center;justify-content:center;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.16);transition:.16s}.hc .arw.l{left:8px}.hc .arw.r{right:8px}.hc .arw:hover{background:#fff;transform:translateY(-50%) scale(1.08)}@media(hover:hover){.hc .ph:hover .arw{display:flex}}.hc .phscrim{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .26s;background:linear-gradient(to top,rgba(15,17,22,.72) 0%,rgba(15,17,22,.28) 34%,transparent 60%)}.hc .ph:hover .phscrim,.hc .ph:focus-within .phscrim{opacity:1}.hc .badges{position:absolute;top:12px;left:12px;z-index:4;display:flex;flex-direction:column;gap:6px;align-items:flex-start}.hc .bdg{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fff;padding:5px 10px;border-radius:3px;backdrop-filter:blur(4px)}.hc .bdg.hit{background:rgba(43,54,72,.92)}.hc .bdg.new{background:rgba(47,107,70,.92)}.hc .bdg.sale{background:rgba(180,68,47,.94)}.hc .bdg.def{background:rgba(20,23,30,.75)}.hc .fav{position:absolute;top:10px;right:10px;z-index:7;min-width:32px;height:32px;padding:0 9px;gap:5px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.86);backdrop-filter:blur(4px);box-shadow:0 1px 5px rgba(0,0,0,.14);transition:transform .18s,background .18s}.hc .fav svg{width:17px;height:17px;fill:none;stroke:#23262C;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:.18s;flex:0 0 auto}.hc .fav .fc{font-size:11.5px;line-height:1;color:#23262C;font-variant-numeric:tabular-nums}.hc .fav:hover{transform:scale(1.1);background:#fff}.hc .fav.on svg{fill:#e2574c;stroke:#e2574c}.hc .vmark{position:absolute;left:10px;bottom:10px;z-index:7;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.86);backdrop-filter:blur(4px);box-shadow:0 1px 5px rgba(0,0,0,.14)}.hc .vmark svg{width:14px;height:14px;fill:#23262C;margin-left:2px}.hc .hover{position:absolute;left:12px;right:12px;bottom:26px;z-index:5;display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(10px);transition:.26s cubic-bezier(.2,.8,.2,1)}.hc .ph:hover .hover,.hc .ph:focus-within .hover{opacity:1;transform:none}.hc .hb{width:100%;padding:12px;border-radius:4px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;justify-content:center;transition:.16s}.hc .hb.quick{background:var(--accent);color:#fff;border:1px solid rgba(255,255,255,.22)}.hc .hb.quick:hover{background:var(--ink);border-color:transparent}@media(hover:none){.hc .hover{opacity:1;transform:none;position:static;margin-top:10px}}@media(max-width:760px){.hc .hb{padding:10px;font-size:10.5px;letter-spacing:.06em}}.hc .info{padding:15px 2px 0}.hc .pname{font-size:15.5px;font-weight:500;letter-spacing:.005em;transition:.15s}.hc a.pname:hover{color:var(--accent-2)}.hc .meta{font-size:11.5px;color:var(--ink-44);margin-top:7px;letter-spacing:.03em;display:flex;align-items:center;gap:8px}.hc .meta .st{color:#d3a24a;letter-spacing:0}.hc .meta b{color:var(--ink);font-weight:600}.hc .buyrow{display:block;margin-top:9px}.hc .prices{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;min-width:0}.hc .price{font-size:19px;font-weight:700;letter-spacing:-.01em}.hc .old{font-size:13px;color:var(--ink-44);text-decoration:line-through}.hc .off{font-size:11px;font-weight:700;color:#fff;background:var(--accent);padding:3px 7px;border-radius:3px;letter-spacing:.03em}.hc .add{width:100%;margin-top:11px;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:4px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;transition:.16s;white-space:nowrap}.hc .add svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7}.hc .add:hover{background:var(--accent);border-color:var(--accent)}.hc .add.added{background:var(--good);border-color:var(--good);color:#fff}.hc .split{font-size:11.5px;color:var(--ink-44);margin-top:9px;letter-spacing:.02em}@media(max-width:400px){.hc .add{padding:12px;font-size:10px;letter-spacing:.06em}}@media(max-width:760px){.hc .info{padding:11px 1px 0}.hc .pname{font-size:13.5px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hc .meta{font-size:10.5px;margin-top:5px;gap:5px}.hc .buyrow{margin-top:8px;gap:8px}.hc .price{font-size:16px}.hc .old{font-size:11.5px}.hc .off{font-size:10px;padding:2px 5px}.hc .add{padding:12px 10px;font-size:10px;letter-spacing:.05em;gap:6px}.hc .add svg{width:14px;height:14px}}.hc .cartbtn{position:fixed;right:20px;bottom:20px;z-index:55;display:flex;align-items:center;gap:9px;background:var(--ink);color:var(--paper);padding:14px 18px;border-radius:40px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 12px 34px rgba(0,0,0,.28);transform:translateY(140%);transition:.3s cubic-bezier(.2,.8,.2,1)}.hc .cartbtn.on{transform:none}.hc .cartbtn .cc{min-width:20px;height:20px;padding:0 6px;border-radius:11px;background:var(--paper);color:var(--ink);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}.hc .scrim{position:fixed;inset:0;background:rgba(15,17,22,.5);opacity:0;pointer-events:none;transition:.25s;z-index:999997}.hc .scrim.on{opacity:1;pointer-events:auto}.hc .drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,94vw);background:var(--paper);z-index:999998;transform:translateX(100%);transition:transform .3s cubic-bezier(.3,.8,.3,1);display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.2)}.hc .drawer.on{transform:none}.hc .drawer .dh{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}.hc .drawer .dh b{font-size:15px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}.hc .drawer .x{font-size:22px;color:var(--ink-64);width:32px;height:32px;display:flex;align-items:center;justify-content:center}.hc .drawer .body{flex:1;overflow-y:auto;padding:8px 22px}.hc .drawer .empty{text-align:center;color:var(--ink-44);padding:60px 0;font-size:14px}.hc .citem{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line-soft)}.hc .citem .cimg{width:60px;height:76px;border-radius:4px;flex:0 0 auto;background:var(--paper2);position:relative;overflow:hidden}.hc .citem .ci{flex:1;min-width:0}.hc .citem .cn{font-size:14px;font-weight:600;line-height:1.3}.hc .citem .cp{font-weight:700;margin-top:6px;font-size:14px}.hc .qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:4px;width:fit-content;margin-top:8px}.hc .qty button{width:30px;height:30px;font-size:16px;color:var(--ink-64)}.hc .qty span{width:34px;text-align:center;font-size:14px;font-weight:600}.hc .citem .rm{align-self:flex-start;color:var(--ink-44);font-size:11px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--line);height:fit-content}.hc .citem .rm:hover{color:var(--ink)}.hc .drawer .foot{border-top:1px solid var(--line);padding:18px 22px 22px;display:none}.hc .drawer .sum{display:flex;justify-content:space-between;font-size:15px;margin-bottom:6px}.hc .drawer .sum.total{font-size:19px;font-weight:700;margin:10px 0 16px}.hc .btn{width:100%;padding:16px;border-radius:4px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;transition:.18s;display:flex;align-items:center;justify-content:center;gap:9px;background:var(--ink);color:var(--paper)}.hc .btn:hover{background:var(--accent)}.hc .drawer .note{font-size:12px;color:var(--ink-44);margin-top:12px;text-align:center;line-height:1.5}.hc .drawer .ship{padding:13px 22px 5px}.hc .ship .sl{display:flex;align-items:center;gap:8px;font-size:12.5px;margin-bottom:8px;color:var(--ink-64)}.hc .ship .sl b{color:var(--ink)}.hc .ship .sl svg{width:17px;height:17px;flex:0 0 auto;stroke:var(--accent);fill:none}.hc .ship .bar{height:7px;border-radius:20px;background:var(--line-soft);overflow:hidden}.hc .ship .bar i{display:block;height:100%;background:var(--accent);border-radius:20px;transition:width .35s ease}.hc .ship.done .sl{color:var(--good)}.hc .ship.done .sl svg{stroke:var(--good)}.hc .ship.done .bar i{background:var(--good)}.hc .xsell{margin:8px 0 18px;padding:11px 13px;background:var(--card);border:1px solid var(--line);border-radius:10px}.hc .xrow{padding:4px 0}.hc .xi{width:38px!important;height:50px!important;flex:0 0 auto}.hc .xn{font-size:12.5px;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.hc .xn b{display:block;margin-top:2px}.hc .xsell .xh{display:flex;align-items:center;gap:7px;width:100%;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-64);background:none;border:0;padding:0;cursor:pointer;font-family:inherit;text-align:left}.hc .xsell .xc{margin-left:auto;width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s ease}.hc .xsell.on .xc{transform:rotate(-135deg) translateY(-2px)}.hc .xsell .xb{display:none;margin-top:10px}.hc .xsell.on .xb{display:block}.hc .xrow{display:flex;gap:11px;align-items:center;padding:6px 0}.hc .xrow .xi{width:42px;height:53px;border-radius:4px;flex:0 0 auto;background-size:cover;background-position:center;background-color:var(--paper2)}.hc .xrow .xn{flex:1;min-width:0;font-size:12.5px;line-height:1.3}.hc .xrow .xn b{display:block;margin-top:2px}.hc .xrow .xadd{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:20px;line-height:0;transition:.18s}.hc .xrow .xadd:hover{background:var(--accent)}.hc .drawer .soc{text-align:center;font-size:12px;color:var(--ink-64);padding-bottom:12px}.hc .drawer .soc .st{color:#c8981f;letter-spacing:1px}.hc .drawer .sum.save span{color:var(--good)}.hc .btn.tg{background:#25925a;color:#fff;text-transform:none;letter-spacing:.03em;margin-top:9px;font-weight:600}.hc .btn.tg:hover{background:#1f7d4c}.hc .btn.tg svg{width:18px;height:18px;fill:currentColor}.hc .drawer .trust{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;font-size:11px;color:var(--ink-44);margin-top:13px}.hc .drawer .trust span{display:flex;align-items:center;gap:4px}.hc .drawer .trust svg{width:14px;height:14px;stroke:var(--ink-44);fill:none;stroke-width:1.7}.hc .modal{position:fixed;inset:0;z-index:999999;display:none;align-items:center;justify-content:center;padding:20px}.hc .modal.on{display:flex}.hc .mbg{position:absolute;inset:0;background:rgba(15,17,22,.55)}.hc .sheet{position:relative;background:var(--paper);width:min(440px,96vw);max-height:92vh;overflow-y:auto;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.4)}.hc .sheet .sh{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line)}.hc .sheet .sh b{font-size:15px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}.hc .sheet .x{font-size:22px;color:var(--ink-64);width:32px;height:32px;display:flex;align-items:center;justify-content:center}.hc .sbody{padding:22px 24px}.hc .miniprod{display:flex;gap:12px;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line-soft);font-size:13px;color:var(--ink-64)}.hc .field{margin-bottom:14px}.hc .field label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-44);margin-bottom:7px}.hc .field input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font-family:inherit;font-size:15px}.hc .field input:focus{outline:none;border-color:var(--accent)}.hc .note{font-size:12px;color:var(--ink-44);line-height:1.5}.hc .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,160%);background:var(--ink);color:var(--paper);padding:13px 20px;border-radius:5px;font-size:14px;font-weight:600;z-index:1000000;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .2s linear;box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:90vw;opacity:0;pointer-events:none}.hc .toast.on{transform:translate(-50%,0);opacity:1}.hc .sheet.wide{width:min(840px,96vw)}.hc .szpick{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:26px;padding:22px 24px}@media(max-width:640px){.hc .szpick{grid-template-columns:1fr;gap:22px}}.hc .szprod{font-size:13.5px;color:var(--ink-64);margin-bottom:16px}.hc .szlabel{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-44);font-weight:600;margin-bottom:12px}.hc .szgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.hc .szbtn{aspect-ratio:1/.82;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:.14s;font-variant-numeric:tabular-nums}.hc .szbtn:hover{border-color:var(--accent);transform:translateY(-1px)}.hc .szbtn.sel{background:var(--accent);border-color:var(--accent);color:#fff}.hc .szhint{margin-top:14px;font-size:12.5px;color:var(--ink-64);line-height:1.6}.hc .szhint b{color:var(--ink)}.hc .szadd{margin-top:18px}.hc .szadd:disabled{opacity:.4;cursor:not-allowed}.hc .sztblwrap{overflow-x:auto}.hc .sztbl{width:100%;border-collapse:collapse;font-size:13px}.hc .sztbl th{text-align:left;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-44);font-weight:600;padding:9px 8px;background:var(--paper2);white-space:nowrap}.hc .sztbl td{padding:9px 8px;border-bottom:1px solid var(--line-soft);font-variant-numeric:tabular-nums;color:var(--ink-64)}.hc .sztbl td:first-child{font-weight:700;color:var(--ink)}.hc .sztbl tr.hl td{background:color-mix(in srgb,var(--accent) 13%,transparent);color:var(--ink)}.hc .szmeasure{margin-top:12px;font-size:11.5px;color:var(--ink-44);line-height:1.6}.hc .szmeasure b{color:var(--ink-64)}</style>
+<div class="hc" id="hc">
+<div class="wrap">
+<nav class="crumb" id="crumb"></nav>
+<div class="shead">
+<h1 id="h1"><span id="h1t">Женские джинсы с высокой посадкой больших размеров 42–74</span></h1> <span class="h1count mono" id="h1count"></span>
+<div class="sdesc"><span id="sdesc">Женские джинсы с высокой посадкой больших размеров — пояс на талии, а не на бёдрах. Высокая посадка держит живот и не сползает, когда садишься: для плюс-сайза это главный параметр после размера.</span> <span class="found" id="found"></span></div>
+</div>
+<div class="fbar">
+<button class="fbtn" id="fOpen"><svg viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M10 18h4"/></svg>Фильтры<span class="fcount" id="fCount" style="display:none"></span></button>
+<select class="fsort" id="fSort" aria-label="Сортировка">
+<option value="">Рекомендуем</option>
+<option value="cheap">Сначала дешёвые</option>
+<option value="exp">Сначала дорогие</option>
+<option value="disc">Больше скидка</option>
+<option value="new">Новинки</option>
+<option value="rate">Выше рейтинг</option>
+</select>
+<div class="scwrap" id="scwrap">
+<button class="scarr" id="scPrev" type="button" aria-label="Предыдущие категории">‹</button>
+<nav class="subcats" id="subcats"><span class="sclabel">Смотрите также</span><a class="scl" href="/catalog/dzhinsy">Все джинсы</a><a class="scl" href="/catalog/letnie-dzhinsy">Летние</a><a class="scl" href="/catalog/golubye-shirokie-dzhinsy">Голубые широкие</a><a class="scl" href="/catalog/sinie-pryamye-dzhinsy">Синие прямые</a><a class="scl" href="/catalog/temno-sinie-dzhinsy">Тёмно-синие</a><a class="scl" href="/catalog/boyfrendy-dzhinsy">Бойфренды</a><a class="scl" href="/catalog/oversize-dzhinsy">Оверсайз</a><a class="scl" href="/catalog/golubye-dzhinsy">Голубые</a><a class="scl" href="/catalog/shirokie-dzhinsy">Широкие</a><a class="scl" href="/catalog/pryamye-dzhinsy">Прямые</a><a class="scl" href="/catalog/rvanye-dzhinsy">Рваные</a><a class="scl" href="/catalog/baggi-dzhinsy">Багги</a><a class="scl" href="/catalog/sinie-dzhinsy">Синие</a><a class="scl" href="/catalog/truby-dzhinsy">Трубы</a><a class="scl" href="/catalog/trendy-2026">Тренды 2026</a></nav>
+<button class="scarr" id="scNext" type="button" aria-label="Следующие категории">›</button>
+</div>
+</div>
+<div class="grid" id="grid"><div class="card"><a href="/dzhinsy-shirokie-pryamye-serye-504407015"><img src="https://hailey-looks.ru/photos/504407015/1.webp" alt="Женские джинсы широкие серые" loading="lazy" width="516" height="688"><h3>Женские джинсы широкие серые</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/pryamye-dzhinsy-shirokie-sinie-504607217"><img src="https://hailey-looks.ru/photos/504607217/1.webp" alt="Женские джинсы широкие синие" loading="lazy" width="516" height="688"><h3>Женские джинсы широкие синие</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/pryamye-dzhinsy-shirokie-504638231"><img src="https://hailey-looks.ru/photos/504638231/1.webp?v=2" alt="Женские джинсы широкие голубые" loading="lazy" width="516" height="688"><h3>Женские джинсы широкие голубые</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/shirokie-rvanye-dzhinsy-dyrkami-504631232"><img src="https://hailey-looks.ru/photos/504631232/1.webp?v=2" alt="Широкие рваные джинсы с дырками" loading="lazy" width="516" height="688"><h3>Широкие рваные джинсы с дырками</h3></a><div class="price mono">6 990 руб <span class="old mono">11 000 руб</span></div></div><div class="card"><a href="/dzhinsy-baggi-shirokie-boyfrendy-754505251"><img src="https://hailey-looks.ru/photos/754505251/1.webp" alt="Джинсы багги широкие бойфренды" loading="lazy" width="516" height="688"><h3>Джинсы багги широкие бойфренды</h3></a><div class="price mono">5 490 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-shirokie-chernye-1017667229"><img src="https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/1017667229/1.webp" alt="Женские джинсы широкие чёрные" loading="lazy" width="516" height="688"><h3>Женские джинсы широкие чёрные</h3></a><div class="price mono">5 490 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-klassicheskie-pryamye-504646155"><img src="https://hailey-looks.ru/photos/504646155/1.webp?v=2" alt="Джинсы классические прямые" loading="lazy" width="516" height="688"><h3>Джинсы классические прямые</h3></a><div class="price mono">4 000 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-svetlye-shirokie-klesh-545150789"><img src="https://hailey-looks.ru/photos/545150789/1.webp" alt="Джинсы светлые широкие клеш" loading="lazy" width="516" height="688"><h3>Джинсы светлые широкие клеш</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-pryamye-shirokie-baggi-754477427"><img src="https://hailey-looks.ru/photos/754477427/1.webp?v=2" alt="Джинсы прямые широкие багги" loading="lazy" width="516" height="688"><h3>Джинсы прямые широкие багги</h3></a><div class="price mono">7 000 руб <span class="old mono">12 000 руб</span></div></div><div class="card"><a href="/dzhinsy-pryamye-shirokie-truby-504645014"><img src="https://hailey-looks.ru/photos/504645014/1.webp?v=2" alt="Джинсы прямые широкие трубы" loading="lazy" width="516" height="688"><h3>Джинсы прямые широкие трубы</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-shirokie-palacco-podvorotami-504634485"><img src="https://hailey-looks.ru/photos/504634485/1.webp?v=2" alt="Джинсы широкие палаццо с подворотами" loading="lazy" width="516" height="688"><h3>Джинсы широкие палаццо с подворотами</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-shirokie-truby-varenki-1017376402"><img src="https://hailey-looks.ru/photos/1017376402/1.webp" alt="Джинсы широкие трубы варенки" loading="lazy" width="516" height="688"><h3>Джинсы широкие трубы варенки</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-temnye-shirokie-545148107"><img src="https://hailey-looks.ru/photos/545148107/1.webp" alt="Джинсы темные широкие" loading="lazy" width="516" height="688"><h3>Джинсы темные широкие</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-temnye-shirokie-pryamye-504618555"><img src="https://hailey-looks.ru/photos/504618555/1.webp" alt="Джинсы темные широкие прямые трубы" loading="lazy" width="516" height="688"><h3>Джинсы темные широкие прямые трубы</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-svetlye-shirokie-vysokih-504624622"><img src="https://hailey-looks.ru/photos/504624622/1.webp" alt="Джинсы светлые широкие для высоких" loading="lazy" width="516" height="688"><h3>Джинсы светлые широкие для высоких</h3></a><div class="price mono">4 990 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-pryamye-y2k-shirokie-504644422"><img src="https://hailey-looks.ru/photos/504644422/1.webp?v=2" alt="Джинсы прямые y2k широкие" loading="lazy" width="516" height="688"><h3>Джинсы прямые y2k широкие</h3></a><div class="price mono">7 000 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-rvanye-y2k-pyatnami-504645629"><img src="https://hailey-looks.ru/photos/504645629/1.webp?v=2" alt="Джинсы рваные y2k с пятнами" loading="lazy" width="516" height="688"><h3>Джинсы рваные y2k с пятнами</h3></a><div class="price mono">7 000 руб <span class="old mono">10 000 руб</span></div></div><div class="card"><a href="/dzhinsy-shirokie-korichnevye-1135612978"><img src="https://hailey-looks.ru/photos/1135612978/1.webp" alt="Женские джинсы широкие коричневые" loading="lazy" width="516" height="688"><h3>Женские джинсы широкие коричневые</h3></a><div class="price mono">6 990 руб <span class="old mono">12 000 руб</span></div></div></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","numberOfItems":18,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Женские джинсы широкие серые","image":"https://hailey-looks.ru/photos/504407015/1.webp","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4,8","reviewCount":1056}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Женские джинсы широкие синие","image":"https://hailey-looks.ru/photos/504607217/1.webp","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4,8","reviewCount":951}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Женские джинсы широкие голубые","image":"https://hailey-looks.ru/photos/504638231/1.webp?v=2","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4,8","reviewCount":2763}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Широкие рваные джинсы с дырками","image":"https://hailey-looks.ru/photos/504631232/1.webp?v=2","offers":{"@type":"Offer","price":6990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4,9","reviewCount":543}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Джинсы багги широкие бойфренды","image":"https://hailey-looks.ru/photos/754505251/1.webp","offers":{"@type":"Offer","price":5490,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4,9","reviewCount":318}}},{"@type":"ListItem","position":6,"item":{"@type":"Product","name":"Женские джинсы широкие чёрные","image":"https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/1017667229/1.webp","offers":{"@type":"Offer","price":5490,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4,8","reviewCount":951}}},{"@type":"ListItem","position":7,"item":{"@type":"Product","name":"Джинсы классические прямые","image":"https://hailey-looks.ru/photos/504646155/1.webp?v=2","offers":{"@type":"Offer","price":4000,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":256}}},{"@type":"ListItem","position":8,"item":{"@type":"Product","name":"Джинсы светлые широкие клеш","image":"https://hailey-looks.ru/photos/545150789/1.webp","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":256}}},{"@type":"ListItem","position":9,"item":{"@type":"Product","name":"Джинсы прямые широкие багги","image":"https://hailey-looks.ru/photos/754477427/1.webp?v=2","offers":{"@type":"Offer","price":7000,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":318}}},{"@type":"ListItem","position":10,"item":{"@type":"Product","name":"Джинсы прямые широкие трубы","image":"https://hailey-looks.ru/photos/504645014/1.webp?v=2","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":256}}},{"@type":"ListItem","position":11,"item":{"@type":"Product","name":"Джинсы широкие палаццо с подворотами","image":"https://hailey-looks.ru/photos/504634485/1.webp?v=2","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":256}}},{"@type":"ListItem","position":12,"item":{"@type":"Product","name":"Джинсы широкие трубы варенки","image":"https://hailey-looks.ru/photos/1017376402/1.webp","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":951}}},{"@type":"ListItem","position":13,"item":{"@type":"Product","name":"Джинсы темные широкие","image":"https://hailey-looks.ru/photos/545148107/1.webp","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":256}}},{"@type":"ListItem","position":14,"item":{"@type":"Product","name":"Джинсы темные широкие прямые трубы","image":"https://hailey-looks.ru/photos/504618555/1.webp","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":951}}},{"@type":"ListItem","position":15,"item":{"@type":"Product","name":"Джинсы светлые широкие для высоких","image":"https://hailey-looks.ru/photos/504624622/1.webp","offers":{"@type":"Offer","price":4990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":256}}},{"@type":"ListItem","position":16,"item":{"@type":"Product","name":"Джинсы прямые y2k широкие","image":"https://hailey-looks.ru/photos/504644422/1.webp?v=2","offers":{"@type":"Offer","price":7000,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":951}}},{"@type":"ListItem","position":17,"item":{"@type":"Product","name":"Джинсы рваные y2k с пятнами","image":"https://hailey-looks.ru/photos/504645629/1.webp?v=2","offers":{"@type":"Offer","price":7000,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":951}}},{"@type":"ListItem","position":18,"item":{"@type":"Product","name":"Женские джинсы широкие коричневые","image":"https://hailey-looks.ru/photos/1135612978/1.webp","offers":{"@type":"Offer","price":6990,"priceCurrency":"RUB","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4,9","reviewCount":343}}}]}</script>
+<div class="empty" id="empty" style="display:none">В этой комбинации пока нет товаров. Сбросьте фильтр.</div>
+<div class="sdesc btm" id="sdescB"><p>Низкая посадка на полной фигуре режет по животу и открывает поясницу при наклоне. Высокая работает наоборот: пояс ложится на самую узкую часть, силуэт делится в правильном месте, и ноги выглядят длиннее.</p><p>В подборке джинсы с высокой посадкой всех кроёв: широкие wide leg, прямые и классические, трубы, палаццо, багги и бойфренды. Цвета — голубые, синие и тёмно-синие, серые, коричневые, чёрные.</p><p>Пояс широкий, с плотной подкладкой: он не заворачивается и не давит. Деним берём плотный, чтобы посадка держалась и после стирки.</p><p>Размеры 42–74, длина под рост от 170 см. Цены от 4 000 руб, оплата картой или СБП, возврат 14 дней.</p></div>
+<section class="rvs" id="rvs"><h2>Отзывы покупательниц</h2><p class="rvsum">4,82 из 5 — средняя оценка по 1 619 отзывам на Wildberries. <a href="/otzyvy">Читать все отзывы →</a></p><div class="rvgrid"><figure class="rv"><figcaption class="rvtop"><b>Анна</b> · 66 · 7 июля 2026<a href="/dzhinsy-shirokie-chernye-1017667229">Женские джинсы широкие чёрные</a></figcaption><img class="rvph" src="https://mow-feedback-uuid-02-cdn-02.geobasket.ru/65c7beea-043c-4f91-9f91-056dda8efdac/fs.webp" alt="Отзыв покупательницы: Женские джинсы широкие чёрные" loading="lazy"><blockquote class="rvtx">мои самые любимые джинсы !Беру второй раз другой цвет ,светлые более плотные,черные как будто полегче и тянуться.Осталась полностью довольна взяла за 4100❤️❤️❤️</blockquote><button class="rvmore" type="button">Показать полностью</button></figure><figure class="rv"><figcaption class="rvtop"><b>Оксана</b> · 56 · 2 июля 2026<a href="/dzhinsy-temnye-shirokie-pryamye-504618555">Джинсы темные широкие прямые трубы</a></figcaption><blockquote class="rvtx">Отличные джинсы. На талию 98 село хорошо. На рост 178 см лодыжки закрывает, можно и под каблук 5см.Необычный и красивый окрас. Рада своему выбору. Спасибо. Все сложилось</blockquote><button class="rvmore" type="button">Показать полностью</button></figure><figure class="rv"><figcaption class="rvtop"><b>Богдан</b> · 48 · 16 декабря 2025<a href="/dzhinsy-shirokie-palacco-podvorotami-504634485">Джинсы широкие палаццо с подворотами</a></figcaption><blockquote class="rvtx">Мне понравились джинсы ,нигде не сковывают ,свободные . Сзади красиво выглядят</blockquote><button class="rvmore" type="button">Показать полностью</button></figure><figure class="rv"><figcaption class="rvtop"><b>Елена</b> · 42 · 23 февраля 2026<a href="/dzhinsy-pryamye-shirokie-truby-504645014">Джинсы прямые широкие трубы</a></figcaption><blockquote class="rvtx">Джинсы огонь 🔥 цвет красивый. Синий. Насыщенный. Внизу варенка все как и хотела. Но большие.</blockquote><button class="rvmore" type="button">Показать полностью</button></figure></div></section>
+</div>
+<div class="fovl" id="fOvl"></div>
+<aside class="fpanel" id="fPanel" aria-label="Фильтры">
+<div class="fph"><b>Фильтры</b><button class="x" id="fClose" aria-label="Закрыть">✕</button></div>
+<div class="fpq"><input class="finp" id="fQ" type="search" placeholder="Поиск: джинсы, багги, синие…" autocomplete="off"></div>
+<div class="fpbody" id="facets"></div>
+<div class="fpfoot"><button class="freset" id="fReset">Сбросить</button><button class="fapply" id="fApply">Показать</button></div>
+</aside>
+<button class="cartbtn" id="cartBtn">Корзина <span class="cc" id="cc">0</span></button>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Корзина">
+<div class="dh"><b>Корзина<span id="cartCnt" style="font-weight:400;opacity:.55"></span></b><button class="x" id="closeCart">✕</button></div>
+<div class="ship" id="shipWrap" style="display:none"></div>
+<div class="body" id="cartBody"></div>
+<div class="foot" id="cartFoot">
+<div class="soc"><span class="st">★★★★★</span> 4.9 · более 2 000 заказов</div>
+<div class="sum"><span>Товары</span> <span class="mono" id="sumGoods">0 руб</span></div>
+<div class="sum save" id="saveRow" style="display:none"><span>Ваша выгода</span> <span class="mono" id="sumSave">0 руб</span></div>
+<div class="sum"><span>Доставка</span> <span id="sumShip">по РФ, от 2 дней</span></div>
+<div class="sum total"><span>Итого</span> <span class="mono" id="sumTotal">0 руб</span></div>
+<button class="btn" id="toCheckout">Оформить заказ</button>
+<button class="btn tg" id="toTg"><svg viewBox="0 0 24 24"><path d="M9.8 15.6 9.6 19c.4 0 .5-.2.7-.4l1.7-1.6 3.5 2.6c.6.4 1.1.2 1.3-.6l2.4-11.1c.2-1-.4-1.4-1-1.1L4.9 11.6c-1 .4-1 .9-.2 1.2l3.6 1.1 8.3-5.2c.4-.3.8-.1.5.2z"/></svg>Оформить в Telegram</button>
+<div class="trust">
+<span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>честная посадка</span>
+<span><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 3-6M4 4v4h4"/></svg>возврат 14 дней</span>
+<span><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.4"/></svg>оплата картой или СБП</span>
+</div>
+<div class="note">Менеджер перезвонит за 15 минут, подтвердит размер и наличие.</div>
+</div>
+</aside>
+<div class="modal" id="modal"><div class="mbg" id="modalBg"></div><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+</div>
+<script>
+(function(){
+var PRODUCTS=[{"id":"504407015","name":"Женские джинсы широкие серые","url":"https://www.wildberries.ru/catalog/504407015/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/504407015/1.webp","rating":"4,8","rev":1056,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз"],"color":["Серый"],"tags":[],"badges":["ХИТ"],"sizes":[42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74],"page":"/dzhinsy-shirokie-pryamye-serye-504407015","material":"85% хлопок, 15% полиэстер","posadka":"Высокая","details":"Потёртости, Варка, Бахрома","sezon":"Лето","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504407015/1.webp","https://hailey-looks.ru/photos/504407015/2.webp","https://hailey-looks.ru/photos/504407015/3.webp","https://hailey-looks.ru/photos/504407015/4.webp"],"vid":0},{"id":"504607217","name":"Женские джинсы широкие синие","url":"https://www.wildberries.ru/catalog/504607217/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/504607217/1.webp","rating":"4,8","rev":951,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз"],"color":["Синий","Темно-синий","Индиго"],"tags":[],"badges":["ХИТ"],"sizes":[42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74],"page":"/pryamye-dzhinsy-shirokie-sinie-504607217","material":"85% хлопок, 15% полиэстер","posadka":"Высокая","details":"Потёртости, Варка, Бахрома","sezon":"Лето","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504607217/1.webp","https://hailey-looks.ru/photos/504607217/2.webp","https://hailey-looks.ru/photos/504607217/3.webp","https://hailey-looks.ru/photos/504607217/4.webp"],"vid":0},{"id":"504638231","name":"Женские джинсы широкие голубые","url":"https://www.wildberries.ru/catalog/504638231/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/504638231/1.webp?v=2","rating":"4,8","rev":2763,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз"],"color":["Голубой","Светло-голубой"],"tags":[],"badges":["ХИТ"],"sizes":[42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74],"page":"/pryamye-dzhinsy-shirokie-504638231","material":"85% хлопок, 15% полиэстер","posadka":"Высокая","details":"Потёртости, Варка, Бахрома","sezon":"Лето","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504638231/1.webp?v=2","https://hailey-looks.ru/photos/504638231/2.webp?v=2","https://hailey-looks.ru/photos/504638231/3.webp?v=2","https://hailey-looks.ru/photos/504638231/4.webp?v=2"],"vid":0},{"id":"504631232","name":"Широкие рваные джинсы с дырками","url":"https://www.wildberries.ru/catalog/504631232/detail.aspx","price":6990,"old":11000,"img":"https://hailey-looks.ru/photos/504631232/1.webp?v=2","rating":"4,9","rev":543,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз","Рваные"],"color":["Голубой","Светло-голубой","Светло-серый"],"tags":[],"badges":["ХИТ"],"sizes":[42,44,46,48,50,52,54,56,58,60,62,64,66],"page":"/shirokie-rvanye-dzhinsy-dyrkami-504631232","material":"99% хлопок, 1% полиэстер","posadka":"Высокая","details":"Рваные, Потёртости, Бахрома, Варка, Принт, Грязная стирка (dirty)","sezon":"Лето","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504631232/1.webp?v=2","https://hailey-looks.ru/photos/504631232/2.webp?v=2","https://hailey-looks.ru/photos/504631232/3.webp?v=2","https://hailey-looks.ru/photos/504631232/4.webp?v=2"],"vid":0},{"id":"754505251","name":"Джинсы багги широкие бойфренды","url":"https://www.wildberries.ru/catalog/754505251/detail.aspx","price":5490,"old":10000,"img":"https://hailey-looks.ru/photos/754505251/1.webp","rating":"4,9","rev":318,"predmet":"Джинсы","model":["Багги","Широкие","Буткат","Бойфренды","Оверсайз","Свободные"],"color":["Голубой","Светло-голубой"],"tags":[],"badges":["ХИТ"],"sizes":[42,44,46,48,50,52,54,56,58,60,62,64,66,68,70],"page":"/dzhinsy-baggi-shirokie-boyfrendy-754505251","material":"85% хлопок, 15% полиэстер","posadka":"Высокая","details":"Варка","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/754505251/1.webp","https://hailey-looks.ru/photos/754505251/2.webp","https://hailey-looks.ru/photos/754505251/3.webp","https://hailey-looks.ru/photos/754505251/4.webp"],"vid":1},{"id":"1017667229","name":"Женские джинсы широкие чёрные","url":"https://www.lamoda.ru/p/mp002xw1mwo0/clothes-hellohailey-dzhinsy/","price":5490,"old":10000,"img":"https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/1017667229/1.webp","rating":"4,8","rev":951,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз"],"color":["Черный","Темно-серый"],"tags":[],"badges":["ХИТ"],"sizes":[42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74],"page":"/dzhinsy-shirokie-chernye-1017667229","material":"85% хлопок, 15% полиэстер","posadka":"Высокая","details":"Потёртости, Варка, Бахрома","sezon":"Лето","length":"Длинные, Для высоких (170+)","imgs":["https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/1017667229/1.webp","https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/1017667229/2.webp","https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/1017667229/3.webp","https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/1017667229/4.webp"],"vid":0},{"id":"761081181","name":"Бомбер замшевый ветровка на осень","url":"https://www.wildberries.ru/catalog/761081181/detail.aspx","price":5500,"old":12000,"img":"https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/761081181/1.webp","rating":"5","rev":1497,"predmet":"Бомбер","model":["Укороченный"],"color":["Коричневый"],"tags":[],"badges":[],"sizes":[44,46,48,50],"page":"","material":"","posadka":"","details":"","sezon":"Демисезон","length":"","imgs":["https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/761081181/1.webp","https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/761081181/2.webp","https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/761081181/3.webp","https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@db2167d768b1c2a1e49d12a066adeb852db64a10/photos/761081181/4.webp"],"vid":0},{"id":"504646155","name":"Джинсы классические прямые","url":"https://www.wildberries.ru/catalog/504646155/detail.aspx","price":4000,"old":10000,"img":"https://hailey-looks.ru/photos/504646155/1.webp?v=2","rating":"5","rev":256,"predmet":"Джинсы","model":["Прямые","Классические","Трубы","Зауженные"],"color":["Синий","Голубой"],"tags":[],"badges":["РАСПРОДАЖА"],"sizes":[42,44,46,48,50,52,54,56],"page":"/dzhinsy-klassicheskie-pryamye-504646155","material":"100% хлопок","posadka":"Высокая","details":"Варка","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504646155/1.webp?v=2","https://hailey-looks.ru/photos/504646155/2.webp?v=2","https://hailey-looks.ru/photos/504646155/3.webp?v=2","https://hailey-looks.ru/photos/504646155/4.webp?v=2"],"vid":0},{"id":"545150789","name":"Джинсы светлые широкие клеш","url":"https://www.wildberries.ru/catalog/545150789/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/545150789/1.webp","rating":"5","rev":256,"predmet":"Джинсы","model":["Клеш","Широкие","Свободные","Трубы","Оверсайз","Прямые"],"color":["Голубой","Светло-голубой"],"tags":[],"badges":[],"sizes":[42,44,46,48,50,52,54,56],"page":"/dzhinsy-svetlye-shirokie-klesh-545150789","material":"50% хлопок, 30% лиоцелл, 20% полиэстер","posadka":"Высокая","details":"Варка","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/545150789/1.webp","https://hailey-looks.ru/photos/545150789/2.webp","https://hailey-looks.ru/photos/545150789/3.webp","https://hailey-looks.ru/photos/545150789/4.webp"],"vid":0},{"id":"754477427","name":"Джинсы прямые широкие багги","url":"https://www.wildberries.ru/catalog/754477427/detail.aspx","price":7000,"old":12000,"img":"https://hailey-looks.ru/photos/754477427/1.webp?v=2","rating":"5","rev":318,"predmet":"Джинсы","model":["Багги","Широкие","Буткат","Бойфренды","Оверсайз","Свободные"],"color":["Голубой","Светло-голубой"],"tags":[],"badges":[],"sizes":[52,54,56,58,60,62,64,66],"page":"/dzhinsy-pryamye-shirokie-baggi-754477427","material":"85% хлопок, 15% полиэстер","posadka":"Высокая","details":"Варка","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/754477427/1.webp?v=2","https://hailey-looks.ru/photos/754477427/2.webp?v=2","https://hailey-looks.ru/photos/754477427/3.webp?v=2","https://hailey-looks.ru/photos/754477427/4.webp?v=2"],"vid":0},{"id":"504645014","name":"Джинсы прямые широкие трубы","url":"https://www.wildberries.ru/catalog/504645014/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/504645014/1.webp?v=2","rating":"5","rev":256,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз"],"color":["Синий","Темно-синий","Индиго"],"tags":[],"badges":[],"sizes":[42,44,46,48,50,52,54,56],"page":"/dzhinsy-pryamye-shirokie-truby-504645014","material":"100% хлопок","posadka":"Высокая","details":"Варка, Потертости","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504645014/1.webp?v=2","https://hailey-looks.ru/photos/504645014/2.webp?v=2","https://hailey-looks.ru/photos/504645014/3.webp?v=2","https://hailey-looks.ru/photos/504645014/4.webp?v=2"],"vid":0},{"id":"504634485","name":"Джинсы широкие палаццо с подворотами","url":"https://www.wildberries.ru/catalog/504634485/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/504634485/1.webp?v=2","rating":"5","rev":256,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз"],"color":["Синий","Темно-синий"],"tags":[],"badges":[],"sizes":[42,44,46,48,50,52,54,56],"page":"/dzhinsy-shirokie-palacco-podvorotami-504634485","material":"88% хлопок, 7% вискоза, 5% полиэстер","posadka":"Высокая","details":"Варка, Потертости","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504634485/1.webp?v=2","https://hailey-looks.ru/photos/504634485/2.webp?v=2","https://hailey-looks.ru/photos/504634485/3.webp?v=2","https://hailey-looks.ru/photos/504634485/4.webp?v=2"],"vid":0},{"id":"1017376402","name":"Джинсы широкие трубы варенки","url":"https://www.wildberries.ru/catalog/1017376402/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/1017376402/1.webp","rating":"5","rev":951,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз"],"color":["Серый","Светло-серый"],"tags":[],"badges":[],"sizes":[52,54,56,58,60,62,64,66],"page":"/dzhinsy-shirokie-truby-varenki-1017376402","material":"хлопок, вискоза, полиэстер","posadka":"Высокая","details":"Варка, Потертости","sezon":"Лето","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/1017376402/1.webp","https://hailey-looks.ru/photos/1017376402/2.webp","https://hailey-looks.ru/photos/1017376402/3.webp","https://hailey-looks.ru/photos/1017376402/4.webp"],"vid":0},{"id":"545148107","name":"Джинсы темные широкие","url":"https://www.wildberries.ru/catalog/545148107/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/545148107/1.webp","rating":"5","rev":256,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз","Рваные"],"color":["Синий","Темно-синий","Индиго"],"tags":[],"badges":[],"sizes":[42,44,46,48,50,52,54,56,58],"page":"/dzhinsy-temnye-shirokie-545148107","material":"91% хлопок, 9% полиэстер","posadka":"Высокая","details":"Варка, Потертости","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/545148107/1.webp","https://hailey-looks.ru/photos/545148107/2.webp","https://hailey-looks.ru/photos/545148107/3.webp","https://hailey-looks.ru/photos/545148107/4.webp"],"vid":0},{"id":"504618555","name":"Джинсы темные широкие прямые трубы","url":"https://www.wildberries.ru/catalog/504618555/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/504618555/1.webp","rating":"5","rev":951,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз","Багги"],"color":["Синий","Темно-синий","Индиго"],"tags":[],"badges":[],"sizes":[42,44,46,48,50,52,54,56],"page":"/dzhinsy-temnye-shirokie-pryamye-504618555","material":"91% хлопок, 9% полиэстер","posadka":"Высокая","details":"Варка","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504618555/1.webp","https://hailey-looks.ru/photos/504618555/2.webp","https://hailey-looks.ru/photos/504618555/3.webp","https://hailey-looks.ru/photos/504618555/4.webp"],"vid":0},{"id":"504624622","name":"Джинсы светлые широкие для высоких","url":"https://www.wildberries.ru/catalog/504624622/detail.aspx","price":4990,"old":10000,"img":"https://hailey-looks.ru/photos/504624622/1.webp","rating":"5","rev":256,"predmet":"Джинсы","model":["Клеш","Широкие","Свободные","Трубы","Оверсайз","Прямые"],"color":["Голубой","Светло-голубой"],"tags":[],"badges":[],"sizes":[42,44,46,48,50,52,54,56,58,60,62,64,66],"page":"/dzhinsy-svetlye-shirokie-vysokih-504624622","material":"85% хлопок, 15% полиэстер","posadka":"Высокая","details":"Варка, Потертости","sezon":"Лето","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504624622/1.webp","https://hailey-looks.ru/photos/504624622/2.webp","https://hailey-looks.ru/photos/504624622/3.webp","https://hailey-looks.ru/photos/504624622/4.webp"],"vid":0},{"id":"504644422","name":"Джинсы прямые y2k широкие","url":"https://www.wildberries.ru/catalog/504644422/detail.aspx","price":7000,"old":10000,"img":"https://hailey-looks.ru/photos/504644422/1.webp?v=2","rating":"5","rev":951,"predmet":"Джинсы","model":["Буткат","Бойфренды","Прямые","Трубы","Классические"],"color":["Голубой","Охра","Коричневый","Грязно-голубой"],"tags":[],"badges":["НОВИНКА"],"sizes":[42,44,46,48,50,52,54,56],"page":"/dzhinsy-pryamye-y2k-shirokie-504644422","material":"100% хлопок","posadka":"Высокая","details":"Грязная стирка (dirty), Винтаж, Варка","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504644422/1.webp?v=2","https://hailey-looks.ru/photos/504644422/2.webp?v=2","https://hailey-looks.ru/photos/504644422/3.webp?v=2","https://hailey-looks.ru/photos/504644422/4.webp?v=2"],"vid":1},{"id":"504645629","name":"Джинсы рваные y2k с пятнами","url":"https://www.wildberries.ru/catalog/504645629/detail.aspx","price":7000,"old":10000,"img":"https://hailey-looks.ru/photos/504645629/1.webp?v=2","rating":"5","rev":951,"predmet":"Джинсы","model":["Рваные","Буткат","Бойфренды","Прямые","Трубы"],"color":["Голубой"],"tags":[],"badges":["НОВИНКА"],"sizes":[42,44,46,48,50,52,54,56],"page":"/dzhinsy-rvanye-y2k-pyatnami-504645629","material":"100% хлопок","posadka":"Высокая","details":"Грязная стирка (dirty), Винтаж, Варка","sezon":"Лето","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/504645629/1.webp?v=2","https://hailey-looks.ru/photos/504645629/2.webp?v=2","https://hailey-looks.ru/photos/504645629/3.webp?v=2","https://hailey-looks.ru/photos/504645629/4.webp?v=2"],"vid":1},{"id":"1135612978","name":"Женские джинсы широкие коричневые","url":"https://www.wildberries.ru/catalog/1135612978/detail.aspx","price":6990,"old":12000,"img":"https://hailey-looks.ru/photos/1135612978/1.webp","rating":"4,9","rev":343,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз"],"color":["Коричневый"],"tags":[],"badges":["НОВИНКА"],"sizes":[42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74],"page":"/dzhinsy-shirokie-korichnevye-1135612978","material":"85% хлопок, 15% полиэстер","posadka":"Высокая","details":"Высокая посадка, Прямой крой, Плотный деним","sezon":"Демисезон","length":"Длинные, Для высоких (170+)","imgs":["https://hailey-looks.ru/photos/1135612978/1.webp","https://hailey-looks.ru/photos/1135612978/2.webp","https://hailey-looks.ru/photos/1135612978/3.webp","https://hailey-looks.ru/photos/1135612978/4.webp"],"vid":0},{"id":"1153144992","name":"Джинсы в цветочек со стразами прямые широкие","url":"https://www.wildberries.ru/catalog/1153144992/detail.aspx","price":6990,"old":12000,"img":"https://hailey-looks.ru/photos/1153144992/1.webp","rating":"4,9","rev":113,"predmet":"Джинсы","model":["Прямые","Широкие","Свободные","Трубы","Оверсайз","Рваные"],"color":["Голубой","Светло-голубой","Светло-серый"],"tags":[],"badges":["НОВИНКА"],"sizes":[42,44,46,48,50],"page":"/dzhinsy-cvetochek-strazy-1153144992","material":"Хлопок - 60%, Полиэстер - 40%","posadka":"Средняя","details":"Стразы, Принт, Цветы, Рисунок","sezon":"Демисезон","length":"Стандартная длина","imgs":["https://hailey-looks.ru/photos/1153144992/1.webp","https://hailey-looks.ru/photos/1153144992/2.webp","https://hailey-looks.ru/photos/1153144992/3.webp","https://hailey-looks.ru/photos/1153144992/4.webp"],"vid":0}];
+var CONFIG={"predmet":"Джинсы","baseSlug":"catalog","h1":"Женские джинсы с высокой посадкой больших размеров 42–74","color":"","model":"","desc":"Женские джинсы с высокой посадкой больших размеров — пояс на талии, а не на бёдрах. Высокая посадка держит живот и не сползает, когда садишься: для плюс-сайза это главный параметр после размера.\n\nНизкая посадка на полной фигуре режет по животу и открывает поясницу при наклоне. Высокая работает наоборот: пояс ложится на самую узкую часть, силуэт делится в правильном месте, и ноги выглядят длиннее.\n\nВ подборке джинсы с высокой посадкой всех кроёв: широкие wide leg, прямые и классические, трубы, палаццо, багги и бойфренды. Цвета — голубые, синие и тёмно-синие, серые, коричневые, чёрные.\n\nПояс широкий, с плотной подкладкой: он не заворачивается и не давит. Деним берём плотный, чтобы посадка держалась и после стирки.\n\nРазмеры 42–74, длина под рост от 170 см. Цены от 4 000 руб, оплата картой или СБП, возврат 14 дней.","range":"42–74","sezon":"","posadka":"Высокая"};
+var PAGES=[{"predmet":"","color":"","model":"","slug":"/catalog","label":"Весь каталог"},{"predmet":"Джинсы","color":"","model":"","slug":"/catalog/dzhinsy","label":"Все джинсы"},{"predmet":"Джинсы","color":"Голубой","model":"","slug":"/catalog/golubye-dzhinsy","label":"Голубые"},{"predmet":"Джинсы","color":"","model":"Прямые","slug":"/catalog/pryamye-dzhinsy","label":"Прямые"},{"predmet":"Джинсы","color":"","model":"Широкие","slug":"/catalog/shirokie-dzhinsy","label":"Широкие"},{"predmet":"Джинсы","color":"Голубой","model":"Широкие","slug":"/catalog/golubye-shirokie-dzhinsy","label":"Голубые широкие"},{"predmet":"Джинсы","color":"","model":"Рваные","slug":"/catalog/rvanye-dzhinsy","label":"Рваные"},{"predmet":"Джинсы","color":"","model":"Багги","slug":"/catalog/baggi-dzhinsy","label":"Багги"},{"predmet":"Джинсы","color":"Синий","model":"","slug":"/catalog/sinie-dzhinsy","label":"Синие"},{"predmet":"Джинсы","color":"Синий","model":"Прямые","slug":"/catalog/sinie-pryamye-dzhinsy","label":"Синие прямые"},{"predmet":"Джинсы","color":"","model":"Трубы","slug":"/catalog/truby-dzhinsy","label":"Трубы"},{"predmet":"Джинсы","color":"","model":"","slug":"/catalog/trendy-2026","label":"Тренды 2026"},{"predmet":"Джинсы","color":"Темно-синий","model":"","slug":"/catalog/temno-sinie-dzhinsy","label":"Тёмно-синие"},{"predmet":"Джинсы","color":"","model":"Оверсайз","slug":"/catalog/oversize-dzhinsy","label":"Оверсайз"},{"predmet":"Джинсы","color":"","model":"","slug":"/catalog/letnie-dzhinsy","label":"Летние"},{"predmet":"Джинсы","color":"","model":"Бойфренды","slug":"/catalog/boyfrendy-dzhinsy","label":"Бойфренды"},{"predmet":"Джинсы","color":"","model":"","slug":"/catalog/dzhinsy-s-vysokoy-posadkoy","label":"Высокая посадка"}];
+function pageFor(pr,co,mo){for(var i=0;i<PAGES.length;i++){var p=PAGES[i];
+if((p.predmet||'')===(pr||'')&&(p.color||'')===(co||'')&&(p.model||'')===(mo||''))return p.slug;}return null;}
+var root=document.getElementById('hc');
+var rub=function(n){return n.toLocaleString('ru-RU')+' руб';};
+var SHIP_FREE=10000, TG='hailey_mgr';  // порог бесплатной доставки + телеграм для заказов
+function plural(n){var a=Math.abs(n)%100,b=n%10,w;if(a>10&&a<20)w='товаров';else if(b===1)w='товар';else if(b>=2&&b<=4)w='товара';else w='товаров';return n+' '+w;}
+var ADJ={"Синий":"Синие","Голубой":"Голубые","Серый":"Серые","Чёрный":"Чёрные","Черный":"Чёрные",
+"Прямые":"прямые","Рваные":"рваные","Багги":"багги","Клеш":"клёш","Клёш":"клёш","Широкие":"широкие","Укороченный":"укороченные"};
+var PLURAL={"Джинсы":"джинсы","Бомбер":"бомберы"};
+function low(s){return (s||'').charAt(0).toLowerCase()+(s||'').slice(1);}
+function bcls(b){b=(b||'').toLowerCase();
+if(b.indexOf('хит')>-1)return 'hit';
+if(b.indexOf('нов')>-1)return 'new';
+if(b.indexOf('распрод')>-1||b.indexOf('sale')>-1||b.indexOf('скид')>-1)return 'sale';
+return 'def';}
+function arrOf(v){return String(v||'').split(',').map(function(s){return s.trim();}).filter(Boolean);}
+function sameSet(a,b){b=arrOf(b);return a.length===b.length&&a.every(function(x){return b.indexOf(x)>-1;});}
+function readURL(){
+var q=new URLSearchParams(location.search);
+return {predmet:arrOf(q.get('cat')||CONFIG.predmet||""),color:arrOf(q.get('color')||CONFIG.color||""),
+model:arrOf(q.get('model')||CONFIG.model||""),badge:arrOf(q.get('set')||CONFIG.badge||""),q:q.get('q')||"",
+sort:q.get('sort')||""};
+}
+function writeURL(push){
+var q=new URLSearchParams();
+if(state.predmet.length)q.set('cat',state.predmet.join(','));
+if(state.color.length)q.set('color',state.color.join(','));
+if(state.model.length)q.set('model',state.model.join(','));
+if(state.badge.length)q.set('set',state.badge.join(','));
+if(state.q)q.set('q',state.q);
+if(state.sort)q.set('sort',state.sort);
+var s=q.toString(), url=location.pathname+(s?('?'+s):'');
+try{if(push)history.pushState(state,'',url);else history.replaceState(state,'',url);}catch(e){}
+}
+var state=readURL();
+var predmetFixed=!!CONFIG.predmet; // страница категории → предмет зафиксирован, чипов «Категория» нет
+function has(val,sel){return Array.isArray(val)?val.indexOf(sel)>-1:val===sel;}
+function _n(s){return (s||'').toLowerCase().replace(/ё/g,'е');}
+var _ENDS=['ыми','ими','ого','его','ому','ему','ами','ями','ах','ях','ый','ий','ой','ая','яя','ое','ее','ые','ие','ых','их','ом','ем','ов','ев','ам','ям','ей','ю','я','ы','и','е','о','а','й','ь','у'];
+function _stem(w){w=_n(w);for(var i=0;i<_ENDS.length;i++){var s=_ENDS[i];if(w.length-s.length>=3&&w.slice(-s.length)===s)return w.slice(0,-s.length);}return w;}
+var _SYN={'деним':['джинс'],'джинс':['деним']};  // синонимы разных корней (стеммер их не сведёт)
+function _toks(s){return _n(s).split(/[^a-zа-я0-9]+/).filter(Boolean);}
+function matchQ(p,q){if(!q)return true;
+var H=_toks(p.name+' '+(Array.isArray(p.color)?p.color.join(' '):(p.color||''))+' '+(Array.isArray(p.model)?p.model.join(' '):(p.model||''))+' '+(p.tags||[]).join(' ')+' '+p.predmet+' '+(p.id||'')+' '+(p.material||'')+' '+(p.posadka||'')+' '+(p.details||'')+' '+(p.sezon||'')+' '+(p.length||'')).map(_stem);
+return _toks(q).map(_stem).every(function(qs){if(!qs)return true;var cand=[qs].concat(_SYN[qs]||[]);
+return cand.some(function(cs){var num=/^\d/.test(cs);return H.some(function(hs){return num?hs.indexOf(cs)===0:(hs.indexOf(cs)===0||(hs.length>=3&&cs.indexOf(hs)===0));});});});}
+function inState(p){
+return (!state.predmet.length||state.predmet.indexOf(p.predmet)>-1)
+&&(!state.color.length||state.color.some(function(c){return has(p.color,c);}))
+&&(!state.model.length||state.model.some(function(m){return has(p.model,m);}))
+&&(!state.badge.length||state.badge.some(function(b){return (p.badges||[]).indexOf(b)>-1;}))
+&&matchQ(p,state.q);}
+function optsFor(field){var pool=PRODUCTS.filter(function(p){return !state.predmet.length||state.predmet.indexOf(p.predmet)>-1;});
+var s=[];pool.forEach(function(p){var v=p[field];if(Array.isArray(v)){v.forEach(function(x){if(x&&s.indexOf(x)<0)s.push(x);});}else if(v&&s.indexOf(v)<0)s.push(v);});return s;}
+function predmets(){var s=[];PRODUCTS.forEach(function(p){if(p.predmet&&s.indexOf(p.predmet)<0)s.push(p.predmet);});return s;}
+function badgeOpts(){var s=[];PRODUCTS.forEach(function(p){(p.badges||[]).forEach(function(b){if(s.indexOf(b)<0)s.push(b);});});return s;}
+var openAcc={color:1,model:1};   // какие группы раскрыты (переживает перерисовку)
+function countIn(field,val){     // сколько товаров даст галочка при текущих ОСТАЛЬНЫХ фильтрах
+return PRODUCTS.filter(function(p){
+var s={predmet:state.predmet,color:state.color,model:state.model,badge:state.badge,q:state.q};
+s[field]=[val];
+return (!s.predmet.length||s.predmet.indexOf(p.predmet)>-1)
+&&(!s.color.length||s.color.some(function(c){return has(p.color,c);}))
+&&(!s.model.length||s.model.some(function(m){return has(p.model,m);}))
+&&(!s.badge.length||s.badge.some(function(b){return (p.badges||[]).indexOf(b)>-1;}))
+&&matchQ(p,s.q);
+}).length;
+}
+function accGroup(field,label,opts){
+if(!opts.length)return '';
+var sel=state[field],open=openAcc[field]?' open':'';
+var rows=opts.map(function(v){
+var on=sel.indexOf(v)>-1,n=countIn(field,v);
+return '<label class="fopt'+(on?' on':'')+(n?'':' zero')+'"><input type="checkbox" data-f="'+field+'" value="'+v+'"'+(on?' checked':'')+'>'
++'<span class="fbox"></span><span class="ftxt">'+v+'</span><span class="fnum">'+n+'</span></label>';
+}).join('');
+return '<div class="facc'+open+'" data-acc="'+field+'">'
++'<button class="facch" data-toggle="'+field+'">'+label
++(sel.length?'<span class="fsel-n">'+sel.length+'</span>':'')
++'<svg class="fchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>'
++'<div class="faccb">'+rows+'</div></div>';
+}
+function subcatLinks(){
+var here=location.pathname.replace(/\/+$/,'');
+var list=PAGES.filter(function(p){
+if(p.slug.replace(/\/+$/,'')===here)return false;
+if(CONFIG.predmet)return p.predmet===CONFIG.predmet;
+return !!p.predmet;
+});
+var col=(CONFIG.color||'').toLowerCase(), mod=(CONFIG.model||'').toLowerCase();
+var rank=function(p){
+var pc=(p.color||'').toLowerCase(), pm=(p.model||'').toLowerCase();
+if((col&&pc===col&&pm)||(mod&&pm===mod&&pc))return 0;
+if(!pc&&!pm)return 1;
+if((col&&pc===col)||(mod&&pm===mod))return 2;
+return 3;
+};
+return list.sort(function(a,b){return rank(a)-rank(b);});
+}
+function discOf(p){return (p.old>p.price)?(1-p.price/p.old):0;}
+function sortList(a){
+var l=a.slice();
+if(state.sort==='cheap')l.sort(function(x,y){return x.price-y.price;});
+else if(state.sort==='exp')l.sort(function(x,y){return y.price-x.price;});
+else if(state.sort==='disc')l.sort(function(x,y){return discOf(y)-discOf(x);});
+else if(state.sort==='rate')l.sort(function(x,y){return (parseFloat(String(y.rating).replace(',','.'))||0)-(parseFloat(String(x.rating).replace(',','.'))||0);});
+else if(state.sort==='new')l.sort(function(x,y){
+var nx=(x.badges||[]).some(function(b){return /нов/i.test(b);})?1:0;
+var ny=(y.badges||[]).some(function(b){return /нов/i.test(b);})?1:0;
+return ny-nx;});
+return l;
+}
+function renderFilters(){
+var box=document.getElementById('facets');if(!box)return;
+var sortEl=document.getElementById('fSort');if(sortEl&&sortEl.value!==state.sort)sortEl.value=state.sort;
+box.innerHTML=
+accGroup('badge','Подборка',badgeOpts())
++accGroup('predmet','Категория',predmets())
++accGroup('color','Цвет',optsFor('color'))
++accGroup('model','Модель',optsFor('model'))
++(function(){var s=subcatLinks();if(!s.length)return '';
+return '<div class="facc'+(openAcc.sub?' open':'')+'" data-acc="sub">'
++'<button class="facch" data-toggle="sub">Смотрите также<svg class="fchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>'
++'<div class="faccb"><div class="fsubs">'+s.map(function(p){return '<a class="scl" href="'+p.slug+'">'+p.label+'</a>';}).join('')+'</div></div></div>';})();
+var n=state.predmet.length+state.color.length+state.model.length+state.badge.length;
+var fc=document.getElementById('fCount');
+if(fc){fc.textContent=n||'';fc.style.display=n?'':'none';}
+var fb=document.getElementById('fOpen');if(fb)fb.classList.toggle('on',n>0);
+var fr=document.getElementById('fReset');if(fr)fr.style.display=n||state.q?'':'none';
+}
+function allocate(all){
+var good=all.filter(function(r){return +r.val===5 && (r.text||'').length>60;});
+var wo=good.filter(function(r){return (r.text||'').indexOf('азмер')<0;});
+if(wo.length>=4)good=wo;
+good.sort(function(a,b){
+var pa=(a.photos&&a.photos.length)?1:0, pb=(b.photos&&b.photos.length)?1:0;
+return pb-pa || (b.text.length-a.text.length) || String(b.date||'').localeCompare(String(a.date||''));
+});
+function gcd(a,b){while(b){var t=b;b=a%b;a=t;}return a;}
+function spread(list,key){
+if(list.length<3)return list.slice();
+var h=0,i; for(i=0;i<key.length;i++)h+=key.charCodeAt(i);
+var step=1+h%(list.length-1);
+while(gcd(step,list.length)!==1)step++;
+var out=[]; for(i=0;i<list.length;i++)out.push(list[(h+i*step)%list.length]);
+return out;
+}
+var used={}, byPage={};
+(PAGES||[]).forEach(function(pg){
+var ids={};
+PRODUCTS.forEach(function(p){
+if(pg.predmet&&p.predmet!==pg.predmet)return;
+if(pg.color&&(p.color||[]).indexOf(pg.color)<0)return;
+if(pg.model&&(p.model||[]).indexOf(pg.model)<0)return;
+ids[String(p.id)]=1;
+});
+var items=good.filter(function(r){return ids[String(r.nm)];});
+if(items.length<4)items=good.slice();            // у тонкой категории берём общий пул
+var ord=spread(items.filter(function(r){return r.photos&&r.photos.length;}),pg.slug)
+.concat(spread(items.filter(function(r){return !(r.photos&&r.photos.length);}),pg.slug));
+var seen={}, out=[];
+[1,0].forEach(function(fresh){                   // сначала только незанятые, потом добираем
+ord.forEach(function(r){
+var k=r.nm+'|'+(r.user||'')+'|'+(r.text||'').slice(0,40);
+if(out.length>=4||seen[r.size]||(fresh&&used[k]))return;
+seen[r.size]=1; out.push(r); used[k]=1;
+});
+});
+byPage[pg.slug]=out;
+});
+return byPage;
+}
+function freshReviews(){
+var box=document.querySelector('#rvs .rvgrid'); if(!box)return;
+fetch('https://cdn.jsdelivr.net/gh/Hellohailey25/hailey-assets@main/reviews.json',{cache:'no-cache'})
+.then(function(r){return r.json();})
+.then(function(d){
+var all=[]; Object.keys(d.reviews||{}).forEach(function(k){all=all.concat(d.reviews[k]);});
+var pick=allocate(all)[location.pathname.replace(/\/$/,'')||'/catalog'];
+if(!pick||pick.length<4)return;                // мало данных — оставляем статику
+var byId={}; PRODUCTS.forEach(function(p){byId[String(p.id)]=p;});
+var M=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+var ru=function(iso){var a=String(iso||'').split('-');return a.length===3?(+a[2])+' '+M[+a[1]-1]+' '+a[0]:'';};
+var esc=function(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');};
+box.innerHTML=pick.map(function(r){
+var ours=byId[String(r.nm)]||{}, title=ours.name||r.product||'смотреть товар';
+var link=ours.page||r.url||'/otzyvy';
+var ph=(r.photos&&r.photos.length)?r.photos[0]:'';
+return '<figure class="rv"><figcaption class="rvtop"><b>'+esc(r.user||'Покупательница')+'</b>'
++(r.size?' · '+esc(r.size):'')+(r.date?' · '+ru(r.date):'')
++'<a href="'+link+'">'+esc(title)+'</a></figcaption>'
++(ph?'<img class="rvph" src="'+ph+'" alt="Отзыв покупательницы: '+esc(title)+'" loading="lazy">':'')
++'<blockquote class="rvtx">'+esc(r.text)+'</blockquote>'
++'<button class="rvmore" type="button">Показать полностью</button></figure>';
+}).join('');
+var sum=document.querySelector('#rvs .rvsum');
+if(sum&&d.brand){sum.innerHTML=String(d.brand.avg).replace('.',',')+' из 5 — средняя оценка по '
++Number(d.brand.count).toLocaleString('ru-RU')+' отзывам на Wildberries. '
++'<a href="/otzyvy">Читать все отзывы →</a>';}
+initReviews();
+})
+.catch(function(){});
+}
+function initReviews(){
+[].forEach.call(document.querySelectorAll('.rv'),function(fig){
+var tx=fig.querySelector('.rvtx'),btn=fig.querySelector('.rvmore');
+if(!tx||!btn)return;
+if(tx.scrollHeight<=tx.clientHeight+2){fig.classList.add('short');return;}
+btn.onclick=function(){
+var open=fig.classList.toggle('open');
+btn.textContent=open?'Свернуть':'Показать полностью';
+};
+});
+}
+function renderSubcats(){
+var el=document.getElementById('subcats');if(!el)return;
+var sibs=subcatLinks();   // тот же список, что в аккордеоне «Смотрите также» внутри панели фильтров
+if(!sibs.length){el.style.display='none';return;}
+el.style.display='';
+el.innerHTML='<span class="sclabel">Смотрите также</span>'
++sibs.map(function(p){return '<a class="scl" href="'+p.slug+'">'+p.label+'</a>';}).join('');
+var wrap=document.getElementById('scwrap'); if(wrap)wrap.style.display='';
+var step=function(dir){
+var max=el.scrollWidth-el.clientWidth;
+if(dir>0&&el.scrollLeft>=max-4){el.scrollTo({left:0});return;}
+if(dir<0&&el.scrollLeft<=4){el.scrollTo({left:max});return;}
+el.scrollBy({left:dir*Math.max(200,el.clientWidth*0.8)});
+};
+var pv=document.getElementById('scPrev'),nx=document.getElementById('scNext');
+if(pv)pv.onclick=function(){step(-1);};
+if(nx)nx.onclick=function(){step(1);};
+}
+function titleFor(){
+var atDefault=sameSet(state.predmet,CONFIG.predmet||"")&&sameSet(state.color,CONFIG.color||"")
+&&sameSet(state.model,CONFIG.model||"")&&!state.badge.length&&!state.q;
+if(CONFIG.h1&&atDefault)return CONFIG.h1;
+var one=function(a){return a.length===1?a[0]:'';};
+var _pr=one(state.predmet),_co=one(state.color),_mo=one(state.model);
+if(!_pr||state.color.length>1||state.model.length>1) return CONFIG.h1||'Каталог HAILEY';
+var noun=PLURAL[_pr]||low(_pr);
+var pre=[]; if(_co)pre.push(ADJ[_co]||_co);
+if(_mo)pre.push(low(ADJ[_mo]||_mo));
+var t=(pre.join(' ')+' женские '+noun).trim();
+t=t.charAt(0).toUpperCase()+t.slice(1);
+if(pre.length===0 && CONFIG.range) t+=' '+CONFIG.range;
+return t;
+}
+function card(p){
+var off=p.old>p.price?Math.round((1-p.price/p.old)*100):0;
+var link=p.page||p.url, tgt=p.page?'':' target="_blank" rel="noopener"';
+var el=document.createElement('div');
+el.className='card';
+el.dataset.id=p.id; el.dataset.name=p.name; el.dataset.price=p.price; el.dataset.img=p.img;
+el.dataset.old=p.old||0; el.dataset.page=link||'';
+el.dataset.sizes=JSON.stringify(p.sizes||[]);
+var priceHtml='<span class="price mono">'+rub(p.price)+'</span>'
++(p.old>p.price?'<span class="old mono">'+rub(p.old)+'</span><span class="off">−'+off+'%</span>':'');
+var plural=function(n,a,b,c){var t=n%100;if(t>=11&&t<=14)return c;t=n%10;return t===1?a:(t>=2&&t<=4?b:c);};
+var stars=p.rating?'<span class="st">★</span> <b>'+p.rating+'</b>'+
+(p.rev?' · '+Number(p.rev).toLocaleString('ru-RU')+' '+plural(Number(p.rev),'оценка','оценки','оценок'):''):'';
+var imgs=(p.imgs&&p.imgs.length)?p.imgs:[p.img];
+var card=function(u){
+if(u.indexOf('/images/big/')>-1)return u.replace('/images/big/','/images/c516x688/');
+if(u.indexOf('lmcdn.ru/img600x866/')>-1)return u.replace('/img600x866/','/img389x562/');
+if(u.indexOf('/photos/')>-1){var k=u.lastIndexOf('/');return u.slice(0,k+1)+'c'+u.slice(k+1);}
+return u;
+};
+var slides=imgs.map(function(u,i){
+var inner='<img src="'+card(u)+'" alt="'+p.name+(i?' — фото '+(i+1):'')+'"'+(i?' loading="lazy"':'')
++' onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.split(\'?\')[0]+\'?r=\'+Date.now();}">';
+return link?('<a class="slide" href="'+link+'"'+tgt+'>'+inner+'</a>'):('<span class="slide">'+inner+'</span>');
+}).join('');
+var multi=imgs.length>1;
+el.innerHTML=
+'<div class="ph">'
++'<div class="track">'+slides+'</div>'
++(multi?'<div class="dots">'+imgs.map(function(_,i){return i?'<i></i>':'<i class="on"></i>';}).join('')+'</div>':'')
++(multi?'<button class="arw l" data-arw="-1" aria-label="Предыдущее фото">‹</button><button class="arw r" data-arw="1" aria-label="Следующее фото">›</button>':'')
++'<div class="phscrim"></div>'
++((p.badges&&p.badges.length)?'<div class="badges">'+p.badges.map(function(b){return '<span class="bdg '+bcls(b)+'">'+b+'</span>';}).join('')+'</div>':'')
++(p.vid?'<span class="vmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>':'')
++'<button class="fav" aria-label="В избранное"><span class="fc"></span><svg viewBox="0 0 24 24"><path d="M12 20.7l-1.4-1.3C5.4 14.6 2 11.5 2 7.8 2 5 4.2 3 6.9 3c1.6 0 3.1.7 4.1 1.9C12 3.7 13.5 3 15.1 3 17.8 3 20 5 20 7.8c0 3.7-3.4 6.8-8.6 11.6L12 20.7z"/></svg></button>'
++'<div class="hover">'
++'<button class="hb quick" data-quick>Купить в 1 клик</button></div></div>'
++'<div class="info">'
++(link?'<a class="pname" href="'+link+'"'+tgt+'>'+p.name+'</a>':'<div class="pname">'+p.name+'</div>')
++'<div class="meta">'+stars+'</div>'
++'<div class="buyrow"><div class="prices">'+priceHtml+'</div>'
++'<button class="add" data-add><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.5a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21.5 7H6"/></svg><span>В корзину</span></button></div>'
++'</div>';
+return el;
+}
+function render(){
+renderFilters();
+initReviews();
+freshReviews();
+document.getElementById('h1t').textContent=titleFor();
+var _d=CONFIG.desc||'';
+var _dp=_d.split('\n\n').map(function(x){return x.trim();}).filter(Boolean);
+var _lead=_dp.length?_dp[0]:'', _rest=_dp.slice(1);
+if(!_rest.length&&_lead){
+var _sn=_lead.match(/[^.!?]+[.!?]+(\s|$)/g)||[_lead];
+if(_sn.length>2){_lead=_sn.slice(0,2).join('').trim();_rest=[_sn.slice(2).join('').trim()];}
+}
+var _s=document.getElementById('sdesc');
+if(_s){_s.textContent=_lead;_s.style.display=_lead?'':'none';}
+var _sb=document.getElementById('sdescB');
+if(_sb){
+var _btm=_rest;
+_sb.innerHTML=_btm.map(function(x){
+return '<p>'+x.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</p>';}).join('');
+_sb.style.display=_btm.length?'':'none';
+}
+var base='/'+(CONFIG.baseSlug||'catalog');
+var cr='<a href="/">Главная</a> · ';
+if(state.predmet.length===1){
+cr+='<a href="'+base+'">Каталог</a>';
+var _cp=pageFor(state.predmet[0],'','');
+if((state.color.length||state.model.length)&&_cp)cr+=' · <a href="'+_cp+'">'+state.predmet[0]+'</a>';
+cr+=' · <b>'+titleFor()+'</b>';
+}else if(state.predmet.length>1){
+cr+='<a href="'+base+'">Каталог</a> · <b>'+titleFor()+'</b>';
+}else{
+cr+='<b>Каталог</b>';
+}
+document.getElementById('crumb').innerHTML=cr;
+var list=sortList(PRODUCTS.filter(inState));
+document.getElementById('h1count').textContent='\u00A0'+plural(list.length);
+document.getElementById('found').textContent='';
+var g=document.getElementById('grid'); g.innerHTML='';
+document.getElementById('empty').style.display=list.length?'none':'block';
+list.forEach(function(p){g.appendChild(card(p));});
+bindCards();
+}
+var CART_KEY='hailey_cart_v1';
+function cartLoad(){try{var a=JSON.parse(localStorage.getItem(CART_KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
+function cartSave(){try{localStorage.setItem(CART_KEY,JSON.stringify(cart));}catch(e){}}
+var cart=cartLoad();
+var toast=document.getElementById('toast'),tt;
+function showToast(m){toast.textContent=m;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on');},2400);}
+var cc=document.getElementById('cc'),cartBtn=document.getElementById('cartBtn');
+function badge(){var q=cart.reduce(function(a,i){return a+i.qty;},0);cc.textContent=q;cartBtn.classList.toggle('on',q>0);}
+function prodOf(el){return{id:el.dataset.id,name:el.dataset.name,price:+el.dataset.price,img:el.dataset.img,old:+el.dataset.old||0};}
+function addToCart(p,size){size=size||'';var f=cart.find(function(i){return i.id===p.id&&(i.size||'')===size;});if(f)f.qty++;else cart.push({id:p.id,name:p.name,price:p.price,img:p.img,size:size,qty:1,old:p.old||0});cartSave();badge();renderCart();}
+function savings(){return cart.reduce(function(a,i){return a+((i.old>i.price)?(i.old-i.price)*i.qty:0);},0);}
+function goods(){return cart.reduce(function(a,i){return a+i.price*i.qty;},0);}
+function sizesOf(el){try{return JSON.parse(el.dataset.sizes||'[]');}catch(e){return[];}}
+var FAV_KEY='hailey_fav_v1';
+function favLoad(){try{var a=JSON.parse(localStorage.getItem(FAV_KEY));return Array.isArray(a)?a:[];}catch(e){return[];}}
+function favSave(a){try{localStorage.setItem(FAV_KEY,JSON.stringify(a));}catch(e){}}
+function favHas(id){return favLoad().some(function(i){return i.id===id;});}
+/* Число рядом с сердечком — витринный социальный сигнал, а НЕ реальная статистика:
+считать её нам негде (лайки живут в localStorage браузера покупательницы).
+Берём от артикула, поэтому у товара оно всегда одно и то же и не прыгает при перезагрузке. */
+function favBase(id){
+var n=0,s=String(id||'');
+for(var i=0;i<s.length;i++)n=(n*31+s.charCodeAt(i))>>>0;
+return 28+(n%372);
+}
+function favToggle(c){
+var a=favLoad(),id=c.dataset.id,i=-1;
+a.forEach(function(x,n){if(x.id===id)i=n;});
+if(i>-1)a.splice(i,1);
+else a.push({id:id,name:c.dataset.name,price:+c.dataset.price,old:+c.dataset.old||0,img:c.dataset.img,page:c.dataset.page||''});
+favSave(a);
+return i<0;   // true = добавили
+}
+function bindCards(){
+root.querySelectorAll('[data-add]').forEach(function(b){
+b.onclick=function(){var c=b.closest('.card');openSizePicker(prodOf(c),sizesOf(c),'add');};
+});
+root.querySelectorAll('.fav').forEach(function(f){
+var c=f.closest('.card'), fc=f.querySelector('.fc');
+var base=favBase(c.dataset.id);
+var draw=function(on){f.classList.toggle('on',on);if(fc)fc.textContent=base+(on?1:0);};
+draw(favHas(c.dataset.id));
+f.onclick=function(e){
+e.preventDefault();e.stopPropagation();
+var added=favToggle(c);
+draw(added);
+showToast(added?'Добавлено в избранное':'Убрано из избранного');
+};
+});
+root.querySelectorAll('[data-quick]').forEach(function(b){
+b.onclick=function(){var c=b.closest('.card');openSizePicker(prodOf(c),sizesOf(c),'quick');};
+});
+root.querySelectorAll('.ph').forEach(function(ph){
+var tr=ph.querySelector('.track');if(!tr)return;
+var dots=ph.querySelectorAll('.dots i');
+tr.querySelectorAll('.slide img').forEach(function(im,i){
+im.onerror=function(){var s=im.closest('.slide');if(s&&tr.children.length>1){s.remove();if(dots[i])dots[i].remove();}};
+});
+ph.querySelectorAll('[data-arw]').forEach(function(a){
+a.onclick=function(e){e.preventDefault();e.stopPropagation();
+var n=tr.children.length,w=tr.clientWidth||1;
+var cur=Math.round(tr.scrollLeft/w);
+var next=((cur+(+a.dataset.arw))%n+n)%n;      // по кругу: с последнего кадра — на первый
+tr.scrollTo({left:next*w,behavior:next===0&&cur===n-1?'auto':'smooth'});};
+});
+tr.addEventListener('scroll',function(){
+var i=Math.round(tr.scrollLeft/Math.max(1,tr.clientWidth));
+ph.querySelectorAll('.dots i').forEach(function(d,n){d.classList.toggle('on',n===i);});
+},{passive:true});
+});
+}
+var scrim=document.getElementById('scrim'),drawer=document.getElementById('drawer');
+function openCart(){renderCart();scrim.classList.add('on');drawer.classList.add('on');}
+function closeCart(){scrim.classList.remove('on');drawer.classList.remove('on');}
+cartBtn.addEventListener('click',openCart);
+document.getElementById('closeCart').addEventListener('click',closeCart);
+scrim.addEventListener('click',closeCart);
+document.addEventListener('click',function(e){
+var t=e.target.closest&&e.target.closest('.hc .xsell .xh');
+if(t)t.parentNode.classList.toggle('on');
+});
+function xsellHTML(){
+var inC={};cart.forEach(function(i){inC[i.id]=1;});
+var cat=CONFIG.predmet||'';
+var pool=PRODUCTS.filter(function(p){return !inC[p.id];});
+var rec=pool.filter(function(p){return !cat||p.predmet===cat;});
+if(rec.length<2)rec=pool;
+rec=rec.slice().sort(function(a,b){return ((b.old-b.price)||0)-((a.old-a.price)||0);}).slice(0,2);
+if(!rec.length)return '';
+return '<div class="xsell"><button class="xh" type="button" data-a="xt"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" style="flex:0 0 auto"><path d="M12 5v14M5 12h14"/></svg>Добавьте к заказу<i class="xc"></i></button><div class="xb">'
++rec.map(function(p){return '<div class="xrow"><div class="xi" style="background-image:url('+p.img+')"></div>'
++'<div class="xn">'+p.name+'<b class="mono">'+rub(p.price)+'</b></div>'
++'<button class="xadd" data-xid="'+p.id+'" aria-label="Добавить">+</button></div>';}).join('')
++'</div></div>';
+}
+function shipRender(){
+var w=document.getElementById('shipWrap');if(!w)return;
+if(!cart.length){w.style.display='none';return;}
+w.style.display='block';var g=goods(),r=SHIP_FREE-g;
+var truck='<svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.5"/><circle cx="17.5" cy="18" r="1.5"/></svg>';
+var chk='<svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
+if(r<=0){w.className='ship done';w.innerHTML='<div class="sl">'+chk+'<span><b>Бесплатная доставка</b> — ваш заказ проходит</span></div><div class="bar"><i style="width:100%"></i></div>';}
+else{w.className='ship';var pct=Math.max(4,Math.min(100,Math.round(g/SHIP_FREE*100)));w.innerHTML='<div class="sl">'+truck+'<span>До <b>бесплатной доставки</b> — '+rub(r)+'</span></div><div class="bar"><i style="width:'+pct+'%"></i></div>';}
+}
+function renderCart(){
+var body=document.getElementById('cartBody'),foot=document.getElementById('cartFoot');
+if(!cart.length){body.innerHTML='<div class="empty">Корзина пока пуста.<br>Добавьте понравившийся товар.</div>';foot.style.display='none';shipRender();return;}
+foot.style.display='block';
+body.innerHTML=cart.map(function(i,idx){
+return '<div class="citem"><div class="cimg" style="background-image:url('+i.img+');background-size:cover;background-position:center"></div><div class="ci"><div class="cn">'+i.name+(i.size?' · размер '+i.size:'')+'</div>'
++'<div class="qty"><button data-a="dec" data-i="'+idx+'">−</button><span>'+i.qty+'</span><button data-a="inc" data-i="'+idx+'">+</button></div>'
++'<div class="cp mono">'+rub(i.price*i.qty)+'</div></div><button class="rm" data-a="rm" data-i="'+idx+'">Удалить</button></div>';
+}).join('')+xsellHTML();
+var g=goods(),sv=savings();
+var _cc=document.getElementById('cartCnt');
+if(_cc){var _n=cart.reduce(function(s,i){return s+i.qty;},0);
+var _w=function(n){var t=n%100;if(t>=11&&t<=14)return 'товаров';t=n%10;return t===1?'товар':(t>=2&&t<=4?'товара':'товаров');};
+_cc.textContent=_n?(' · '+_n+' '+_w(_n)):'';}
+document.getElementById('sumGoods').textContent=rub(g);
+document.getElementById('sumTotal').textContent=rub(g);
+var sr=document.getElementById('saveRow');if(sr){sr.style.display=sv>0?'flex':'none';var ss=document.getElementById('sumSave');if(ss)ss.textContent='−'+rub(sv);}
+var sh=document.getElementById('sumShip');if(sh)sh.textContent=g>=SHIP_FREE?'Бесплатно':'по РФ, от 2 дней';
+shipRender();
+}
+document.getElementById('cartBody').addEventListener('click',function(e){
+var xa=e.target.closest('.xadd');
+if(xa){var pid=xa.dataset.xid,p=PRODUCTS.find(function(x){return x.id===pid;});if(p)openSizePicker({id:p.id,name:p.name,price:p.price,img:p.img,old:p.old||0},p.sizes||[],'add');return;}
+var b=e.target.closest('[data-a]');if(!b)return;var i=+b.dataset.i,a=b.dataset.a;
+if(a==='inc')cart[i].qty++;else if(a==='dec'){cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);}else if(a==='rm')cart.splice(i,1);
+cartSave();badge();renderCart();
+});
+window.addEventListener('storage',function(e){if(e.key===CART_KEY){cart=cartLoad();badge();if(drawer.classList.contains('on'))renderCart();}});
+badge();
+var modal=document.getElementById('modal'),sheet=document.getElementById('sheet');
+document.getElementById('modalBg').addEventListener('click',closeModal);
+function openModal(html){sheet.innerHTML=html;modal.classList.add('on');}
+function closeModal(){modal.classList.remove('on');sheet.classList.remove('wide');}
+var SIZETABLE=[[42,'66–69','92–95','76 см'],[44,'70–73','96–99','76 см'],[46,'74–77','100–103','76 см'],[48,'78–81','104–107','77 см'],[50,'82–85','108–111','77 см'],[52,'86–89','112–115','77 см'],[54,'90–94','116–120','78 см'],[56,'95–99','121–125','78 см'],[58,'100–104','126–130','78 см'],[60,'105–109','131–135','78 см'],[62,'110–115','136–140','79 см'],[64,'116–121','141–146','79 см'],[66,'122–128','147–152','79 см'],[68,'129–135','153–158','79 см'],[70,'136–142','159–164','80 см'],[72,'143–149','165–170','80 см'],[74,'150–156','171–176','80 см']];
+var szProd=null,szMode='add',szSel=null;
+function sizePickerHTML(p,sizes,mode){
+var btns=(sizes||[]).map(function(s){return '<button class="szbtn" data-sz="'+s+'">'+s+'</button>';}).join('');
+var rows=SIZETABLE.map(function(r){return '<tr data-row="'+r[0]+'"><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>';}).join('');
+return '<div class="sh"><b>Выберите размер</b><button class="x" data-close>✕</button></div>'
++'<div class="szpick"><div class="szcol">'
++'<div class="szprod">'+p.name+' · <b class="mono" style="color:var(--ink)">'+rub(p.price)+'</b></div>'
++'<div class="szlabel">Размер</div><div class="szgrid">'+btns+'</div>'
++'<div class="szhint">Между размерами — <b>берите больший</b>. Талия и бёдра в разных размерах — ориентируйтесь на бёдра. <a href="/kak-vybrat-razmer" style="color:var(--accent);text-decoration:underline">Не уверены? Калькулятор размера →</a></div>'
++'<button class="btn szadd" id="szAdd" disabled>'+(mode==='quick'?'Оформить заказ':'В корзину')+'</button>'
++'</div><div class="szcol"><div class="szlabel">Таблица размеров</div>'
++'<div class="sztblwrap"><table class="sztbl"><thead><tr><th>Размер</th><th>Талия</th><th>Бёдра</th><th>Длина шва</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
++'<div class="szmeasure"><b>Как снять мерки:</b> талия — по самому узкому месту, бёдра — по самым выступающим точкам, сантиметром параллельно полу.</div>'
++'</div></div>';
+}
+function openSizePicker(p,sizes,mode){szProd=p;szMode=mode;szSel=null;sheet.classList.add('wide');openModal(sizePickerHTML(p,sizes,mode));}
+function nativeForm(){var fs=document.querySelectorAll('.js-form-proccess');for(var i=0;i<fs.length;i++){if(fs[i].querySelector('[name="Phone"]'))return fs[i];}return fs[0]||null;}
+function orderText(){var lines=cart.map(function(i){return '• '+i.name+(i.size?' (размер '+i.size+')':'')+' × '+i.qty+' = '+rub(i.price*i.qty);});lines.push('———');lines.push('ИТОГО: '+rub(goods()));return 'Заказ HAILEY (каталог '+(CONFIG.predmet||'')+')\n'+lines.join('\n');}
+function checkoutHTML(){
+var mini=cart.map(function(i){return i.name+' ×'+i.qty;}).join(' · ');
+return '<div class="sh"><b>Оформление заказа</b><button class="x" data-close>✕</button></div><div class="sbody">'
++'<div class="miniprod">'+mini+' — <b class="mono" style="color:var(--ink)">'+rub(goods())+'</b></div>'
++'<div class="field"><label>Имя</label><input id="f_name" placeholder="Как к вам обращаться" autocomplete="name"></div>'
++'<div class="field"><label>Телефон</label><input id="f_phone" type="tel" inputmode="tel" placeholder="+7 900 000-00-00" autocomplete="tel"></div>'
++'<div id="f_err" style="display:none;color:#b4442f;font-size:13px;margin:-4px 0 12px"></div>'
++'<button class="btn" id="doOrder">Оформить заказ · '+rub(goods())+'</button>'
++'<div class="note" style="margin-top:12px">Менеджер перезвонит, подтвердит размер и наличие, оформит доставку.<br>Оплата картой онлайн или СБП · возврат 14 дней.</div></div>';
+}
+/* На страницах каталога блока «Форма» Tilda нет, а быстрый заказ отправлялся через неё —
+покупатель упирался в «Форма недоступна» и уходил. Ведём его на /checkout: там и форма,
+и оплата картой или по СБП. Товар уже в корзине, размер выбран. */
+function openCheckout(){if(!cart.length){showToast('Корзина пуста');return;}
+if(!nativeForm()){location.href='/checkout';return;}
+openModal(checkoutHTML());setTimeout(function(){var n=document.getElementById('f_name');if(n)n.focus();},60);}
+function submitOrder(){
+var name=(document.getElementById('f_name').value||'').trim();
+var phone=(document.getElementById('f_phone').value||'').trim();
+var err=document.getElementById('f_err');
+function fail(msg,id){err.textContent=msg;err.style.display='block';var el=document.getElementById(id);if(el){el.style.borderColor='#b4442f';el.focus();}return false;}
+if(name.length<2)return fail('Впишите, пожалуйста, имя','f_name');
+if(phone.replace(/\D/g,'').length<6)return fail('Впишите корректный телефон','f_phone');
+var f=nativeForm();if(!f){showToast('Форма недоступна — обновите страницу');return;}
+function set(nm,val){var el=f.querySelector('[name="'+nm+'"]');if(el){el.value=val;el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));el.dispatchEvent(new Event('blur',{bubbles:true}));}}
+var orderField=f.querySelector('[name="zakaz"]')?'zakaz':'form-spec-comments';
+set(orderField,orderText());set('Name',name);set('Phone',phone);
+var em=f.querySelector('[name="Email"]');if(em&&!em.value)set('Email','order+'+phone.replace(/\D/g,'')+'@hailey.site');
+var btn=f.querySelector('.t-submit, .t-form__submit button, button[type=submit]');
+closeModal();
+if(btn)btn.click();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+cart=[];cartSave();badge();renderCart();
+}
+document.getElementById('toCheckout').addEventListener('click',function(){if(!cart.length)return;location.href='/checkout';});
+document.getElementById('toTg').addEventListener('click',function(){if(!cart.length){showToast('Корзина пуста');return;}
+var txt=orderText();
+try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt);}catch(e){}
+showToast('Заказ скопирован — вставьте в чат Telegram');
+window.open('https://t.me/'+TG,'_blank','noopener');});
+sheet.addEventListener('click',function(e){
+if(e.target.closest('[data-close]'))return closeModal();
+if(e.target.id==='doOrder')return submitOrder();
+var szb=e.target.closest('.szbtn');
+if(szb){[].forEach.call(sheet.querySelectorAll('.szbtn'),function(x){x.classList.remove('sel');});szb.classList.add('sel');szSel=szb.dataset.sz;
+[].forEach.call(sheet.querySelectorAll('.sztbl tbody tr'),function(tr){tr.classList.toggle('hl',tr.dataset.row===szSel);});
+var a=document.getElementById('szAdd');if(a)a.disabled=false;return;}
+if(e.target.id==='szAdd'){if(!szSel||!szProd)return;
+/* «Купить в 1 клик» — ровно одна вещь и сразу оплата. В корзину НЕ кладём: повторное
+нажатие копило товар, и человек уходил платить за две пары вместо одной. Позиция
+едет отдельным ключом, собранная корзина остаётся нетронутой. */
+if(szMode==='quick'){
+var one=[{id:szProd.id,name:szProd.name,price:szProd.price,old:szProd.old||0,img:szProd.img,size:szSel,qty:1}];
+try{localStorage.setItem('hailey_buynow_v1',JSON.stringify(one));}catch(e){}
+closeModal();location.href='/checkout?quick=1';return;}
+addToCart(szProd,szSel);closeModal();openCart();showToast('Добавлено · размер '+szSel);return;}
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeCart();}});
+window.addEventListener('popstate',function(){state=readURL();var _q=document.getElementById('fQ');if(_q)_q.value=state.q||'';render();}); // кнопка «назад/вперёд»
+(function(){var fQ=document.getElementById('fQ');if(!fQ)return;fQ.value=state.q||'';var t;fQ.addEventListener('input',function(){state.q=fQ.value.trim();clearTimeout(t);t=setTimeout(function(){writeURL(false);render();},120);});})();
+(function(){
+var pan=document.getElementById('fPanel'),ovl=document.getElementById('fOvl'),body=document.getElementById('facets');
+if(!pan)return;
+function open(on){
+pan.classList.toggle('on',on);ovl.classList.toggle('on',on);
+document.body.style.overflow=on?'hidden':'';
+}
+document.getElementById('fOpen').addEventListener('click',function(){open(true);});
+var srt=document.getElementById('fSort');
+if(srt)srt.addEventListener('change',function(){state.sort=srt.value;writeURL(true);render();});
+document.getElementById('fClose').addEventListener('click',function(){open(false);});
+document.getElementById('fApply').addEventListener('click',function(){open(false);});
+ovl.addEventListener('click',function(){open(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')open(false);});
+document.getElementById('fReset').addEventListener('click',function(){
+state.predmet=[];state.color=[];state.model=[];state.badge=[];state.q='';
+var q=document.getElementById('fQ');if(q)q.value='';
+writeURL(true);render();
+});
+body.addEventListener('click',function(e){
+var t=e.target.closest('[data-toggle]');
+if(t){var k=t.dataset.toggle;openAcc[k]=!openAcc[k];t.parentNode.classList.toggle('open',!!openAcc[k]);return;}
+});
+body.addEventListener('change',function(e){
+var ch=e.target.closest('input[data-f]');if(!ch)return;
+var f=ch.dataset.f,v=ch.value,i=state[f].indexOf(v);
+if(ch.checked){if(i<0)state[f].push(v);}else if(i>-1)state[f].splice(i,1);
+if(f==='predmet'){state.color=[];state.model=[];}
+writeURL(true);render();
+});
+})();
+render();badge();renderSubcats();
+try{(function(){
+if(CONFIG.hideCrumb)return; // не на секции «Хиты» главной
+var base=location.origin;
+var cat=PRODUCTS.filter(function(p){
+if(CONFIG.predmet&&p.predmet!==CONFIG.predmet)return false;
+if(CONFIG.color&&(p.color||[]).indexOf(CONFIG.color)<0)return false;
+if(CONFIG.model&&(p.model||[]).indexOf(CONFIG.model)<0)return false;
+if(CONFIG.sezon&&p.sezon!==CONFIG.sezon)return false;
+if(CONFIG.posadka&&p.posadka!==CONFIG.posadka)return false;
+if(CONFIG.badge&&(p.badges||[]).indexOf(CONFIG.badge)<0)return false;
+return true;
+}).slice(0,30);
+if(!cat.length)return;
+var items=cat.map(function(p,i){
+var u=p.page?(base+(String(p.page).charAt(0)==='/'?'':'/')+p.page):(p.url||base+'/');
+var pr={"@type":"Product","name":p.name,"image":p.img,"url":u,"offers":{"@type":"Offer","price":String(p.price),"priceCurrency":"RUB","availability":"https://schema.org/InStock"}};
+if(p.rating)pr.aggregateRating={"@type":"AggregateRating","ratingValue":String(p.rating).replace(',','.'),"reviewCount":String(p.rev||1)};
+return {"@type":"ListItem","position":i+1,"item":pr};
+});
+var ld=[{"@context":"https://schema.org","@type":"ItemList","itemListElement":items}];
+var cr=[{"@type":"ListItem","position":1,"name":"Главная","item":base+"/"},{"@type":"ListItem","position":2,"name":"Каталог","item":base+"/"+(CONFIG.baseSlug||"catalog")}];
+if(CONFIG.predmet||CONFIG.color||CONFIG.model)cr.push({"@type":"ListItem","position":3,"name":(CONFIG.h1||CONFIG.predmet||"Категория"),"item":base+location.pathname});
+ld.push({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":cr});
+var s=document.createElement('script');s.type='application/ld+json';s.text=JSON.stringify(ld);document.head.appendChild(s);
+})();}catch(e){}
+if(CONFIG.hideFilters){var _fl=document.querySelector('.hc .filters');if(_fl)_fl.style.display='none';}
+if(CONFIG.hideCrumb){var _cr=document.getElementById('crumb');if(_cr)_cr.style.display='none';}
+if(CONFIG.hideFound){var _fn=document.getElementById('found');if(_fn)_fn.style.display='none';
+var _hc=document.getElementById('h1count');if(_hc)_hc.style.display='none';}
+if(CONFIG.hitsLink){var _sh=document.querySelector('.hc .shead');if(_sh){var _a=document.createElement('a');_a.href=CONFIG.hitsLink;_a.className='hitslink';_a.textContent='Все хиты →';_sh.appendChild(_a);}}
+})();
+</script>
