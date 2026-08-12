@@ -653,7 +653,11 @@ else hpBuyBtnInit();
   var BOT='https://t.me/Hailey_promo_bot';
   var SUBS='https://hailey-looks.ru/pay/subscribe';
   var TILDA='https://forms.tildacdn.com/procces/';
-  var TILDA_FORM='form2724802001', TILDA_SVC='8440afe0dfcf70373fdd19392ad1e851';
+  /* Форма подписки form2724802001 заявки не принимает — сервер Tilda на неё не отвечает,
+     и подписки не доходили до раздела «Заявки». Шлём в ту же форму, что принимает заказы.
+     Имя — без цифр: Tilda отбивает «Промокод −10%» как некорректное имя. Почта идёт
+     в поле «Телефон», своего поля для почты у этой формы нет. */
+  var TILDA_FORM='form2545682501', TILDA_SVC='8440afe0dfcf70373fdd19392ad1e851';
   var em=document.getElementById('hhPmEmail'), ag=document.getElementById('hhPmOk');
   var err=document.getElementById('hhPmErr'), go=document.getElementById('hhPmGo');
   var manual=document.getElementById('hhPmManual');
@@ -698,10 +702,9 @@ else hpBuyBtnInit();
     var f=new URLSearchParams();
     f.append('formid',TILDA_FORM);
     f.append('formservices[]',TILDA_SVC);
-    f.append('Email',mail);
-    f.append('Name','Подписка на рассылку');
-    f.append('Comments','Промокод '+CODE+' · страница '+location.pathname);
-    f.append('tildaspec-formname','Подписка −10%');
+    f.append('Name','Заявка на промокод');
+    f.append('Phone',mail);
+    f.append('zakaz','Промокод на первый заказ · почта: '+mail+' · страница '+location.pathname);
     send(TILDA, f.toString(), 'application/x-www-form-urlencoded;charset=UTF-8');
 
     try{localStorage.setItem(KEY,CODE);}catch(e){}   // код сразу подставится в корзине
@@ -742,10 +745,9 @@ else hpBuyBtnInit();
       var f2=new URLSearchParams();
       f2.append('formid',TILDA_FORM);
       f2.append('formservices[]',TILDA_SVC);
-      f2.append('Email',mail);
-      f2.append('Name','Подписка на рассылку');
-      f2.append('Comments','Промокод '+CODE+' · страница '+location.pathname);
-      f2.append('tildaspec-formname','Подписка −10%');
+      f2.append('Name','Заявка на промокод');
+      f2.append('Phone',mail);
+      f2.append('zakaz','Промокод на первый заказ · почта: '+mail+' · страница '+location.pathname);
       send(TILDA, f2.toString(), 'application/x-www-form-urlencoded;charset=UTF-8');
       try{localStorage.setItem(KEY,CODE);}catch(err){}
     });
