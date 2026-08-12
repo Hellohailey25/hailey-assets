@@ -34,7 +34,9 @@
       <a href="https://t.me/hailey_mgr" target="_blank" rel="noopener">Telegram @hailey_mgr</a>
       <a href="https://www.instagram.com/hailey.looks/" target="_blank" rel="noopener">Instagram @hailey.looks</a>
       <a href="https://www.wildberries.ru/brands/312311690-hello-hailey" target="_blank" rel="noopener">Магазин на Wildberries</a>
-      <p>Оставьте заявку — менеджер перезвонит. Пн–Вс, 10:00–20:00.</p></div>
+      <!-- Формы заявки в подвале нет, поэтому и не зовём её оставить: обещание без кнопки
+           только раздражает. Зовём туда, где ответят на самом деле. -->
+      <p>Позвоните или напишите в Telegram — менеджер ответит. Пн–Вс, 10:00–20:00.</p></div>
     <div><h4>Покупателю</h4>
       <a href="/catalog">Каталог</a>
       <a href="/dostavka-i-oplata">Доставка и оплата</a>
