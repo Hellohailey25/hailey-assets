@@ -474,6 +474,15 @@ function hpReviewsInit(){
       list=withPhoto.concat(textOnly).slice(0,Math.max(MIN_SHOW,withPhoto.length));
     }
 
+    /* WB отдаёт фото отзыва только в оригинале (~135 КБ), а в ленте оно занимает 52 пикселя —
+       тринадцать таких весили почти два мегабайта. Берём миниатюру со своего сервера
+       (её кладёт scripts/rev_thumbs.py), оригинал остаётся для просмотра по клику.
+       Если миниатюры ещё нет — onerror вернёт оригинал, лента не сломается. */
+    function thumb(u){
+      var m=/\/([0-9a-f-]{36})\//.exec(u);
+      return m?'https://hailey-looks.ru/photos/rev/'+m[1]+'.webp':u;
+    }
+
     /* Рейтинг, число отзывов и aggregateRating НЕ трогаем: они приходят из таблицы
        «Номенклатура сайта» через генератор карточек — это единый источник цифр
        для каталога и карточки. Скрипт отвечает только за саму ленту отзывов. */
@@ -490,7 +499,10 @@ function hpReviewsInit(){
            (r.text?'<p>'+esc(r.text)+'</p>':'');
         if((r.photos||[]).length){
           h+='<div class="rph">';
-          r.photos.slice(0,4).forEach(function(p){h+='<img loading="lazy" src="'+p+'" alt="Фото из отзыва">';});
+          r.photos.slice(0,4).forEach(function(p){
+            h+='<img loading="lazy" src="'+thumb(p)+'" data-full="'+p+'"'+
+               ' onerror="this.onerror=null;this.src=this.dataset.full" alt="Фото из отзыва">';
+          });
           h+='</div>';
         }
         h+='</div>';
@@ -538,7 +550,8 @@ function hpReviewsInit(){
     document.querySelector('.hp').appendChild(lb);
     box.addEventListener('click',function(e){
       var i=e.target.closest('.rph img'); if(!i)return;
-      lb.querySelector('img').src=i.src; lb.classList.add('on');
+      lb.querySelector('img').src=i.dataset.full||i.src;   // в ленте миниатюра, крупно — оригинал
+      lb.classList.add('on');
     });
     lb.addEventListener('click',function(){lb.classList.remove('on');});
     document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
