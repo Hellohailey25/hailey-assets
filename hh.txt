@@ -767,4 +767,50 @@ else hpBuyBtnInit();
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireInlinePromo);
   else wireInlinePromo();
 })();
-</script> <script>!function(){var e="hailey_last_order";function t(e,t){try{window.ym&&ym(111076798,"reachGoal",e,t||void 0)}catch(e){}}function n(e){try{return JSON.parse(localStorage.getItem(e)||"null")}catch(e){return null}}function i(){var e=n("hailey_cart_v1");return e&&e.length?e:[]}function a(e){return e.reduce(function(e,t){return e+(+t.price||0)*(+t.qty||1)},0)}function r(e){return e.map(function(e){return{id:String(e.id||""),name:e.name||"",price:+e.price||0,quantity:+e.qty||1,variant:e.size||""}})}function o(e,t,n){var i={products:r(t)};if(n)for(var a in n)i[a]=n[a];var o={};o[e]=i;try{dataLayer.push({ecommerce:o})}catch(e){}}function c(){var r;!function(){var r=location.pathname,c=location.search;if(c.indexOf("paid=")>-1){var s=n(e)||{items:[],id:""};t("PURCHASE_PAID",{order:s.id||"",sum:a(s.items)}),o("purchase",s.items,{actionField:{id:s.id||"HL",revenue:a(s.items)}});try{localStorage.removeItem(e)}catch(e){}}else if(c.indexOf("failed=1")>-1)t("PAY_FAIL");else if(0===r.indexOf("/checkout")){var l=i();t("CHECKOUT_START",{positions:l.length,sum:a(l)}),l.length&&o("checkout",l)}}(),document.addEventListener("click",function(n){var r=n.target;if(r&&r.closest)if(r.closest("#addBtn")||r.closest("#szAdd")){var c=JSON.stringify(i());setTimeout(function(){var e=i();if(e.length&&JSON.stringify(e)!==c){var n=JSON.parse(c),a=e[e.length-1];if(e.length===n.length)for(var r=0;r<e.length;r++)if(!n[r]||(+e[r].qty||1)>(+n[r].qty||1)){a=e[r];break}t("ADD_TO_CART",{id:String(a.id||""),name:a.name||"",price:+a.price||0,size:a.size||""}),o("add",[a])}},150)}else if(r.closest("#quickBtn"))t("BUY_1CLICK",{sum:a(i())});else if(r.closest("#doOrder")||r.closest("#doOrderM")){var s=document.getElementById("f_name"),l=document.getElementById("f_phone"),d=s&&(s.value||"").trim().length>=2,u=l&&(l.value||"").replace(/\D/g,"").length>=11;if(!d||!u)return;var f=i(),m="HL-"+String((new Date).getTime()).slice(-6);try{localStorage.setItem(e,JSON.stringify({id:m,items:f,ts:Date.now()}))}catch(e){}t("ORDER_SUBMIT",{positions:f.length,sum:a(f)})}else r.closest("#promoBtn")?t("PROMO_TG"):r.closest("#toTg")?t("TG_ORDER"):r.closest("[data-size-guide], .sizelink, #sizeBtn")?t("SIZE_GUIDE"):r.closest(".fav, .hc-fav, [data-fav]")&&t("FAV_ADD")},!0),r=!1,setInterval(function(){var e=document.getElementById("hcoOk");e&&!r&&("block"!==e.style.display&&null===e.offsetParent||(r=!0,t("ORDER_DONE_NOPAY")))},1e3)}window.dataLayer=window.dataLayer||[],"loading"===document.readyState?document.addEventListener("DOMContentLoaded",c):c()}();</script> 
+</script>
+<script>
+/* Карточки каталога несут по четыре кадра для свайпа, и браузер тянул их все сразу:
+   на странице категории это три мегабайта, хотя видно только первый кадр каждого товара.
+   Прячем остальные за прозрачную заглушку тех же пропорций (вёрстка не съезжает)
+   и возвращаем, как только человек коснулся карточки или навёл на неё мышь.
+   Карточку товара (.hp) не трогаем — там своя лента со своей логикой. */
+(function(){
+  var BLANK='data:image/svg+xml;base64,'+btoa('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"></svg>');
+  function hold(){
+    var cards=document.querySelectorAll('.card');
+    for(var k=0;k<cards.length;k++){
+      (function(c){
+        if(c.closest('.hp')||c.dataset.hheld)return;
+        var im=c.querySelectorAll('img');
+        if(im.length<2)return;
+        c.dataset.hheld='1';
+        for(var i=1;i<im.length;i++){
+          var src=im[i].getAttribute('src');
+          if(!src||src.indexOf('data:')===0)continue;
+          im[i].dataset.src=src;
+          im[i].setAttribute('src',BLANK);
+        }
+        var wake=function(){
+          var wait=c.querySelectorAll('img[data-src]');
+          for(var j=0;j<wait.length;j++){
+            wait[j].setAttribute('src',wait[j].dataset.src);
+            delete wait[j].dataset.src;
+          }
+          c.removeEventListener('touchstart',wake);
+          c.removeEventListener('mouseenter',wake);
+          c.removeEventListener('pointerdown',wake);
+        };
+        c.addEventListener('touchstart',wake,{passive:true});
+        c.addEventListener('mouseenter',wake);
+        c.addEventListener('pointerdown',wake);
+      })(cards[k]);
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hold);
+  else hold();
+  // витрина досыпает карточки фильтрами и подгрузкой — придерживаем и новые
+  setTimeout(hold,1200); setTimeout(hold,3000);
+  document.addEventListener('click',function(){setTimeout(hold,300);},true);
+})();
+</script>
+ <script>!function(){var e="hailey_last_order";function t(e,t){try{window.ym&&ym(111076798,"reachGoal",e,t||void 0)}catch(e){}}function n(e){try{return JSON.parse(localStorage.getItem(e)||"null")}catch(e){return null}}function i(){var e=n("hailey_cart_v1");return e&&e.length?e:[]}function a(e){return e.reduce(function(e,t){return e+(+t.price||0)*(+t.qty||1)},0)}function r(e){return e.map(function(e){return{id:String(e.id||""),name:e.name||"",price:+e.price||0,quantity:+e.qty||1,variant:e.size||""}})}function o(e,t,n){var i={products:r(t)};if(n)for(var a in n)i[a]=n[a];var o={};o[e]=i;try{dataLayer.push({ecommerce:o})}catch(e){}}function c(){var r;!function(){var r=location.pathname,c=location.search;if(c.indexOf("paid=")>-1){var s=n(e)||{items:[],id:""};t("PURCHASE_PAID",{order:s.id||"",sum:a(s.items)}),o("purchase",s.items,{actionField:{id:s.id||"HL",revenue:a(s.items)}});try{localStorage.removeItem(e)}catch(e){}}else if(c.indexOf("failed=1")>-1)t("PAY_FAIL");else if(0===r.indexOf("/checkout")){var l=i();t("CHECKOUT_START",{positions:l.length,sum:a(l)}),l.length&&o("checkout",l)}}(),document.addEventListener("click",function(n){var r=n.target;if(r&&r.closest)if(r.closest("#addBtn")||r.closest("#szAdd")){var c=JSON.stringify(i());setTimeout(function(){var e=i();if(e.length&&JSON.stringify(e)!==c){var n=JSON.parse(c),a=e[e.length-1];if(e.length===n.length)for(var r=0;r<e.length;r++)if(!n[r]||(+e[r].qty||1)>(+n[r].qty||1)){a=e[r];break}t("ADD_TO_CART",{id:String(a.id||""),name:a.name||"",price:+a.price||0,size:a.size||""}),o("add",[a])}},150)}else if(r.closest("#quickBtn"))t("BUY_1CLICK",{sum:a(i())});else if(r.closest("#doOrder")||r.closest("#doOrderM")){var s=document.getElementById("f_name"),l=document.getElementById("f_phone"),d=s&&(s.value||"").trim().length>=2,u=l&&(l.value||"").replace(/\D/g,"").length>=11;if(!d||!u)return;var f=i(),m="HL-"+String((new Date).getTime()).slice(-6);try{localStorage.setItem(e,JSON.stringify({id:m,items:f,ts:Date.now()}))}catch(e){}t("ORDER_SUBMIT",{positions:f.length,sum:a(f)})}else r.closest("#promoBtn")?t("PROMO_TG"):r.closest("#toTg")?t("TG_ORDER"):r.closest("[data-size-guide], .sizelink, #sizeBtn")?t("SIZE_GUIDE"):r.closest(".fav, .hc-fav, [data-fav]")&&t("FAV_ADD")},!0),r=!1,setInterval(function(){var e=document.getElementById("hcoOk");e&&!r&&("block"!==e.style.display&&null===e.offsetParent||(r=!0,t("ORDER_DONE_NOPAY")))},1e3)}window.dataLayer=window.dataLayer||[],"loading"===document.readyState?document.addEventListener("DOMContentLoaded",c):c()}();</script> 
