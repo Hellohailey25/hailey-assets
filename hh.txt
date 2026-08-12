@@ -671,10 +671,18 @@ else hpBuyBtnInit();
   document.addEventListener('keydown',function(e){if(e.key==='Escape')shut();});
 
   function send(url,body,type){
-    try{
-      if(navigator.sendBeacon&&navigator.sendBeacon(url,new Blob([body],{type:type})))return;
-    }catch(e){}
-    // запасной путь: keepalive доносит запрос, даже если вкладка уже уходит на Telegram
+    /* ГРАБЛИ: sendBeacon с типом application/json браузер отправить не может — такому
+       запросу нужен предварительный CORS-запрос, а beacon его не делает. При этом
+       sendBeacon возвращает true, поэтому код считал письмо отправленным и уходил.
+       Так молча терялись ВСЕ подписки на промокод. Для json — только fetch с keepalive
+       (он доносит запрос, даже когда вкладка уходит в Telegram); beacon оставляем формам
+       Tilda, у них тип form-urlencoded и предварительный запрос не нужен. */
+    var json = /json/i.test(type);
+    if(!json){
+      try{
+        if(navigator.sendBeacon&&navigator.sendBeacon(url,new Blob([body],{type:type})))return;
+      }catch(e){}
+    }
     try{fetch(url,{method:'POST',headers:{'Content-Type':type},body:body,keepalive:true});}catch(e){}
   }
   function fail(msg,el){err.textContent=msg;err.style.display='block';if(el){el.classList.add('err');el.focus();}}
