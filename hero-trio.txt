@@ -38,7 +38,8 @@
     transition:transform .45s cubic-bezier(.22,.61,.36,1);will-change:transform}
   .hxD .st::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:0;
     transition:opacity .35s;pointer-events:none}
-  .hxD .st:hover::after,.hxD .st:focus-visible::after{opacity:.06}
+  @media(hover:hover) and (pointer:fine){.hxD .st:hover::after{opacity:.06}}
+  .hxD .st:focus-visible::after{opacity:.06}
   .hxD .st:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
   /* стрелка появляется у подписи — видно, что это ссылка */
   .hxD .cap i{font-style:normal;display:inline-block;margin-left:8px;opacity:0;transform:translateX(-6px);
@@ -47,12 +48,16 @@
   @media(hover:none){.hxD .cap i{opacity:1;transform:none}}   /* на тапе анимации нет — стрелку показываем сразу */
   @media(prefers-reduced-motion:reduce){.hxD .st img{transition:none}}
   /* выравнивание по фигуре — своё на каждый кадр */
-  .hxD .s1:hover img,.hxD .s1:focus-visible img{transform:translateX(-49.19%) scale(1.045)}
   .hxD .s1 img{height:105.7%;top:-4.72%;transform:translateX(-49.19%)}
-  .hxD .s2:hover img,.hxD .s2:focus-visible img{transform:translateX(-50.63%) scale(1.045)}
   .hxD .s2 img{height:113.8%;top:-6.20%;transform:translateX(-50.63%)}
-  .hxD .s3:hover img,.hxD .s3:focus-visible img{transform:translateX(-62.18%) scale(1.045)}
   .hxD .s3 img{height:114.7%;top:-0.63%;transform:translateX(-62.18%)}
+  /* Приближение — только там, где есть настоящая мышь. На телефоне палец при листании
+     считается наведением: кадр дёргался туда-обратно, и первый экран выглядел сломанным. */
+  @media(hover:hover) and (pointer:fine){
+    .hxD .s1:hover img,.hxD .s1:focus-visible img{transform:translateX(-49.19%) scale(1.045)}
+    .hxD .s2:hover img,.hxD .s2:focus-visible img{transform:translateX(-50.63%) scale(1.045)}
+    .hxD .s3:hover img,.hxD .s3:focus-visible img{transform:translateX(-62.18%) scale(1.045)}
+  }
   .hxD .cap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:14px 16px;
     font-size:clamp(9px,1vw,12px);letter-spacing:.2em;text-transform:uppercase;color:#fff;
     background:linear-gradient(transparent,rgba(0,0,0,.5))}
