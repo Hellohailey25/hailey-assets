@@ -239,6 +239,22 @@
   var truck='<svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.5"/><circle cx="17.5" cy="18" r="1.5"/></svg>';
   var chk='<svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
 
+  /* Быстрая покупка: человек пришёл с кнопки «В 1 клик», ему обещали один шаг.
+     Оставляем телефон и способ оплаты, остальное уточнит менеджер при звонке.
+     Кассовый чек по 54-ФЗ уйдёт сообщением на тот же телефон. */
+  if(QUICK){
+    var hide=function(el){if(el)el.style.display='none';};
+    hide($('f_name')&&$('f_name').closest('.f'));
+    hide($('f_email')&&$('f_email').closest('.f'));
+    hide($('dlv')&&$('dlv').closest('.sec'));
+    hide($('cmtToggle')); hide($('cmtBox'));
+    var pay=$('pay')&&$('pay').closest('.sec');
+    if(pay){var n=pay.querySelector('.lbl i');if(n)n.textContent='2';}
+    var h=document.querySelector('.hint');
+    if(h)h.textContent='Одно поле — и всё. Телефон для чека и подтверждения, дальше оплата картой или через СБП. Размер и доставку менеджер уточнит звонком.';
+    var ph=$('f_phone');if(ph)setTimeout(function(){try{ph.focus();}catch(e){}},300);
+  }
+
   function render(){
     if(!cart.length){$('hcoMain').style.display='none';$('mbar').style.display='none';$('hcoEmpty').style.display='block';return;}
     $('items').innerHTML=cart.map(function(i,x){
@@ -359,10 +375,16 @@
     var name=($('f_name').value||'').trim(), phone=($('f_phone').value||'').trim();
     var email=($('f_email').value||'').trim();
     $('err1').style.display='none';['f_name','f_phone','f_email'].forEach(function(i){$(i).classList.remove('err');});
-    if(name.length<2)return fail('Впишите, пожалуйста, имя','f_name');
     if(phone.replace(/\D/g,'').length<11)return fail('Впишите телефон полностью','f_phone');
-    // Почта обязательна: по 54-ФЗ кассовый чек должен уйти покупателю, а касса отправляет его письмом
-    if(!/^[^@\s]+@[^@\s.]+\.[a-zа-я]{2,}$/i.test(email))return fail('Впишите почту — на неё придёт кассовый чек','f_email');
+    if(QUICK){
+      // Быстрая покупка: спрашиваем только телефон. Кассовый чек по 54-ФЗ уйдёт на него
+      // сообщением — почта для чека не нужна, имя уточнит менеджер при звонке.
+      if(!name)name='Быстрый заказ';
+    }else{
+      if(name.length<2)return fail('Впишите, пожалуйста, имя','f_name');
+      // Почта обязательна: по 54-ФЗ кассовый чек должен уйти покупателю, а касса отправляет его письмом
+      if(!/^[^@\s]+@[^@\s.]+\.[a-zа-я]{2,}$/i.test(email))return fail('Впишите почту — на неё придёт кассовый чек','f_email');
+    }
     var f=nativeForm();
     if(f){
       function set(n,v){var el=f.querySelector('[name="'+n+'"]');if(el){el.value=v;['input','change','blur'].forEach(function(ev){el.dispatchEvent(new Event(ev,{bubbles:true}));});}}
