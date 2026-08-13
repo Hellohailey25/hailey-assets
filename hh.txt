@@ -863,6 +863,29 @@ else hpBuyBtnInit();
   setTimeout(wire,1200);
 })();
 </script>
+<script>
+/* Откуда пришёл заказ. Кнопки добавления живут в трёх разных блоках — карточка товара,
+   витрина каталога, главная, — поэтому ловим клик здесь, в сквозной шапке: одно место
+   на весь сайт. Запоминаем способ (в 1 клик или корзина) и страницу, с которой начали;
+   /checkout потом отправит это вместе с заказом, и в таблице будет видно,
+   что лучше работает. */
+(function(){
+  var KEY='hailey_src_v1';
+  document.addEventListener('click', function(e){
+    var t = e.target && e.target.closest && e.target.closest(
+      '#quickBtn, #szQuick, .hb.quick, [data-b="quick"], #addBtn, #szAdd, .hc .add, [data-b="cart"]');
+    if(!t) return;
+    var mark = (t.id||'') + ' ' + (t.className||'') + ' ' + (t.getAttribute('data-b')||'');
+    try{
+      localStorage.setItem(KEY, JSON.stringify({
+        way: /quick/i.test(mark) ? 'quick' : 'cart',
+        page: location.pathname
+      }));
+    }catch(err){}
+  }, true);
+})();
+</script>
+
 <style>
 /* Витрина: правки поверх уже залитых блоков каталога (в самом шаблоне они тоже внесены,
    но блоки в Tilda переливаются редко, а это нужно уже сейчас).
