@@ -866,20 +866,31 @@ else hpBuyBtnInit();
   .hc .card:hover .slide img{transform:none}
   .hxD .st:hover img{transform:none}
 }
-.hc .slide{scroll-snap-align:start}
+.hc .ph .track .slide{scroll-snap-align:start}
 </style>
 <script>
 /* Окно выбора размера переиспользуется на всю страницу, и в нём оставалась прокрутка
    от прошлого товара: человек жал «в корзину» и попадал сразу на таблицу мерок,
    вместо кнопок размера. Возвращаем окно в начало каждый раз, когда оно открывается. */
 (function(){
-  var modal=document.querySelector('.hc .modal');
-  if(!modal||!window.MutationObserver)return;
-  new MutationObserver(function(){
-    if(!modal.classList.contains('on'))return;
-    var sheet=modal.querySelector('.sheet');
-    if(sheet)sheet.scrollTop=0;
-  }).observe(modal,{attributes:true,attributeFilter:['class']});
+  if(!window.MutationObserver)return;
+  // Шапка стоит на странице ПЕРВОЙ и выполняется раньше, чем витрина создаст своё окно,
+  // поэтому не ищем его сразу, а дожидаемся появления.
+  function wire(){
+    var modal=document.querySelector('.hc .modal');
+    if(!modal||modal.dataset.hhscroll)return true;
+    modal.dataset.hhscroll='1';
+    new MutationObserver(function(){
+      if(!modal.classList.contains('on'))return;
+      var sheet=modal.querySelector('.sheet');
+      if(sheet)sheet.scrollTop=0;
+    }).observe(modal,{attributes:true,attributeFilter:['class']});
+    return true;
+  }
+  if(!wire()){
+    var tries=0;
+    var t=setInterval(function(){ if(wire()||++tries>20)clearInterval(t); },300);
+  }
 })();
 </script>
 
