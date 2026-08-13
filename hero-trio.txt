@@ -85,9 +85,12 @@
      и вторая кнопка наезжала на фото. */
   @media(max-width:1023px){
     .hxD .txt{display:contents}   /* текст и кнопки остаются прямыми детьми: порядок текст → фото → кнопки */
-    .hxD{height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px));min-height:0}
+    /* Высоту экрана на телефоне не трогаем совсем: у Safari адресная строка прячется
+       при прокрутке, окно «дышит», и блок, привязанный к высоте, дёргается — кадры
+       то вырастали, то сжимались. Плитки считаем от ШИРИНЫ: она при прокрутке не меняется. */
+    .hxD{height:auto;min-height:0}
     .hxD .top{order:1;flex:0 0 auto;padding:clamp(12px,2.4vh,24px) 20px clamp(10px,1.8vh,18px);text-align:center}
-    .hxD .strips{order:2;flex:1 1 auto;min-height:0}
+    .hxD .strips{order:2;flex:0 0 auto;height:62vw;min-height:0}
     .hxD .bottom{order:3;flex:0 0 auto;padding:12px 16px calc(14px + env(safe-area-inset-bottom));
       background:var(--paper);border-top:1px solid var(--line)}
     .hxD .sub{max-width:none;margin:clamp(12px,1.8vh,18px) auto 0}
@@ -160,7 +163,13 @@
     hero.style.setProperty('--hh',(h?Math.round(h.getBoundingClientRect().height):0)+'px');
   }
   sync(); setTimeout(sync,300); setTimeout(sync,1200);
-  window.addEventListener('resize',sync);
-  window.addEventListener('orientationchange',sync);
+  // Пересчитываем только когда реально изменилась ШИРИНА (поворот, смена окна).
+  // На телефоне resize прилетает от прячущейся адресной строки — на него не реагируем.
+  var lastW=window.innerWidth;
+  window.addEventListener('resize',function(){
+    if(window.innerWidth===lastW)return;
+    lastW=window.innerWidth; sync();
+  });
+  window.addEventListener('orientationchange',function(){lastW=window.innerWidth;setTimeout(sync,200);});
 }catch(e){}})();
 </script>
