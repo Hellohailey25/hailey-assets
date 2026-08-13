@@ -434,6 +434,13 @@ function hpReviewsInit(){
    '.hp .revlb{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:99999;display:none;'+
    'align-items:center;justify-content:center;padding:20px}'+
    '.hp .revlb.on{display:flex}.hp .revlb img{max-width:100%;max-height:92vh;border-radius:8px}'+
+   '.hp .revlb .revx{position:absolute;top:14px;right:14px;z-index:2;width:40px;height:40px;'+
+   'border-radius:50%;background:rgba(255,255,255,.92);color:#23262C;font-size:19px;line-height:1;'+
+   'display:flex;align-items:center;justify-content:center;border:0;cursor:pointer}'+
+   '.hp .revlb .revnav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;'+
+   'height:44px;border-radius:50%;background:rgba(255,255,255,.86);color:#23262C;font-size:24px;'+
+   'line-height:1;display:flex;align-items:center;justify-content:center;border:0;cursor:pointer}'+
+   '.hp .revlb .revnav.p{left:12px}.hp .revlb .revnav.n{right:12px}'+
    /* Распределение посадки — при наведении на зелёную плашку под размерами.
       Раньше процент стоял ДВАЖДЫ: отдельной плашкой у артикула и в этой строке. Оставили одно место —
       рядом с выбором размера, где он и нужен для решения. */
@@ -545,16 +552,44 @@ function hpReviewsInit(){
       link.textContent='Все отзывы покупательниц →';
     }
 
+    /* Просмотр фото отзыва. На телефоне закрыть было нечем — тап по фону не очевиден,
+       поэтому крестик в углу. Стрелки листают все фото ленты подряд, а не только те,
+       что в одном отзыве: человек смотрит «а как ещё сидит», а не читает по одному. */
     var lb=document.createElement('div'); lb.className='revlb';
-    lb.innerHTML='<img alt="Фото из отзыва">';
+    lb.innerHTML='<button class="revx" type="button" aria-label="Закрыть">✕</button>'+
+      '<button class="revnav p" type="button" aria-label="Предыдущее фото">‹</button>'+
+      '<img alt="Фото из отзыва">'+
+      '<button class="revnav n" type="button" aria-label="Следующее фото">›</button>';
     document.querySelector('.hp').appendChild(lb);
+
+    var shots=[], at=-1;
+    function collect(){ shots=[].slice.call(box.querySelectorAll('.rph img')); }
+    function show(i){
+      collect();
+      if(!shots.length)return;
+      at=(i%shots.length+shots.length)%shots.length;
+      var im=shots[at];
+      lb.querySelector('img').src=im.dataset.full||im.src;   // в ленте миниатюра, крупно — оригинал
+      lb.classList.add('on');
+    }
+    function shut(){ lb.classList.remove('on'); }
+
     box.addEventListener('click',function(e){
       var i=e.target.closest('.rph img'); if(!i)return;
-      lb.querySelector('img').src=i.dataset.full||i.src;   // в ленте миниатюра, крупно — оригинал
-      lb.classList.add('on');
+      collect(); show(shots.indexOf(i));
     });
-    lb.addEventListener('click',function(){lb.classList.remove('on');});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+    lb.addEventListener('click',function(e){
+      if(e.target.closest('.revx'))return shut();
+      if(e.target.closest('.revnav.p')){e.stopPropagation();return show(at-1);}
+      if(e.target.closest('.revnav.n')){e.stopPropagation();return show(at+1);}
+      if(e.target.tagName!=='IMG')shut();                    // тап по тёмному фону — тоже закрытие
+    });
+    document.addEventListener('keydown',function(e){
+      if(!lb.classList.contains('on'))return;
+      if(e.key==='Escape')shut();
+      if(e.key==='ArrowLeft')show(at-1);
+      if(e.key==='ArrowRight')show(at+1);
+    });
   }).catch(function(){
     box.innerHTML='<div style="color:var(--ink-3);font-size:13.5px;padding:6px 0">Отзывы временно недоступны.</div>';
   });
@@ -900,7 +935,7 @@ else hpBuyBtnInit();
      Приближение там и так только для мыши, в самом блоке баннера. */
   .hc .card:hover .slide img{transform:none}
 }
-.hc .ph .track .slide{scroll-snap-align:start}
+.hc .ph .track .slide{scroll-snap-align:start;scroll-snap-stop:always}  /* stop:always — один жест перелистывает ровно один кадр, а не два-три */
 /* Лента не отдаёт жест странице и не пружинит на краях: при оттягивании фото
    отъезжало, и из-под него выглядывала кнопка быстрой покупки — выглядело поломкой. */
 .hc .ph .track{overscroll-behavior-x:none}
