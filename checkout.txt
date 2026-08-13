@@ -245,13 +245,15 @@
   if(QUICK){
     var hide=function(el){if(el)el.style.display='none';};
     hide($('f_name')&&$('f_name').closest('.f'));
-    hide($('f_email')&&$('f_email').closest('.f'));
+    // Почту оставляем: касса отправляет кассовый чек письмом. По СМС чек тоже
+    // разрешён законом, но у кассы такая отправка платная и выключена — без почты
+    // чек не уходит никуда, а это обязательство перед покупателем.
     hide($('dlv')&&$('dlv').closest('.sec'));
     hide($('cmtToggle')); hide($('cmtBox'));
     var pay=$('pay')&&$('pay').closest('.sec');
     if(pay){var n=pay.querySelector('.lbl i');if(n)n.textContent='2';}
     var h=document.querySelector('.hint');
-    if(h)h.textContent='Одно поле — и всё. Телефон для чека и подтверждения, дальше оплата картой или через СБП. Размер и доставку менеджер уточнит звонком.';
+    if(h)h.textContent='Два поля — и всё. Телефон для связи, почта для кассового чека. Дальше оплата картой или через СБП, размер и доставку менеджер уточнит звонком.';
     var ph=$('f_phone');if(ph)setTimeout(function(){try{ph.focus();}catch(e){}},300);
   }
 
@@ -409,14 +411,12 @@
     var email=($('f_email').value||'').trim();
     $('err1').style.display='none';['f_name','f_phone','f_email'].forEach(function(i){$(i).classList.remove('err');});
     if(phone.replace(/\D/g,'').length<11)return fail('Впишите телефон полностью','f_phone');
+    // Почта обязательна везде: кассовый чек по 54-ФЗ касса отправляет письмом.
+    if(!/^[^@\s]+@[^@\s.]+\.[a-zа-я]{2,}$/i.test(email))return fail('Впишите почту — на неё придёт кассовый чек','f_email');
     if(QUICK){
-      // Быстрая покупка: спрашиваем только телефон. Кассовый чек по 54-ФЗ уйдёт на него
-      // сообщением — почта для чека не нужна, имя уточнит менеджер при звонке.
-      if(!name)name='Быстрый заказ';
-    }else{
-      if(name.length<2)return fail('Впишите, пожалуйста, имя','f_name');
-      // Почта обязательна: по 54-ФЗ кассовый чек должен уйти покупателю, а касса отправляет его письмом
-      if(!/^[^@\s]+@[^@\s.]+\.[a-zа-я]{2,}$/i.test(email))return fail('Впишите почту — на неё придёт кассовый чек','f_email');
+      if(!name)name='Быстрый заказ';   // имя уточнит менеджер при звонке
+    }else if(name.length<2){
+      return fail('Впишите, пожалуйста, имя','f_name');
     }
     var f=nativeForm();
     if(f){
