@@ -796,13 +796,21 @@ else hpBuyBtnInit();
             wait[j].setAttribute('src',wait[j].dataset.src);
             delete wait[j].dataset.src;
           }
-          c.removeEventListener('touchstart',wake);
-          c.removeEventListener('mouseenter',wake);
-          c.removeEventListener('pointerdown',wake);
         };
+        /* Будим кадры, когда карточка подъезжает к экрану, а НЕ по касанию: на телефоне
+           касание — это уже начало свайпа, кадры не успевали загрузиться, и листание
+           назад выглядело как «фото не двигаются». Запас в пол-экрана, поэтому к моменту
+           свайпа кадры уже на месте, а карточки далеко внизу по-прежнему не грузятся. */
+        if(window.IntersectionObserver){
+          var io=new IntersectionObserver(function(es){
+            for(var n=0;n<es.length;n++){
+              if(!es[n].isIntersecting)continue;
+              wake(); io.disconnect(); break;
+            }
+          },{rootMargin:'50% 0px'});
+          io.observe(c);
+        }else wake();
         c.addEventListener('touchstart',wake,{passive:true});
-        c.addEventListener('mouseenter',wake);
-        c.addEventListener('pointerdown',wake);
       })(cards[k]);
     }
   }
@@ -867,6 +875,8 @@ else hpBuyBtnInit();
   .hxD .st:hover img{transform:none}
 }
 .hc .ph .track .slide{scroll-snap-align:start}
+/* лента не отдаёт горизонтальный жест странице и системному «назад» */
+.hc .ph .track{overscroll-behavior-x:contain}
 </style>
 <script>
 /* Окно выбора размера переиспользуется на всю страницу, и в нём оставалась прокрутка
