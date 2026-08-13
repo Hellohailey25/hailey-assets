@@ -388,6 +388,22 @@
     return Math.min(screen.width,screen.height) >= 768 ? 'планшет' : 'телефон';
   }
 
+  /* Ссылка на оплату пришла позже, чем мы сдались ждать. Не бросаем покупателя
+     с «заказ принят»: показываем кнопку, чтобы он мог оплатить прямо сейчас. */
+  function payLater(url){
+    var box=document.getElementById('hcoOk');
+    if(!box){location.href=url;return;}
+    if(box.querySelector('.paylater'))return;
+    var a=document.createElement('a');
+    a.className='paylater';
+    a.href=url;
+    a.textContent='Перейти к оплате';
+    a.style.cssText='display:block;margin:18px auto 0;max-width:320px;padding:15px;'+
+      'border-radius:4px;background:#23262C;color:#F2F0EB;text-align:center;font-size:12px;'+
+      'letter-spacing:.1em;text-transform:uppercase;font-weight:700;text-decoration:none';
+    box.appendChild(a);
+  }
+
   function submit(){
     var name=($('f_name').value||'').trim(), phone=($('f_phone').value||'').trim();
     var email=($('f_email').value||'').trim();
@@ -422,7 +438,9 @@
     [$('doOrder'),$('doOrderM')].forEach(function(b){if(b){b.disabled=true;b.textContent='Переходим к оплате…';}});
     var done=false;
     function finish(){if(done)return;done=true;showOk(num);}
-    var t=setTimeout(finish,12000);
+    // 25 секунд, а не 12: сервер иногда отвечает дольше, и человек оставался с экраном
+    // «заказ принят» вместо страницы оплаты. Если ссылка придёт позже — покажем кнопку.
+    var t=setTimeout(finish,25000);
     try{
       fetch(PAY+'/create',{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({order_id:num,name:name,phone:phone,email:email,promo:promo,
@@ -437,7 +455,10 @@
         // сервер срезал скидку как повторную — стираем код, чтобы корзина больше не рисовала
         // цену, которой не будет: настоящая сумма всё равно видна на странице банка
         if(d&&d.promo_used===false&&promo){try{localStorage.removeItem('hailey_promo_v1');}catch(e){}}
-        if(d&&d.redirect){done=true;clearTimeout(t);location.href=d.redirect;}
+        if(d&&d.redirect){
+          if(done){payLater(d.redirect);return;}   // не успели — не теряем оплату, даём кнопку
+          done=true;clearTimeout(t);location.href=d.redirect;
+        }
         else{clearTimeout(t);finish();}
       })
       .catch(function(){clearTimeout(t);finish();});
