@@ -371,6 +371,23 @@
   function nativeForm(){var fs=document.querySelectorAll('.js-form-proccess');for(var i=0;i<fs.length;i++){if(fs[i].querySelector('[name="Phone"]'))return fs[i];}return fs[0]||null;}
   function fail(msg,id){var e=$('err1');e.textContent=msg;e.style.display='block';var el=$(id);if(el){el.classList.add('err');el.focus();}return false;}
 
+  /* Способ и страница, с которых начали заказ, — их запомнила сквозная шапка при клике
+     по «в корзину» или «в 1 клик». Если метки нет (человек пришёл прямо на /checkout),
+     хотя бы отличим быструю покупку по адресу страницы. */
+  function srcInfo(){
+    try{
+      var v=JSON.parse(localStorage.getItem('hailey_src_v1')||'null');
+      if(v&&v.way)return v;
+    }catch(e){}
+    return {way: QUICK?'quick':'cart', page:''};
+  }
+  var src=srcInfo();
+  function device(){
+    var touch = ('ontouchstart' in window) || navigator.maxTouchPoints>0;
+    if(!touch) return 'компьютер';
+    return Math.min(screen.width,screen.height) >= 768 ? 'планшет' : 'телефон';
+  }
+
   function submit(){
     var name=($('f_name').value||'').trim(), phone=($('f_phone').value||'').trim();
     var email=($('f_email').value||'').trim();
@@ -410,6 +427,9 @@
       fetch(PAY+'/create',{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({order_id:num,name:name,phone:phone,email:email,promo:promo,
           method:(pay==='СБП'?'sbp':'card'),
+          // откуда начали заказ и с чего смотрят — чтобы в таблице было видно,
+          // что приносит заказы: быстрая покупка или корзина, телефон или компьютер
+          way:src.way, from:src.page, device:device(),
           items:snapshot.map(function(i){return{id:i.id,qty:i.qty,size:i.size||''};})})})
       .then(function(r){return r.json();})
       .then(function(d){
