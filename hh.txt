@@ -877,13 +877,6 @@ else hpBuyBtnInit();
 .hc .ph .track .slide{scroll-snap-align:start}
 /* лента не отдаёт горизонтальный жест странице и системному «назад» */
 .hc .ph .track{overscroll-behavior-x:contain}
-/* Стрелки листания на телефоне: мыши нет, а свайп вправо у края экрана
-   перехватывает системный жест «назад» — кадры листались только вперёд. */
-@media(hover:none){
-  .hc .ph .arw{display:flex;background:rgba(255,255,255,.82)}
-  .hc .ph .arw.l{left:6px}
-  .hc .ph .arw.r{right:6px}
-}
 </style>
 <script>
 /* Окно выбора размера переиспользуется на всю страницу, и в нём оставалась прокрутка
