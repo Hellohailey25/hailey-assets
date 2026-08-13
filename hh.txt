@@ -878,7 +878,8 @@ else hpBuyBtnInit();
   // поэтому не ищем его сразу, а дожидаемся появления.
   function wire(){
     var modal=document.querySelector('.hc .modal');
-    if(!modal||modal.dataset.hhscroll)return true;
+    if(!modal)return false;                 // окна ещё нет — ждём дальше, а не считаем, что готово
+    if(modal.dataset.hhscroll)return true;
     modal.dataset.hhscroll='1';
     new MutationObserver(function(){
       if(!modal.classList.contains('on'))return;
