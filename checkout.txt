@@ -475,8 +475,11 @@
   $('doOrderM').addEventListener('click',submit);
   $('toTg').addEventListener('click',function(){
     if(!cart.length)return;
-    try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(orderText());}catch(e){}
-    window.open('https://t.me/'+TG,'_blank','noopener');
+    var txt=orderText();
+    // Telegram сам подставит текст в поле ввода — человеку остаётся нажать «отправить».
+    // Копию в буфер оставляем: если ссылка с текстом не сработает, будет что вставить.
+    try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt);}catch(e){}
+    window.open('https://t.me/'+TG+'?text='+encodeURIComponent(txt),'_blank','noopener');
   });
   window.addEventListener('storage',function(e){if(e.key===KEY){cart=load();render();}});
   render();
