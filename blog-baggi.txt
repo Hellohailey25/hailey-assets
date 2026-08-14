@@ -200,7 +200,7 @@
         <a href="/blog/vidy-i-nazvaniya-dzhinsov"><b>Виды женских джинсов: все фасоны с названиями</b> <span>Сравнительная таблица 15 фасонов — от прямых до палаццо, с фото.</span><em class="tgo">Читать →</em></a>
         <a href="/kak-vybrat-razmer"><b>Таблица размеров женских джинсов 42–74</b> <span>Калькулятор по вашим меркам и как правильно снять мерки.</span><em class="tgo">Читать →</em></a>
         <a href="/catalog/trendy-2026"><b>Модные джинсы 2026: тренды сезона</b> <span>Багги, wide leg и палаццо — что носят в этом сезоне.</span><em class="tgo">Читать →</em></a>
-        <a href="/catalog/oversize-dzhinsy"><b>Джинсы оверсайз: подборка</b> <span>Свободный крой, который садится по любой фигуре — 42–74.</span><em class="tgo">Читать →</em></a>
+        <a href="/catalog/shirokie-dzhinsy"><b>Широкие джинсы: подборка</b> <span>Свободный крой, который садится по любой фигуре — 42–74.</span><em class="tgo">Читать →</em></a>
       </div>
     </section>
 
