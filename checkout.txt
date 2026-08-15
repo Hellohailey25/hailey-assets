@@ -220,6 +220,8 @@
 <script>
 (function(){
   var KEY='hailey_cart_v1', SHIP_FREE=10000, TG='hailey_mgr';
+  // метка события в пиксель VK Рекламы (счётчик Top.Mail.Ru 3787523)
+  function vkGoal(g){try{(window._tmr=window._tmr||[]).push({type:'reachGoal',id:3787523,goal:g});}catch(e){}}
   var PAY='https://hailey-looks.ru/pay';   // платёжный эндпоинт на VPS (Т-Банк: карта + СБП)
   function $(i){return document.getElementById(i);}
   function rub(n){return n.toLocaleString('ru-RU')+' руб';}
@@ -429,6 +431,7 @@
       if(b)b.click();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
     }
     var num='HL-'+String(new Date().getTime()).slice(-6);
+    vkGoal('order');
     var snapshot=cart.slice();
     // пометка для возврата из банка: платили быстрой покупкой, значит корзину трогать нельзя
     if(QUICK){try{localStorage.setItem('hailey_buynow_paid','1');}catch(e){}}
@@ -497,6 +500,7 @@
         localStorage.removeItem(wasQuick?QKEY:KEY);
         localStorage.removeItem('hailey_promo_v1');}catch(e){}
       cart=[];
+      vkGoal('purchase');
       $('hcoEmpty').style.display='none';
       showOk(decodeURIComponent(m[1]),'Оплачено — спасибо!',
         'Заказ оплачен, чек придёт на почту или телефон. Мы уже собираем его к отправке.');return;}
