@@ -27,7 +27,7 @@
 <div class="hf"><div class="wrap"><div class="foot">
   <div class="fgrid">
     <div><h4>О бренде</h4>
-      <p class="fabout">Hello HAILEY — джинсы и базовая одежда для фигуры plus-size, размеры 42–74. Мы кроим деним под настоящую фигуру и показываем посадку на реальных моделях 42 и 54 — никаких сюрпризов с размером.</p></div>
+      <p class="fabout">Hello HAILEY — джинсы и базовая одежда для фигуры plus-size, размеры 42–74. Мы кроим деним под настоящую фигуру и показываем посадку на реальных моделях 42 и 54 — никаких сюрпризов с посадкой.</p></div>
     <div id="contacts"><h4>Контакты</h4>
       <a href="tel:+79935910371">+7 993 591-03-71</a>
       <a href="mailto:ooo.kayru@gmail.com">ooo.kayru@gmail.com</a>
@@ -47,7 +47,7 @@
       <a href="/policy">Политика конфиденциальности</a>
       <a href="/rekvizity">Реквизиты</a></div>
   </div>
-  <div class="fcopy">© 2026 Hello HAILEY · Стиль любого размера · Женская одежда больших размеров 42–74
+  <div class="fcopy">© 2026 Hello HAILEY
     <div class="freq">ООО «КЭЙРУ ГРУП» · ИНН 0800027107 · ОГРН 1250800001528 · 358000, Республика Калмыкия, г. Элиста, ул. В.И. Ленина, д. 369 · <a href="mailto:ooo.kayru@gmail.com">ooo.kayru@gmail.com</a></div>
   </div>
 </div></div></div>
