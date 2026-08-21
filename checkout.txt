@@ -420,8 +420,15 @@
     }else if(name.length<2){
       return fail('Впишите, пожалуйста, имя','f_name');
     }
-    var f=nativeForm();
-    if(f){
+    /* Дубль заказа в «Заявки» Tilda. Раньше он стоял ПЕРВЫМ — и 21.08.2026 съел заказ:
+       сабмит формы Tilda уводит страницу, а наш запрос уйти не успевал. Заказ оседал
+       только в «Заявки», мимо базы, Миры и кассы. Теперь сначала уходит запрос на свой
+       сервер (источник правды), и лишь потом — этот дубль. */
+    var leadSent=false;
+    function toLeads(){
+      if(leadSent)return; leadSent=true;
+      var f=nativeForm();
+      if(!f)return;
       function set(n,v){var el=f.querySelector('[name="'+n+'"]');if(el){el.value=v;['input','change','blur'].forEach(function(ev){el.dispatchEvent(new Event(ev,{bubbles:true}));});}}
       set(f.querySelector('[name="zakaz"]')?'zakaz':'form-spec-comments',orderText());
       set('Name',name);set('Phone',phone);
@@ -437,7 +444,8 @@
     if(QUICK){try{localStorage.setItem('hailey_buynow_paid','1');}catch(e){}}
     // корзину НЕ чистим здесь: заказ ещё не оплачен. Если человек закроет страницу банка,
     // он должен вернуться к своему набору, а не к пустой корзине. Очистка — по возврату ?paid=
-    // Заказ уже ушёл в «Заявки». Дальше пробуем поднять оплату; не вышло — обычный экран «Заказ принят».
+    // Сначала заказ уходит на свой сервер, следом — дубль в «Заявки». Потом поднимаем оплату;
+    // не вышло — обычный экран «Заказ принят».
     [$('doOrder'),$('doOrderM')].forEach(function(b){if(b){b.disabled=true;b.textContent='Переходим к оплате…';}});
     var done=false;
     function finish(){if(done)return;done=true;showOk(num);}
@@ -445,13 +453,16 @@
     // «заказ принят» вместо страницы оплаты. Если ссылка придёт позже — покажем кнопку.
     var t=setTimeout(finish,25000);
     try{
-      fetch(PAY+'/create',{method:'POST',headers:{'Content-Type':'application/json'},
+      // keepalive: запрос доносится до сервера, даже если страница уйдёт прямо сейчас
+      var req=fetch(PAY+'/create',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
         body:JSON.stringify({order_id:num,name:name,phone:phone,email:email,promo:promo,
           method:(pay==='СБП'?'sbp':'card'),
           // откуда начали заказ и с чего смотрят — чтобы в таблице было видно,
           // что приносит заказы: быстрая покупка или корзина, телефон или компьютер
           way:src.way, from:src.page, device:device(),
-          items:snapshot.map(function(i){return{id:i.id,qty:i.qty,size:i.size||''};})})})
+          items:snapshot.map(function(i){return{id:i.id,qty:i.qty,size:i.size||''};})})});
+      toLeads();   // запрос уже в пути — теперь можно дублировать в «Заявки»
+      req
       .then(function(r){return r.json();})
       .then(function(d){
         if(done)return;
@@ -464,8 +475,8 @@
         }
         else{clearTimeout(t);finish();}
       })
-      .catch(function(){clearTimeout(t);finish();});
-    }catch(e){clearTimeout(t);finish();}
+      .catch(function(){toLeads();clearTimeout(t);finish();});
+    }catch(e){toLeads();clearTimeout(t);finish();}
   }
   function showOk(num,title,msg){
     $('okNum').textContent=num||'';
