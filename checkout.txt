@@ -497,6 +497,23 @@
     $('okNum').textContent=num||'';
     if(title)$('okTitle').textContent=title;
     if(msg)$('okMsg').textContent=msg;
+    /* Кнопка оплаты на экране «Заказ принят». 21.08.2026 два заказа остались
+       неоплаченными: покупательницы дошли до конца, но страницу банка не увидели,
+       и вернуться к оплате им было нечем. Короткий адрес /pay/o/<номер> ведёт
+       на банк: сервер отдаёт по нему сохранённую ссылку. Если заказ вдруг не
+       записался, там будет понятное «Заказ не найден», а не пустая страница. */
+    if(num){
+      var pay=document.getElementById('okPay');
+      if(!pay){
+        pay=document.createElement('a');
+        pay.id='okPay'; pay.className='b dark';
+        pay.style.cssText='display:block;margin:0 0 10px';
+        var btns=$('hcoOk').querySelector('.btns');
+        if(btns) btns.parentNode.insertBefore(pay, btns);
+      }
+      pay.href=PAY+'/o/'+encodeURIComponent(num);
+      pay.textContent='Перейти к оплате';
+    }
     $('hcoMain').style.display='none';$('mbar').style.display='none';$('hcoOk').style.display='block';
     try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);}
   }
