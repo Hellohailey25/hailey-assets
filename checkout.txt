@@ -447,20 +447,35 @@
     // Сначала заказ уходит на свой сервер, следом — дубль в «Заявки». Потом поднимаем оплату;
     // не вышло — обычный экран «Заказ принят».
     [$('doOrder'),$('doOrderM')].forEach(function(b){if(b){b.disabled=true;b.textContent='Переходим к оплате…';}});
+    var payload=JSON.stringify({order_id:num,name:name,phone:phone,email:email,promo:promo,
+        method:(pay==='СБП'?'sbp':'card'),
+        // откуда начали заказ и с чего смотрят — чтобы в таблице было видно,
+        // что приносит заказы: быстрая покупка или корзина, телефон или компьютер
+        way:src.way, from:src.page, device:device(),
+        items:snapshot.map(function(i){return{id:i.id,qty:i.qty,size:i.size||''};})});
+    /* Не дошло запросом — досылаем маячком. Он уходит другим механизмом браузера
+       и переживает уход страницы. Повтор безопасен: база пишет заказ по номеру
+       через INSERT OR REPLACE, второй строки не появится. */
+    var beaconSent=false;
+    function beacon(){
+      if(beaconSent)return; beaconSent=true;
+      try{if(navigator.sendBeacon)navigator.sendBeacon(PAY+'/create',new Blob([payload],{type:'text/plain;charset=UTF-8'}));}catch(e){}
+    }
     var done=false;
-    function finish(){if(done)return;done=true;showOk(num);}
+    // сдались ждать ответ — значит заказ мог не дойти; досылаем маячком, база примет по номеру
+    function finish(){if(done)return;done=true;beacon();showOk(num);}
     // 25 секунд, а не 12: сервер иногда отвечает дольше, и человек оставался с экраном
     // «заказ принят» вместо страницы оплаты. Если ссылка придёт позже — покажем кнопку.
     var t=setTimeout(finish,25000);
     try{
-      // keepalive: запрос доносится до сервера, даже если страница уйдёт прямо сейчас
-      var req=fetch(PAY+'/create',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
-        body:JSON.stringify({order_id:num,name:name,phone:phone,email:email,promo:promo,
-          method:(pay==='СБП'?'sbp':'card'),
-          // откуда начали заказ и с чего смотрят — чтобы в таблице было видно,
-          // что приносит заказы: быстрая покупка или корзина, телефон или компьютер
-          way:src.way, from:src.page, device:device(),
-          items:snapshot.map(function(i){return{id:i.id,qty:i.qty,size:i.size||''};})})});
+      /* Тип text/plain, а не application/json — намеренно. Заказ уходит на другой домен
+         (hailey-looks.ru), и на json браузер сначала шлёт предварительный запрос-разрешение.
+         21.08.2026 у покупательницы через VPN он не прошёл: до сервера не долетело ничего,
+         ни предварительного, ни самого заказа. С text/plain запрос считается простым и идёт
+         сразу. Сервер читает тело как JSON независимо от типа (pay_endpoint.py, do_POST).
+         keepalive: запрос доносится, даже если страница уйдёт прямо сейчас. */
+      var req=fetch(PAY+'/create',{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8'},
+        keepalive:true,body:payload});
       toLeads();   // запрос уже в пути — теперь можно дублировать в «Заявки»
       req
       .then(function(r){return r.json();})
@@ -475,7 +490,7 @@
         }
         else{clearTimeout(t);finish();}
       })
-      .catch(function(){toLeads();clearTimeout(t);finish();});
+      .catch(function(){beacon();toLeads();clearTimeout(t);finish();});
     }catch(e){toLeads();clearTimeout(t);finish();}
   }
   function showOk(num,title,msg){
