@@ -1,7 +1,7 @@
 <style>
 /* ===== Аварийный каркас карточки товара (.hp) — hp-fallback =====
    21.08.2026 у Игоря карточка развалилась: фото во всю ширину, текст под ними.
-   Причина — не догрузился внешний https://hailey-looks.ru/blocks/pdp.css, и вся
+   Причина — не догрузился внешний https://cdn.hello-hailey.ru/blocks/pdp.css, и вся
    вёрстка осталась без правил. Сервер тут ни при чём: он отдал файл 70 раз из 70,
    оборвалось на стороне посетителя (в логе nginx такой обрыв виден как код 499).
    Эти правила живут прямо в сквозной шапке, то есть в самой странице, и грузиться
@@ -526,7 +526,7 @@ function hpReviewsInit(){
        Если миниатюры ещё нет — onerror вернёт оригинал, лента не сломается. */
     function thumb(u){
       var m=/\/([0-9a-f-]{36})\//.exec(u);
-      return m?'https://hailey-looks.ru/photos/rev/'+m[1]+'.webp':u;
+      return m?'https://cdn.hello-hailey.ru/photos/rev/'+m[1]+'.webp':u;
     }
 
     /* Рейтинг, число отзывов и aggregateRating НЕ трогаем: они приходят из таблицы
@@ -725,7 +725,7 @@ else hpBuyBtnInit();
   var KEY='hailey_promo_v1';                  // выданный код помнит корзина
   var CODE='HAILEY10';
   var BOT='https://t.me/Hailey_promo_bot';
-  var SUBS='https://hailey-looks.ru/pay/subscribe';
+  var SUBS='https://pay.hello-hailey.ru/pay/subscribe';
   /* Форма подписки form2724802001 заявки не принимает — сервер Tilda на неё не отвечает,
      и подписки не доходили до раздела «Заявки». Шлём в ту же форму, что принимает заказы.
      Имя — без цифр: Tilda отбивает «Промокод −10%» как некорректное имя. Почта идёт
