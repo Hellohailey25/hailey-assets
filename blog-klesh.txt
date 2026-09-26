@@ -221,3 +221,5 @@
 {"@type":"Question","name":"Можно ли носить клёш без каблука?","acceptedAnswer":{"@type":"Answer","text":"Да: буткат и клёш от колена носят с кедами на платформе и массивными ботинками, если длина подобрана под эту обувь. Клёш от бедра без каблука требует высокого роста."}},
 {"@type":"Question","name":"Кому клёш не подойдёт?","acceptedAnswer":{"@type":"Answer","text":"Категоричного запрета нет: при невысоком росте без каблука выбирайте буткат, а объёмный верх с клёшем спорит за внимание."}}]}
 </script>
+<script src="https://cdn.hello-hailey.ru/blocks/blog-popup.js" defer></script>
+<script src="https://cdn.hello-hailey.ru/blocks/blog-share.js" defer></script>
