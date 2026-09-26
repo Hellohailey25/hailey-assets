@@ -144,7 +144,7 @@
           <div class="sec">
             <div class="lbl"><i>1</i>Контакты</div>
             <div class="two">
-              <div class="f"><span>Имя *</span><input id="f_name" placeholder="Как к вам обращаться" autocomplete="given-name"></div>
+              <div class="f"><span>Фамилия и имя *</span><input id="f_name" placeholder="Иванова Мария" autocomplete="name"></div>
               <div class="f"><span>Телефон *</span><input id="f_phone" type="tel" inputmode="tel" placeholder="+7 900 000-00-00" autocomplete="tel"></div>
             </div>
             <div class="f" style="margin-top:12px"><span>Почта *</span><input id="f_email" type="email" inputmode="email" placeholder="anna@mail.ru" autocomplete="email"><span class="fhint">Сюда придёт кассовый чек и ссылка для отслеживания заказа</span></div>
@@ -158,8 +158,8 @@
               <div class="opt" data-v="Курьер до двери"><div><b>Курьер до двери</b><small>По России, от 2 дней</small></div><span class="px" id="pxCur">—</span></div>
             </div>
             <div class="two" style="margin-top:12px">
-              <div class="f"><span>Город</span><input id="f_city" placeholder="Москва" autocomplete="address-level2"></div>
-              <div class="f"><span>Адрес или пункт выдачи</span><input id="f_addr" placeholder="Необязательно — подскажет менеджер" autocomplete="street-address"></div>
+              <div class="f"><span>Город *</span><input id="f_city" placeholder="Москва" autocomplete="address-level2"></div>
+              <div class="f"><span>Адрес или пункт выдачи *</span><input id="f_addr" placeholder="Улица, дом, квартира — или адрес пункта выдачи" autocomplete="street-address"></div>
             </div>
           </div>
 
@@ -226,7 +226,7 @@
   var KEY='hailey_cart_v1', SHIP_FREE=10000, TG='hailey_mgr';
   // метка события в пиксель VK Рекламы (счётчик Top.Mail.Ru 3787523)
   function vkGoal(g){try{(window._tmr=window._tmr||[]).push({type:'reachGoal',id:3787523,goal:g});}catch(e){}}
-  var PAY='https://hailey-looks.ru/pay';   // платёжный эндпоинт на VPS (Т-Банк: карта + СБП)
+  var PAY='https://pay.hello-hailey.ru/pay';   // платёжный эндпоинт на VPS (Т-Банк: карта + СБП)
   function $(i){return document.getElementById(i);}
   function rub(n){return n.toLocaleString('ru-RU')+' руб';}
   /* «Купить в 1 клик» — покупка ровно одной вещи мимо корзины: каталог кладёт позицию
@@ -245,21 +245,15 @@
   var truck='<svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.5"/><circle cx="17.5" cy="18" r="1.5"/></svg>';
   var chk='<svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>';
 
-  /* Быстрая покупка: человек пришёл с кнопки «В 1 клик», ему обещали один шаг.
-     Оставляем телефон и способ оплаты, остальное уточнит менеджер при звонке.
-     Кассовый чек по 54-ФЗ уйдёт сообщением на тот же телефон. */
+  /* Быстрая покупка. Раньше здесь прятались имя и вся доставка: обещали «два поля».
+     10.09.2026 Игорь попросил вернуть фамилию и адрес — без них посылку не отправить,
+     и менеджер каждый раз звонил, чтобы выяснить то же самое. Поле «Комментарий»
+     остаётся спрятанным: оно необязательное и удлиняет форму без пользы. */
   if(QUICK){
     var hide=function(el){if(el)el.style.display='none';};
-    hide($('f_name')&&$('f_name').closest('.f'));
-    // Почту оставляем: касса отправляет кассовый чек письмом. По СМС чек тоже
-    // разрешён законом, но у кассы такая отправка платная и выключена — без почты
-    // чек не уходит никуда, а это обязательство перед покупателем.
-    hide($('dlv')&&$('dlv').closest('.sec'));
     hide($('cmtToggle')); hide($('cmtBox'));
-    var pay=$('pay')&&$('pay').closest('.sec');
-    if(pay){var n=pay.querySelector('.lbl i');if(n)n.textContent='2';}
     var h=document.querySelector('.hint');
-    if(h)h.textContent='Два поля — и всё. Телефон для связи, почта для кассового чека. Дальше оплата картой или через СБП, размер и доставку менеджер уточнит звонком.';
+    if(h)h.textContent='Заполните контакты и адрес — и всё. Размер и время доставки менеджер подтвердит звонком.';
     var ph=$('f_phone');if(ph)setTimeout(function(){try{ph.focus();}catch(e){}},300);
   }
 
@@ -292,7 +286,7 @@
   /* Промокод. Скидку тут только ПОКАЗЫВАЕМ — к оплате её пересчитывает сервер (/pay/create),
      иначе код можно было бы придумать в консоли браузера. Список кодов держать одинаковым
      здесь и в PROMOS в pay_endpoint.py. */
-  var PROMOS={'HAILEY10':10};
+  var PROMOS={'HAILEY10':10,'VK10':10};
   var promo='';
   // считаем ровно как сервер — построчно, иначе показанная скидка разойдётся с суммой к оплате
   function promoCut(g){
@@ -415,15 +409,22 @@
   function submit(){
     var name=($('f_name').value||'').trim(), phone=($('f_phone').value||'').trim();
     var email=($('f_email').value||'').trim();
-    $('err1').style.display='none';['f_name','f_phone','f_email'].forEach(function(i){$(i).classList.remove('err');});
+    /* Куда везти. 10.09.2026: поля города и адреса были на странице, но уходили только
+       в «Заявки» Tilda — в базу и таблицу нет, и менеджер каждый раз звонил уточнять
+       то, что покупатель уже написал. Теперь они обязательны и едут вместе с заказом. */
+    var city=($('f_city').value||'').trim(), addr=($('f_addr').value||'').trim();
+    var comment=($('f_cmt')?($('f_cmt').value||''):'').trim();
+    $('err1').style.display='none';['f_name','f_phone','f_email','f_city','f_addr'].forEach(function(i){$(i).classList.remove('err');});
     if(phone.replace(/\D/g,'').length<11)return fail('Впишите телефон полностью','f_phone');
     // Почта обязательна везде: кассовый чек по 54-ФЗ касса отправляет письмом.
     if(!/^[^@\s]+@[^@\s.]+\.[a-zа-я]{2,}$/i.test(email))return fail('Впишите почту — на неё придёт кассовый чек','f_email');
-    if(QUICK){
-      if(!name)name='Быстрый заказ';   // имя уточнит менеджер при звонке
-    }else if(name.length<2){
-      return fail('Впишите, пожалуйста, имя','f_name');
+    /* Фамилия, город и адрес нужны одинаково и в корзине, и в быстрой покупке:
+       на одну «Марию» без адреса посылку не оформить. */
+    if(name.split(/\s+/).filter(function(w){return w.length>1;}).length<2){
+      return fail('Впишите фамилию и имя — они нужны для отправки','f_name');
     }
+    if(city.length<2)return fail('Впишите город доставки','f_city');
+    if(addr.length<5)return fail('Впишите адрес или пункт выдачи','f_addr');
     /* Дубль заказа в «Заявки» Tilda. Раньше он стоял ПЕРВЫМ — и 21.08.2026 съел заказ:
        сабмит формы Tilda уводит страницу, а наш запрос уйти не успевал. Заказ оседал
        только в «Заявки», мимо базы, Миры и кассы. Теперь сначала уходит запрос на свой
@@ -452,6 +453,7 @@
     // не вышло — обычный экран «Заказ принят».
     [$('doOrder'),$('doOrderM')].forEach(function(b){if(b){b.disabled=true;b.textContent='Переходим к оплате…';}});
     var payload=JSON.stringify({order_id:num,name:name,phone:phone,email:email,promo:promo,
+        city:city,addr:addr,comment:comment,
         method:(pay==='СБП'?'sbp':'card'),
         // откуда начали заказ и с чего смотрят — чтобы в таблице было видно,
         // что приносит заказы: быстрая покупка или корзина, телефон или компьютер
@@ -473,7 +475,7 @@
     var t=setTimeout(finish,25000);
     try{
       /* Тип text/plain, а не application/json — намеренно. Заказ уходит на другой домен
-         (hailey-looks.ru), и на json браузер сначала шлёт предварительный запрос-разрешение.
+         (pay.hello-hailey.ru), и на json браузер сначала шлёт предварительный запрос-разрешение.
          21.08.2026 у покупательницы через VPN он не прошёл: до сервера не долетело ничего,
          ни предварительного, ни самого заказа. С text/plain запрос считается простым и идёт
          сразу. Сервер читает тело как JSON независимо от типа (pay_endpoint.py, do_POST).
