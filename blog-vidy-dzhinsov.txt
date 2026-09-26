@@ -312,3 +312,5 @@
 {"@type":"Question","name":"Какие джинсы скрывают живот?","acceptedAnswer":{"@type":"Answer","text":"Фасоны с высокой посадкой и плотным поясом: широкие, трубы, прямые, бананы. Пояс на талии фиксирует живот, свободная штанина не обтягивает. Низкая посадка — наоборот, делит живот пополам."}},
 {"@type":"Question","name":"Как понять свой размер джинсов?","acceptedAnswer":{"@type":"Answer","text":"Измерьте обхват талии и бёдер и сверьтесь с таблицей бренда. На hello-hailey.ru есть таблица размеров женских джинсов 42–74 с калькулятором: вводите мерки — получаете размер HAILEY."}}]}
 </script>
+<script src="https://cdn.hello-hailey.ru/blocks/blog-popup.js" defer></script>
+<script src="https://cdn.hello-hailey.ru/blocks/blog-share.js" defer></script>
