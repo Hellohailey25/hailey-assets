@@ -231,3 +231,5 @@
 {"@type":"Question","name":"Есть ли багги на большие размеры?","acceptedAnswer":{"@type":"Answer","text":"Да, багги HAILEY идут в размерах 42–74 с высокой и средней посадкой, с примеркой перед оплатой и возвратом 14 дней."}},
 {"@type":"Question","name":"Чем багги отличаются от джинсов оверсайз?","acceptedAnswer":{"@type":"Answer","text":"Оверсайз — общее слово про свободную посадку, багги — конкретный фасон с объёмом по всей длине штанины."}}]}
 </script>
+<script src="https://cdn.hello-hailey.ru/blocks/blog-popup.js" defer></script>
+<script src="https://cdn.hello-hailey.ru/blocks/blog-share.js" defer></script>
