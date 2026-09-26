@@ -218,3 +218,5 @@
 {"@type":"Question","name":"Мом ещё в моде в 2026 году?","acceptedAnswer":{"@type":"Answer","text":"Да, мом перешли в разряд классики. Тренды сместились к объёмным багги и wide leg, но мом продолжают носить как базу."}},
 {"@type":"Question","name":"Какой длины должны быть мом?","acceptedAnswer":{"@type":"Answer","text":"До косточки щиколотки или чуть выше — щиколотка открыта. Допустим один аккуратный подворот; длина в пол крадёт рост."}}]}
 </script>
+<script src="https://cdn.hello-hailey.ru/blocks/blog-popup.js" defer></script>
+<script src="https://cdn.hello-hailey.ru/blocks/blog-share.js" defer></script>
